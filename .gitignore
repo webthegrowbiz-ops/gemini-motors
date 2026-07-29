@@ -2,6 +2,10 @@ node_modules/
 build/
 dist/
 coverage/
+.vercel/
+.tmp_*/
+qa-product-pages/
+Gemini-L-Series-HTML/
 .DS_Store
 *.log
 .env*

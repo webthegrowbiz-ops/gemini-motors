@@ -2,8 +2,6 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-import indianOil from "./assets/images/indian_oil.jpg";
-import solarPV from "./assets/images/solar_pv.jpg";
 import smartLedLight from "./assets/images/smart_led_light.jpg";
 import sustainableGrowth from "./assets/images/sustainable_growth.jpg";
 import commercialTruck from "./assets/images/commercial_truck.jpg";
@@ -12,7 +10,7 @@ import fuelSolution from "./assets/images/fuel_solution.jpg";
 import switchAward from "./assets/images/switch_ev_award.jpg";
 import switchIEV3 from "./assets/images/switch_iev3.jpg";
 import mrAgnel from "./assets/images/mragnel.jpeg";
-import { Vehicle, FuelService, GreenTechProduct } from './types';
+import { Vehicle, FuelService, GreenTechProduct, ServiceCentre, ServicesPageConfig, ChatWidgetConfig } from './types';
 
 export const APP_LOGOS = {
   header: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDo1z_4WbyE77lq5H2A5Y4Y8N4uCdf8mG8LreE4V2r6H9V_wh9QxXW9h_c_RtRK7egQQqJvofN7-l_L_vjoAdc_FCCF_AsI_c2L_UK_Nuv_3n9_85B_4H_JOB_8_vt5rv_EyP_U5L_V3_uaB_36W_Fv_sKw_K_cgS_wmC_AXX_Ht_cg4_k8_LH_4Az_p8N_CHd_ibS_QUoF_drz_CVMBXP_5if_uCmc_IIAcBMRNl_VkD4_c_0VUEqSqqW_Qzw_ohNcB9A',
@@ -131,7 +129,7 @@ export const FUEL_SERVICES: FuelService[] = [
     description: 'High-throughput premium petrol and diesel dispensing with strict quality control protocols, operating 24/7 with digital tracking.',
     iconName: 'local_gas_station',
     features: ['BS-VI ultra-clean fuels', 'High-speed flow dispensing', 'Integrated digital payment', 'Automatic density monitors'],
-    imageUrl: 'https://content.jdmagicbox.com/comp/ambedkar_nagar/l9/9999p5271.5271.211114120522.a6l9/catalogue/indian-oil-petrol-pump-old-jetly-brothers-saidapur-ambedkar-nagar-gyrcbocz8p.jpg'
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD_db4XDk9Tco6k8itFxNX55xDXfZ22skB-Np_OF69CRR4-6yFy-iDToxMoLYWzUtIwV-pXIbetaCTezwUG8gyyZ9kx9E2yVzctEIKvInPQfi8T7gBIVDb0B8pJwMIo_YXh68FYgqdWP4eRqwy4N1xDWz9a-XphYWe9OKQRJQjfiZp-O_yn5RwvgX9OG-b7FiZjxPKGPqqYUzSQ6fsCw6b1QkRiCtPWp5t41hnB_JT4RbXaesmaqBvGFQ'
   },
   {
     id: 'premium-fuels',
@@ -139,7 +137,7 @@ export const FUEL_SERVICES: FuelService[] = [
     description: 'Specialized high-octane additives designed to keep fuel injectors clean, increase mileage, and reduce emissions in high-end heavy-duty engines.',
     iconName: 'verified',
     features: ['High-octane premium additives', 'Friction-reduction elements', 'Lower soot production', 'Active carbon inhibitors'],
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lO8d0BFwryPLPX_FRdreKLfGT5no4UO3QLHIYOAK4YufVTJCB53JXe4U&s=10'
+    imageUrl: 'https://images.unsplash.com/photo-1610488737227-2c9749baeb4f?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 'lubricants',
@@ -155,9 +153,36 @@ export const FUEL_SERVICES: FuelService[] = [
     description: 'Mobile on-site fuel delivery for real-time machinery fueling at construction zones and mines. Fleet of high-capacity tankers for wholesale supply chains.',
     iconName: 'local_shipping',
     features: ['Capacities from 12,000L to 20,000L', 'Response times under 4 hours', 'GPS-tracked secure delivery routes', 'Weights & measures verified meters'],
-     imageUrl: indianOil,
+    imageUrl: '/src/assets/images/indianoil_pump_motion_1784018549511.jpg'
   }
 ];
+
+export const SERVICES_PAGE_CONFIG: ServicesPageConfig = {
+  showPetrolPumpService: false,
+};
+
+export const SERVICE_CENTRES: ServiceCentre[] = [
+  {
+    id: 'north-goa-service-centre',
+    name: 'North Goa Service Centre',
+    region: 'North Goa',
+    phone: '+91 94223 93288',
+    note: 'Central service contact number used for service enquiries.',
+  },
+  {
+    id: 'south-goa-service-centre',
+    name: 'South Goa Service Centre',
+    region: 'South Goa',
+    phone: '+91 94223 93288',
+    note: 'Central service contact number used for service enquiries.',
+  },
+];
+
+export const CHAT_WIDGET_CONFIG: ChatWidgetConfig = {
+  enabled: false,
+  mode: 'unconfirmed',
+  note: 'Client requested a chatbox, but the required type is not confirmed. WhatsApp CTAs route to the LCV landing page before direct chat.',
+};
 
 export const HUBS = [
   {

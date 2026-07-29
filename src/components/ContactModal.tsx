@@ -31,7 +31,8 @@ Phone: ${formData.phone}
 Subject: ${formData.subject}
 Message: ${formData.message}`;
     const encodedText = encodeURIComponent(baseText);
-    window.open(`https://wa.me/919422393288?text=${encodedText}`, '_blank');
+    void encodedText;
+    window.location.href = '/lcv/index.html';
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);

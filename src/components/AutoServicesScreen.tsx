@@ -4,7 +4,6 @@
  */
 
 import React, { useState } from 'react';
-import indianOilHero from "../assets/images/indian_oil.jpg";
 import { 
   Fuel, 
   Send, 
@@ -21,17 +20,18 @@ import {
   Award,
   AlertTriangle
 } from 'lucide-react';
-import { FUEL_SERVICES, HUBS } from '../data';
+import { FUEL_SERVICES, HUBS, SERVICE_CENTRES, SERVICES_PAGE_CONFIG } from '../data';
 
 interface AutoServicesScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
 }
 
 export default function AutoServicesScreen({ onContactClick }: AutoServicesScreenProps) {
+  const showPetrolPumpService = SERVICES_PAGE_CONFIG.showPetrolPumpService;
   // Bulk enquiry state
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
-  const [serviceType, setServiceType] = useState('Bulk Fuel Supply');
+  const [serviceType, setServiceType] = useState('Vehicle Service Support');
   const [estVolume, setEstVolume] = useState('');
   const [requirements, setRequirements] = useState('');
   const [success, setSuccess] = useState(false);
@@ -73,24 +73,22 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
               Goa Division
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-extrabold text-gray-950 mb-6 tracking-tight leading-tight">
-              Fuel Solutions That <br />
-              <span className="text-blue-600">Keep You Moving</span>
+              Commercial Vehicle <br />
+              <span className="text-blue-600">Service Support</span>
             </h1>
             <p className="text-base md:text-lg text-gray-600 mb-10 leading-relaxed max-w-lg">
-              Premium fuels, lubricants, bowser supply, and transportation services. Providing the logistical backbone for Goa's transportation and industrial sectors.
+              Service-centre coordination for Gemini Motors customers across North Goa and South Goa through one central contact number.
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
-                onClick={handleQuotationRequest}
+                onClick={handleEnquiryScroll}
                 className="px-8 py-4 bg-gray-950 text-white font-bold rounded-lg hover:bg-gray-800 transition-all flex items-center gap-2 cursor-pointer text-sm shadow-md active:scale-95"
               >
-                <span>Fleet Enquiry</span>
+                <span>Service Enquiry</span>
                 <ArrowRight size={16} />
               </button>
               <a 
-                href="https://wa.me/919422393288" 
-                target="_blank" 
-                rel="noreferrer"
+                href="/lcv/index.html"
                 className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-all flex items-center gap-2 text-sm active:scale-95"
               >
                 <span>WhatsApp Us</span>
@@ -99,18 +97,42 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
             </div>
           </div>
 
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-blue-100 rounded-2xl -z-10 transform rotate-2 transition-all duration-700 opacity-80"></div>
-            <img
-  className="w-full h-[480px] object-cover rounded-xl shadow-2xl border border-gray-200"
-  src={indianOilHero}
-  alt="IndianOil Fuel Retailing & Pump - Goa Auto Services"
-/>
+          <div className="relative grid gap-4">
+            {SERVICE_CENTRES.map((centre) => (
+              <article
+                key={centre.id}
+                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl shadow-slate-950/8"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    <MapPin size={22} />
+                  </span>
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-blue-600">
+                      {centre.region}
+                    </p>
+                    <h2 className="mt-2 font-display text-2xl font-extrabold text-gray-950">
+                      {centre.name}
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-gray-600">{centre.note}</p>
+                    <a
+                      href={`tel:${centre.phone.replace(/\s/g, '')}`}
+                      className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-600 px-5 text-sm font-bold text-white transition-all hover:bg-blue-700"
+                    >
+                      <Phone size={16} />
+                      {centre.phone}
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
 
         </div>
       </section>
 
+      {showPetrolPumpService && (
+      <>
       {/* Services Bento Grid */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-16 space-y-16">
         
@@ -196,7 +218,7 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 <Layers size={24} />
               </div>
               <h3 className="font-display text-2xl font-bold text-gray-950 mb-4">
-                 Lubricants
+                Industrial Lubricants
               </h3>
               <p className="text-xs text-gray-500 leading-relaxed mb-6">
                 {FUEL_SERVICES[2].description}
@@ -323,6 +345,8 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
           </div>
         </div>
       </section>
+      </>
+      )}
 
       {/* Enquiry Form */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-16" id="enquire">
@@ -337,7 +361,7 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 Fleet & Bulk <br />Enquiries
               </h2>
               <p className="text-blue-100 text-sm leading-relaxed mb-10">
-                Scale your Goan logistics operations with a highly reliable, state-certified energy partner. Our bulk fuel experts will tailor a contract plan matching your exact monthly logistics volumes.
+                Share your service requirement and our team will coordinate the correct Gemini Motors service-centre support for your vehicle.
               </p>
             </div>
 
@@ -345,14 +369,14 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
               <div className="flex items-center gap-3">
                 <Phone size={16} className="text-blue-200 shrink-0" />
                 <div>
-                  <p className="opacity-70">Direct Operations Desk</p>
+                <p className="opacity-70">Central Service Desk</p>
                   <p className="font-bold text-sm text-white">+91 94223 93288</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={16} className="text-blue-200 shrink-0" />
                 <div>
-                  <p className="opacity-70">Logistics Procurement</p>
+                <p className="opacity-70">Service Email</p>
                   <p className="font-bold text-sm text-white">agnel899@gmail.com</p>
                 </div>
               </div>
@@ -370,10 +394,10 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                   Quotation Request Sent!
                 </h3>
                 <p className="text-sm text-gray-600 mt-2 max-w-sm leading-relaxed">
-                  Thank you, <strong className="text-blue-600">{contactPerson}</strong> from <strong className="text-gray-950">{companyName}</strong>. We have received your query for <strong className="text-gray-950">{serviceType}</strong> at an estimated volume of <strong className="text-blue-600">{estVolume}</strong>.
+                  Thank you, <strong className="text-blue-600">{contactPerson}</strong> from <strong className="text-gray-950">{companyName}</strong>. We have received your query for <strong className="text-gray-950">{serviceType}</strong> with details: <strong className="text-blue-600">{estVolume}</strong>.
                 </p>
                 <p className="text-xs text-gray-400 mt-4 font-mono">
-                  An official customized PDF rate sheet will be mailed to your procurement team shortly.
+                  Our central service desk will connect with the next steps shortly.
                 </p>
               </div>
             )}
@@ -423,23 +447,23 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                   onChange={(e) => setServiceType(e.target.value)}
                   className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
                 >
-                  <option>Bulk Fuel Supply (Diesel)</option>
-                  <option>Bowser Site Deployment</option>
-                  <option>Wholesale Lubricant Contract</option>
-                  <option>Port Terminal Storage</option>
+                  <option>Vehicle Service Support</option>
+                  <option>Genuine Parts Support</option>
+                  <option>Fleet Maintenance Support</option>
+                  <option>Roadside Assistance Guidance</option>
                 </select>
               </div>
 
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest">
-                  EST. MONTHLY VOLUME
+                  VEHICLE / SERVICE DETAILS
                 </label>
                 <input 
                   type="text" 
                   required
                   value={estVolume}
                   onChange={(e) => setEstVolume(e.target.value)}
-                  placeholder="e.g. 15,000 Litres" 
+                  placeholder="e.g. Vehicle model and service need" 
                   className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                 />
               </div>
@@ -451,7 +475,7 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 <textarea 
                   value={requirements}
                   onChange={(e) => setRequirements(e.target.value)}
-                  placeholder="Tell us about your fleet schedule, specific site delivery coordinates, or custom billing demands..." 
+                  placeholder="Tell us about your vehicle, location in Goa, preferred timing or support requirement..." 
                   rows={4}
                   className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                 />

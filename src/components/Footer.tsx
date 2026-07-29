@@ -3,22 +3,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ShieldCheck, Globe, Share2, Building2, ChevronRight, Phone, Mail, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, ShieldCheck, Youtube, ChevronRight } from 'lucide-react';
 import { AppDivision } from '../types';
 import growBizLogo from "../assets/images/growbiz_logo.png";
-import { APP_LOGOS } from '../data';
 import Logo from './Logo';
 
 interface FooterProps {
   setDivision: (division: AppDivision) => void;
-  onContactClick: () => void;
+  onContactClick?: () => void;
 }
 
-export default function Footer({ setDivision, onContactClick }: FooterProps) {
+export default function Footer({ setDivision }: FooterProps) {
   const handleLinkClick = (division: AppDivision) => {
     setDivision(division);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const socialLinks = [
+    { label: 'Instagram', href: 'https://instagram.com/geminigroupindia', Icon: Instagram },
+    { label: 'Facebook', href: 'https://facebook.com/geminigroupindia', Icon: Facebook },
+    { label: 'YouTube', href: 'https://youtube.com/@geminigroupindia', Icon: Youtube },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/gemini-group-india', Icon: Linkedin },
+  ];
 
   return (
     <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
@@ -129,36 +135,22 @@ export default function Footer({ setDivision, onContactClick }: FooterProps) {
                 +91 94223 93288
               </a>
             </div>
-            <div className="flex items-center gap-2 text-pink-400 font-medium">
-              <Instagram size={16} className="shrink-0 animate-pulse" />
-              <a href="https://instagram.com/geminigroupindia" target="_blank" rel="noreferrer" className="hover:text-white hover:underline text-gray-300">
-                @geminigroupindia
-              </a>
-            </div>
           </div>
           
-          <div className="flex gap-3 pt-2">
-            <button 
-              onClick={onContactClick}
-              className="p-2.5 bg-gray-800 text-blue-400 rounded-lg hover:bg-gray-750 hover:text-white transition-all cursor-pointer"
-              title="Global Office"
-            >
-              <Building2 size={18} />
-            </button>
-            <button 
-              onClick={onContactClick}
-              className="p-2.5 bg-gray-800 text-blue-400 rounded-lg hover:bg-gray-750 hover:text-white transition-all cursor-pointer"
-              title="Official Website"
-            >
-              <Globe size={18} />
-            </button>
-            <button 
-              onClick={onContactClick}
-              className="p-2.5 bg-gray-800 text-blue-400 rounded-lg hover:bg-gray-750 hover:text-white transition-all cursor-pointer"
-              title="Share Operations"
-            >
-              <Share2 size={18} />
-            </button>
+          <div className="flex gap-3 pt-2" aria-label="Social media links">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Gemini Motors on ${label}`}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-blue-400 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gray-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                title={label}
+              >
+                <Icon size={17} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

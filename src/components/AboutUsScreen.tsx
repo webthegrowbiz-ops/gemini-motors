@@ -43,8 +43,7 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
   ];
 
   const handleWhatsAppDirect = () => {
-    const text = encodeURIComponent("Hello Mr. Agnel, I visited your About Us section and would like to discuss business opportunities.");
-    window.open(`https://wa.me/919422393288?text=${text}`, '_blank');
+    window.location.href = '/lcv/index.html';
   };
 
   return (
@@ -84,14 +83,14 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
               <div className="aspect-square w-full rounded-2xl overflow-hidden bg-slate-100 border border-gray-200 relative">
                 <img
   src={mrAgnel}
-  alt="Mr. Agnel - Founder"
+  alt="Agnello Gomes - Founder"
   className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700"
 />
               </div>
 
               {/* Founder Tag */}
               <div className="mt-6 text-center pb-2">
-                <h3 className="font-display font-extrabold text-2xl text-gray-900">Mr. Agnel</h3>
+                <h3 className="font-display font-extrabold text-2xl text-gray-900">Agnello Gomes</h3>
                 <p className="text-blue-600 font-semibold text-sm tracking-wide mt-1">Founder & Managing Director</p>
                 <p className="text-xs text-gray-500 mt-2 font-mono">B.E. Mechanical (Bombay University, 1986) | PGDBM</p>
               </div>
@@ -138,7 +137,7 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
                 Visionary Engineering Leadership
               </h2>
               <p className="leading-relaxed">
-                A distinguished Mechanical Engineering graduate from Bombay University (1986), Mr. Agnel spent over 17 years as a core industry expert handling major industrial setups before launching his own enterprise. Having secured admission into the highly prestigious IIT Madras, he chose to focus on building heavy industrial engineering businesses, culminating in a highly diversified Goan corporate conglomerate.
+                A distinguished Mechanical Engineering graduate from Bombay University (1986), Agnello Gomes spent over 17 years as a core industry expert handling major industrial setups before launching his own enterprise. Having secured admission into the highly prestigious IIT Madras, he chose to focus on building heavy industrial engineering businesses, culminating in a highly diversified Goan corporate conglomerate.
               </p>
             </div>
 
@@ -267,7 +266,7 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
               <div>
                 <h4 className="font-display font-bold text-xl text-white">Have a Project or Procurement Requirement?</h4>
                 <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                  Connect authoritatively with our executive team. All inquiries route directly to Mr. Agnel on WhatsApp for immediate and personalized commercial attention.
+                  Connect authoritatively with our executive team. All inquiries route directly to Agnello Gomes on WhatsApp for immediate and personalized commercial attention.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">

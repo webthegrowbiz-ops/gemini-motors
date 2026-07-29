@@ -3,722 +3,912 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useRef } from 'react';
-import indianOilPump from "../assets/images/indian_oil.jpg";
-import { motion } from 'motion/react';
-import { 
-  ShieldCheck, 
-  Sparkles, 
-  ChevronRight, 
-  ArrowRight, 
-  ChevronLeft, 
-  Zap, 
-  Download, 
-  MapPin, 
-  PhoneCall, 
-  Calendar, 
-  Check, 
+import { RefObject, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import {
+  ArrowRight,
+  BadgeIndianRupee,
+  BatteryCharging,
+  Building2,
+  Calendar,
+  Clock,
   FileText,
-  BadgeAlert,
-  HelpCircle,
-  Wrench
+  Fuel,
+  MapPin,
+  MessageCircle,
+  PackageCheck,
+  PhoneCall,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+  Wrench,
+  X,
+  Zap,
 } from 'lucide-react';
-import { VEHICLES, GENSETS } from '../data';
-import { VehicleSubTab } from '../types';
+
+import businessJourney from '../assets/images/business_journey.jpg';
+import commercialTruck from '../assets/images/commercial_truck.jpg';
+import fuelSolution from '../assets/images/fuel_solution.jpg';
+import indianOilPump from '../assets/images/indian_oil.jpg';
+import sustainableGrowth from '../assets/images/sustainable_growth.jpg';
+import { lightCommercialVehicles, mediumHeavyCommercialVehicles } from '../data/commercialVehiclesData';
 
 interface GeminiMotorsScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
 }
 
+const revealTransition = { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const };
+
+const trustItems = [
+  { label: '20+ Years of Experience', Icon: ShieldCheck },
+  { label: 'Authorized Dealership', Icon: Building2 },
+  { label: '100% Genuine Parts', Icon: PackageCheck },
+  { label: '3 Service Centres', Icon: MapPin },
+  { label: 'Flexible Finance', Icon: BadgeIndianRupee },
+];
+
+const vehicleCategories = [
+  {
+    title: 'LCV',
+    subtitle: 'Agile vehicles for city deliveries, retail routes and growing local businesses.',
+    image: commercialTruck,
+    route: '/commercial/light/',
+  },
+  {
+    title: 'M&HCV',
+    subtitle: 'High-capacity haulage and construction-ready platforms for serious fleet work.',
+    image: fuelSolution,
+    route: '/commercial/medium-heavy/',
+  },
+];
+
+const serviceItems = [
+  { label: 'Vehicle Service', Icon: Wrench },
+  { label: 'Genuine Parts', Icon: PackageCheck },
+  { label: 'Roadside Assistance', Icon: PhoneCall },
+  { label: 'Fleet Maintenance', Icon: Truck },
+  { label: 'AMC Support', Icon: ShieldCheck },
+  { label: 'Service Booking', Icon: Calendar },
+];
+
+const featuredVehicles = [
+  lightCommercialVehicles[0],
+  lightCommercialVehicles[2],
+  mediumHeavyCommercialVehicles[0],
+  mediumHeavyCommercialVehicles[5],
+].filter(Boolean);
+
+const financeItems = [
+  { label: 'Flexible EMI Plans', Icon: Zap },
+  { label: 'Leading Bank Partners', Icon: Building2 },
+  { label: 'Easy Documentation', Icon: FileText },
+  { label: 'Business and Fleet Finance', Icon: BadgeIndianRupee },
+];
+
+const currencyFormatter = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  maximumFractionDigits: 0,
+});
+
+const formatCurrency = (value: number) => currencyFormatter.format(Math.max(0, Math.round(value)));
+
+const calculateEmi = (principal: number, annualRate: number, tenureMonths: number) => {
+  if (principal <= 0 || tenureMonths <= 0) {
+    return { monthlyEmi: 0, totalInterest: 0, totalPayable: 0 };
+  }
+
+  const monthlyRate = annualRate / 12 / 100;
+  const monthlyEmi =
+    monthlyRate === 0
+      ? principal / tenureMonths
+      : (principal * monthlyRate * (1 + monthlyRate) ** tenureMonths) / ((1 + monthlyRate) ** tenureMonths - 1);
+  const totalPayable = monthlyEmi * tenureMonths;
+
+  return {
+    monthlyEmi,
+    totalInterest: totalPayable - principal,
+    totalPayable,
+  };
+};
+
+const testimonials = [
+  {
+    quote: 'Gemini Motors helped us choose the right vehicle mix for daily delivery routes without overcomplicating the process.',
+    name: 'Logistics Business Owner',
+    role: 'Fleet operator',
+  },
+  {
+    quote: 'Service support and genuine parts availability have made our fleet planning far easier.',
+    name: 'Regional Distributor',
+    role: 'LCV customer',
+  },
+  {
+    quote: 'The team understands commercial vehicles, finance, and uptime. That matters when vehicles are earning every day.',
+    name: 'Construction Supplier',
+    role: 'M&HCV customer',
+  },
+];
+
 export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScreenProps) {
-  const [activeSubTab, setActiveSubTab] = useState<VehicleSubTab>('lcv');
-  
-  // Service Booking states
-  const [selectedModel, setSelectedModel] = useState('L-Series 2.5T');
-  const [regNo, setRegNo] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [contactPerson, setContactPerson] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState('09:00 AM - 11:00 AM');
-  
-  // Custom interactive calendar states
-  const [currentYear, setCurrentYear] = useState(2026);
-  const [currentMonthIdx, setCurrentMonthIdx] = useState(6); // July (matching user prompt timestamp July 2026!)
-  const [selectedDay, setSelectedDay] = useState(8); // Default to current day July 8
-  const [bookingSuccess, setBookingSuccess] = useState(false);
-  const [brochureSuccess, setBrochureSuccess] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const heroRef = useRef<HTMLElement>(null);
+  const inventoryRef = useRef<HTMLElement>(null);
+  const serviceRef = useRef<HTMLElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isEmiOpen, setIsEmiOpen] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia('(max-width: 767px)').matches);
+  const [vehiclePrice, setVehiclePrice] = useState(1800000);
+  const [downPayment, setDownPayment] = useState(300000);
+  const [interestRate, setInterestRate] = useState(10.5);
+  const [loanTenure, setLoanTenure] = useState(48);
+  const [tenureUnit, setTenureUnit] = useState<'months' | 'years'>('months');
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, 46]);
+  const heroCardY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -24]);
+  const loanAmount = Math.max(0, vehiclePrice - downPayment);
+  const tenureMonths = tenureUnit === 'years' ? loanTenure * 12 : loanTenure;
+  const emiResult = calculateEmi(loanAmount, interestRate, tenureMonths);
+  const isEmiVisible = !isMobileViewport || isEmiOpen;
 
-  // Refs for scrolling to sections
-  const inventoryRef = useRef<HTMLDivElement>(null);
-  const serviceRef = useRef<HTMLDivElement>(null);
-
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June', 
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  const handlePrevMonth = () => {
-    if (currentMonthIdx === 0) {
-      setCurrentMonthIdx(11);
-      setCurrentYear(prev => prev - 1);
-    } else {
-      setCurrentMonthIdx(prev => prev - 1);
-    }
+  const scrollToSection = (sectionRef: RefObject<HTMLElement | null>) => {
+    sectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   };
 
-  const handleNextMonth = () => {
-    if (currentMonthIdx === 11) {
-      setCurrentMonthIdx(0);
-      setCurrentYear(prev => prev + 1);
-    } else {
-      setCurrentMonthIdx(prev => prev + 1);
-    }
-  };
+  const handleEmiQuoteClick = () => {
+    if (isMobileViewport) setIsEmiOpen(false);
 
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+    const enquiryTarget =
+      document.getElementById('product-enquiry') ||
+      document.getElementById('enquiry') ||
+      document.querySelector('form')?.closest('section');
 
-  const handleBookService = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!regNo.trim()) {
-      setErrorMsg('Please specify your registration number.');
+    if (enquiryTarget instanceof HTMLElement) {
+      enquiryTarget.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
       return;
     }
-    if (!contactPhone.trim()) {
-      setErrorMsg('Please enter your contact phone.');
-      return;
-    }
-    
-    setErrorMsg('');
-    setBookingSuccess(true);
-    setTimeout(() => {
-      setBookingSuccess(false);
-      setRegNo('');
-      setCompanyName('');
-      setContactPerson('');
-      setContactPhone('');
-    }, 4500);
+
+    onContactClick('Exact EMI quote for commercial vehicle finance');
   };
 
-  // Days in month calculator (simplified)
-  const daysInMonth = (month: number, year: number) => {
-    return new Date(year, month + 1, 0).getDate();
+  const navigateToRoute = (route: string) => {
+    window.history.pushState(null, '', route);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   };
 
-  // Generate blank leading days for calendar grid
-  const startDayOfWeek = (month: number, year: number) => {
-    return new Date(year, month, 1).getDay(); // 0 = Sunday, 1 = Monday etc
-  };
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const handleViewportChange = () => setIsMobileViewport(mediaQuery.matches);
 
-  const totalDays = daysInMonth(currentMonthIdx, currentYear);
-  const leadingBlankDays = startDayOfWeek(currentMonthIdx, currentYear);
+    handleViewportChange();
+    mediaQuery.addEventListener('change', handleViewportChange);
 
-  const daysArray = Array.from({ length: totalDays }, (_, i) => i + 1);
-  const leadingBlanks = Array.from({ length: leadingBlankDays === 0 ? 6 : leadingBlankDays - 1 }, (_, i) => i); // Match Mon as first day of week
+    return () => mediaQuery.removeEventListener('change', handleViewportChange);
+  }, []);
 
-  // Filtered vehicles
-  const lcvVehicles = VEHICLES.filter(v => v.category === 'lcv');
-  const mhcvVehicles = VEHICLES.filter(v => v.category === 'mhcv');
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveTestimonial((current) => (current + 1) % testimonials.length);
+    }, 4200);
+
+    return () => window.clearInterval(intervalId);
+  }, [prefersReducedMotion]);
 
   return (
-    <div className="animate-in fade-in duration-300">
-      
-      {/* Hero Section */}
-      <section className="relative min-h-[75vh] flex items-center overflow-hidden bg-[#0c111d] bg-gradient-to-br from-[#0c111d] via-[#121a2c] to-[#080d17] py-24 text-white">
-        {/* IndianOil Petrol Pump In Motion Background with Low Opacity */}
+    <div className="overflow-hidden bg-[#f8f9ff] text-[#0b1c30]">
+      <section
+        ref={heroRef}
+        className="relative flex min-h-[75vh] items-center overflow-hidden bg-[#0c111d] bg-gradient-to-br from-[#0c111d] via-[#121a2c] to-[#080d17] py-24 text-white"
+      >
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.img 
-            src="/src/assets/images/indianoil_pump_motion_1784018549511.jpg"
+          <motion.img
+            src={indianOilPump}
             alt="IndianOil Pump Background"
-            className="w-full h-full object-cover opacity-[0.14] filter brightness-90 saturate-[0.85] scale-105"
-            animate={{ 
-              scale: [1.02, 1.07, 1.02],
-              x: [0, 8, 0],
-              y: [0, -5, 0]
-            }}
-            transition={{ 
-              duration: 25, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            referrerPolicy="no-referrer"
+            className="h-[112%] w-full object-cover opacity-[0.14] brightness-90 saturate-[0.85]"
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 0.14, scale: 1.02 }}
+            style={{ y: heroImageY }}
+            transition={{ duration: 1.1, ease: 'easeOut' }}
           />
         </div>
 
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none translate-x-1/2 translate-y-1/2"></div>
+        <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-emerald-500/5 blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 md:px-16 lg:grid-cols-12">
+          <motion.div
+            initial={{ opacity: 0, y: 34 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.75, ease: 'easeOut' }}
             className="lg:col-span-7"
           >
-            <span className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-400/30 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-blue-300 mb-6">
+            <motion.span
+              initial={{ opacity: 0, x: -14 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: 'easeOut' }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/15 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-blue-300"
+            >
               <Sparkles size={12} className="text-blue-400" />
               Reliability Powered by Engineering
-            </span>
-            <h1 className="font-display text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.08, ease: 'easeOut' }}
+              className="mb-6 font-display text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl"
+            >
               Powering Every <br />
               <span className="text-blue-400">Business Journey</span>
-            </h1>
-            <p className="text-base md:text-lg text-gray-300 mb-10 leading-relaxed max-w-xl">
-              Commercial Vehicles, Electric Mobility & Reliable Power Solutions. Contact Us for Pricing. From urban last-mile distribution to cross-continental bulk transport, Gemini Motors provides the fleet performance you can trust.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button 
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
+              className="mb-10 max-w-xl text-base leading-relaxed text-gray-300 md:text-lg"
+            >
+              Commercial Vehicles, Electric Mobility & Reliable Power Solutions. Contact Us for Pricing. From urban
+              last-mile distribution to cross-continental bulk transport, Gemini Motors provides the fleet performance
+              you can trust.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.28, ease: 'easeOut' }}
+              className="flex flex-wrap gap-4"
+            >
+              <button
+                type="button"
                 onClick={() => scrollToSection(inventoryRef)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-blue-500/20 active:scale-95 transition-all cursor-pointer text-sm uppercase tracking-wider"
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-500/25 active:scale-95"
               >
                 Explore Fleet
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
-              <button 
+              <button
+                type="button"
                 onClick={() => scrollToSection(serviceRef)}
-                className="border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold px-8 py-4 rounded-lg active:scale-95 transition-all cursor-pointer text-sm uppercase tracking-wider"
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/40 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 active:scale-95"
               >
                 Book Service
+                <Wrench size={16} className="transition-transform duration-300 group-hover:rotate-6" />
               </button>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="lg:col-span-5 relative"
-          >
-            <div className="absolute -inset-4 bg-blue-500/10 rounded-2xl blur-xl -z-10 animate-pulse"></div>
-            <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-slate-800/80 rounded-xl p-1.5 border border-slate-700/60 shadow-2xl relative overflow-hidden group"
-            >
-             <img
-  src={indianOilPump}
-  alt="IndianOil Petrol Pump Station - Gemini Motors"
-  className="w-full h-[380px] object-cover rounded-lg group-hover:scale-[1.03] transition-transform duration-700"
-/>
-              <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-4 rounded-lg border border-slate-800/60">
-                <p className="text-xs font-mono font-bold text-blue-400">OFFICIAL PARTNER</p>
-                <p className="text-sm font-semibold text-white mt-1">Ashok Leyland & Switch Mobility Distributor</p>
-              </div>
             </motion.div>
           </motion.div>
-          
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{ y: heroCardY }}
+            transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+            className="relative lg:col-span-5"
+          >
+            <div className="absolute -inset-4 -z-10 rounded-2xl bg-blue-500/10 blur-xl" />
+            <div className="group relative overflow-hidden rounded-xl border border-slate-700/60 bg-slate-800/80 p-1.5 shadow-2xl">
+              <img
+                src={indianOilPump}
+                alt="IndianOil Petrol Pump Station - Gemini Motors"
+                className="h-[380px] w-full rounded-lg object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-slate-800/60 bg-slate-900/90 p-4 backdrop-blur-md">
+                <p className="font-mono text-xs font-bold text-blue-400">OFFICIAL PARTNER</p>
+                <p className="mt-1 text-sm font-semibold text-white">Ashok Leyland & Switch Mobility Distributor</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+      </section>
+
+      <section className="border-b border-slate-200/80 bg-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-4 px-6 py-5 md:px-16">
+          {trustItems.map(({ label, Icon }, index) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: '-40px' }}
+              transition={{ duration: 0.35, delay: index * 0.035, ease: 'easeOut' }}
+              className="flex min-w-[180px] flex-1 basis-[180px] items-center justify-center gap-2.5 text-sm font-bold text-slate-700 lg:min-w-0 lg:basis-0"
+            >
+              <Icon size={18} strokeWidth={2.25} className="shrink-0 text-[#1f5fae]" />
+              <span>{label}</span>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Sticky Division / Category Toggles */}
-      <div className="sticky top-20 z-40 bg-slate-50 border-b border-gray-200/80 shadow-sm overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 flex overflow-x-auto no-scrollbar scroll-smooth">
-          {(['lcv', 'mhcv', 'gensets'] as VehicleSubTab[]).map((tab) => {
-            const labels: Record<VehicleSubTab, string> = {
-              lcv: 'LIGHT COMMERCIAL (LCV)',
-              mhcv: 'MEDIUM & HEAVY (M&HCV)',
-              ev: 'SWITCH MOBILITY (EV)',
-              gensets: 'DIESEL GENERATORS'
-            };
-            const isActive = activeSubTab === tab;
-            return (
-              <button
-                key={tab}
-                onClick={() => setActiveSubTab(tab)}
-                className={`flex-shrink-0 px-8 py-5 text-xs font-mono font-bold tracking-wider border-b-2 cursor-pointer transition-all duration-200 ${
-                  isActive 
-                    ? 'border-blue-600 text-blue-600' 
-                    : 'border-transparent text-gray-500 hover:text-blue-600'
-                }`}
-              >
-                {labels[tab]}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Main Content Area */}
-      <div ref={inventoryRef} className="max-w-7xl mx-auto px-6 md:px-16 py-20 space-y-24 scroll-mt-36">
-
-        {/* LCV Section */}
-        {activeSubTab === 'lcv' && (
-          <section className="animate-in fade-in slide-in-from-bottom-6 duration-300">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-              <div>
-                <h2 className="font-display text-3xl font-extrabold text-gray-950 mb-2">
-                  Light Commercial Vehicles
-                </h2>
-                <p className="text-gray-500">
-                  The robust backbone of last-mile logistics, express delivery, and urban distribution.
-                </p>
-              </div>
-              <div className="h-1 w-24 bg-blue-600 hidden md:block rounded-full"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {lcvVehicles.map((vehicle) => (
-                <div 
-                  key={vehicle.id} 
-                  className="bg-white border border-gray-200/80 p-1.5 rounded-xl hover:shadow-xl hover:border-blue-400/50 transition-all duration-300 group flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="h-56 overflow-hidden rounded-lg bg-gray-100 relative">
-                      <img 
-                        src={vehicle.imageUrl} 
-                        alt={vehicle.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-xl font-bold text-gray-900 mb-3">
-                        {vehicle.name}
-                      </h3>
-                      <p className="text-xs text-gray-500 leading-relaxed mb-6 h-12 overflow-hidden">
-                        {vehicle.description}
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 border-y border-gray-100 py-4 mb-6">
-                        {vehicle.specs.map((spec, sidx) => (
-                          <div key={sidx}>
-                            <span className="text-[10px] font-mono font-semibold tracking-wider text-gray-400 block">
-                              {spec.label}
-                            </span>
-                            <span className="text-sm font-bold text-gray-900 mt-0.5 block">
-                              {spec.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="px-6 pb-6">
-                    <button 
-                      onClick={() => onContactClick(`Quotation request: ${vehicle.name}`)}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                    >
-                      <span>Contact for Pricing</span>
-                      <ArrowRight size={14} />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-
-
-        {/* M&HCV Section */}
-        {activeSubTab === 'mhcv' && (
-          <section className="animate-in fade-in slide-in-from-bottom-6 duration-300">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-              <div>
-                <h2 className="font-display text-3xl font-extrabold text-gray-950 mb-2">
-                  Medium & Heavy Commercial Vehicles
-                </h2>
-                <p className="text-gray-500">
-                  Engineered with heavy bogie suspensions and durable frames to transport bulk industrial cargo over extreme distances.
-                </p>
-              </div>
-              <div className="h-1 w-24 bg-gray-900 hidden md:block rounded-full"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {mhcvVehicles.map((vehicle) => (
-                <div 
-                  key={vehicle.id} 
-                  className="bg-white border border-gray-200/80 rounded-xl overflow-hidden flex flex-col md:flex-row group hover:shadow-xl hover:border-blue-400/40 transition-all duration-300"
-                >
-                  <div className="md:w-1/2 overflow-hidden bg-gray-50 min-h-[250px] relative">
-                    <img 
-                      src={vehicle.imageUrl} 
-                      alt={vehicle.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="md:w-1/2 p-8 flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-display text-2xl font-bold text-gray-950 mb-2">
-                        {vehicle.name}
-                      </h3>
-                      <p className="text-xs text-gray-500 leading-relaxed mb-6">
-                        {vehicle.description}
-                      </p>
-                      
-                      <div className="space-y-3 mb-8">
-                        {vehicle.specs.map((spec, sidx) => (
-                          <div key={sidx} className="flex justify-between border-b border-gray-100 pb-2 text-xs">
-                            <span className="text-gray-400">{spec.label}</span>
-                            <span className="font-bold text-gray-900">{spec.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <button 
-                      onClick={() => onContactClick(`Heavy Fleet Enquiry: ${vehicle.name}`)}
-                      className="w-full bg-gray-950 hover:bg-blue-600 text-white font-bold py-3 rounded-lg text-sm transition-colors cursor-pointer text-center"
-                    >
-                      Contact for Fleet Pricing
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Diesel Generators Section */}
-        {activeSubTab === 'gensets' && (
-          <section className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-300">
-            <div className="bg-slate-50 p-8 md:p-12 border border-gray-200/80 rounded-2xl flex flex-col lg:flex-row gap-12 items-center">
-              <div className="lg:w-1/3">
-                <h2 className="font-display text-3xl font-extrabold text-gray-950 mb-4">
-                  Ashok Leyland Diesel Generators
-                </h2>
-                <p className="text-sm text-gray-500 leading-relaxed mb-8">
-                  Uninterrupted clean power backup solutions for hotels, multi-specialty hospitals, cold storage networks, and residential complexes across Goa. Gemini Motors provides the official Leypower Genset range from 5kVA up to 2500kVA.
-                </p>
-                
-                <ul className="space-y-4 mb-8 text-sm">
-                  <li className="flex items-center gap-3 text-gray-700">
-                    <span className="text-blue-600">✓</span>
-                    <span>CPCB II Emission standard compliant</span>
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700">
-                    <span className="text-blue-600">✓</span>
-                    <span>Lowest operating cost in class</span>
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-700">
-                    <span className="text-blue-600">✓</span>
-                    <span>24/7 official service support guaranteed</span>
-                  </li>
-                </ul>
-
-                <button 
-                  onClick={() => {
-                    setBrochureSuccess(true);
-                    setTimeout(() => setBrochureSuccess(false), 4000);
-                  }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-lg flex items-center gap-2 cursor-pointer transition-colors text-xs uppercase tracking-wider shadow-sm"
-                >
-                  <Download size={14} />
-                  <span>{brochureSuccess ? 'Downloading...' : 'Download Brochure'}</span>
-                </button>
-                {brochureSuccess && (
-                  <p className="text-xs text-green-600 font-semibold mt-2 animate-in fade-in duration-200">
-                    ✓ Brochure PDF download initiated successfully!
-                  </p>
-                )}
-              </div>
-
-              <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                {GENSETS.map((genset) => (
-                  <div key={genset.id} className="bg-white p-6 border border-gray-200/60 rounded-xl shadow-sm flex flex-col justify-between group">
-                    <div>
-                      <div className="h-44 overflow-hidden rounded-lg bg-gray-50 mb-4 relative">
-                        <img 
-                          src={genset.imageUrl} 
-                          alt={genset.name} 
-                          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <h4 className="font-display text-lg font-bold text-gray-950 mb-1">
-                        {genset.name}
-                      </h4>
-                      <span className="font-mono text-xs font-bold text-blue-600 tracking-wider block mb-3">
-                        {genset.range}
-                      </span>
-                      <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                        {genset.description}
-                      </p>
-                    </div>
-                    
-                    <button 
-                      onClick={() => onContactClick(`Leypower Genset Quote: ${genset.name} (${genset.range})`)}
-                      className="text-gray-900 hover:text-blue-600 font-bold text-xs border-b border-gray-900 hover:border-blue-600 pb-1 mt-4 transition-all w-max cursor-pointer align-bottom uppercase tracking-wider"
-                    >
-                      Enquire Now
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-      </div>
-
-      {/* Service Appointment Booking System */}
-      <section ref={serviceRef} className="bg-gray-50 py-24 border-t border-gray-200 scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            {/* Left Contact Side */}
-            <div className="lg:col-span-5 bg-slate-900 p-8 md:p-12 text-white rounded-2xl border border-slate-800 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
-              
-              <div>
-                <span className="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-400/20 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-blue-300 mb-6">
-                  <Wrench size={12} />
-                  Minimize Fleet Downtime
-                </span>
-                <h2 className="font-display text-3xl font-extrabold tracking-tight mb-6">
-                  Book a Fleet <br />Service Appointment
-                </h2>
-                <p className="text-sm text-gray-400 leading-relaxed mb-10">
-                  Minimize heavy commercial truck downtime with our fast prioritized fleet servicing. Schedule regular maintenance, breakdown service, or specialized engine diagnostic repairs at our central service hubs.
-                </p>
-
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <span className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-blue-400 shrink-0">
-                      <MapPin size={18} />
-                    </span>
-                    <div>
-                      <span className="font-bold block text-sm">Service Hub North</span>
-                      <span className="text-xs text-gray-400">Mapusa Industrial Estate, Unit 4B, Goa</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <span className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-blue-400 shrink-0">
-                      <PhoneCall size={18} />
-                    </span>
-                    <div>
-                      <span className="font-bold block text-sm">24/7 Priority Helpline</span>
-                      <span className="text-xs text-gray-400">+1 (800) GEMINI-TRUX</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-slate-800 pt-6 mt-12 flex items-center gap-2 text-xs text-slate-500 font-mono">
-                <ShieldCheck size={14} className="text-emerald-400" />
-                <span>Authorized Leyland Spares & Technicians</span>
-              </div>
-            </div>
-
-            {/* Right Interactive Booking Form */}
-            <div className="lg:col-span-7 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200/60 relative">
-              
-              {bookingSuccess && (
-                <div className="absolute inset-0 bg-white/95 z-30 rounded-2xl flex flex-col items-center justify-center text-center p-8 animate-in fade-in duration-300">
-                  <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
-                    <Check size={32} />
-                  </div>
-                  <h3 className="font-display text-2xl font-extrabold text-gray-900">
-                    Appointment Scheduled!
+      <section ref={inventoryRef} className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20 md:px-16">
+        <SectionIntro eyebrow="Vehicle Categories" title="Choose the fleet class that fits your route." />
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {vehicleCategories.map((category, index) => (
+            <motion.button
+              key={category.title}
+              type="button"
+              onClick={() => navigateToRoute(category.route)}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: '-80px' }}
+              transition={{ ...revealTransition, delay: index * 0.08 }}
+              className="group relative min-h-[390px] overflow-hidden rounded-3xl bg-slate-950 text-left shadow-2xl shadow-slate-950/12 outline-none transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-950/20 focus-visible:ring-2 focus-visible:ring-[#e6a94c] md:min-h-[420px]"
+            >
+              <img
+                src={category.image}
+                alt={category.title}
+                className="absolute inset-0 h-full w-full object-cover opacity-88 transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/42 to-black/8 transition-opacity duration-300 group-hover:opacity-95" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1f5fae] via-[#4a7fd1] to-[#e6a94c]" />
+              <div className="relative z-10 flex min-h-[390px] flex-col justify-end p-7 md:min-h-[420px] md:p-9">
+                <div className="flex min-h-[190px] flex-col transition-transform duration-300 group-hover:-translate-y-1 md:min-h-[210px]">
+                  <h3 className="flex min-h-[54px] items-end whitespace-nowrap font-display text-3xl font-extrabold leading-tight text-white md:min-h-[58px] md:text-4xl">
+                    {category.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mt-2 max-w-sm leading-relaxed">
-                    We have reserved your prioritize fleet slot for <strong className="text-blue-600">{selectedModel}</strong> on <strong className="text-gray-900">{months[currentMonthIdx]} {selectedDay}, {currentYear}</strong> at <strong className="text-gray-900">{selectedTimeSlot}</strong>.
+                  <p className="mt-3 min-h-[68px] max-w-md text-sm leading-relaxed text-slate-200 md:min-h-[50px]">
+                    {category.subtitle}
                   </p>
-                  <p className="text-xs text-gray-400 mt-4 font-mono">
-                    A verification SMS and service code have been generated.
-                  </p>
+                  <span className="mt-auto inline-flex w-max items-center gap-2 rounded-full border border-white/20 bg-white/14 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 group-hover:translate-x-1 group-hover:border-[#e6a94c]/50 group-hover:bg-white/20">
+                    Explore Range
+                    <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
                 </div>
-              )}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </section>
 
-              <form onSubmit={handleBookService} className="space-y-6">
-                
-                {errorMsg && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3 text-red-700 text-sm">
-                    <BadgeAlert size={16} />
-                    <span>{errorMsg}</span>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                      VEHICLE MODEL
-                    </label>
-                    <select 
-                      value={selectedModel}
-                      onChange={(e) => setSelectedModel(e.target.value)}
-                      className="w-full text-sm border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option>L-Series 2.5T</option>
-                      <option>X-Utility Plus</option>
-                      <option>Urban-Pro Van</option>
-                      <option>Hercules 5525 Tractor</option>
-                      <option>Rhino 2825 Tipper</option>
-                      <option>Switch EV commercial</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                      REGISTRATION NUMBER
-                    </label>
-                    <input 
-                      type="text" 
-                      required
-                      value={regNo}
-                      onChange={(e) => setRegNo(e.target.value)}
-                      placeholder="e.g. GA-03-X-1234" 
-                      className="w-full text-sm border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-16">
+          <SectionIntro eyebrow="Featured Vehicles" title="Popular models for commercial routes." />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredVehicles.map((vehicle, index) => (
+              <motion.button
+                key={vehicle.id}
+                type="button"
+                onClick={() => navigateToRoute(vehicle.route)}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: '-70px' }}
+                transition={{ duration: 0.42, delay: index * 0.05, ease: 'easeOut' }}
+                className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-950 text-left shadow-sm outline-none transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-950/15 focus-visible:ring-2 focus-visible:ring-[#e6a94c]"
+              >
+                <img
+                  src={vehicle.imageUrl}
+                  alt={vehicle.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/20 to-transparent" />
+                <div className="relative z-10 flex h-full flex-col justify-end p-5">
+                  <h3 className="font-display text-xl font-extrabold leading-tight text-white drop-shadow-md">
+                    {vehicle.name}
+                  </h3>
+                  <span className="mt-4 inline-flex w-max items-center gap-2 rounded-full border border-white/18 bg-white/14 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 group-hover:translate-x-1 group-hover:bg-white/20">
+                    View Details
+                    <ArrowRight size={15} />
+                  </span>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                      COMPANY NAME
-                    </label>
-                    <input 
-                      type="text" 
-                      value={companyName}
-                      onChange={(e) => setCompanyName(e.target.value)}
-                      placeholder="Fleet Corp Ltd." 
-                      className="w-full text-sm border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                      CONTACT PERSON
-                    </label>
-                    <input 
-                      type="text" 
-                      required
-                      value={contactPerson}
-                      onChange={(e) => setContactPerson(e.target.value)}
-                      placeholder="John Doe" 
-                      className="w-full text-sm border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                      PHONE NUMBER
-                    </label>
-                    <input 
-                      type="tel" 
-                      required
-                      value={contactPhone}
-                      onChange={(e) => setContactPhone(e.target.value)}
-                      placeholder="e.g. +91 9..." 
-                      className="w-full text-sm border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                    SELECT SERVICE HOUR SLOT
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {['09:00 AM - 11:00 AM', '11:00 AM - 01:00 PM', '02:00 PM - 04:00 PM', '04:00 PM - 06:00 PM'].map((slot) => {
-                      const isSelected = selectedTimeSlot === slot;
-                      return (
-                        <button
-                          key={slot}
-                          type="button"
-                          onClick={() => setSelectedTimeSlot(slot)}
-                          className={`px-3 py-2.5 rounded-lg text-xs font-semibold border transition-all text-center cursor-pointer ${
-                            isSelected 
-                              ? 'bg-blue-600 border-blue-600 text-white shadow-sm' 
-                              : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
-                          }`}
-                        >
-                          {slot.split(' - ')[0]}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Custom Interactive Calendar */}
-                <div>
-                  <label className="block text-[11px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                    SELECT DATE FROM INDUSTRIAL CALENDAR
-                  </label>
-                  
-                  <div className="border border-gray-300 rounded-xl p-4 bg-slate-50">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-bold text-slate-800 text-sm font-mono uppercase tracking-wide">
-                        {months[currentMonthIdx]} {currentYear}
-                      </span>
-                      <div className="flex gap-1">
-                        <button 
-                          type="button" 
-                          onClick={handlePrevMonth}
-                          className="p-1.5 hover:bg-slate-200 rounded-lg text-slate-600 cursor-pointer"
-                        >
-                          <ChevronLeft size={16} />
-                        </button>
-                        <button 
-                          type="button" 
-                          onClick={handleNextMonth}
-                          className="p-1.5 hover:bg-slate-200 rounded-lg text-slate-600 cursor-pointer"
-                        >
-                          <ChevronRight size={16} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-7 gap-1 text-center">
-                      {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map(day => (
-                        <span key={day} className="text-[10px] text-gray-400 font-bold py-1">
-                          {day}
-                        </span>
-                      ))}
-
-                      {/* Render empty leading blocks */}
-                      {leadingBlanks.map(blank => (
-                        <div key={`blank-${blank}`} className="p-2"></div>
-                      ))}
-
-                      {/* Render day blocks */}
-                      {daysArray.map(day => {
-                        const isSelected = selectedDay === day;
-                        const dateObj = new Date(currentYear, currentMonthIdx, day);
-                        const isSunday = dateObj.getDay() === 0;
-
-                        return (
-                          <button
-                            key={`day-${day}`}
-                            type="button"
-                            disabled={isSunday}
-                            onClick={() => setSelectedDay(day)}
-                            className={`p-2 text-xs rounded-lg transition-all text-center font-medium font-mono select-none ${
-                              isSunday 
-                                ? 'bg-slate-100 text-slate-300 cursor-not-allowed' 
-                                : isSelected 
-                                  ? 'bg-blue-600 text-white font-bold shadow-md' 
-                                  : 'bg-white border border-gray-200/50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer'
-                            }`}
-                          >
-                            {day}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                <button 
-                  type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg tracking-wider text-xs uppercase shadow-lg shadow-blue-600/10 active:scale-[0.98] transition-all cursor-pointer"
-                >
-                  Confirm Appointment
-                </button>
-              </form>
-            </div>
-
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
 
+      <section className="px-6 pb-20 md:px-16">
+        <motion.div
+          layout={!prefersReducedMotion}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-90px' }}
+          transition={prefersReducedMotion ? { duration: 0 } : revealTransition}
+          className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-[#07111f] text-white shadow-2xl"
+        >
+          <img src={businessJourney} alt="Gemini Motors finance support" className="absolute inset-0 h-full w-full object-cover opacity-36" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07111f] via-[#123c70]/92 to-[#1f5fae]/72" />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-[#07111f]/20 via-[#1f5fae]/18 to-[#e6a94c]/16"
+            animate={{ opacity: isEmiVisible ? 1 : 0 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.45, ease: 'easeOut' }}
+          />
+          <motion.div
+            layout={!prefersReducedMotion}
+            className="relative z-10 grid grid-cols-1 gap-8 p-8 md:p-12 lg:grid-cols-12 lg:items-center"
+          >
+            <div className="lg:col-span-6">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-blue-200">Finance</p>
+              <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">Flexible EMI plans for serious fleet growth.</h2>
+            </div>
+            <div className="grid gap-4 text-sm md:grid-cols-2 lg:col-span-6">
+              {financeItems.map(({ label, Icon }) => (
+                <div key={label} className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
+                  <Icon size={18} className="text-[#e6a94c]" />
+                  <span className="font-bold">{label}</span>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => {
+                  if (isMobileViewport) setIsEmiOpen((current) => !current);
+                }}
+                aria-expanded={isEmiVisible}
+                aria-controls="emi-calculator-panel"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-950 transition-all hover:-translate-y-0.5 hover:bg-[#e6a94c]"
+              >
+                {isMobileViewport && isEmiOpen ? 'Close EMI Calculator' : 'Calculate EMI'}
+                <ArrowRight
+                  size={15}
+                  className={`transition-transform duration-300 ${isMobileViewport && isEmiOpen ? '-rotate-90' : 'rotate-0'}`}
+                />
+              </button>
+              <button
+                type="button"
+                onClick={() => onContactClick('Finance support for commercial vehicles')}
+                className="rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:-translate-y-0.5 hover:bg-white/18"
+              >
+                Talk to Finance Team
+              </button>
+            </div>
+          </motion.div>
+          <AnimatePresence initial={false}>
+            {isEmiVisible && (
+              <motion.div
+                id="emi-calculator-panel"
+                key="emi-calculator-panel"
+                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28, height: 0 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, height: 'auto' }}
+                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 18, height: 0 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-10 overflow-hidden border-t border-white/12"
+              >
+                <div className="grid gap-6 p-8 pt-6 md:p-12 md:pt-8 lg:grid-cols-12">
+                  <div className="lg:col-span-8">
+                    <div className="mb-5 flex items-center justify-between gap-4">
+                      <div>
+                        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-blue-200">
+                          EMI Calculator
+                        </p>
+                        <p className="mt-1 text-sm text-slate-200">Estimated monthly finance planning for your fleet.</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (isMobileViewport) setIsEmiOpen(false);
+                        }}
+                        aria-label="Close EMI calculator"
+                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all hover:-translate-y-0.5 hover:bg-white/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:hidden"
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <EmiField
+                        id="vehicle-price"
+                        label="Vehicle Price"
+                        value={vehiclePrice}
+                        min={100000}
+                        max={10000000}
+                        step={50000}
+                        prefix="₹"
+                        onChange={setVehiclePrice}
+                      />
+                      <EmiField
+                        id="down-payment"
+                        label="Down Payment"
+                        value={downPayment}
+                        min={0}
+                        max={vehiclePrice}
+                        step={25000}
+                        prefix="₹"
+                        onChange={setDownPayment}
+                      />
+                      <div>
+                        <label
+                          htmlFor="loan-amount"
+                          className="mb-2 block text-[11px] font-bold uppercase tracking-wider text-blue-100"
+                        >
+                          Loan Amount
+                        </label>
+                        <input
+                          id="loan-amount"
+                          value={formatCurrency(loanAmount)}
+                          readOnly
+                          className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-sm font-bold text-white outline-none backdrop-blur placeholder:text-white/50"
+                        />
+                      </div>
+                      <EmiField
+                        id="interest-rate"
+                        label="Interest Rate"
+                        value={interestRate}
+                        min={1}
+                        max={24}
+                        step={0.1}
+                        suffix="%"
+                        onChange={setInterestRate}
+                      />
+                      <div className="md:col-span-2">
+                        <label
+                          htmlFor="loan-tenure"
+                          className="mb-2 block text-[11px] font-bold uppercase tracking-wider text-blue-100"
+                        >
+                          Loan Tenure
+                        </label>
+                        <div className="grid gap-3 sm:grid-cols-[1fr_150px]">
+                          <input
+                            id="loan-tenure"
+                            type="number"
+                            min={1}
+                            max={tenureUnit === 'years' ? 10 : 120}
+                            step={1}
+                            value={loanTenure}
+                            onChange={(event) => setLoanTenure(Math.max(1, Number(event.target.value) || 1))}
+                            className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-sm font-bold text-white outline-none backdrop-blur transition focus:border-white/35 focus:bg-white/14 focus:ring-2 focus:ring-white/20"
+                          />
+                          <select
+                            value={tenureUnit}
+                            onChange={(event) => setTenureUnit(event.target.value as 'months' | 'years')}
+                            className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-sm font-bold text-white outline-none backdrop-blur transition focus:border-white/35 focus:bg-white/14 focus:ring-2 focus:ring-white/20"
+                            aria-label="Loan tenure unit"
+                          >
+                            <option className="bg-[#07111f]" value="months">
+                              Months
+                            </option>
+                            <option className="bg-[#07111f]" value="years">
+                              Years
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col justify-between rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md lg:col-span-4">
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <p className="text-xs font-bold uppercase tracking-wider text-blue-100">Estimated EMI</p>
+                        <motion.p
+                          key={Math.round(emiResult.monthlyEmi)}
+                          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: prefersReducedMotion ? 0 : 0.22 }}
+                          className="mt-2 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 font-display font-extrabold leading-none text-white"
+                        >
+                          <span className="whitespace-nowrap text-[clamp(1.9rem,7vw,2.5rem)]">
+                            {formatCurrency(emiResult.monthlyEmi)}
+                          </span>
+                          <span className="whitespace-nowrap text-sm font-bold text-blue-100">/ month</span>
+                        </motion.p>
+                      </div>
+                      <div className="grid gap-3 text-sm">
+                        <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-3">
+                          <span className="text-slate-200">Total Interest</span>
+                          <span className="font-bold text-white">{formatCurrency(emiResult.totalInterest)}</span>
+                        </div>
+                        <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-3">
+                          <span className="text-slate-200">Total Payable Amount</span>
+                          <span className="font-bold text-white">{formatCurrency(emiResult.totalPayable)}</span>
+                        </div>
+                      </div>
+                      <p className="text-xs leading-relaxed text-slate-300">
+                        This is a rough planning estimate — your exact EMI depends on the bank/NBFC, tenure and your eligibility.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleEmiQuoteClick}
+                      className="group mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#1f5fae] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-950/20 transition-all hover:-translate-y-0.5 hover:bg-[#2f75c9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:w-auto sm:self-center"
+                    >
+                      Get an Exact EMI Quote
+                      <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </section>
+
+      <section ref={serviceRef} className="scroll-mt-28 bg-white py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:px-16 lg:grid-cols-12 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -26 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: '-80px' }}
+            transition={revealTransition}
+            className="relative overflow-hidden rounded-3xl bg-slate-100 shadow-xl lg:col-span-6"
+          >
+            <img src={indianOilPump} alt="Gemini Motors service centre" className="h-[420px] w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/42 to-transparent" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 26 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: '-80px' }}
+            transition={revealTransition}
+            className="lg:col-span-6"
+          >
+            <SectionIntro eyebrow="Services" title="Keep every vehicle route-ready." align="left" />
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {serviceItems.map(({ label, Icon }) => (
+                <button
+                  key={label}
+                  type="button"
+          onClick={() => onContactClick(label)}
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 text-left font-bold text-slate-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1f5fae]/35 hover:bg-white hover:shadow-lg"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#eef4fb] text-[#1f5fae] transition-colors group-hover:bg-[#1f5fae] group-hover:text-white">
+                    <Icon size={19} />
+                  </span>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:px-16">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-90px' }}
+          transition={revealTransition}
+          className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-slate-950 p-8 text-white shadow-2xl md:p-12"
+        >
+          <img src={sustainableGrowth} alt="Sustainable fleet technology" className="absolute inset-0 h-full w-full object-cover opacity-24" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(16,185,129,0.22),transparent_32%),linear-gradient(90deg,rgba(7,17,31,0.96),rgba(15,23,42,0.82))]" />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/6 to-transparent"
+            animate={prefersReducedMotion ? {} : { x: ['-120%', '120%'] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          />
+          <div className="relative z-10 max-w-3xl">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-300">Green Technology</p>
+            <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">Future-ready mobility for cleaner fleet operations.</h2>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold text-slate-200">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur"><BatteryCharging size={16} /> Electric Vehicles</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur"><Fuel size={16} /> Alternative Fuels</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur"><ShieldCheck size={16} /> Sustainable Transportation</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur"><Truck size={16} /> Future-ready Fleet Solutions</span>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => navigateToRoute('/electric-mobility/')}
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-950 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#e6a94c]"
+              >
+                Explore EV
+                <ArrowRight size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => navigateToRoute('/green-technologies/')}
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1f5fae] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#2f75c9]"
+              >
+                Explore Green Tech
+                <ArrowRight size={15} />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:px-16 lg:grid-cols-12 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-80px' }}
+            transition={revealTransition}
+            className="lg:col-span-6"
+          >
+            <SectionIntro eyebrow="About Gemini Motors" title="Built around dependable commercial mobility." align="left" />
+            <p className="max-w-xl text-sm leading-relaxed text-slate-600">
+              Gemini Motors supports businesses with commercial vehicles, official dealership guidance, service support,
+              genuine parts, finance assistance and cleaner mobility solutions across Goa.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
+              {[
+                ['20+', 'Years Experience'],
+                ['70+', 'Team Strength'],
+                ['3', 'Service Locations'],
+                ['100%', 'Customer Commitment'],
+              ].map(([value, label]) => (
+                <div key={label} className="border-l-2 border-[#1f5fae] pl-3">
+                  <p className="font-display text-2xl font-extrabold text-slate-950">{value}</p>
+                  <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500">{label}</p>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => navigateToRoute('/about/')}
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#1f5fae] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#2f75c9]"
+            >
+              Learn More
+              <ArrowRight size={15} />
+            </button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 26 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: '-80px' }}
+            transition={revealTransition}
+            className="relative min-h-[360px] overflow-hidden rounded-3xl bg-slate-950 shadow-2xl lg:col-span-6"
+          >
+            <img src={businessJourney} alt="Gemini Motors team and fleet support" className="absolute inset-0 h-full w-full object-cover opacity-82" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-transparent to-transparent" />
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:px-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionIntro eyebrow="Customer Trust" title="Trusted by fleet owners and business operators." />
+          <motion.div
+            key={activeTestimonial}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl shadow-slate-950/5 md:p-10"
+          >
+            <div className="mb-5 flex justify-center gap-1 text-[#e6a94c]" aria-label="5 star rating">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <span key={`star-${index}`}>★</span>
+              ))}
+            </div>
+            <p className="font-display text-2xl font-bold leading-snug text-slate-950">
+              “{testimonials[activeTestimonial].quote}”
+            </p>
+            <p className="mt-6 text-sm font-bold text-[#1f5fae]">{testimonials[activeTestimonial].name}</p>
+            <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500">
+              {testimonials[activeTestimonial].role}
+            </p>
+          </motion.div>
+          <div className="mt-6 flex justify-center gap-2">
+            {testimonials.map((testimonial, index) => (
+              <button
+                key={testimonial.name}
+                type="button"
+                onClick={() => setActiveTestimonial(index)}
+                className={`h-2.5 rounded-full transition-all ${
+                  activeTestimonial === index ? 'w-8 bg-[#1f5fae]' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                }`}
+                aria-label={`Show testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:px-16">
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 overflow-hidden rounded-3xl bg-[#07111f] p-8 text-white shadow-2xl md:p-12 lg:grid-cols-12 lg:items-center">
+          <img
+            src={commercialTruck}
+            alt="Gemini Motors commercial fleet"
+            className="absolute inset-0 h-full w-full object-cover opacity-18"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_20%,rgba(31,95,174,0.32),transparent_34%),linear-gradient(90deg,rgba(7,17,31,0.98),rgba(7,17,31,0.90)_52%,rgba(7,17,31,0.72))]" />
+          <div className="relative z-10 lg:col-span-7">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-blue-300">Fleet Consultation</p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-extrabold leading-tight md:text-5xl">
+              Ready to Move Your Business Forward?
+            </h2>
+            <div className="mt-7 grid gap-3 text-sm text-slate-200 sm:grid-cols-3">
+              <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/8 px-3 py-2 backdrop-blur">
+                <PhoneCall size={16} className="text-blue-300" />
+                +91 94223 93288
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/8 px-3 py-2 backdrop-blur">
+                <MapPin size={16} className="text-blue-300" />
+                Goa, India
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/8 px-3 py-2 backdrop-blur">
+                <Clock size={16} className="text-blue-300" />
+                Mon-Sat, 9 AM-6 PM
+              </span>
+            </div>
+          </div>
+          <div className="relative z-10 flex w-full flex-col justify-center gap-3 sm:flex-row lg:col-span-5">
+            <button
+              type="button"
+              onClick={() => navigateToRoute('/commercial/')}
+              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-4 text-xs font-bold uppercase tracking-wider text-slate-950 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#e6a94c] sm:w-52"
+            >
+              Explore Vehicles
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = '/lcv/index.html';
+              }}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#20ba5a] sm:w-52"
+            >
+              <MessageCircle size={15} />
+              WhatsApp
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function SectionIntro({
+  eyebrow,
+  title,
+  align = 'center',
+}: {
+  eyebrow: string;
+  title: string;
+  align?: 'left' | 'center';
+}) {
+  return (
+    <div className={align === 'center' ? 'mb-8 text-center' : 'mb-6 text-left'}>
+      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#1f5fae]">{eyebrow}</p>
+      <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-slate-950 md:text-4xl">{title}</h2>
+    </div>
+  );
+}
+
+function EmiField({
+  id,
+  label,
+  value,
+  min,
+  max,
+  step,
+  prefix = '',
+  suffix = '',
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  prefix?: string;
+  suffix?: string;
+  onChange: (value: number) => void;
+}) {
+  const displayValue = prefix === '₹' ? formatCurrency(value) : `${value}${suffix}`;
+
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <label htmlFor={id} className="text-[11px] font-bold uppercase tracking-wider text-blue-100">
+          {label}
+        </label>
+        <span className="text-xs font-bold text-white/80">{displayValue}</span>
+      </div>
+      <input
+        id={id}
+        type="number"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Math.min(max, Math.max(min, Number(event.target.value) || min)))}
+        className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-sm font-bold text-white outline-none backdrop-blur transition focus:border-white/35 focus:bg-white/14 focus:ring-2 focus:ring-white/20"
+      />
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={Math.min(value, max)}
+        onChange={(event) => onChange(Number(event.target.value))}
+        className="mt-3 h-1.5 w-full accent-[#e6a94c]"
+        aria-label={`${label} slider`}
+      />
     </div>
   );
 }

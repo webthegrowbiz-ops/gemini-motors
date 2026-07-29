@@ -1,16 +1,17 @@
 # Gemini Motors
 
-A modern and responsive website for Gemini Motors built with React, TypeScript, Vite, and Tailwind CSS.
+A premium, responsive commercial vehicle dealership website for Gemini Motors built with React, Vite, TypeScript, and Tailwind CSS, featuring vehicle catalogues, reusable product pages, finance, enquiry forms, landing pages, and SEO-focused user experience.
 
 ## Features
 
 - Modern responsive UI
-- Heavy Vehicle Showcase
-- Green Technologies
-- Auto Services
-- About Company
-- Contact Form
-- WhatsApp Integration
+- Commercial vehicle showcase
+- Reusable product pages
+- Green technologies
+- Auto services
+- About company
+- Contact and enquiry flows
+- WhatsApp integration
 
 ## Tech Stack
 
@@ -21,12 +22,6 @@ A modern and responsive website for Gemini Motors built with React, TypeScript, 
 - Lucide React
 
 ## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/gemini-motors.git
-```
 
 Install dependencies:
 

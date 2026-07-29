@@ -35,6 +35,7 @@ const routeByDivision: Record<AppDivision, string> = {
 function getDivisionFromPath(pathname: string): AppDivision {
   const normalizedPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
 
+  if (normalizedPath === '/finance/') return 'gemini-motors';
   if (normalizedPath === '/commercial/') return 'commercial';
   if (normalizedPath === '/commercial/light/') return 'commercial-light';
   if (normalizedPath === '/commercial/medium-heavy/') return 'commercial-medium-heavy';
@@ -55,6 +56,10 @@ function getDivisionFromPath(pathname: string): AppDivision {
 }
 
 export default function App() {
+  if (window.location.pathname === '/lcv' || window.location.pathname === '/lcv/') {
+    window.location.replace('/lcv/index.html');
+  }
+
   const [currentDivision, setCurrentDivision] = useState<AppDivision>(() => getDivisionFromPath(window.location.pathname));
 
   useEffect(() => {

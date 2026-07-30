@@ -33,10 +33,7 @@ export default function Footer({ setDivision }: FooterProps) {
         {/* Brand Column */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <Logo className="h-10 w-auto brightness-110" />
-            <span className="font-display text-lg font-extrabold text-white tracking-tight">
-              Gemini Motors
-            </span>
+            <Logo className="h-14 max-w-[200px] w-auto brightness-110" />
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
             Pioneering heavy commercial transport, sustainable organic green energy technology, and premium fuel supply networks across the Goan peninsula. Est. 1992.

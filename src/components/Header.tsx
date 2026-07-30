@@ -209,10 +209,7 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
           onClick={() => handleNavClick('gemini-motors')}
           aria-label="Go to Gemini Motors home"
         >
-          <Logo className="h-11 w-auto transition-transform hover:scale-105" />
-          <span className="font-display text-xl font-extrabold tracking-tight text-gray-900 md:text-2xl">
-            Gemini Motors
-          </span>
+          <Logo className="h-10 max-w-[142px] w-auto transition-transform hover:scale-105 md:h-12 md:max-w-[172px]" />
         </button>
 
         <div className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/70 p-1.5 shadow-sm backdrop-blur-xl lg:flex">

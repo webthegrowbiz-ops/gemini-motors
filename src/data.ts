@@ -13,9 +13,8 @@ import mrAgnel from "./assets/images/mragnel.jpeg";
 import { Vehicle, FuelService, GreenTechProduct, ServiceCentre, ServicesPageConfig, ChatWidgetConfig } from './types';
 
 export const APP_LOGOS = {
-  header: '/brand/gemini-motors-logo-transparent.png',
-  header2x: '/brand/gemini-motors-logo-transparent.png',
-  footer: '/brand/gemini-motors-logo.png',
+  header: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDo1z_4WbyE77lq5H2A5Y4Y8N4uCdf8mG8LreE4V2r6H9V_wh9QxXW9h_c_RtRK7egQQqJvofN7-l_L_vjoAdc_FCCF_AsI_c2L_UK_Nuv_3n9_85B_4H_JOB_8_vt5rv_EyP_U5L_V3_uaB_36W_Fv_sKw_K_cgS_wmC_AXX_Ht_cg4_k8_LH_4Az_p8N_CHd_ibS_QUoF_drz_CVMBXP_5if_uCmc_IIAcBMRNl_VkD4_c_0VUEqSqqW_Qzw_ohNcB9A',
+  footer: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDo1z_4WbyE77lq5H2A5Y4Y8N4uCdf8mG8LreE4V2r6H9V_wh9QxXW9h_c_RtRK7egQQqJvofN7-l_L_vjoAdc_FCCF_AsI_c2L_UK_Nuv_3n9_85B_4H_JOB_8_vt5rv_EyP_U5L_V3_uaB_36W_Fv_sKw_K_cgS_wmC_AXX_Ht_cg4_k8_LH_4Az_p8N_CHd_ibS_QUoF_drz_CVMBXP_5if_uCmc_IIAcBMRNl_VkD4_c_0VUEqSqqW_Qzw_ohNcB9A'
 };
 
 export const VEHICLES: Vehicle[] = [

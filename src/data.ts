@@ -15,7 +15,7 @@ import { Vehicle, FuelService, GreenTechProduct, ServiceCentre, ServicesPageConf
 export const APP_LOGOS = {
   header: '/brand/gemini-motors-logo.png',
   header2x: '/brand/gemini-motors-logo@2x.png',
-  footer: '/brand/gemini-motors-logo.png',
+  footer: '/brand/gemini-motors-logo-transparent.png',
 };
 
 export const VEHICLES: Vehicle[] = [

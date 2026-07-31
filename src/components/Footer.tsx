@@ -33,7 +33,11 @@ export default function Footer({ setDivision }: FooterProps) {
         {/* Brand Column */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <Logo className="h-14 max-w-[200px] w-auto brightness-110" />
+            <Logo
+              variant="footer"
+              wrapperClassName="inline-flex items-center justify-center rounded-[12px] border border-white/10 bg-white/5 px-3 py-2.5 backdrop-blur-sm"
+              className="h-10 w-auto max-w-[118px] sm:h-11 sm:max-w-[128px] md:h-12 md:max-w-[138px]"
+            />
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
             Pioneering heavy commercial transport, sustainable organic green energy technology, and premium fuel supply networks across the Goan peninsula. Est. 1992.

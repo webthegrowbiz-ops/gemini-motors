@@ -13,8 +13,8 @@ import mrAgnel from "./assets/images/mragnel.jpeg";
 import { Vehicle, FuelService, GreenTechProduct, ServiceCentre, ServicesPageConfig, ChatWidgetConfig } from './types';
 
 export const APP_LOGOS = {
-  header: '/brand/gemini-motors-logo.png',
-  header2x: '/brand/gemini-motors-logo@2x.png',
+  header: '/brand/gemini-motors-logo-transparent.png',
+  header2x: '/brand/gemini-motors-logo-transparent.png',
   footer: '/brand/gemini-motors-logo.png',
 };
 

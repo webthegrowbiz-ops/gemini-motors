@@ -23,6 +23,7 @@ import switchAward from './assets/images/switch_ev_award.jpg';
 import tipper8x4HeavyDutyTipper from './assets/images/tipper_8x4_heavy_duty_tipper.jpg';
 import tipper8x4HighwayExterior from './assets/images/tipper_8x4_highway_exterior.jpg';
 import tipper8x4StudioExterior from './assets/images/tipper_8x4_studio_exterior.jpg';
+import { commercialModels, type CommercialVehicleModel } from './data/commercialVehiclesData';
 import { ProductPageData } from './types';
 
 export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
@@ -1669,6 +1670,173 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
+const missingProductPageSlugs = new Set([
+  'gemini-dost-pro',
+  'gemini-bada-dost-x',
+  'gemini-partner-cargo',
+  'gemini-city-haul',
+  'gemini-urban-load',
+  'gemini-haul-1618',
+  'gemini-cargo-1920',
+  'gemini-fleet-2820',
+  'gemini-heavy-3525',
+  'gemini-tipper-4220',
+  'gemini-tractor-5525',
+]);
+
+function createMissingProductPage(model: CommercialVehicleModel): ProductPageData {
+  const isLightCommercial = model.categoryId === 'light';
+  const category = isLightCommercial ? 'Light Commercial Vehicle' : 'Medium & Heavy Commercial Vehicle';
+  const operatingFocus = model.applications?.join(', ') || model.usageValue.toLowerCase();
+
+  return {
+    id: model.slug,
+    category,
+    name: model.name,
+    tagline: `${model.shortSpecification}.`,
+    description: `${model.name} is a ${category.toLowerCase()} for ${operatingFocus}, available through Gemini Motors Goa with sales, finance and service guidance.`,
+    heroImage: model.imageUrl,
+    brochureLabel: `${model.name} Brochure`,
+    seo: {
+      title: `${model.name} | ${category} | Gemini Motors`,
+      description: `Explore ${model.name} with specifications, applications, finance guidance and enquiry support from Gemini Motors Goa.`,
+      canonicalPath: model.route,
+    },
+    quickSpecs: [
+      { label: model.metricLabel, value: model.metricValue, helper: 'Vehicle class' },
+      { label: 'Fuel', value: model.fuelType, helper: 'Available fuel type' },
+      { label: model.usageLabel, value: model.usageValue, helper: 'Primary configuration' },
+      { label: 'Series', value: model.series || model.name, helper: 'Model family' },
+      { label: 'Support', value: 'Goa-wide', helper: 'Sales and service guidance' },
+    ],
+    overview: {
+      heading: `Built for ${model.usageValue}`,
+      body: `${model.name} is positioned for businesses that need dependable ${operatingFocus}. Gemini Motors Goa can help align the vehicle configuration, finance plan and support requirements with your daily operating needs.`,
+      highlights: [
+        { title: 'Business-Ready Capability', description: model.shortSpecification, iconName: 'truck' },
+        { title: 'Application-Focused', description: `Configured for ${operatingFocus}.`, iconName: 'route' },
+        { title: 'Goa Support', description: 'Sales, finance and service coordination for commercial operators.', iconName: 'wrench' },
+      ],
+      trustIndicators: [
+        { label: model.metricLabel, value: model.metricValue },
+        { label: 'Fuel', value: model.fuelType },
+        { label: 'Support', value: 'Gemini Motors Goa' },
+      ],
+    },
+    finance: {
+      title: 'Flexible EMI & Finance',
+      description: `Discuss a finance plan for ${model.name} based on your business route, expected usage and purchase timeline.`,
+      interestRate: 'Starting from 9.75% p.a.',
+      benefits: [
+        'Flexible tenure options for commercial buyers',
+        'Finance guidance for owner-operators and fleet businesses',
+        'Documentation and insurance coordination support',
+        'EMI planning aligned to operational requirements',
+      ],
+      examples: [
+        { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+        { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+        { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+      ],
+    },
+    gallery: [
+      { src: model.imageUrl, alt: `${model.name} exterior`, caption: 'Vehicle exterior' },
+      { src: businessJourney, alt: `${model.name} business operations reference`, caption: 'Business operations' },
+      { src: fuelSolution, alt: `${model.name} fleet support reference`, caption: 'Fleet support' },
+    ],
+    features: [
+      { title: 'Commercial Configuration', description: `${model.usageValue} setup for practical business movement.`, iconName: 'boxes' },
+      { title: 'Operational Focus', description: `Designed around ${operatingFocus}.`, iconName: 'gauge' },
+      { title: 'Fleet Support', description: 'Gemini Motors guidance for selection, finance and service planning.', iconName: 'shield' },
+      { title: 'Business Uptime', description: 'Commercial support planning for daily operations.', iconName: 'settings' },
+    ],
+    variants: [
+      {
+        name: model.name,
+        description: model.shortSpecification,
+        bestFor: `Suitable for ${operatingFocus}.`,
+        specs: [
+          { label: model.metricLabel, value: model.metricValue },
+          { label: 'Fuel', value: model.fuelType },
+          { label: model.usageLabel, value: model.usageValue },
+        ],
+      },
+    ],
+    applications: (model.applications || [model.usageValue]).map((application) => ({
+      title: application,
+      description: `${model.name} is configured to support ${application.toLowerCase()} requirements.`,
+      iconName: 'briefcase-business',
+    })),
+    specifications: [
+      {
+        title: 'Vehicle Overview',
+        rows: [
+          { label: 'Model', value: model.name },
+          { label: 'Series', value: model.series || model.name },
+          { label: model.metricLabel, value: model.metricValue },
+          { label: 'Fuel type', value: model.fuelType },
+        ],
+      },
+      {
+        title: 'Application & Body',
+        rows: [
+          { label: model.usageLabel, value: model.usageValue },
+          { label: 'Primary applications', value: operatingFocus },
+          { label: 'Body configuration', value: model.usageValue },
+          { label: 'Vehicle class', value: category },
+        ],
+      },
+      {
+        title: 'Support',
+        rows: [
+          { label: 'Sales guidance', value: 'Gemini Motors Goa' },
+          { label: 'Finance assistance', value: 'Available on enquiry' },
+          { label: 'Service coordination', value: 'Goa-wide support' },
+        ],
+      },
+    ],
+    whyGemini: {
+      heading: 'Why Choose Gemini Motors',
+      description: 'Gemini Motors supports commercial vehicle buyers in Goa with vehicle selection, finance guidance, service coordination and genuine-parts support.',
+      stats: [
+        { label: 'Years in Goa', value: '20+' },
+        { label: 'Service hubs', value: '3' },
+        { label: 'Support', value: 'Goa-wide' },
+        { label: 'Genuine spares', value: '100%' },
+      ],
+    },
+    relatedProducts: [
+      {
+        name: isLightCommercial ? 'DOST + XL' : 'AVTR 4625H LA',
+        category: isLightCommercial ? 'Light Commercial' : 'Medium & Heavy',
+        imageUrl: isLightCommercial ? dostXlExterior : avtr4625hLaStudioExterior,
+        description: 'Explore another commercial vehicle option from Gemini Motors Goa.',
+      },
+      {
+        name: isLightCommercial ? 'Partner 4 Tyre' : '8x4 Tipper',
+        category: isLightCommercial ? 'Light Commercial' : 'Medium & Heavy',
+        imageUrl: isLightCommercial ? partner4TyreOnRoad : tipper8x4HighwayExterior,
+        description: 'Compare a complementary model for your operating requirement.',
+      },
+      {
+        name: 'Switch Mobility IeV 3',
+        category: 'Electric Commercial',
+        imageUrl: switchIEV3,
+        description: 'Consider an electric commercial option for suitable routes.',
+      },
+    ],
+    enquiry: {
+      title: `Enquire About ${model.name}`,
+      description: 'Share your route, load, location and purchase timeline. Gemini Motors Goa will connect with commercial vehicle guidance.',
+      defaultInterest: model.name,
+    },
+  };
+}
+
+export const MISSING_PRODUCT_PAGES = commercialModels
+  .filter((model) => missingProductPageSlugs.has(model.slug))
+  .map(createMissingProductPage);
+
 export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [L_SERIES_PRODUCT_PAGE.id]: L_SERIES_PRODUCT_PAGE,
   [DOST_XL_PRODUCT_PAGE.id]: DOST_XL_PRODUCT_PAGE,
@@ -1677,4 +1845,5 @@ export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [AVTR_4525H_DTLA_PRODUCT_PAGE.id]: AVTR_4525H_DTLA_PRODUCT_PAGE,
   [TIPPER_8X4_PRODUCT_PAGE.id]: TIPPER_8X4_PRODUCT_PAGE,
   [AVTR_4625H_LA_PRODUCT_PAGE.id]: AVTR_4625H_LA_PRODUCT_PAGE,
+  ...Object.fromEntries(MISSING_PRODUCT_PAGES.map((product) => [product.id, product])),
 };

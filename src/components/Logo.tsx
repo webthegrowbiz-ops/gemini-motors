@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { APP_LOGOS } from '../data';
+import geminiMotorsLogo from '../assets/gemini-logo-transparent.png';
 
 interface LogoProps {
   className?: string;
@@ -14,8 +14,7 @@ export default function Logo({ className = 'h-12 w-auto', showText = true }: Log
   return (
     <div className="relative flex items-center justify-center">
       <img 
-        src={APP_LOGOS.header} 
-        srcSet={`${APP_LOGOS.header2x} 2x`}
+        src={geminiMotorsLogo}
         alt="Gemini Motors Logo" 
         className={`${className} object-contain`}
         decoding="async"

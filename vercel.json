@@ -1,5 +1,5 @@
 {
-  "cleanUrls": true,
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "rewrites": [
     {
@@ -7,7 +7,7 @@
       "destination": "/lcv/index.html"
     },
     {
-      "source": "/lcv/",
+      "source": "/lcv/(.*)",
       "destination": "/lcv/index.html"
     },
     {
@@ -15,7 +15,7 @@
       "destination": "/thank-you.html"
     },
     {
-      "source": "/thank-you/",
+      "source": "/thank-you/(.*)",
       "destination": "/thank-you.html"
     },
     {

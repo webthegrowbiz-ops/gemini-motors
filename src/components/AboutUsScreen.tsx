@@ -90,7 +90,7 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
 
               {/* Founder Tag */}
               <div className="mt-6 text-center pb-2">
-                <h3 className="font-display font-extrabold text-2xl text-gray-900">Agnello Gomes</h3>
+                <h3 className="font-display font-extrabold text-2xl text-gray-900">Mr. Agnello Gomes</h3>
                 <p className="text-blue-600 font-semibold text-sm tracking-wide mt-1">Founder & Managing Director</p>
                 <p className="text-xs text-gray-500 mt-2 font-mono">B.E. Mechanical (Bombay University, 1986) | PGDBM</p>
               </div>

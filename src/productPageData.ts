@@ -7,6 +7,8 @@ import commercialTruck from './assets/images/commercial_truck.jpg';
 import avtr4625hLaOnRoadExterior from './assets/images/avtr_4625h_la_on_road_exterior.jpg';
 import avtr4625hLaStudioExterior from './assets/images/avtr_4625h_la_studio_exterior.jpg';
 import avtr4525hDtlaStudioExterior from './assets/images/avtr_4525h_dtla_studio_exterior.jpg';
+import badaDostI5PlusHero from './assets/images/bada_dost_i5_plus_hero.png';
+import badaDostI5PlusSpecifications from './assets/images/bada_dost_i5_plus_specifications.png';
 import businessJourney from './assets/images/business_journey.jpg';
 import dostXlCabin from './assets/images/dost_xl_cabin.jpg';
 import dostXlExterior from './assets/images/dost_xl_exterior.jpg';
@@ -1670,8 +1672,134 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
+export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
+  id: 'gemini-dost-pro',
+  category: 'Light Commercial Vehicle',
+  name: 'BADA DOST i5+',
+  tagline: 'The all new BADA DOST i5+ with 2114 kg payload capacity.',
+  description: 'BADA DOST i5+ is a light commercial vehicle with a 2114 kg rated payload capacity, 59 kW (80 hp) power and 190 Nm torque.',
+  heroImage: badaDostI5PlusHero,
+  brochureLabel: 'BADA DOST i5+ Specifications',
+  seo: {
+    title: 'BADA DOST i5+ | 2114 kg Payload | Gemini Motors',
+    description: 'Explore the Ashok Leyland BADA DOST i5+ with 2114 kg payload capacity, 80 hp power, 190 Nm torque, technical specifications and warranty information.',
+    canonicalPath: '/commercial/light/gemini-dost-pro',
+  },
+  quickSpecs: [
+    { label: 'Payload', value: '2114 kg', helper: 'Rated payload' },
+    { label: 'Power', value: '59 kW (80 hp)', helper: 'At 3300 RPM' },
+    { label: 'Torque', value: '190 Nm', helper: 'At 1600-2400 RPM' },
+    { label: 'GVW', value: '3800 kg', helper: 'Gross Vehicle Weight' },
+    { label: 'Warranty', value: '5 Years / 2 Lakh km', helper: 'Whichever is earlier' },
+  ],
+  overview: {
+    heading: '2114 kg Payload Capacity',
+    body: 'The all new BADA DOST i5+ combines a 2114 kg rated payload with a 1.5 litre, 3-cylinder turbocharged intercooled diesel engine delivering 59 kW (80 hp) and 190 Nm torque.',
+    highlights: [
+      { title: '59 kW (80 hp) & 190 Nm Torque', description: '59 kW (80 hp) at 3300 RPM and 190 Nm at 1600-2400 RPM.', iconName: 'gauge' },
+      { title: 'Remote Central Locking', description: 'Remote central locking.', iconName: 'settings' },
+      { title: 'Best-in-Class Turning Circle Radius', description: 'Best-in-class turning circle radius.', iconName: 'route' },
+      { title: 'Spacious Cabin', description: 'Spacious cabin with factory fitted AC and heater option available.', iconName: 'armchair' },
+    ],
+    trustIndicators: [
+      { label: 'Rated payload', value: '2114 kg' },
+      { label: 'Maximum speed', value: '80 Kmph' },
+      { label: 'Warranty', value: '5 Years / 2 Lakh km' },
+    ],
+  },
+  finance: {
+    title: 'Finance Information',
+    description: 'Finance terms are not specified in the supplied brochure. Contact Gemini Motors for current finance information.',
+    interestRate: 'Not specified in brochure',
+    benefits: ['Finance information available on enquiry'],
+    examples: [{ label: 'Finance plan', downPayment: 'Not specified in brochure', emi: 'Not specified in brochure', tenure: 'Not specified in brochure' }],
+  },
+  gallery: [
+    { src: badaDostI5PlusHero, alt: 'Ashok Leyland BADA DOST i5+ with 2114 kg payload capacity', caption: 'BADA DOST i5+ payload capacity' },
+    { src: badaDostI5PlusSpecifications, alt: 'Ashok Leyland BADA DOST i5+ technical specifications and features', caption: 'Technical specifications and features' },
+  ],
+  colours: [
+    { name: 'Ultra Blue', hex: '#254C87' },
+    { name: 'Stable Grey', hex: '#9A9A9A' },
+    { name: 'Casablanca White', hex: '#F7F4ED' },
+    { name: 'Irish Cream', hex: '#E8D5A7' },
+    { name: 'Golden Brown', hex: '#C97B4D' },
+  ],
+  features: [
+    { title: '59 kW (80 hp) Power & 190 Nm Torque', description: '59 kW (80 hp) power and 190 Nm torque.', iconName: 'gauge' },
+    { title: 'Remote Central Locking', description: 'Remote central locking.', iconName: 'settings' },
+    { title: 'Best-in-Class Turning Circle Radius', description: 'Best-in-class turning circle radius.', iconName: 'route' },
+    { title: 'Spacious Cabin', description: 'Spacious cabin.', iconName: 'armchair' },
+    { title: 'Factory Fitted AC', description: 'Factory fitted AC.', iconName: 'snowflake' },
+    { title: 'Heater Option Available', description: 'Heater option available.', iconName: 'settings' },
+    { title: '5 Years / 2 Lakh km Warranty', description: '5 years or 2 lakh km warranty, whichever is earlier.', iconName: 'shield' },
+    { title: 'Uptime Guarantee', description: 'Ashok Leyland Bharosa: Kamay Nahi Stop.', iconName: 'shield' },
+  ],
+  variants: [{ name: 'BADA DOST i5+', description: '1.5 litre, 3-cylinder diesel light commercial vehicle.', bestFor: '2114 kg rated payload capacity.', specs: [{ label: 'GVW', value: '3800 kg' }, { label: 'Rated payload', value: '2114 kg' }, { label: 'Fuel tank', value: '50 Litres' }] }],
+  applications: [
+    { title: 'Payload Movement', description: '2114 kg rated payload capacity.', iconName: 'boxes' },
+    { title: 'Commercial Cargo', description: 'Cargo deck dimensions of 2951 x 1750 x 490 mm.', iconName: 'truck' },
+  ],
+  specifications: [
+    { title: 'Engine', rows: [
+      { label: 'Engine', value: '1.5 Litres, 3 Cylinder Diesel Engine' },
+      { label: 'Engine type', value: 'Turbo Charged Intercooled' },
+      { label: 'Displacement', value: '1478 cc' },
+      { label: 'Max power', value: '59 kW / 80 hp @ 3300 RPM' },
+      { label: 'Max torque', value: '190 Nm @ 1600-2400 RPM' },
+    ] },
+    { title: 'Transmission, Brakes & Suspension', rows: [
+      { label: 'Clutch type', value: 'Diaphragm, Single Dry Plate, Mechanical Cable Operated' },
+      { label: 'Gearbox', value: 'Fully Synchromesh, 5-speed Manual Gear box, Reverse with sliding mesh' },
+      { label: 'Brakes', value: 'Vacuum Assisted Hydraulic Brakes with LSPV' },
+      { label: 'Front brakes', value: 'Ventilated Disc Type' },
+      { label: 'Rear brakes', value: 'Drum Type' },
+      { label: 'Front suspension', value: 'Rigid front Suspension (3 Leaf)' },
+      { label: 'Rear suspension', value: 'Semi elliptical Leaf spring (6 Leaf)' },
+      { label: 'Tyres', value: '7.00 R 15 LT 12PR (Tube Type)' },
+    ] },
+    { title: 'Weight, Capacity & Dimensions', rows: [
+      { label: 'GVW (Gross Vehicle Weight)', value: '3800 kg' },
+      { label: 'Rated payload', value: '2114 kg' },
+      { label: 'Seating capacity', value: 'Driver + 1' },
+      { label: 'Fuel tank capacity', value: '50 Litres' },
+      { label: 'Overall length', value: '5025 mm' },
+      { label: 'Overall width', value: '1842 mm' },
+      { label: 'Overall height', value: '2061 mm' },
+      { label: 'Wheelbase', value: '2590 mm' },
+      { label: 'Load body / cargo deck (L x B x H)', value: '2951 x 1750 x 490 mm' },
+      { label: 'Cargo deck dimensions', value: '9 ft 8 in x 5 ft 9 in x 1 ft 7 in' },
+      { label: 'Loading platform height', value: '945 mm / 3.1 ft' },
+    ] },
+    { title: 'Performance & Warranty', rows: [
+      { label: 'Maximum speed', value: '80 Kmph' },
+      { label: 'Warranty', value: '5 years / 2 lakh km, whichever is earlier' },
+      { label: 'Uptime guarantee', value: 'Ashok Leyland Bharosa: Kamay Nahi Stop' },
+    ] },
+  ],
+  whyGemini: {
+    heading: 'BADA DOST i5+ Highlights',
+    description: 'The supplied brochure highlights payload, mileage, rate per kilometre, warranty and earnings benefits.',
+    stats: [
+      { label: 'Rated payload', value: '2114 kg' },
+      { label: 'Mileage', value: '10% Better' },
+      { label: 'Maximum speed', value: '80 Kmph' },
+      { label: 'Warranty', value: '5 Years / 2 Lakh km' },
+    ],
+  },
+  relatedProducts: [
+    { name: 'DOST + XL', category: 'Light Commercial', imageUrl: dostXlExterior, description: 'Light commercial vehicle from Gemini Motors.' },
+    { name: 'Partner 4 Tyre', category: 'Light Commercial', imageUrl: partner4TyreOnRoad, description: 'Cargo truck for commercial operations.' },
+    { name: 'SAATHI', category: 'Light Commercial', imageUrl: saathiRetailDelivery, description: 'Compact cargo deck vehicle.' },
+  ],
+  enquiry: {
+    title: 'Enquire About BADA DOST i5+',
+    description: 'Share your requirement and Gemini Motors will connect with BADA DOST i5+ guidance.',
+    defaultInterest: 'BADA DOST i5+',
+  },
+};
+
 const missingProductPageSlugs = new Set([
-  'gemini-dost-pro',
   'gemini-bada-dost-x',
   'gemini-partner-cargo',
   'gemini-city-haul',
@@ -1845,5 +1973,6 @@ export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [AVTR_4525H_DTLA_PRODUCT_PAGE.id]: AVTR_4525H_DTLA_PRODUCT_PAGE,
   [TIPPER_8X4_PRODUCT_PAGE.id]: TIPPER_8X4_PRODUCT_PAGE,
   [AVTR_4625H_LA_PRODUCT_PAGE.id]: AVTR_4625H_LA_PRODUCT_PAGE,
+  [BADA_DOST_I5_PLUS_PRODUCT_PAGE.id]: BADA_DOST_I5_PLUS_PRODUCT_PAGE,
   ...Object.fromEntries(MISSING_PRODUCT_PAGES.map((product) => [product.id, product])),
 };

@@ -28,9 +28,11 @@ import {
 
 import businessJourney from '../assets/images/business_journey.jpg';
 import commercialTruck from '../assets/images/commercial_truck.jpg';
-import fuelSolution from '../assets/images/fuel_solution.jpg';
+import dostXlExterior from '../assets/images/dost_xl_exterior.jpg';
+import dostXlHeroReplacement from '../assets/images/dost-xl-hero-replacement.png';
 import indianOilPump from '../assets/images/indian_oil.jpg';
 import sustainableGrowth from '../assets/images/sustainable_growth.jpg';
+import tipper8x4HighwayExterior from '../assets/images/tipper_8x4_highway_exterior.jpg';
 import { lightCommercialVehicles, mediumHeavyCommercialVehicles } from '../data/commercialVehiclesData';
 
 interface GeminiMotorsScreenProps {
@@ -51,13 +53,13 @@ const vehicleCategories = [
   {
     title: 'LCV',
     subtitle: 'Agile vehicles for city deliveries, retail routes and growing local businesses.',
-    image: commercialTruck,
+    image: dostXlExterior,
     route: '/commercial/light/',
   },
   {
     title: 'M&HCV',
     subtitle: 'High-capacity haulage and construction-ready platforms for serious fleet work.',
-    image: fuelSolution,
+    image: tipper8x4HighwayExterior,
     route: '/commercial/medium-heavy/',
   },
 ];
@@ -208,8 +210,8 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
       >
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img
-            src={indianOilPump}
-            alt="IndianOil Pump Background"
+            src={dostXlHeroReplacement}
+            alt="DOST XL Twin Fuel pickup on highway"
             className="h-[112%] w-full object-cover opacity-[0.14] brightness-90 saturate-[0.85]"
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 0.14, scale: 1.02 }}
@@ -272,7 +274,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
               </button>
               <button
                 type="button"
-                onClick={() => scrollToSection(serviceRef)}
+                onClick={() => navigateToRoute('/services/')}
                 className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/40 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 active:scale-95"
               >
                 Book Service
@@ -291,8 +293,8 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
             <div className="absolute -inset-4 -z-10 rounded-2xl bg-blue-500/10 blur-xl" />
             <div className="group relative overflow-hidden rounded-xl border border-slate-700/60 bg-slate-800/80 p-1.5 shadow-2xl">
               <img
-                src={indianOilPump}
-                alt="IndianOil Petrol Pump Station - Gemini Motors"
+                src={dostXlHeroReplacement}
+                alt="DOST XL Twin Fuel pickup on highway"
                 className="h-[380px] w-full rounded-lg object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
               <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-slate-800/60 bg-slate-900/90 p-4 backdrop-blur-md">

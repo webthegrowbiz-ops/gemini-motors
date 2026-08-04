@@ -165,7 +165,10 @@ export interface ServiceCentre {
   id: string;
   name: string;
   region: 'North Goa' | 'South Goa';
+  location: string;
   phone: string;
+  phoneHref: string;
+  mapUrl: string;
   note: string;
 }
 

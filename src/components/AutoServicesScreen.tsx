@@ -68,7 +68,17 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
       <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-slate-50 py-20 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 md:px-16 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          <div className="z-10">
+          <div className="relative z-10 overflow-hidden rounded-2xl">
+            <iframe
+              src="https://www.google.com/maps?q=Colvale%20Goa%20Nuvem%20Goa&output=embed"
+              title="Service centres map background"
+              className="pointer-events-none absolute inset-0 h-full w-full border-0 opacity-45 saturate-125"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              tabIndex={-1}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-50/72 via-slate-50/52 to-slate-50/24" />
+            <div className="relative z-10">
             <span className="font-mono text-xs font-bold text-blue-600 mb-4 block uppercase tracking-widest">
               Goa Division
             </span>
@@ -95,33 +105,64 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 <Send size={15} />
               </a>
             </div>
+            </div>
           </div>
 
           <div className="relative grid gap-4">
             {SERVICE_CENTRES.map((centre) => (
               <article
                 key={centre.id}
-                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl shadow-slate-950/8"
+                className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-xl shadow-slate-950/8"
               >
-                <div className="flex items-start gap-4">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                <a
+                  href={centre.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${centre.location} on Google Maps`}
+                  className="absolute inset-y-0 right-0 w-2/3 opacity-10 transition-opacity hover:opacity-12"
+                >
+                  <span className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.95),rgba(255,255,255,0.62)_42%,rgba(239,246,255,0.18)),radial-gradient(circle_at_74%_42%,rgba(37,99,235,0.50)_0_5px,transparent_6px),linear-gradient(35deg,transparent_0_18%,rgba(30,64,175,0.40)_18.5%_19.5%,transparent_20%),linear-gradient(145deg,transparent_0_28%,rgba(14,165,233,0.34)_28.5%_29.5%,transparent_30%),linear-gradient(0deg,transparent_0_46%,rgba(100,116,139,0.34)_46.5%_47.5%,transparent_48%),repeating-linear-gradient(90deg,rgba(148,163,184,0.34)_0_1px,transparent_1px_34px),repeating-linear-gradient(0deg,rgba(148,163,184,0.26)_0_1px,transparent_1px_28px)]" />
+                </a>
+                <div className="relative z-10 flex items-start gap-4">
+                  <a
+                    href={centre.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${centre.location} on Google Maps`}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition-all hover:bg-blue-100"
+                  >
                     <MapPin size={22} />
-                  </span>
-                  <div>
+                  </a>
+                  <div className="min-w-0">
                     <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-blue-600">
                       {centre.region}
                     </p>
                     <h2 className="mt-2 font-display text-2xl font-extrabold text-gray-950">
                       {centre.name}
                     </h2>
+                    <p className="mt-2 flex items-center gap-1.5 text-sm font-bold text-gray-800">
+                      <MapPin size={14} className="shrink-0 text-blue-600" />
+                      <span>{centre.location}</span>
+                    </p>
                     <p className="mt-3 text-sm leading-relaxed text-gray-600">{centre.note}</p>
-                    <a
-                      href={`tel:${centre.phone.replace(/\s/g, '')}`}
-                      className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-600 px-5 text-sm font-bold text-white transition-all hover:bg-blue-700"
-                    >
-                      <Phone size={16} />
-                      {centre.phone}
-                    </a>
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      <a
+                        href={centre.phoneHref}
+                        className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-blue-600 px-5 text-sm font-bold text-white transition-all hover:bg-blue-700"
+                      >
+                        <Phone size={16} />
+                        {centre.phone}
+                      </a>
+                      <a
+                        href={centre.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-blue-100 bg-blue-50 px-4 text-sm font-bold text-blue-700 transition-all hover:border-blue-200 hover:bg-blue-100"
+                      >
+                        <MapPin size={15} />
+                        View on Map
+                      </a>
+                    </div>
                   </div>
                 </div>
               </article>

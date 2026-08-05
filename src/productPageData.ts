@@ -254,8 +254,8 @@ export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
-export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
-  id: 'dost-xl',
+export const DOST_PLUS_XL_PRODUCT_PAGE: ProductPageData = {
+  id: 'dost-plus-xl',
   category: 'Light Commercial Vehicle',
   name: 'DOST + XL',
   tagline: 'Compact diesel strength for daily business movement.',
@@ -267,7 +267,7 @@ export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
     title: 'DOST + XL | Light Commercial Vehicle | Gemini Motors',
     description:
       'Explore the DOST + XL light commercial vehicle with 1600 kg payload, 52 kW diesel power, gallery, specifications, finance options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/dost-xl',
+    canonicalPath: '/commercial/light/dost-plus-xl',
   },
   quickSpecs: [
     { label: 'Payload', value: '1600 kg', helper: 'Rated cargo capacity' },
@@ -475,7 +475,274 @@ export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
     defaultInterest: 'DOST + XL',
   },
 };
+export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
+  id: 'dost-xl',
+  category: 'Light Commercial Vehicle',
+  name: 'DOST XL',
+  tagline: 'Xtra Large Dosti, Xtra Large Kamaai.',
 
+  description:
+    'The all-new DOST XL is built for businesses that require higher payload, a spacious cargo deck and dependable diesel performance. With a 1400 kg payload, 70 HP engine and large loading area, it is ideal for urban and regional cargo movement.',
+
+  heroImage: dostXlHero,
+
+  brochureLabel: 'DOST XL Brochure',
+
+  seo: {
+    title: 'DOST XL | Light Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland DOST XL with 1400 kg payload, 70 HP engine, 2645 mm load body, gallery, specifications and enquiry.',
+    canonicalPath: '/commercial/light/dost-xl',
+  },
+
+  quickSpecs: [
+    { label: 'Payload', value: '1400 kg', helper: 'Rated payload' },
+    { label: 'Power', value: '70 HP', helper: 'Maximum power' },
+    { label: 'Torque', value: '170 Nm', helper: 'Peak torque' },
+    { label: 'Mileage', value: '18.01 kmpl', helper: 'ARAI Certified' },
+    { label: 'Warranty', value: '5 Years', helper: 'Warranty coverage' },
+  ],
+
+  overview: {
+    heading: 'Built For Bigger Business',
+    body:
+      'DOST XL combines a 1400 kg payload, extra-large loading area and fuel-efficient diesel engine to maximize earning potential for transport operators.',
+    highlights: [
+      {
+        title: '1400 kg Payload',
+        description: 'Carry more goods in every trip.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'Large Loading Area',
+        description: '4.28 sq. metre cargo deck with 2645 mm body length.',
+        iconName: 'package',
+      },
+      {
+        title: 'Superior Performance',
+        description: '70 HP engine producing 170 Nm torque.',
+        iconName: 'gauge',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Mileage', value: '18.01 kmpl' },
+      { label: 'Warranty', value: '5 Years' },
+      { label: 'Payload', value: '1400 kg' },
+    ],
+  },
+
+  finance: {
+    title: 'Flexible Finance Options',
+    description:
+      'Gemini Motors provides attractive finance plans with flexible EMI options for DOST XL buyers.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Low down payment options',
+      'Flexible repayment tenure',
+      'Commercial vehicle finance support',
+      'Quick documentation assistance',
+    ],
+    examples: [
+      {
+        label: 'Starter Plan',
+        downPayment: '15%',
+        emi: 'Approx. ₹18,500',
+        tenure: '60 months',
+      },
+      {
+        label: 'Balanced Plan',
+        downPayment: '25%',
+        emi: 'Approx. ₹15,800',
+        tenure: '60 months',
+      },
+      {
+        label: 'Business Plan',
+        downPayment: '35%',
+        emi: 'Approx. ₹20,900',
+        tenure: '36 months',
+      },
+    ],
+  },
+
+  gallery: [
+    {
+      src: dostXlHero,
+      alt: 'DOST XL Exterior',
+      caption: 'Front Exterior',
+    },
+    {
+      src: dostXlCabin,
+      alt: 'Spacious Interior',
+      caption: 'Spacious Interior',
+    },
+    {
+      src: dostXlHero,
+      alt: '70 HP Engine',
+      caption: '70 HP Diesel Engine',
+    },
+    {
+      src: dostXlHero,
+      alt: 'Large Cargo Deck',
+      caption: 'Large Loading Area',
+    },
+  ],
+
+  features: [
+    {
+      title: '1400 kg Payload',
+      description: 'Designed for higher cargo carrying capacity.',
+      iconName: 'boxes',
+    },
+    {
+      title: '4.28 sq. metre Cargo Deck',
+      description: 'Extra-large loading area for maximum business.',
+      iconName: 'package',
+    },
+    {
+      title: '18.01 kmpl Mileage',
+      description: 'Fuel-efficient diesel engine.',
+      iconName: 'fuel',
+    },
+    {
+      title: '5 Year Warranty',
+      description: 'Industry-leading warranty support.',
+      iconName: 'shield',
+    },
+  ],
+
+  variants: [
+    {
+      name: 'LE',
+      description: 'Entry-level variant.',
+      bestFor: 'Small business transport.',
+      specs: [
+        { label: 'Power Steering', value: 'No' },
+        { label: 'AC', value: 'No' },
+      ],
+    },
+    {
+      name: 'LS',
+      description: 'Mid variant.',
+      bestFor: 'Daily logistics.',
+      specs: [
+        { label: 'Power Steering', value: 'Yes' },
+        { label: 'AC', value: 'No' },
+      ],
+    },
+    {
+      name: 'LX',
+      description: 'Top-end variant.',
+      bestFor: 'Premium commercial usage.',
+      specs: [
+        { label: 'Power Steering', value: 'Yes' },
+        { label: 'AC', value: 'Yes' },
+      ],
+    },
+  ],
+
+  applications: [
+    {
+      title: 'Retail Delivery',
+      description: 'Ideal for FMCG and retail supply.',
+      iconName: 'briefcase-business',
+    },
+    {
+      title: 'Courier',
+      description: 'Parcel and logistics operations.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Agriculture',
+      description: 'Transport farm produce and supplies.',
+      iconName: 'tractor',
+    },
+    {
+      title: 'Construction',
+      description: 'Carry building materials efficiently.',
+      iconName: 'building',
+    },
+  ],
+
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: '1.5 L 3 Cylinder Diesel' },
+        { label: 'Turbocharger', value: 'Turbocharged Intercooled' },
+        { label: 'Displacement', value: '1478 cc' },
+        { label: 'Power', value: '70 HP @ 3300 rpm' },
+        { label: 'Torque', value: '170 Nm @ 1600–2400 rpm' },
+      ],
+    },
+    {
+      title: 'Transmission',
+      rows: [
+        { label: 'Gearbox', value: '5 Forward + 1 Reverse' },
+        { label: 'Gear Shift', value: 'Cable Type' },
+      ],
+    },
+    {
+      title: 'Dimensions',
+      rows: [
+        { label: 'Overall Length', value: '4630 mm' },
+        { label: 'Overall Width', value: '1670 mm' },
+        { label: 'Overall Height', value: '1860 mm' },
+        { label: 'Wheelbase', value: '2350 mm' },
+        { label: 'Load Body', value: '2645 × 1620 × 440 mm' },
+        { label: 'Loading Height', value: '855 mm' },
+      ],
+    },
+    {
+      title: 'Vehicle',
+      rows: [
+        { label: 'GVW', value: '2625 kg' },
+        { label: 'Payload', value: '1400 kg' },
+        { label: 'Fuel Tank', value: '40 L' },
+        { label: 'Tyres', value: '185 R14 LT 8PR' },
+      ],
+    },
+  ],
+
+  whyGemini: {
+    heading: 'Why Buy DOST XL From Gemini Motors',
+    description:
+      'Gemini Motors offers complete assistance with finance, sales, service and after-sales support for DOST XL owners.',
+    stats: [
+      { label: 'Payload', value: '1400 kg' },
+      { label: 'Power', value: '70 HP' },
+      { label: 'Mileage', value: '18.01 kmpl' },
+      { label: 'Warranty', value: '5 Years' },
+    ],
+  },
+
+  relatedProducts: [
+    {
+      name: 'DOST + XL',
+      category: 'Light Commercial',
+      imageUrl: dostXlExterior,
+      description: '1600 kg payload commercial pickup.',
+    },
+    {
+      name: 'SAATHI',
+      category: 'Light Commercial',
+      imageUrl: saathiRetailDelivery,
+      description: 'Compact last-mile delivery vehicle.',
+    },
+    {
+      name: 'Partner 4 Tyre',
+      category: 'Light Commercial',
+      imageUrl: partner4TyreOnRoad,
+      description: 'Heavy-duty cargo transporter.',
+    },
+  ],
+
+  enquiry: {
+    title: 'Enquire About DOST XL',
+    description:
+      'Share your transport requirement and our Gemini Motors team will contact you with the best offer.',
+    defaultInterest: 'DOST XL',
+  },
+};
 export const SAATHI_PRODUCT_PAGE: ProductPageData = {
   id: 'saathi',
   category: 'Light Commercial Vehicle',

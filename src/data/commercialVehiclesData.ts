@@ -9,6 +9,7 @@ import avtr4525hDtlaStudioExterior from '../assets/images/avtr_4525h_dtla_studio
 import badaDostI5PlusCard from '../assets/images/bada-dost-i5-plus-card.png';
 import commercialTruck from '../assets/images/commercial_truck.jpg';
 import dostXlExterior from '../assets/images/dost_xl_exterior.jpg';
+import dostXlHero from '../assets/images/dost_xl_hero.jpg';
 import fuelSolution from '../assets/images/fuel_solution.jpg';
 import partner4TyreOnRoad from '../assets/images/partner_4_tyre_on_road.jpg';
 import saathiRetailDelivery from '../assets/images/saathi_retail_delivery.jpg';
@@ -121,8 +122,8 @@ export const lightCommercialVehicles: CommercialVehicleModel[] = [
     applications: ['Pickup delivery'],
   },
   {
-    id: 'dost-xl',
-    slug: 'dost-xl',
+    id: 'dost-plus-xl',
+    slug: 'dost-plus-xl',
     name: 'DOST + XL',
     categoryId: 'light',
     imageUrl: dostXlExterior,
@@ -132,13 +133,39 @@ export const lightCommercialVehicles: CommercialVehicleModel[] = [
     usageLabel: 'Body Type',
     usageValue: 'CBC / FSD / HSD',
     shortSpecification: '52 kW diesel LCV with 2805 mm load body length',
-    route: '/commercial/light/dost-xl',
+    route: '/commercial/light/dost-plus-xl',
     series: 'DOST',
     payloadKg: 1600,
     payloadClass: 'above-1-5-ton',
     bodyLengthFt: 9.2,
     sizeClass: 'large-deck',
     applications: ['Cargo movement', 'Urban deliveries', 'Fleet operations'],
+  },
+  {
+  id: 'dost-xl',
+  slug: 'dost-xl',
+  name: 'DOST XL',
+  categoryId: 'light',
+  imageUrl: dostXlHero,
+  imageAlt: 'Ashok Leyland Dost XL',
+  metricLabel: 'Payload',
+  metricValue: '1,400 kg',
+  fuelType: 'Diesel',
+  usageLabel: 'Body Type',
+  usageValue: 'Cargo Deck',
+  shortSpecification: '70 HP diesel engine with 2645 mm load body',
+  route: '/commercial/light/dost-xl',
+  series: 'DOST',
+  payloadKg: 1400,
+  payloadClass: '1-to-1-5-ton',
+  bodyLengthFt: 8.7,
+  sizeClass: 'compact',
+  applications: [
+    'Last-mile delivery',
+    'Retail transport',
+    'Cargo movement',
+    'E-commerce logistics'
+  ],
   },
   {
     id: 'saathi',

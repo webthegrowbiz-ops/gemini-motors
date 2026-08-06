@@ -20,7 +20,7 @@ import {
   Award,
   AlertTriangle
 } from 'lucide-react';
-import { FUEL_SERVICES, HUBS, SERVICE_CENTRES, SERVICES_PAGE_CONFIG } from '../data';
+import { FUEL_SERVICES, HUBS, SERVICE_CENTRES, SERVICES_PAGE_CONFIG, WHATSAPP_URL } from '../data';
 
 interface AutoServicesScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
@@ -98,7 +98,9 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 <ArrowRight size={16} />
               </button>
               <a 
-                href="/lcv/index.html"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-all flex items-center gap-2 text-sm active:scale-95"
               >
                 <span>WhatsApp Us</span>

@@ -184,10 +184,16 @@ export const SERVICE_CENTRES: ServiceCentre[] = [
   },
 ];
 
+/** Central WhatsApp number/message — matches public/lcv/index.html */
+export const WHATSAPP_NUMBER = '919422393288';
+export const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi, I'm interested in the Gemini Motors LCV range in Goa. Please share pricing and availability.";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
+
 export const CHAT_WIDGET_CONFIG: ChatWidgetConfig = {
   enabled: false,
   mode: 'unconfirmed',
-  note: 'Client requested a chatbox, but the required type is not confirmed. WhatsApp CTAs route to the LCV landing page before direct chat.',
+  note: 'Client requested a chatbox, but the required type is not confirmed. WhatsApp CTAs open the configured wa.me chat directly.',
 };
 
 export const HUBS = [

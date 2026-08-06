@@ -21,6 +21,7 @@ import {
   Flame,
   Send
 } from 'lucide-react';
+import { WHATSAPP_URL } from '../data';
 
 interface AboutUsScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
@@ -43,7 +44,7 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
   ];
 
   const handleWhatsAppDirect = () => {
-    window.location.href = '/lcv/index.html';
+    window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (

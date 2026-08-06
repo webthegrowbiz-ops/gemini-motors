@@ -18,6 +18,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { AppDivision } from '../types';
+import { WHATSAPP_URL } from '../data';
 import { commercialCategories } from '../data/commercialVehiclesData';
 import Logo from './Logo';
 
@@ -182,7 +183,7 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
 
   const handleWhatsAppClick = () => {
     closeMenus();
-    window.location.href = '/lcv/index.html';
+    window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
   };
 
   const toggleDesktopMenu = (menu: Exclude<DesktopMenu, null>) => {

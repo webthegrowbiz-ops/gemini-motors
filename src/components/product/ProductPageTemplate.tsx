@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 
 import { ProductPageData } from '../../types';
+import { WHATSAPP_URL } from '../../data';
 
 export const revealTransition = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -1131,7 +1132,9 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
             <span className="hidden sm:inline">Call</span>
           </a>
           <a
-            href="/lcv/index.html"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-[1.04] hover:bg-[#20ba5a] hover:shadow-xl active:scale-[0.96] md:flex-none"
           >
             <MessageCircle size={15} />

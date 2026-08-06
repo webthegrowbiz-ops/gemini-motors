@@ -20,6 +20,7 @@ import {
   Truck,
   Wrench,
 } from 'lucide-react';
+import { WHATSAPP_URL } from '../data';
 
 interface ContactUsScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
@@ -157,7 +158,7 @@ function upsertCanonical(path: string) {
   element.href = `${window.location.origin}${path}`;
 }
 
-export default function ContactUsScreen({ onContactClick, onNavigateHome }: ContactUsScreenProps) {
+export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps) {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -290,7 +291,7 @@ export default function ContactUsScreen({ onContactClick, onNavigateHome }: Cont
                 </a>
                 <button
                   type="button"
-                  onClick={() => onContactClick('Contact page WhatsApp enquiry')}
+                  onClick={() => window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 text-sm font-extrabold uppercase tracking-wide text-slate-950 shadow-lg shadow-green-950/20 transition-all hover:-translate-y-0.5 hover:bg-[#20ba5a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300"
                 >
                   <MessageCircle size={18} />
@@ -476,7 +477,7 @@ export default function ContactUsScreen({ onContactClick, onNavigateHome }: Cont
                   </a>
                   <button
                     type="button"
-                    onClick={() => onContactClick(subject)}
+                    onClick={() => window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#25D366] text-sm font-extrabold text-slate-950 transition-all hover:bg-[#20ba5a]"
                   >
                     <MessageCircle size={16} />

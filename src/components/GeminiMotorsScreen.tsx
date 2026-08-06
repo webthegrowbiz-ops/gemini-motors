@@ -33,6 +33,7 @@ import dostXlHeroReplacement from '../assets/images/dost-xl-hero-replacement.png
 import indianOilPump from '../assets/images/indian_oil.jpg';
 import sustainableGrowth from '../assets/images/sustainable_growth.jpg';
 import tipper8x4HighwayExterior from '../assets/images/tipper_8x4_highway_exterior.jpg';
+import { WHATSAPP_URL } from '../data';
 import { lightCommercialVehicles, mediumHeavyCommercialVehicles } from '../data/commercialVehiclesData';
 
 interface GeminiMotorsScreenProps {
@@ -829,7 +830,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
             <button
               type="button"
               onClick={() => {
-                window.location.href = '/lcv/index.html';
+                window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
               }}
               className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#20ba5a] sm:w-52"
             >

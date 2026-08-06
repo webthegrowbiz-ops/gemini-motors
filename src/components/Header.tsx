@@ -7,7 +7,6 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   ArrowRight,
-  BatteryCharging,
   ChevronDown,
   Menu,
   MessageCircle,
@@ -20,6 +19,7 @@ import {
 import { AppDivision } from '../types';
 import { WHATSAPP_URL } from '../data';
 import { commercialCategories } from '../data/commercialVehiclesData';
+import switchIEV3 from '../assets/images/switch_iev3.jpg';
 import Logo from './Logo';
 
 interface HeaderProps {
@@ -35,11 +35,15 @@ const getActiveNav = (pathname: string): TopLevelNav => {
   const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 
   if (normalizedPath === '/') return 'home';
-  if (normalizedPath.startsWith('/commercial')) return 'commercial';
+  if (
+    normalizedPath.startsWith('/commercial') ||
+    normalizedPath.startsWith('/electric-mobility') ||
+    normalizedPath.startsWith('/ev')
+  ) {
+    return 'commercial';
+  }
   if (
     normalizedPath.startsWith('/services') ||
-    normalizedPath.startsWith('/electric-mobility') ||
-    normalizedPath.startsWith('/ev') ||
     normalizedPath.startsWith('/green-technologies') ||
     normalizedPath.startsWith('/green')
   ) {
@@ -77,11 +81,16 @@ const commercialMenuItems = [
     division: 'commercial-medium-heavy' as AppDivision,
     image: commercialCategories[1]?.imageUrl,
   },
+  {
+    label: 'EV',
+    description: 'Cleaner commercial mobility solutions.',
+    division: 'ev' as AppDivision,
+    image: switchIEV3,
+  },
 ];
 
 const servicesMenuItems = [
   { label: 'Services', helper: 'Fuel, logistics and business support services.', division: 'auto-services' as AppDivision, Icon: Wrench },
-  { label: 'Electric Mobility', helper: 'Cleaner commercial mobility solutions.', division: 'ev' as AppDivision, Icon: BatteryCharging },
   { label: 'Green Technology', helper: 'Sustainable energy and efficiency products.', division: 'green-tech' as AppDivision, Icon: ShieldCheck },
 ];
 
@@ -310,9 +319,9 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
             onMouseEnter={() => setDesktopMenu('commercial')}
             onMouseLeave={() => setDesktopMenu(null)}
             prefersReducedMotion={prefersReducedMotion}
-            className="left-1/2 w-[620px] -translate-x-1/2"
+            className="left-1/2 w-[920px] -translate-x-1/2"
           >
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {commercialMenuItems.map((item, index) => (
                 <motion.button
                   key={item.label}
@@ -404,6 +413,7 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   prefersReducedMotion={prefersReducedMotion}
                 >
                   <MobileSubButton label="LCV" onClick={() => handleNavClick('commercial-light')} />
+                  <MobileSubButton label="EV" onClick={() => handleNavClick('ev')} />
                   <MobileSubButton label="M&HCV" onClick={() => handleNavClick('commercial-medium-heavy')} />
                   <MobileSubButton label="View All Commercial Vehicles" onClick={() => handleNavClick('commercial')} />
                 </MobileAccordionSection>
@@ -416,7 +426,6 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   prefersReducedMotion={prefersReducedMotion}
                 >
                   <MobileSubButton label="Services" onClick={() => handleNavClick('auto-services')} />
-                  <MobileSubButton label="Electric Mobility" onClick={() => handleNavClick('ev')} />
                   <MobileSubButton label="Green Technology" onClick={() => handleNavClick('green-tech')} />
                 </MobileAccordionSection>
                 <MobileNavButton label="Finance" active={activeTopLevelNav === 'finance'} onClick={handleFinanceClick} />

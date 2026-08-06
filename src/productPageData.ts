@@ -7,20 +7,63 @@ import commercialTruck from './assets/images/commercial_truck.jpg';
 import avtr4625hLaOnRoadExterior from './assets/images/avtr_4625h_la_on_road_exterior.jpg';
 import avtr4625hLaStudioExterior from './assets/images/avtr_4625h_la_studio_exterior.jpg';
 import avtr4525hDtlaStudioExterior from './assets/images/avtr_4525h_dtla_studio_exterior.jpg';
+import badaDostI5Hero from './assets/images/bada_dost_i5_hero.jpg';
+import badaDostI5OnRoad from './assets/images/bada_dost_i5_on_road.jpg';
+import badaDostI5Specifications from './assets/images/bada_dost_i5_specifications.png';
+import badaDostI5Studio from './assets/images/bada_dost_i5_studio.png';
 import badaDostI5PlusHero from './assets/images/bada_dost_i5_plus_hero.png';
 import badaDostI5PlusSpecifications from './assets/images/bada_dost_i5_plus_specifications.png';
+import badaDostI6Cabin from './assets/images/bada_dost_i6_cabin.jpg';
+import badaDostI6ColoursWarranty from './assets/images/bada_dost_i6_colours_warranty.jpg';
+import badaDostI6Features from './assets/images/bada_dost_i6_features.jpg';
+import badaDostI6Hero from './assets/images/bada_dost_i6_hero.jpg';
+import badaDostI6Loaded from './assets/images/bada_dost_i6_loaded.jpg';
+import badaDostI6Specifications from './assets/images/bada_dost_i6_specifications.png';
 import businessJourney from './assets/images/business_journey.jpg';
 import dostXlCabin from './assets/images/dost_xl_cabin.jpg';
 import dostXlExterior from './assets/images/dost_xl_exterior.jpg';
 import dostXlHero from './assets/images/dost_xl_hero.jpg';
+import dostXlHeroReplacement from './assets/images/dost-xl-hero-replacement.png';
 import fuelSolution from './assets/images/fuel_solution.jpg';
 import indianOil from './assets/images/indian_oil.jpg';
 import partner4TyreHeavyDutyLoading from './assets/images/partner_4_tyre_heavy_duty_loading.jpg';
 import partner4TyreOnRoad from './assets/images/partner_4_tyre_on_road.jpg';
 import partner4TyreStudioExterior from './assets/images/partner_4_tyre_studio_exterior.jpg';
+import partnerMunicipalGarbageTipper from './assets/images/partner_municipal_garbage_tipper.jpg';
+import partnerMunicipalHero from './assets/images/partner_municipal_hero.jpg';
+import partnerMunicipalKeyFeatures from './assets/images/partner_municipal_key_features.png';
+import partnerMunicipalNetwork from './assets/images/partner_municipal_network.jpg';
+import partnerMunicipalOtherApplications from './assets/images/partner_municipal_other_applications.png';
+import partnerMunicipalSkylift from './assets/images/partner_municipal_skylift.jpg';
+import partnerMunicipalSkyliftSweeper from './assets/images/partner_municipal_skylift_sweeper.png';
+import partnerMunicipalSpecifications from './assets/images/partner_municipal_specifications.png';
+import partnerMunicipalSuctionFireHook from './assets/images/partner_municipal_suction_fire_hook.png';
+import partnerMunicipalWasteWater from './assets/images/partner_municipal_waste_water.png';
 import saathiRetailDelivery from './assets/images/saathi_retail_delivery.jpg';
 import saathiStudioExterior from './assets/images/saathi_studio_exterior.jpg';
 import switchIEV3 from './assets/images/switch_iev3.jpg';
+import switchIev3Applications from './assets/images/switch_iev3_applications.png';
+import switchIev3ApplicationsTruck from './assets/images/switch_iev3_applications_truck.jpg';
+import switchIev3Cabin from './assets/images/switch_iev3_cabin.jpg';
+import switchIev3Exterior from './assets/images/switch_iev3_exterior.jpg';
+import switchIev3Features from './assets/images/switch_iev3_features.png';
+import switchIev3Hero from './assets/images/switch_iev3_hero.jpg';
+import switchIev3Highlights from './assets/images/switch_iev3_highlights.png';
+import switchIev3Loaded from './assets/images/switch_iev3_loaded.jpg';
+import switchIev3Specifications from './assets/images/switch_iev3_specifications.png';
+import switchIev4Applications from './assets/images/switch_iev4_applications.png';
+import switchIev4ApplicationsTruck from './assets/images/switch_iev4_applications_truck.jpg';
+import switchIev4Exterior from './assets/images/switch_iev4_exterior.jpg';
+import switchIev4Features from './assets/images/switch_iev4_features.png';
+import switchIev4GarbageCompanyOverview from './assets/images/switch_iev4_garbage_company_overview.jpg';
+import switchIev4GarbageHero from './assets/images/switch_iev4_garbage_hero.jpg';
+import switchIev4GarbageSideBuilding from './assets/images/switch_iev4_garbage_side_building.jpg';
+import switchIev4GarbageSideStreet from './assets/images/switch_iev4_garbage_side_street.jpg';
+import switchIev4GarbageTipping from './assets/images/switch_iev4_garbage_tipping.jpg';
+import switchIev4Hero from './assets/images/switch_iev4_hero.jpg';
+import switchIev4Highlights from './assets/images/switch_iev4_highlights.png';
+import switchIev4Loaded from './assets/images/switch_iev4_loaded.jpg';
+import switchIev4Specifications from './assets/images/switch_iev4_specifications.png';
 import switchAward from './assets/images/switch_ev_award.jpg';
 import tipper8x4HeavyDutyTipper from './assets/images/tipper_8x4_heavy_duty_tipper.jpg';
 import tipper8x4HighwayExterior from './assets/images/tipper_8x4_highway_exterior.jpg';
@@ -324,7 +367,7 @@ export const DOST_PLUS_XL_PRODUCT_PAGE: ProductPageData = {
     { src: dostXlHero, alt: 'DOST + XL studio exterior', caption: 'Studio exterior' },
     { src: dostXlExterior, alt: 'DOST + XL on-road exterior', caption: 'On-road exterior' },
     { src: dostXlCabin, alt: 'DOST + XL cabin interior', caption: 'Cabin comfort' },
-    { src: indianOil, alt: 'Gemini Motors support location', caption: 'Gemini Motors support' },
+    { src: dostXlHeroReplacement, alt: 'DOST + XL loaded highway exterior', caption: 'Loaded highway exterior' },
   ],
   features: [
     {
@@ -812,7 +855,7 @@ export const SAATHI_PRODUCT_PAGE: ProductPageData = {
   gallery: [
     { src: saathiStudioExterior, alt: 'SAATHI studio exterior front view', caption: 'Studio Exterior' },
     { src: saathiRetailDelivery, alt: 'SAATHI on-road retail delivery use', caption: 'Retail Delivery Usage' },
-    { src: indianOil, alt: 'Gemini Motors Goa dealership support', caption: 'Dealership Support' },
+    { src: businessJourney, alt: 'SAATHI commercial vehicle business operations', caption: 'Business Operations' },
   ],
   colours: [{ name: 'Aqua Blue', hex: '#0797ad' }],
   features: [
@@ -965,6 +1008,345 @@ export const SAATHI_PRODUCT_PAGE: ProductPageData = {
     title: 'Enquire About SAATHI',
     description: 'Share your route, load and purchase timeline. Gemini Motors Goa will connect with a tailored quote.',
     defaultInterest: 'SAATHI',
+  },
+};
+
+export const PARTNER_MUNICIPAL_PRODUCT_PAGE: ProductPageData = {
+  id: 'partner-municipal',
+  category: 'Light Commercial Vehicle',
+  name: 'Partner – Municipal Applications',
+  tagline: 'Creating a cleaner and smarter India with Ashok Leyland Partner.',
+  description:
+    'Ashok Leyland Partner municipal applications cover sky lift, road sweeper, garbage tipper, garbage compactor, water tanker, suction and jetting, fire fighter, hook loader and other civic bodies on the ZD30 DDTi Partner platform, available through GEM portal authorised resellers.',
+  heroImage: partnerMunicipalHero,
+  brochureLabel: 'Partner Municipal Applications Brochure',
+  seo: {
+    title: 'Partner Municipal Applications | Light Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Partner municipal applications including sky lift, road sweeper, garbage tipper, water tanker, fire fighter and hook loader with specifications and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/light/partner-municipal',
+  },
+  quickSpecs: [
+    { label: 'Engine', value: 'ZD30 DDTi', helper: '2953 cc diesel' },
+    { label: 'Power', value: '140 hp', helper: '103 kW @ 2750 rpm' },
+    { label: 'Payload', value: '3,760 – 4,885 kg', helper: 'Variant dependent' },
+    { label: 'GVW', value: '6,250 – 7,490 kg', helper: '4-tyre / 6-tyre' },
+    { label: 'Network', value: '850+ dealers', helper: '22,000+ touch points' },
+  ],
+  overview: {
+    heading: 'Municipal Solutions on the Partner Platform',
+    body:
+      'Ashok Leyland Partner supports cleaner and smarter municipal operations with application-ready bodies for sky lift, sweeping, waste collection, water, fire fighting and hook loading. The ZD30 DDTi powertrain, best-in-class turning circle radius and GEM portal availability through authorised resellers make it suited for civic fleets across India.',
+    highlights: [
+      {
+        title: 'Municipal Application Range',
+        description: 'Sky lift, road sweeper, closed and open garbage tippers, compactor, water tanker, suction and jetting, fire fighter and hook loader.',
+        iconName: 'truck',
+      },
+      {
+        title: 'ZD30 DDTi Diesel Powertrain',
+        description: '2953 cc DDTi diesel with 103 kW (140 hp) and 360 Nm for durable municipal duty.',
+        iconName: 'gauge',
+      },
+      {
+        title: 'Best-in-Class Turning Circle',
+        description: 'Compact architecture helps navigate narrow city streets for civic operations.',
+        iconName: 'route',
+      },
+      {
+        title: 'GEM Portal Availability',
+        description: 'Municipal application bodies are available in the GEM portal through authorised resellers.',
+        iconName: 'briefcase-business',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Dealership network', value: '850+' },
+      { label: 'Touch points', value: '22,000+' },
+      { label: 'Institutional fleet', value: '873 units listed' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help municipal and institutional buyers compare finance options for Partner application vehicles before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance guidance for municipal and institutional fleets',
+      'Support for documentation, insurance and delivery readiness',
+      'EMI planning aligned to application body and route use',
+      'Dealership coordination for Partner municipal configurations',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    { src: partnerMunicipalHero, alt: 'Ashok Leyland Partner municipal tipper', caption: 'Partner municipal tipper' },
+    { src: partnerMunicipalSkylift, alt: 'Ashok Leyland Partner sky lift', caption: 'Sky lift application' },
+    { src: partnerMunicipalSkyliftSweeper, alt: 'Partner sky lift and road sweeper highlights', caption: 'Sky lift and road sweeper' },
+    { src: partnerMunicipalWasteWater, alt: 'Partner garbage tipper, compactor and water tanker', caption: 'Waste and water applications' },
+    { src: partnerMunicipalSuctionFireHook, alt: 'Partner suction jetting, fire fighter and hook loader', caption: 'Suction, fire and hook loader' },
+    { src: partnerMunicipalGarbageTipper, alt: 'Partner closed garbage tipper', caption: 'Closed garbage tipper' },
+    { src: partnerMunicipalOtherApplications, alt: 'Partner other municipal applications and state users', caption: 'Other applications and state users' },
+    { src: partnerMunicipalKeyFeatures, alt: 'Partner key features offered', caption: 'Key features offered' },
+    { src: partnerMunicipalNetwork, alt: 'Ashok Leyland PAN India sales and service network', caption: 'PAN India sales and service network' },
+    { src: partnerMunicipalSpecifications, alt: 'Partner technical specifications table', caption: 'Technical specifications' },
+  ],
+  features: [
+    {
+      title: 'Low Loading Platform Height',
+      description: 'Easier loading and unloading for municipal and civic operations.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Lowest Operating Cost',
+      description: 'Lowest operating cost compared to competition for daily municipal duty.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'Reliable and Durable Powertrain',
+      description: 'ZD30 DDTi diesel powertrain built for continuous civic fleet use.',
+      iconName: 'gauge',
+    },
+    {
+      title: 'Air Conditioner Comfort',
+      description: 'Air conditioner for superior cabin comfort during long municipal shifts.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Cable Operated Gear Shift',
+      description: 'Cable operated gear shift for car-like comfort.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Parabolic Suspension',
+      description: 'Parabolic suspension for better driving comfort on city routes.',
+      iconName: 'wrench',
+    },
+    {
+      title: 'Flat Torque Curve',
+      description: 'Flat torque curve across a wide RPM range for better drivability and fewer gear shifts.',
+      iconName: 'gauge',
+    },
+    {
+      title: '10% Higher Mileage',
+      description: '10% higher mileage than the competition for lower running cost.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'Higher Payload to GVW Ratio',
+      description: 'Higher payload to GVW ratio compared to competition helps reduce the number of trips.',
+      iconName: 'boxes',
+    },
+  ],
+  variants: [
+    {
+      name: 'Partner (4-Tyre) 10 ft LB',
+      description: '4-tyre Partner with 10 ft load body for compact municipal routes.',
+      bestFor: 'City municipal bodies needing compact access and strong payload.',
+      specs: [
+        { label: 'GVW', value: '6250 kg' },
+        { label: 'Rated payload (FSD)', value: '3760 kg' },
+        { label: 'Wheelbase', value: '2685 mm' },
+        { label: 'TCR', value: '6.2 m' },
+      ],
+    },
+    {
+      name: 'Partner (4-Tyre) 14 ft LB',
+      description: '4-tyre Partner with 14 ft load body for higher cargo volume.',
+      bestFor: 'Municipal cargo and custom application bodies needing longer deck length.',
+      specs: [
+        { label: 'GVW', value: '7200 kg' },
+        { label: 'Rated payload (FSD)', value: '4565 kg' },
+        { label: 'Wheelbase', value: '3335 mm' },
+        { label: 'TCR', value: '7.5 m' },
+      ],
+    },
+    {
+      name: 'Partner (6-Tyre) 11 ft LB',
+      description: '6-tyre Partner with 11 ft load body and higher GVW.',
+      bestFor: 'Heavier municipal applications including suction and jetting bodies.',
+      specs: [
+        { label: 'GVW', value: '7490 kg' },
+        { label: 'Rated payload (FSD)', value: '4885 kg' },
+        { label: 'Wheelbase', value: '2820 mm' },
+        { label: 'TCR', value: '5.7 m' },
+      ],
+    },
+    {
+      name: 'Partner (6-Tyre) 14 ft LB',
+      description: '6-tyre Partner with 14 ft load body for balanced municipal duty.',
+      bestFor: 'Waste, tanker and multi-purpose civic bodies.',
+      specs: [
+        { label: 'GVW', value: '7490 kg' },
+        { label: 'Rated payload (FSD)', value: '4775 kg' },
+        { label: 'Wheelbase', value: '3320 mm' },
+        { label: 'TCR', value: '6.8 m' },
+      ],
+    },
+    {
+      name: 'Partner (6-Tyre) 17 ft LB',
+      description: '6-tyre Partner with 17 ft load body and air brakes.',
+      bestFor: 'Longer municipal and institutional body applications.',
+      specs: [
+        { label: 'GVW', value: '7490 kg' },
+        { label: 'Rated payload (FSD)', value: '3880 kg' },
+        { label: 'Wheelbase', value: '3955 mm' },
+        { label: 'TCR', value: '6.5 m' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Sky Lift',
+      description: 'Hydraulic access platform with 11 m and 15 m max working height options and GEM portal availability.',
+      iconName: 'hard-hat',
+    },
+    {
+      title: 'Road Sweeper',
+      description: '3 CUM hopper, 600 L water tank, 1 main brush and 2 side brushes with hydraulic hopper unloading.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Closed Garbage Tipper',
+      description: '4–8 CUM capacity with 70:30 or 60:40 wet/dry compartmentalization and single or twin tipping.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Open Garbage Tipper',
+      description: 'Customizable 4–6 CUM capacity with best-in-class turning circle radius.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Garbage Compactor',
+      description: '4 CUM customizable capacity with automatic bin lifter for municipal waste collection.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Water Tanker',
+      description: '3000 litre tank capacity for municipal water supply and civic utility use.',
+      iconName: 'snowflake',
+    },
+    {
+      title: 'Suction & Jetting Machine',
+      description: '3 KL tank with 1.5 KL fresh water and 1.5 KL sludge, jetting pump 137 lpm at 140 bar.',
+      iconName: 'wrench',
+    },
+    {
+      title: 'Fire Fighter',
+      description: '3 KL tank capacity fire fighter body for municipal and disaster response fleets.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Hook Loader',
+      description: '4 CUM garbage collection with 3500 mm container length and max lifting capacity of 2 tonnes.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Other Applications',
+      description: 'Fire fighting truck with 3 KL tanker, mortuary van, cattle catcher and mobile food truck configurations.',
+      iconName: 'briefcase-business',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Powertrain',
+      rows: [
+        { label: 'Engine', value: 'ZD30 Diesel Engine with DDTi' },
+        { label: 'Displacement', value: '2953 cc' },
+        { label: 'Max power', value: '103 kW (140 hp) @ 2750 rpm' },
+        { label: 'Max torque', value: '360 Nm @ 1350-2750 rpm' },
+        { label: 'Emission', value: 'BS VI' },
+        { label: 'Fuel tank', value: '90 L' },
+        { label: 'Clutch', value: '310 mm diaphragm, push type, single dry plate, hydraulic actuated' },
+        { label: 'Transmission', value: 'Fully synchronised 5-speed manual' },
+      ],
+    },
+    {
+      title: 'Weight & Payload by Variant',
+      rows: [
+        { label: '4-Tyre 10 ft GVW / Payload', value: '6250 kg / 3760 kg' },
+        { label: '4-Tyre 14 ft GVW / Payload', value: '7200 kg / 4565 kg' },
+        { label: '6-Tyre 11 ft GVW / Payload', value: '7490 kg / 4885 kg' },
+        { label: '6-Tyre 14 ft GVW / Payload', value: '7490 kg / 4775 kg' },
+        { label: '6-Tyre 17 ft GVW / Payload', value: '7490 kg / 3880 kg' },
+      ],
+    },
+    {
+      title: 'Chassis & Dimensions',
+      rows: [
+        { label: 'Front suspension', value: 'Parabolic, overslung with double acting shock absorbers' },
+        { label: 'Rear suspension', value: 'Semi elliptic (main), overslung with double acting shock absorbers' },
+        { label: 'Steering', value: 'Power' },
+        { label: 'Battery', value: '1 x 75 AH' },
+        { label: 'Load body lengths', value: '10 ft, 11 ft, 14 ft, 17 ft (variant dependent)' },
+        { label: 'Turning circle radius', value: '5.7 m to 7.5 m (variant dependent)' },
+        { label: 'Ground clearance', value: '220 mm to 238 mm (variant dependent)' },
+      ],
+    },
+    {
+      title: 'Municipal Application Specs',
+      rows: [
+        { label: 'Sky lift heights', value: '11 m and 15 m max working height' },
+        { label: 'Road sweeper hopper / water', value: '3 CUM / 600 L' },
+        { label: 'Closed garbage tipper', value: '4–8 CUM with 70:30 or 60:40 wet/dry split' },
+        { label: 'Open garbage tipper', value: '4–6 CUM' },
+        { label: 'Garbage compactor', value: '4 CUM with automatic bin lifter' },
+        { label: 'Water tanker', value: '3000 L' },
+        { label: 'Suction & jetting', value: '3 KL (1.5 KL fresh + 1.5 KL sludge), 137 lpm @ 140 bar' },
+        { label: 'Fire fighter', value: '3 KL tank capacity' },
+        { label: 'Hook loader', value: '4 CUM / 3500 mm container / 2 tonne lift' },
+      ],
+    },
+    {
+      title: 'PAN India Sales & Service Network',
+      rows: [
+        { label: 'Total dealership network', value: '850+' },
+        { label: 'Total touch points', value: '22,000+' },
+        { label: 'Helpline', value: '1800 1022 666 (multi-lingual toll free)' },
+        { label: 'Service support', value: 'Service-at-site vans and bikes' },
+        { label: 'Coverage', value: 'PAN India' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Choose Partner Municipal Applications From Gemini Motors',
+    description:
+      'Gemini Motors supports municipal and institutional buyers with Partner application guidance, finance coordination, sales support and service assistance for civic fleet operations.',
+    stats: [
+      { label: 'Payload range', value: '3,760 – 4,885 kg' },
+      { label: 'Power', value: '140 hp' },
+      { label: 'Dealers', value: '850+' },
+      { label: 'Touch points', value: '22,000+' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'Partner 4 Tyre',
+      category: 'Light Commercial',
+      imageUrl: partner4TyreOnRoad,
+      description: 'Partner 4 Tyre cargo truck for wholesale, construction and fleet operations.',
+    },
+    {
+      name: 'BADA DOST i6',
+      category: 'Light Commercial',
+      imageUrl: badaDostI6Hero,
+      description: 'High-payload diesel pickup for commercial cargo movement.',
+    },
+    {
+      name: '8x4 Tipper',
+      category: 'Medium & Heavy',
+      imageUrl: tipper8x4HighwayExterior,
+      description: 'Heavy-duty tipper for construction and infrastructure operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About Partner Municipal Applications',
+    description:
+      'Share your municipal application requirement and Gemini Motors will connect with Partner configuration guidance.',
+    defaultInterest: 'Partner – Municipal Applications',
   },
 };
 
@@ -1939,6 +2321,532 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
+export const BADA_DOST_I6_PRODUCT_PAGE: ProductPageData = {
+  id: 'bada-dost-i6',
+  category: 'Light Commercial Vehicle',
+  name: 'BADA DOST i6',
+  tagline: "India's biggest pickup with 2,567 kg payload.",
+  description:
+    "Ashok Leyland BADA DOST i6 is India's biggest pickup in the 3.5 to 4.5 Ton GVW segment, with 2,567 kg rated CBC payload, 61 sq ft loading area, 10 ft 8 in load body and highest ARAI tested mileage of 15.1 kmpl.",
+  heroImage: badaDostI6Hero,
+  brochureLabel: 'BADA DOST i6 Brochure',
+  seo: {
+    title: 'BADA DOST i6 | Light Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland BADA DOST i6 with 2,567 kg payload, 15.1 kmpl ARAI mileage, 3250 mm load body, gallery, specifications and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/light/bada-dost-i6',
+  },
+  quickSpecs: [
+    { label: 'Payload', value: '2,567 kg', helper: 'CBC rated payload' },
+    { label: 'Mileage', value: '15.1 kmpl', helper: 'Highest ARAI tested' },
+    { label: 'Load Body', value: '10 ft 8 in', helper: '3250 mm length' },
+    { label: 'Loading Area', value: '61 sq ft', helper: '5.7 sq m' },
+    { label: 'Warranty', value: '5 Years', helper: 'Or 2 lakh km' },
+  ],
+  overview: {
+    heading: "Payload Ka Baap Aa Gaya",
+    body:
+      "BADA DOST i6 is positioned as India's biggest pickup due to highest payload and largest loading area in the 3.5 to 4.5 Ton GVW segment. It combines 2,567 kg CBC payload, 61 sq ft loading area, 10 ft 8 in load body and 15.1 kmpl ARAI tested mileage with first-in-industry 5 years / 2 lakh km warranty.",
+    highlights: [
+      {
+        title: '2,567 kg Payload',
+        description: 'CBC rated payload of 2,567 kg with FSD payload of 2,355 kg on a 4,100 kg GVW platform.',
+        iconName: 'boxes',
+      },
+      {
+        title: '15.1 kmpl ARAI Mileage',
+        description: 'Highest ARAI tested mileage of 15.1 kmpl for lower operating cost.',
+        iconName: 'gauge',
+      },
+      {
+        title: 'Largest Loading Area',
+        description: '61 sq ft (5.7 sq m) loading area with the longest 10 ft 8 in (3250 mm) load body.',
+        iconName: 'package-check',
+      },
+      {
+        title: '5 Years / 2 Lakh Km Warranty',
+        description: 'First-in-industry warranty coverage with Ashok Leyland Bharosa uptime guarantee.',
+        iconName: 'shield',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Payload (CBC)', value: '2,567 kg' },
+      { label: 'GVW', value: '4,100 kg' },
+      { label: 'Warranty', value: '5 Years / 2 Lakh Km' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare down-payment options and monthly outflow for BADA DOST i6 before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for owner-operators and small business buyers',
+      'Flexible tenure options for route-based earning plans',
+      'Support with documentation, insurance and delivery readiness',
+      'EMI guidance based on payload use, application and purchase timeline',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    { src: badaDostI6Hero, alt: 'Ashok Leyland BADA DOST i6 loaded pickup', caption: 'BADA DOST i6 exterior' },
+    { src: badaDostI6Loaded, alt: 'Ashok Leyland BADA DOST i6 with cargo', caption: 'High payload capability' },
+    { src: badaDostI6Features, alt: 'Ashok Leyland BADA DOST i6 feature highlights', caption: 'Feature highlights' },
+    { src: badaDostI6Cabin, alt: 'Ashok Leyland BADA DOST i6 cabin comfort', caption: 'Cabin comfort' },
+    {
+      src: badaDostI6ColoursWarranty,
+      alt: 'Ashok Leyland BADA DOST i6 colours and warranty',
+      caption: 'Colours and warranty',
+    },
+    {
+      src: badaDostI6Specifications,
+      alt: 'Ashok Leyland BADA DOST i6 technical specifications and features',
+      caption: 'Technical specifications and features',
+    },
+  ],
+  colours: [
+    { name: 'Ultra Blue', hex: '#254C87' },
+    { name: 'Stable Grey', hex: '#9A9A9A' },
+    { name: 'Casablanca White', hex: '#F7F4ED' },
+    { name: 'Irish Cream', hex: '#E8D5A7' },
+    { name: 'Golden Brown', hex: '#C97B4D' },
+  ],
+  features: [
+    {
+      title: 'Highest Fuel Mileage 15.13 kmpl',
+      description: 'Highest ARAI tested mileage of 15.1 kmpl for superior operating economy.',
+      iconName: 'gauge',
+    },
+    {
+      title: 'Best in Class TCD 11.9 m',
+      description: 'Turning circle diameter of 11.9 m with 5950 mm turning circle radius for strong manoeuvrability.',
+      iconName: 'route',
+    },
+    {
+      title: 'Anti-roll Bar for Safety',
+      description: 'Rigid front suspension with anti-roll bar for safer loaded operation.',
+      iconName: 'shield',
+    },
+    {
+      title: 'In-built Central Door Locking',
+      description: 'First-in-class in-built central door locking feature for added security.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Cabin Comfort',
+      description: 'Driver + 1 cabin with power steering for everyday commercial comfort.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Advanced Suspension 5 Front & 8 Rear',
+      description: 'Rigid 5-leaf front suspension with anti-roll bar and 8-leaf semi-elliptic rear suspension.',
+      iconName: 'wrench',
+    },
+    {
+      title: '2,567 kg CBC Payload',
+      description: 'CBC payload of 2,567 kg and FSD payload of 2,355 kg on 4,100 kg GVW.',
+      iconName: 'boxes',
+    },
+    {
+      title: '5 Years / 2 Lakh Km Warranty',
+      description: 'First-in-industry warranty with Ashok Leyland Bharosa uptime guarantee.',
+      iconName: 'shield',
+    },
+  ],
+  variants: [
+    {
+      name: 'CBC',
+      description: 'Cab chassis configuration with 2,567 kg rated payload.',
+      bestFor: 'Operators needing maximum payload for custom body applications.',
+      specs: [
+        { label: 'Rated payload', value: '2,567 kg' },
+        { label: 'GVW', value: '4,100 kg' },
+        { label: 'Variant', value: 'CBC' },
+      ],
+    },
+    {
+      name: 'FSD',
+      description: 'Fixed side deck with 3250 x 1750 x 490 mm load body and 2,355 kg rated payload.',
+      bestFor: 'Daily cargo movement with the longest 10 ft 8 in load body.',
+      specs: [
+        { label: 'Rated payload', value: '2,355 kg' },
+        { label: 'Load body', value: '3250 x 1750 x 490 mm' },
+        { label: 'Variant', value: 'FSD' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'High-Payload Pickup Cargo',
+      description: '2,567 kg CBC payload and 61 sq ft loading area for bigger commercial loads.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Urban Deliveries',
+      description: 'Best-in-class 11.9 m TCD supports confident movement in city routes.',
+      iconName: 'route',
+    },
+    {
+      title: 'Highway Logistics',
+      description: '80 hp diesel performance with long load body for intercity cargo movement.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Fleet Operations',
+      description: '5 years / 2 lakh km warranty and Bharosa uptime guarantee for fleet owners.',
+      iconName: 'briefcase-business',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: '1.5 L, 3 Cylinder Diesel Engine (BS VI) Turbo Charged Intercooled' },
+        { label: 'Displacement', value: '1478 cc' },
+        { label: 'Max Power', value: '59 kW (80 hp) @ 3300 rpm' },
+        { label: 'Max Torque', value: '190 Nm @ 1600 to 2400 rpm' },
+      ],
+    },
+    {
+      title: 'Transmission & Controls',
+      rows: [
+        {
+          label: 'Clutch',
+          value: 'Diaphragm, Single Dry Plate, Pot Type, Mechanical Cable Operated',
+        },
+        {
+          label: 'Gearbox',
+          value: 'Fully Synchromesh, 5-Speed Manual Gear Box, Reverse with Sliding Mesh',
+        },
+        { label: 'Steering', value: 'Power Steering' },
+        { label: 'Seating capacity', value: 'Driver + 1' },
+      ],
+    },
+    {
+      title: 'Brakes & Suspension',
+      rows: [
+        { label: 'Braking system', value: 'Vacuum Assisted Hydraulic Brakes with LSPV' },
+        { label: 'Front brakes', value: 'Ventilated Disc Type' },
+        { label: 'Rear brakes', value: 'Drum Type' },
+        { label: 'Front suspension', value: 'Rigid front Suspension (5 leaf) with Anti-roll Bar' },
+        { label: 'Rear suspension', value: 'Semi Elliptic Leaf suspension (8 Leaf)' },
+      ],
+    },
+    {
+      title: 'Dimensions & Weight',
+      rows: [
+        { label: 'Wheelbase', value: '2740 mm' },
+        { label: 'Overall length', value: '5325 mm' },
+        { label: 'Overall width', value: '1842 mm' },
+        { label: 'Overall height', value: '2048 mm' },
+        { label: 'Load body', value: '3250 x 1750 x 490 mm (10 ft 8 in x 5 ft 9 in x 1 ft 7 in)' },
+        { label: 'Loading platform height', value: '932 mm' },
+        { label: 'Turning circle radius', value: '5950 mm' },
+        { label: 'Loading area', value: '61 sq ft (5.7 sq m)' },
+        { label: 'GVW', value: '4100 kg' },
+        { label: 'Rated payload', value: '2567 kg (CBC), 2355 kg (FSD)' },
+        { label: 'Fuel tank', value: '50 Litres' },
+        { label: 'Tyres', value: '215/75 R15 LT' },
+        { label: 'ARAI mileage', value: '15.1 kmpl' },
+        { label: 'Warranty', value: '5 Years or 2 Lakh Km' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy BADA DOST i6 From Gemini Motors',
+    description:
+      'Gemini Motors supports commercial vehicle buyers with product guidance, finance coordination, sales support and service assistance for day-to-day fleet reliability.',
+    stats: [
+      { label: 'Payload (CBC)', value: '2,567 kg' },
+      { label: 'Mileage', value: '15.1 kmpl' },
+      { label: 'GVW', value: '4,100 kg' },
+      { label: 'Warranty', value: '5 Years' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'BADA DOST i5',
+      category: 'Light Commercial',
+      imageUrl: badaDostI5Hero,
+      description: 'Diesel LCV with 1,817 kg payload for everyday cargo movement.',
+    },
+    {
+      name: 'Bada Dost i5+',
+      category: 'Light Commercial',
+      imageUrl: badaDostI5PlusHero,
+      description: 'Electric pickup option with 1,500 kg payload capacity.',
+    },
+    {
+      name: 'Partner 4 Tyre',
+      category: 'Light Commercial',
+      imageUrl: partner4TyreOnRoad,
+      description: 'Cargo truck for heavier commercial operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About BADA DOST i6',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with BADA DOST i6 guidance.',
+    defaultInterest: 'BADA DOST i6',
+  },
+};
+
+export const BADA_DOST_I5_PRODUCT_PAGE: ProductPageData = {
+  id: 'bada-dost-i5',
+  category: 'Light Commercial Vehicle',
+  name: 'BADA DOST i5',
+  tagline: 'Dumdaar, Samajhdaar and Shandaar.',
+  description:
+    'The all-new Ashok Leyland BADA DOST i5 is a 3.49 Ton light commercial vehicle with 1,817 kg rated payload, 80 hp diesel performance and a spacious Driver + 2 cabin for everyday cargo movement.',
+  heroImage: badaDostI5Hero,
+  brochureLabel: 'BADA DOST i5 Brochure',
+  seo: {
+    title: 'BADA DOST i5 | Light Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland BADA DOST i5 with 1,817 kg payload, 80 hp diesel power, 190 Nm torque, gallery, specifications and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/light/bada-dost-i5',
+  },
+  quickSpecs: [
+    { label: 'Payload', value: '1,817 kg', helper: 'Rated payload' },
+    { label: 'Power', value: '80 hp', helper: '59 kW @ 3300 RPM' },
+    { label: 'Torque', value: '190 Nm', helper: '1600 to 2400 RPM' },
+    { label: 'GVW', value: '3,490 kg', helper: '3.49 Ton' },
+    { label: 'Warranty', value: '5 Years', helper: 'Or 2 lakh km' },
+  ],
+  overview: {
+    heading: 'Presenting the All New BADA DOST i5',
+    body:
+      'BADA DOST i5 combines dumdaar performance, samajhdaar savings and a shandaar journey. With 1,817 kg rated payload, a 1.5 L 3-cylinder BS VI turbocharged intercooled diesel engine and a Driver + 2 cabin, it is built for confident commercial movement.',
+    highlights: [
+      {
+        title: 'Dumdaar Performance',
+        description: '80 hp and 190 Nm from a 1.5 L 3-cylinder turbocharged intercooled diesel engine.',
+        iconName: 'gauge',
+      },
+      {
+        title: '1,817 kg Payload',
+        description: 'Best-in-class rated payload on a 3,490 kg GVW platform for higher earning potential.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'Shandaar Journey',
+        description: 'Spacious Driver + 2 cabin, power steering with tilt and telescopic column, and remote central locking.',
+        iconName: 'armchair',
+      },
+      {
+        title: '5 Years / 2 Lakh Km Warranty',
+        description: 'Long warranty coverage with Ashok Leyland Bharosa uptime support.',
+        iconName: 'shield',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Payload', value: '1,817 kg' },
+      { label: 'GVW', value: '3,490 kg' },
+      { label: 'Warranty', value: '5 Years / 2 Lakh Km' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare down-payment options and monthly outflow for BADA DOST i5 before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for owner-operators and small business buyers',
+      'Flexible tenure options for route-based earning plans',
+      'Support with documentation, insurance and delivery readiness',
+      'EMI guidance based on payload use, application and purchase timeline',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    { src: badaDostI5Hero, alt: 'Ashok Leyland BADA DOST i5 exterior', caption: 'BADA DOST i5 exterior' },
+    { src: badaDostI5Studio, alt: 'Ashok Leyland BADA DOST i5 studio view', caption: 'Studio exterior' },
+    { src: badaDostI5OnRoad, alt: 'Ashok Leyland BADA DOST i5 on road', caption: 'On-road view' },
+    {
+      src: badaDostI5Specifications,
+      alt: 'Ashok Leyland BADA DOST i5 technical specifications and features',
+      caption: 'Technical specifications and features',
+    },
+  ],
+  colours: [
+    { name: 'Blue', hex: '#254C87' },
+    { name: 'Grey', hex: '#9A9A9A' },
+    { name: 'White', hex: '#F7F4ED' },
+    { name: 'Irish Cream', hex: '#E8D5A7' },
+    { name: 'Golden Brown', hex: '#C97B4D' },
+  ],
+  features: [
+    {
+      title: '1,817 kg Payload',
+      description: 'High rated payload capacity for more goods in every trip.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Superior Mileage',
+      description: 'Samajhdaar savings with efficient diesel operation for lower running cost.',
+      iconName: 'gauge',
+    },
+    {
+      title: 'Enhanced Side and Rear Protection',
+      description: 'Enhanced side and rear protection devices for added operational safety.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Superior Turning Circle Radius',
+      description: 'Confident manoeuvrability for city lanes and tight operating spaces.',
+      iconName: 'route',
+    },
+    {
+      title: 'Spacious Cabin D+2',
+      description: 'Driver + 2 seating with power steering, tilt and telescopic column.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Remote Central Locking',
+      description: 'Convenient remote central locking for everyday commercial use.',
+      iconName: 'settings',
+    },
+    {
+      title: '5 Years / 2 Lakh Km Warranty',
+      description: 'Long ownership cover for business confidence.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Uptime Guarantee',
+      description: 'Ashok Leyland Bharosa uptime support for dependable commercial operations.',
+      iconName: 'wrench',
+    },
+  ],
+  variants: [
+    {
+      name: 'BADA DOST i5 FSD',
+      description: 'Fixed side deck configuration with 2951 x 1750 x 490 mm load body.',
+      bestFor: 'Daily cargo movement with 1,817 kg rated payload.',
+      specs: [
+        { label: 'Payload', value: '1,817 kg' },
+        { label: 'Load body', value: '2951 x 1750 x 490 mm' },
+        { label: 'GVW', value: '3,490 kg' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Cargo Movement',
+      description: '1,817 kg rated payload supports heavier goods movement each trip.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Urban Deliveries',
+      description: 'Superior turning circle radius and Driver + 2 cabin for city route duty.',
+      iconName: 'route',
+    },
+    {
+      title: 'Highway Logistics',
+      description: '80 hp and 190 Nm diesel performance for confident loaded journeys.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Fleet Operations',
+      description: '5 years / 2 lakh km warranty and Bharosa uptime support for fleet owners.',
+      iconName: 'briefcase-business',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: '1.5 L, 3 Cylinder Diesel Engine (BS VI) Turbo Charged Intercooled' },
+        { label: 'Displacement', value: '1478 cc' },
+        { label: 'Max Power', value: '59 kW (80 hp) @ 3300 RPM' },
+        { label: 'Max Torque', value: '190 Nm @ 1600 to 2400 RPM' },
+      ],
+    },
+    {
+      title: 'Transmission & Controls',
+      rows: [
+        {
+          label: 'Clutch',
+          value: 'Diaphragm, Single Dry Plate, Pot Type, Mechanical Cable Operated',
+        },
+        {
+          label: 'Gearbox',
+          value: 'Fully Synchromesh, 5-Speed Manual Gear Box, Reverse with Sliding Mesh',
+        },
+        { label: 'Steering', value: 'Power Steering, Tilt and Telescopic' },
+      ],
+    },
+    {
+      title: 'Brakes & Suspension',
+      rows: [
+        { label: 'Braking system', value: 'Vacuum-Assisted Hydraulic Brakes with LSPV' },
+        { label: 'Front brakes', value: 'Ventilated Disc Type' },
+        { label: 'Rear brakes', value: 'Drum Type' },
+        { label: 'Front suspension', value: 'Parabolic - 3 Leaf' },
+        { label: 'Rear suspension', value: 'Semi-Elliptical - 6 Leaf' },
+      ],
+    },
+    {
+      title: 'Dimensions & Weight',
+      rows: [
+        { label: 'Wheelbase', value: '2590 mm' },
+        { label: 'Overall length', value: '5025 mm' },
+        { label: 'Overall width', value: '1842 mm' },
+        { label: 'Overall height', value: '2061 mm' },
+        { label: 'Load body', value: '2951 x 1750 x 490 mm (9 ft 8 in x 5 ft 9 in x 1 ft 7 in)' },
+        { label: 'Loading platform height', value: '945 mm' },
+        { label: 'GVW', value: '3490 kg' },
+        { label: 'Rated payload', value: '1817 kg' },
+        { label: 'Fuel tank', value: '50 L' },
+        { label: 'Tyres', value: '7.00 R15 LT 12PR (Tube Type)' },
+        { label: 'Seating capacity', value: 'Driver + 2' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy BADA DOST i5 From Gemini Motors',
+    description:
+      'Gemini Motors supports commercial vehicle buyers with product guidance, finance coordination, sales support and service assistance for day-to-day fleet reliability.',
+    stats: [
+      { label: 'Payload', value: '1,817 kg' },
+      { label: 'Power', value: '80 hp' },
+      { label: 'GVW', value: '3,490 kg' },
+      { label: 'Warranty', value: '5 Years' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'Bada Dost i5+',
+      category: 'Light Commercial',
+      imageUrl: badaDostI5PlusHero,
+      description: 'Electric pickup option with 1,500 kg payload capacity.',
+    },
+    {
+      name: 'DOST + XL',
+      category: 'Light Commercial',
+      imageUrl: dostXlExterior,
+      description: 'Higher-payload diesel LCV for cargo movement and fleet operations.',
+    },
+    {
+      name: 'Partner 4 Tyre',
+      category: 'Light Commercial',
+      imageUrl: partner4TyreOnRoad,
+      description: 'Cargo truck for heavier commercial operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About BADA DOST i5',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with BADA DOST i5 guidance.',
+    defaultInterest: 'BADA DOST i5',
+  },
+};
+
 export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
   id: 'bada-dost-i5-plus',
   category: 'Light Commercial Vehicle',
@@ -2045,6 +2953,717 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
     title: 'Enquire About Bada Dost i5+',
     description: 'Share your requirement and Gemini Motors will connect with Bada Dost i5+ guidance.',
     defaultInterest: 'Bada Dost i5+',
+  },
+};
+
+export const SWITCH_IEV4_PRODUCT_PAGE: ProductPageData = {
+  id: 'switch-iev4',
+  category: 'Electric Commercial Vehicle',
+  name: 'SWITCH IeV4',
+  tagline: 'The Intelligent EV.',
+  description:
+    'SWITCH IeV4 is an intelligent electric light commercial vehicle with 1,750 kg FSD payload, 32.2 kWh lithium iron phosphate battery, 130 km range, 60 kW peak power and 230 Nm peak torque on a 310 V high voltage EV architecture.',
+  heroImage: switchIev4Hero,
+  brochureLabel: 'SWITCH IeV4 Brochure',
+  seo: {
+    title: 'SWITCH IeV4 | Electric Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the SWITCH IeV4 with 1,750 kg payload, 32.2 kWh LFP battery, 130 km range, CCS2 charging, gallery, specifications and enquiry support from Gemini Motors.',
+    canonicalPath: '/electric-mobility/switch-iev4',
+  },
+  quickSpecs: [
+    { label: 'Payload', value: '1,750 kg', helper: 'FSD rated payload' },
+    { label: 'Battery', value: '32.2 kWh', helper: 'Lithium iron phosphate' },
+    { label: 'Range', value: '130 km', helper: 'Standard duty cycle' },
+    { label: 'Power', value: '60 kW', helper: 'Peak motor power' },
+    { label: 'Torque', value: '230 Nm', helper: 'Peak motor torque' },
+  ],
+  overview: {
+    heading: 'The Intelligent EV',
+    body:
+      'SWITCH IeV4 combines a 1.75 ton payload, 32.2 kWh advanced lithium-ion battery, 310 V high voltage EV architecture, 130 km range and profitable TCO for urban commercial movement. Permanent magnet synchronous motors deliver 60 kW peak power and 230 Nm peak torque with CCS2 AC and DC charging support.',
+    highlights: [
+      {
+        title: '1.75 Ton Payload',
+        description: '1,750 kg FSD payload on a 3,490 kg GVW electric commercial platform.',
+        iconName: 'boxes',
+      },
+      {
+        title: '32.2 kWh LFP Battery',
+        description: 'Advanced lithium iron phosphate battery with liquid cooling on 310 V EV architecture.',
+        iconName: 'zap',
+      },
+      {
+        title: '130 km Range',
+        description: '130 km range based on a standard duty cycle for daily commercial routes.',
+        iconName: 'route',
+      },
+      {
+        title: 'Profitable TCO',
+        description: 'Electric operation designed for lower total cost of ownership on urban delivery duty.',
+        iconName: 'trending-up',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Payload', value: '1,750 kg' },
+      { label: 'Battery', value: '32.2 kWh LFP' },
+      { label: 'Range', value: '130 km' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for SWITCH IeV4 before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance guidance for electric commercial vehicle buyers',
+      'EMI planning for parcel, ecommerce and retail fleet use',
+      'Support with documentation, insurance and delivery readiness',
+      'Dealership coordination for SWITCH IeV4 configurations',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    { src: switchIev4Hero, alt: 'SWITCH IeV4 intelligent electric commercial vehicle', caption: 'SWITCH IeV4 exterior' },
+    { src: switchIev4Exterior, alt: 'SWITCH IeV4 outside commercial building', caption: 'Urban exterior' },
+    { src: switchIev4Loaded, alt: 'SWITCH IeV4 loaded for commercial delivery', caption: 'Loaded commercial use' },
+    { src: switchIev4ApplicationsTruck, alt: 'SWITCH IeV4 with white goods cargo', caption: 'White goods delivery' },
+    { src: switchIev4Highlights, alt: 'SWITCH IeV4 key highlights', caption: 'Key highlights' },
+    { src: switchIev4Features, alt: 'SWITCH IeV4 features', caption: 'Features' },
+    { src: switchIev4Applications, alt: 'SWITCH IeV4 applications', caption: 'Applications' },
+    { src: switchIev4Specifications, alt: 'SWITCH IeV4 technical specifications', caption: 'Technical specifications' },
+  ],
+  features: [
+    {
+      title: 'Automatic Transmission',
+      description: 'R / N / D / S selector for simple electric commercial driving.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Electric Power Steering',
+      description: 'Electric power steering for easier urban manoeuvring.',
+      iconName: 'gauge',
+    },
+    {
+      title: 'Hill Hold Assist',
+      description: 'Hill hold assist supports confident starts on inclines.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Dual Tone Spacious Cabin D+2',
+      description: 'Dual tone spacious cabin with driver + 2 seating.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Liquid Cooled Battery Pack',
+      description: 'Liquid cooled 32.2 kWh lithium iron phosphate battery pack.',
+      iconName: 'zap',
+    },
+    {
+      title: '340 CFT Container Suitability',
+      description: 'Suitable for 340 CFT container (outer), subject to local body building.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Regenerative Braking',
+      description: 'Regenerative braking recovers energy during deceleration.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'SWITCH iON Telematics',
+      description: 'SWITCH iON telematics solution for fleet tracking and vehicle insights.',
+      iconName: 'route',
+    },
+    {
+      title: 'Vehicle & Battery Warranty',
+      description: 'Vehicle 3 years / 1,50,000 km; battery 5+2* years / 1,50,000+25,000* km.',
+      iconName: 'shield',
+    },
+  ],
+  variants: [
+    {
+      name: 'SWITCH IeV4 FSD',
+      description: 'Fixed side deck electric commercial configuration with 1,750 kg rated payload.',
+      bestFor: 'Parcel, ecommerce, FMCG, retail and industrial urban deliveries.',
+      specs: [
+        { label: 'Payload', value: '1,750 kg (FSD)' },
+        { label: 'GVW', value: '3,490 kg' },
+        { label: 'Load body', value: '2951 x 1750 x 488 mm' },
+        { label: 'Battery', value: '32.2 kWh LFP' },
+      ],
+    },
+  ],
+  applications: [
+    { title: 'Parcel & Courier', description: 'Electric cargo movement for parcel and courier routes.', iconName: 'package-check' },
+    { title: 'Ecommerce', description: 'Urban ecommerce delivery with 1.75 ton payload capacity.', iconName: 'boxes' },
+    { title: 'FMCG', description: 'Fast-moving consumer goods distribution on daily city routes.', iconName: 'briefcase-business' },
+    { title: 'Organized Retail', description: 'Retail supply movement for stores and organised trade.', iconName: 'briefcase-business' },
+    { title: 'White Goods', description: 'Appliance delivery including refrigerator and washing machine cargo.', iconName: 'boxes' },
+    { title: 'Beverages', description: 'Beverage distribution for retail and institutional customers.', iconName: 'package-check' },
+    { title: 'LPG', description: 'LPG cylinder movement for commercial utility routes.', iconName: 'settings' },
+    { title: 'Industrial Goods', description: 'Industrial parts and component transport for local business supply.', iconName: 'wrench' },
+  ],
+  specifications: [
+    {
+      title: 'Model Details',
+      rows: [
+        { label: 'Model name', value: 'SWITCH IeV4' },
+        { label: 'GVW', value: '3490 kg' },
+        { label: 'Payload', value: '1750 kg (FSD)' },
+        { label: 'Wheelbase', value: '2590 mm' },
+        { label: 'Load body dimension (FSD)', value: '2951 x 1750 x 488 mm (9 ft 8 in x 5 ft 9 in x 1 ft 7 in)' },
+        { label: 'Container suitability', value: '340 CFT container (outer)' },
+      ],
+    },
+    {
+      title: 'EV Powertrain',
+      rows: [
+        { label: 'Battery', value: '32.2 kWh Lithium iron phosphate battery' },
+        { label: 'Operating voltage', value: '310 V EV Architecture' },
+        { label: 'Motor', value: 'Permanent Magnet Synchronous Motors (PMSMs)' },
+        { label: 'Peak power', value: '60 kW' },
+        { label: 'Peak torque', value: '230 Nm' },
+      ],
+    },
+    {
+      title: 'Performance & Charging',
+      rows: [
+        { label: 'Range', value: '130 km' },
+        { label: 'Max geared speed', value: '80 kmph' },
+        { label: 'Gradeability', value: '23%' },
+        { label: 'Charger type', value: 'CCS2 (AC & DC)' },
+        { label: 'DC charging', value: '55 mins (10% to 80%)' },
+        { label: 'AC charger (32A)', value: '4 hours' },
+        { label: 'AC charger (15A)', value: '8 hours' },
+      ],
+    },
+    {
+      title: 'Chassis, Cabin & Warranty',
+      rows: [
+        { label: 'Seating capacity', value: 'D+2' },
+        { label: 'Ground clearance', value: '206 mm' },
+        { label: 'Steering', value: 'Electric Power Steering' },
+        { label: 'Tyres', value: '7.00 R15 LT 12 PR Radial' },
+        { label: 'Front suspension', value: 'Parabolic Leaf' },
+        { label: 'Rear suspension', value: 'Semi Elliptical Leaf' },
+        { label: 'Brakes', value: 'Front Disc | Rear Drum' },
+        { label: 'Vehicle warranty', value: '3 years / 1,50,000 km' },
+        { label: 'Battery warranty', value: '5 + 2* years / 1,50,000 + 25,000* km' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy SWITCH IeV4 From Gemini Motors',
+    description:
+      'Gemini Motors supports SWITCH electric commercial buyers with product guidance, finance coordination, sales support and service assistance for zero-emission fleet operations.',
+    stats: [
+      { label: 'Payload', value: '1,750 kg' },
+      { label: 'Battery', value: '32.2 kWh' },
+      { label: 'Range', value: '130 km' },
+      { label: 'Peak power', value: '60 kW' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'Switch Mobility IeV 3',
+      category: 'Electric Commercial',
+      imageUrl: switchIEV3,
+      description: 'Smart electric cargo truck for urban logistics.',
+    },
+    {
+      name: 'Bada Dost i5+',
+      category: 'Light Commercial',
+      imageUrl: badaDostI5PlusHero,
+      description: 'Electric pickup with 1,500 kg payload capacity.',
+    },
+    {
+      name: 'Switch EiV 12',
+      category: 'Electric Commercial',
+      imageUrl: switchAward,
+      description: 'Award-winning electric city bus platform.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About SWITCH IeV4',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with SWITCH IeV4 guidance.',
+    defaultInterest: 'SWITCH IeV4',
+  },
+};
+
+export const SWITCH_IEV4_GARBAGE_TIPPER_PRODUCT_PAGE: ProductPageData = {
+  id: 'switch-iev4-garbage-tipper',
+  category: 'Electric Commercial Vehicle',
+  name: 'SWITCH IeV4 – Garbage Tipper Truck',
+  tagline: 'Electric IeV4 platform configured for garbage tipper duty.',
+  description:
+    'SWITCH IeV4 Garbage Tipper Truck is an electric commercial vehicle configuration for municipal garbage collection, shown with a dedicated garbage tipper body. Custom changes to the garbage bin beyond the provided configuration may attract additional cost, communicated at the time of order.',
+  heroImage: switchIev4GarbageHero,
+  brochureLabel: 'SWITCH IeV4 Garbage Tipper Brochure',
+  seo: {
+    title: 'SWITCH IeV4 Garbage Tipper Truck | Electric Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the SWITCH IeV4 Garbage Tipper Truck for municipal waste collection, with tipper application images, SWITCH Mobility overview and enquiry support from Gemini Motors.',
+    canonicalPath: '/electric-mobility/switch-iev4-garbage-tipper',
+  },
+  quickSpecs: [
+    { label: 'Model', value: 'IeV4', helper: 'Garbage tipper truck' },
+    { label: 'Category', value: 'EV Vehicles', helper: 'Electric commercial' },
+    { label: 'Application', value: 'Garbage tipper', helper: 'Municipal waste body' },
+    { label: 'Brand', value: 'SWITCH', helper: 'SWITCH Mobility' },
+    { label: 'Body', value: 'Tipper bin', helper: 'As provided in brochure' },
+  ],
+  overview: {
+    heading: 'IeV4 Garbage Tipper Truck',
+    body:
+      'The SWITCH IeV4 Garbage Tipper Truck pairs the IeV4 electric commercial platform with a garbage tipper body for municipal waste collection. If any change or modification is desired for the garbage bin other than what is provided, additional cost may apply for the changes and will be communicated when the order is being placed.',
+    highlights: [
+      {
+        title: 'Ashok Leyland Subsidiary',
+        description: 'SWITCH Mobility is a subsidiary of commercial vehicle major Ashok Leyland (Hinduja Group).',
+        iconName: 'shield',
+      },
+      {
+        title: 'Electric Buses & LCVs',
+        description: 'Manufacturer of electric buses and LCVs (GVW < 7.5T) with presence in India and the UK.',
+        iconName: 'zap',
+      },
+      {
+        title: 'EiV22 Double-Decker',
+        description: 'Known for launching India’s iconic bus brand EiV22 Double-Decker.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'Trusted Fleet Uptime',
+        description: 'Bus portfolio accounts for 800+ buses on road, covering 100+ million kms with 99% uptime. Awarded Most Trusted Brand of India in 2023.',
+        iconName: 'trending-up',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Platform', value: 'SWITCH IeV4' },
+      { label: 'Application', value: 'Garbage tipper' },
+      { label: 'Parent group', value: 'Ashok Leyland' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for the SWITCH IeV4 Garbage Tipper Truck before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance guidance for electric municipal tipper buyers',
+      'EMI planning for civic and sanitation fleet use',
+      'Support with documentation, insurance and delivery readiness',
+      'Dealership coordination for IeV4 garbage tipper configurations',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: switchIev4GarbageHero,
+      alt: 'SWITCH IeV4 garbage tipper truck side profile',
+      caption: 'IeV4 garbage tipper exterior',
+    },
+    {
+      src: switchIev4GarbageSideBuilding,
+      alt: 'SWITCH IeV4 garbage tipper truck parked in urban setting',
+      caption: 'Urban tipper profile',
+    },
+    {
+      src: switchIev4GarbageTipping,
+      alt: 'SWITCH IeV4 garbage tipper body raised for discharge',
+      caption: 'Tipper in raised position',
+    },
+    {
+      src: switchIev4GarbageSideStreet,
+      alt: 'SWITCH IeV4 garbage tipper truck on street-side operations',
+      caption: 'Street-side tipper view',
+    },
+    {
+      src: switchIev4GarbageCompanyOverview,
+      alt: 'SWITCH Mobility company overview with electric vehicle lineup',
+      caption: 'SWITCH Mobility company overview',
+    },
+  ],
+  features: [
+    {
+      title: 'Garbage Tipper Body',
+      description: 'Dedicated garbage tipper configuration on the SWITCH IeV4 electric platform.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Hydraulic Tipper Operation',
+      description: 'Tipper body raises for waste discharge, as shown in the brochure application images.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Municipal Waste Application',
+      description: 'Configured for garbage collection and tipper-based municipal sanitation duty.',
+      iconName: 'route',
+    },
+    {
+      title: 'Bin Modification Note',
+      description:
+        'Changes or modifications to the garbage bin beyond what is provided may attract additional cost, communicated at order placement.',
+      iconName: 'wrench',
+    },
+    {
+      title: 'SWITCH Mobility Heritage',
+      description: 'From a manufacturer of electric buses and LCVs with India and UK presence under Ashok Leyland.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Proven EV Portfolio',
+      description: 'SWITCH bus portfolio accounts for 800+ buses on road with 100+ million kms and 99% uptime.',
+      iconName: 'trending-up',
+    },
+  ],
+  variants: [
+    {
+      name: 'IeV4 Garbage Tipper Truck',
+      description: 'SWITCH IeV4 electric platform with the garbage tipper body shown in the brochure.',
+      bestFor: 'Municipal garbage collection and sanitation tipper routes.',
+      specs: [
+        { label: 'Model', value: 'IeV4 Garbage Tipper Truck' },
+        { label: 'Category', value: 'EV Vehicles' },
+        { label: 'Application', value: 'Garbage tipper' },
+        { label: 'Brand', value: 'SWITCH Mobility' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Municipal Garbage Collection',
+      description: 'Electric tipper configuration for civic waste collection routes.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Garbage Tipper Operations',
+      description: 'Tipper body supports loading and raised discharge for waste handling.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Urban Sanitation Routes',
+      description: 'Compact electric tipper suited to municipal sanitation movement.',
+      iconName: 'route',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Product Details',
+      rows: [
+        { label: 'Product name', value: 'IeV4 Garbage Tipper Truck' },
+        { label: 'Category', value: 'EV Vehicles' },
+        { label: 'Platform', value: 'SWITCH IeV4' },
+        { label: 'Application body', value: 'Garbage tipper' },
+      ],
+    },
+    {
+      title: 'SWITCH Mobility Overview',
+      rows: [
+        { label: 'Parent company', value: 'Ashok Leyland (Hinduja Group)' },
+        { label: 'Product focus', value: 'Electric buses and LCVs (GVW < 7.5T)' },
+        { label: 'Markets', value: 'India & UK' },
+        { label: 'Notable brand', value: 'EiV22 Double-Decker' },
+        { label: 'Bus portfolio', value: '800+ buses on road' },
+        { label: 'Distance covered', value: '100+ million kms' },
+        { label: 'Uptime', value: '99%' },
+        { label: 'Recognition', value: 'Most Trusted Brand of India in 2023' },
+      ],
+    },
+    {
+      title: 'Notes & Disclaimer',
+      rows: [
+        {
+          label: 'Garbage bin modification',
+          value:
+            'If any change or modification is desired for the garbage bin other than what is provided, additional cost may apply and will be communicated when the order is being placed.',
+        },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy SWITCH IeV4 Garbage Tipper From Gemini Motors',
+    description:
+      'Gemini Motors supports SWITCH electric commercial buyers with product guidance, finance coordination, sales support and service assistance for municipal tipper configurations.',
+    stats: [
+      { label: 'Platform', value: 'IeV4' },
+      { label: 'Application', value: 'Tipper' },
+      { label: 'Category', value: 'EV' },
+      { label: 'Support', value: 'Gemini Motors' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'SWITCH IeV4',
+      category: 'Electric Commercial',
+      imageUrl: switchIev4Hero,
+      description: 'Intelligent electric light commercial vehicle platform.',
+    },
+    {
+      name: 'Partner – Municipal Applications',
+      category: 'Light Commercial',
+      imageUrl: partnerMunicipalHero,
+      description: 'Ashok Leyland Partner municipal tipper and civic bodies.',
+    },
+    {
+      name: 'Switch EiV 12',
+      category: 'Electric Commercial',
+      imageUrl: switchAward,
+      description: 'Award-winning electric city bus platform.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About SWITCH IeV4 Garbage Tipper',
+    description:
+      'Share your municipal route, tipper body preference and purchase timeline. Gemini Motors will connect with SWITCH IeV4 Garbage Tipper guidance.',
+    defaultInterest: 'SWITCH IeV4 – Garbage Tipper Truck',
+  },
+};
+
+export const SWITCH_IEV3_PRODUCT_PAGE: ProductPageData = {
+  id: 'switch-iev3',
+  category: 'Electric Commercial Vehicle',
+  name: 'SWITCH IeV3',
+  tagline: 'The Intelligent EV.',
+  description:
+    'SWITCH IeV3 is an intelligent electric light commercial vehicle with 1,250 kg FSD payload, 25.6 kWh advanced lithium-ion battery, 140 km range, 40 kW peak power and 190 Nm peak torque on a 256 V high voltage EV architecture.',
+  heroImage: switchIev3Hero,
+  brochureLabel: 'SWITCH IeV3 Brochure',
+  seo: {
+    title: 'SWITCH IeV3 | Electric Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the SWITCH IeV3 with 1,250 kg payload, 25.6 kWh lithium-ion battery, 140 km range, CCS2 charging, gallery, specifications and enquiry support from Gemini Motors.',
+    canonicalPath: '/electric-mobility/switch-iev3',
+  },
+  quickSpecs: [
+    { label: 'Payload', value: '1,250 kg', helper: 'FSD rated payload' },
+    { label: 'Battery', value: '25.6 kWh', helper: 'Advanced lithium-ion' },
+    { label: 'Range', value: '140 km', helper: 'Standard duty cycle' },
+    { label: 'Power', value: '40 kW', helper: 'Peak motor power' },
+    { label: 'Torque', value: '190 Nm', helper: 'Peak motor torque' },
+  ],
+  overview: {
+    heading: 'The Intelligent EV',
+    body:
+      'SWITCH IeV3 combines a 1.25 ton payload, 25.6 kWh advanced lithium-ion battery, 256 V high voltage EV architecture, 140 km range and profitable TCO for urban commercial movement. A permanent magnet synchronous motor delivers 40 kW peak power and 190 Nm peak torque with CCS2 AC and DC charging support.',
+    highlights: [
+      {
+        title: '1.25 Ton Payload',
+        description: '1,250 kg FSD payload on a 2,590 kg GVW electric commercial platform.',
+        iconName: 'boxes',
+      },
+      {
+        title: '25.6 kWh Lithium-ion Battery',
+        description: 'Advanced lithium-ion battery with liquid cooling on 256 V EV architecture.',
+        iconName: 'zap',
+      },
+      {
+        title: '140 km Range',
+        description: '140 km range based on a standard duty cycle for daily commercial routes.',
+        iconName: 'route',
+      },
+      {
+        title: 'Profitable TCO',
+        description: 'Electric operation designed for lower total cost of ownership on urban delivery duty.',
+        iconName: 'trending-up',
+      },
+    ],
+    trustIndicators: [
+      { label: 'Payload', value: '1,250 kg' },
+      { label: 'Battery', value: '25.6 kWh' },
+      { label: 'Range', value: '140 km' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for SWITCH IeV3 before final quotation and lender approval.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance guidance for electric commercial vehicle buyers',
+      'EMI planning for parcel, ecommerce and retail fleet use',
+      'Support with documentation, insurance and delivery readiness',
+      'Dealership coordination for SWITCH IeV3 configurations',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    { src: switchIev3Hero, alt: 'SWITCH IeV3 intelligent electric commercial vehicle', caption: 'SWITCH IeV3 exterior' },
+    { src: switchIev3Exterior, alt: 'SWITCH IeV3 with container body', caption: 'Container exterior' },
+    { src: switchIev3Loaded, alt: 'SWITCH IeV3 loaded for commercial delivery', caption: 'Loaded commercial use' },
+    { src: switchIev3ApplicationsTruck, alt: 'SWITCH IeV3 with cargo crates', caption: 'Application cargo use' },
+    { src: switchIev3Cabin, alt: 'SWITCH IeV3 dual tone spacious cabin', caption: 'Cabin interior' },
+    { src: switchIev3Highlights, alt: 'SWITCH IeV3 key highlights', caption: 'Key highlights' },
+    { src: switchIev3Features, alt: 'SWITCH IeV3 features', caption: 'Features' },
+    { src: switchIev3Applications, alt: 'SWITCH IeV3 applications', caption: 'Applications' },
+    { src: switchIev3Specifications, alt: 'SWITCH IeV3 technical specifications', caption: 'Technical specifications' },
+  ],
+  features: [
+    {
+      title: 'Automatic Transmission',
+      description: 'R / N / D / S selector for simple electric commercial driving.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Electric Power Steering',
+      description: 'Electric power steering for easier urban manoeuvring.',
+      iconName: 'gauge',
+    },
+    {
+      title: 'Hill Hold Assist',
+      description: 'Hill hold assist supports confident starts on inclines.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Dual Tone Spacious Cabin D+1',
+      description: 'Dual tone spacious cabin with driver + 1 seating.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Liquid Cooled Battery Pack',
+      description: 'Liquid cooled 25.6 kWh advanced lithium-ion battery pack.',
+      iconName: 'zap',
+    },
+    {
+      title: '270 CFT Container Suitability',
+      description: 'Suitable for 270 CFT container, subject to local body building.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Regenerative Braking',
+      description: 'Regenerative braking recovers energy during deceleration.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'SWITCH iON Telematics',
+      description: 'SWITCH iON telematics solution for fleet tracking and vehicle insights.',
+      iconName: 'route',
+    },
+    {
+      title: 'Vehicle & Battery Warranty',
+      description: 'Vehicle 3 years / 1,50,000 km; battery 5+2* years / 1,50,000+25,000* km. Additional warranty comes with an additional cost.',
+      iconName: 'shield',
+    },
+  ],
+  variants: [
+    {
+      name: 'SWITCH IeV3 FSD',
+      description: 'Fixed side deck electric commercial configuration with 1,250 kg rated payload.',
+      bestFor: 'Parcel, ecommerce, FMCG, retail and industrial urban deliveries.',
+      specs: [
+        { label: 'Payload', value: '1,250 kg (FSD)' },
+        { label: 'GVW', value: '2,590 kg' },
+        { label: 'Load body', value: '2645 x 1620 x 440 mm' },
+        { label: 'Battery', value: '25.6 kWh lithium-ion' },
+      ],
+    },
+  ],
+  applications: [
+    { title: 'Parcel & Courier', description: 'Electric cargo movement for parcel and courier routes.', iconName: 'package-check' },
+    { title: 'Ecommerce', description: 'Urban ecommerce delivery with 1.25 ton payload capacity.', iconName: 'boxes' },
+    { title: 'FMCG', description: 'Fast-moving consumer goods distribution on daily city routes.', iconName: 'briefcase-business' },
+    { title: 'Organized Retail', description: 'Retail supply movement for stores and organised trade.', iconName: 'briefcase-business' },
+    { title: 'White Goods', description: 'Appliance delivery including refrigerator and washing machine cargo.', iconName: 'boxes' },
+    { title: 'Beverages', description: 'Beverage distribution for retail and institutional customers.', iconName: 'package-check' },
+    { title: 'LPG', description: 'LPG cylinder movement for commercial utility routes.', iconName: 'settings' },
+    { title: 'Industrial Goods', description: 'Industrial parts and component transport for local business supply.', iconName: 'wrench' },
+  ],
+  specifications: [
+    {
+      title: 'Model Details',
+      rows: [
+        { label: 'Model name', value: 'SWITCH IeV 3' },
+        { label: 'GVW', value: '2590 kg' },
+        { label: 'Payload', value: '1250 kg (FSD)' },
+        { label: 'Wheelbase', value: '2510 mm' },
+        { label: 'Load body dimension (FSD)', value: '2645 x 1620 x 440 mm (8 ft 7 in x 5 ft 4 in x 1 ft 6 in)' },
+        { label: 'Container suitability', value: '270 CFT container' },
+      ],
+    },
+    {
+      title: 'EV Powertrain',
+      rows: [
+        { label: 'Battery', value: '25.6 kWh Advanced Lithium-ion battery' },
+        { label: 'Operating voltage', value: '256 V EV Architecture' },
+        { label: 'Motor', value: 'Permanent Magnet Synchronous Motor (PMSM)' },
+        { label: 'Peak power', value: '40 kW' },
+        { label: 'Peak torque', value: '190 Nm' },
+      ],
+    },
+    {
+      title: 'Performance & Charging',
+      rows: [
+        { label: 'Range', value: '140 km' },
+        { label: 'Max geared speed', value: '70 kmph' },
+        { label: 'Gradeability', value: '22%' },
+        { label: 'Charger type', value: 'CCS2 (AC & DC)' },
+        { label: 'DC charging', value: '55 mins (0% to 80%)' },
+        { label: 'AC charger (32A)', value: '3 hours 30 mins' },
+        { label: 'AC charger (15A)', value: '8 hours 15 mins' },
+      ],
+    },
+    {
+      title: 'Chassis, Cabin & Warranty',
+      rows: [
+        { label: 'Seating capacity', value: 'D+1' },
+        { label: 'Ground clearance', value: '177 mm' },
+        { label: 'Steering', value: 'Electric Power Steering' },
+        { label: 'Tyres', value: '185 R14 LT 8 PR Radial' },
+        { label: 'Front suspension', value: 'Rigid Suspension' },
+        { label: 'Rear suspension', value: 'Rigid Suspension' },
+        { label: 'Brakes', value: 'Front Disc | Rear Drum' },
+        { label: 'Vehicle warranty', value: '3 years / 1,50,000 km' },
+        { label: 'Battery warranty', value: '5 + 2* years / 1,50,000 + 25,000* km' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy SWITCH IeV3 From Gemini Motors',
+    description:
+      'Gemini Motors supports SWITCH electric commercial buyers with product guidance, finance coordination, sales support and service assistance for zero-emission fleet operations.',
+    stats: [
+      { label: 'Payload', value: '1,250 kg' },
+      { label: 'Battery', value: '25.6 kWh' },
+      { label: 'Range', value: '140 km' },
+      { label: 'Peak power', value: '40 kW' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'SWITCH IeV4',
+      category: 'Electric Commercial',
+      imageUrl: switchIev4Hero,
+      description: 'Intelligent EV with 1,750 kg FSD payload.',
+    },
+    {
+      name: 'SWITCH IeV4 – Garbage Tipper Truck',
+      category: 'Electric Commercial',
+      imageUrl: switchIev4GarbageHero,
+      description: 'IeV4 electric platform with garbage tipper body.',
+    },
+    {
+      name: 'Switch EiV 12',
+      category: 'Electric Commercial',
+      imageUrl: switchAward,
+      description: 'Award-winning electric city bus platform.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About SWITCH IeV3',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with SWITCH IeV3 guidance.',
+    defaultInterest: 'SWITCH IeV3',
   },
 };
 
@@ -2209,9 +3828,15 @@ export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [DOST_PLUS_XL_PRODUCT_PAGE.id]: DOST_PLUS_XL_PRODUCT_PAGE,
   [SAATHI_PRODUCT_PAGE.id]: SAATHI_PRODUCT_PAGE,
   [PARTNER_4_TYRE_PRODUCT_PAGE.id]: PARTNER_4_TYRE_PRODUCT_PAGE,
+  [PARTNER_MUNICIPAL_PRODUCT_PAGE.id]: PARTNER_MUNICIPAL_PRODUCT_PAGE,
   [AVTR_4525H_DTLA_PRODUCT_PAGE.id]: AVTR_4525H_DTLA_PRODUCT_PAGE,
   [TIPPER_8X4_PRODUCT_PAGE.id]: TIPPER_8X4_PRODUCT_PAGE,
   [AVTR_4625H_LA_PRODUCT_PAGE.id]: AVTR_4625H_LA_PRODUCT_PAGE,
+  [BADA_DOST_I6_PRODUCT_PAGE.id]: BADA_DOST_I6_PRODUCT_PAGE,
+  [BADA_DOST_I5_PRODUCT_PAGE.id]: BADA_DOST_I5_PRODUCT_PAGE,
   [BADA_DOST_I5_PLUS_PRODUCT_PAGE.id]: BADA_DOST_I5_PLUS_PRODUCT_PAGE,
+  [SWITCH_IEV4_PRODUCT_PAGE.id]: SWITCH_IEV4_PRODUCT_PAGE,
+  [SWITCH_IEV4_GARBAGE_TIPPER_PRODUCT_PAGE.id]: SWITCH_IEV4_GARBAGE_TIPPER_PRODUCT_PAGE,
+  [SWITCH_IEV3_PRODUCT_PAGE.id]: SWITCH_IEV3_PRODUCT_PAGE,
   ...Object.fromEntries(MISSING_PRODUCT_PAGES.map((product) => [product.id, product])),
 };

@@ -48,6 +48,7 @@ function getDivisionFromPath(pathname: string): AppDivision {
     return 'product-page';
   }
   if (normalizedPath === '/electric-mobility/') return 'ev';
+  if (normalizedPath.startsWith('/electric-mobility/')) return 'product-page';
   if (normalizedPath === '/services/') return 'auto-services';
   if (normalizedPath === '/green-technologies/') return 'green-tech';
   if (normalizedPath === '/about/') return 'about-us';
@@ -136,7 +137,7 @@ export default function App() {
         )}
 
         {currentDivision === 'ev' && (
-          <EVScreen onContactClick={handleContactOpen} />
+          <EVScreen onContactClick={handleContactOpen} onViewProduct={navigateToProductRoute} />
         )}
 
         {currentDivision === 'auto-services' && (

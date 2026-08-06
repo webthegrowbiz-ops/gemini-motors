@@ -30,7 +30,6 @@ import businessJourney from '../assets/images/business_journey.jpg';
 import commercialTruck from '../assets/images/commercial_truck.jpg';
 import dostXlExterior from '../assets/images/dost_xl_exterior.jpg';
 import dostXlHeroReplacement from '../assets/images/dost-xl-hero-replacement.png';
-import indianOilPump from '../assets/images/indian_oil.jpg';
 import sustainableGrowth from '../assets/images/sustainable_growth.jpg';
 import tipper8x4HighwayExterior from '../assets/images/tipper_8x4_highway_exterior.jpg';
 import { WHATSAPP_URL } from '../data';
@@ -75,8 +74,11 @@ const serviceItems = [
 ];
 
 const featuredVehicles = [
-  lightCommercialVehicles[0],
-  lightCommercialVehicles[2],
+  // Temporarily disabled - Gemini L-Series 2.5T
+  // Uncomment this line (and remove the Bada Dost i5+ stand-in below) to restore L-Series on the homepage.
+  // lightCommercialVehicles.find((vehicle) => vehicle.slug === 'gemini-l-series-25t'),
+  lightCommercialVehicles.find((vehicle) => vehicle.slug === 'bada-dost-i5-plus'),
+  lightCommercialVehicles.find((vehicle) => vehicle.slug === 'dost-plus-xl'),
   mediumHeavyCommercialVehicles[0],
   mediumHeavyCommercialVehicles[5],
 ].filter(Boolean);
@@ -626,7 +628,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
             transition={revealTransition}
             className="relative overflow-hidden rounded-3xl bg-slate-100 shadow-xl lg:col-span-6"
           >
-            <img src={indianOilPump} alt="Gemini Motors service centre" className="h-[420px] w-full object-cover" />
+            <img src={businessJourney} alt="Gemini Motors service centre" className="h-[420px] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/42 to-transparent" />
           </motion.div>
           <motion.div

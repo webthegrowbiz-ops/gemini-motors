@@ -28,7 +28,7 @@ export default function CommercialVehicleCard({ model, onViewDetails }: Commerci
       <img
         src={model.imageUrl}
         alt={model.imageAlt || model.name}
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+        className="absolute inset-0 h-full w-full object-contain object-center p-3 transition-transform duration-300 ease-out group-hover:scale-105"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/24 to-transparent transition-opacity duration-300 group-hover:opacity-95" />

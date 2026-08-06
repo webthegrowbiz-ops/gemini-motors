@@ -7,7 +7,6 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   ArrowRight,
-  BatteryCharging,
   ChevronDown,
   Menu,
   MessageCircle,
@@ -19,7 +18,9 @@ import {
 } from 'lucide-react';
 import { AppDivision } from '../types';
 import { WHATSAPP_URL } from '../data';
-import { commercialCategories } from '../data/commercialVehiclesData';
+import commercialMenuLcv from '../assets/images/commercial-menu-lcv.png';
+import commercialMenuMhcv from '../assets/images/commercial-menu-mhcv.png';
+import commercialMenuEv from '../assets/images/commercial-menu-ev.png';
 import Logo from './Logo';
 
 interface HeaderProps {
@@ -35,11 +36,15 @@ const getActiveNav = (pathname: string): TopLevelNav => {
   const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 
   if (normalizedPath === '/') return 'home';
-  if (normalizedPath.startsWith('/commercial')) return 'commercial';
+  if (
+    normalizedPath.startsWith('/commercial') ||
+    normalizedPath.startsWith('/electric-mobility') ||
+    normalizedPath.startsWith('/ev')
+  ) {
+    return 'commercial';
+  }
   if (
     normalizedPath.startsWith('/services') ||
-    normalizedPath.startsWith('/electric-mobility') ||
-    normalizedPath.startsWith('/ev') ||
     normalizedPath.startsWith('/green-technologies') ||
     normalizedPath.startsWith('/green')
   ) {
@@ -69,19 +74,24 @@ const commercialMenuItems = [
     label: 'LCV',
     description: 'City delivery and growing business routes.',
     division: 'commercial-light' as AppDivision,
-    image: commercialCategories[0]?.imageUrl,
+    image: commercialMenuLcv,
   },
   {
     label: 'M&HCV',
     description: 'Fleet, haulage and construction-ready vehicles.',
     division: 'commercial-medium-heavy' as AppDivision,
-    image: commercialCategories[1]?.imageUrl,
+    image: commercialMenuMhcv,
+  },
+  {
+    label: 'EV',
+    description: 'Cleaner commercial mobility solutions.',
+    division: 'ev' as AppDivision,
+    image: commercialMenuEv,
   },
 ];
 
 const servicesMenuItems = [
   { label: 'Services', helper: 'Fuel, logistics and business support services.', division: 'auto-services' as AppDivision, Icon: Wrench },
-  { label: 'Electric Mobility', helper: 'Cleaner commercial mobility solutions.', division: 'ev' as AppDivision, Icon: BatteryCharging },
   { label: 'Green Technology', helper: 'Sustainable energy and efficiency products.', division: 'green-tech' as AppDivision, Icon: ShieldCheck },
 ];
 
@@ -310,37 +320,40 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
             onMouseEnter={() => setDesktopMenu('commercial')}
             onMouseLeave={() => setDesktopMenu(null)}
             prefersReducedMotion={prefersReducedMotion}
-            className="left-1/2 w-[620px] -translate-x-1/2"
+            className="left-1/2 w-[920px] -translate-x-1/2"
           >
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 items-stretch gap-3">
               {commercialMenuItems.map((item, index) => (
-                <motion.button
-                  key={item.label}
-                  type="button"
-                  role="menuitem"
-                  onClick={() => handleNavClick(item.division)}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: prefersReducedMotion ? 0 : index * 0.04, duration: 0.24 }}
-                  className="group overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
-                >
-                  <div className="relative h-24 overflow-hidden bg-slate-950">
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="h-full w-full object-cover opacity-88 transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 to-transparent" />
-                  </div>
-                  <div className="p-4">
-                    <p className="font-display text-base font-extrabold text-slate-950">{item.label}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-500">{item.description}</p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700">
-                      Explore Range
-                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </motion.button>
+                <div key={item.label} className="min-h-0 h-full">
+                  <motion.button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => handleNavClick(item.division)}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: prefersReducedMotion ? 0 : index * 0.04, duration: 0.24 }}
+                    className="group grid h-full w-full grid-rows-[6rem_1fr_auto] overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+                  >
+                    <div className="relative h-24 w-full overflow-hidden bg-slate-950">
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="h-full w-full object-cover object-center opacity-88 transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 to-transparent" />
+                    </div>
+                    <div className="px-4 pt-4">
+                      <p className="font-display text-base font-extrabold text-slate-950">{item.label}</p>
+                      <p className="mt-1 h-10 overflow-hidden text-xs leading-5 text-slate-500">{item.description}</p>
+                    </div>
+                    <div className="px-4 pb-4 pt-3">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700">
+                        Explore Range
+                        <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </motion.button>
+                </div>
               ))}
             </div>
             <button
@@ -404,6 +417,7 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   prefersReducedMotion={prefersReducedMotion}
                 >
                   <MobileSubButton label="LCV" onClick={() => handleNavClick('commercial-light')} />
+                  <MobileSubButton label="EV" onClick={() => handleNavClick('ev')} />
                   <MobileSubButton label="M&HCV" onClick={() => handleNavClick('commercial-medium-heavy')} />
                   <MobileSubButton label="View All Commercial Vehicles" onClick={() => handleNavClick('commercial')} />
                 </MobileAccordionSection>
@@ -416,7 +430,6 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   prefersReducedMotion={prefersReducedMotion}
                 >
                   <MobileSubButton label="Services" onClick={() => handleNavClick('auto-services')} />
-                  <MobileSubButton label="Electric Mobility" onClick={() => handleNavClick('ev')} />
                   <MobileSubButton label="Green Technology" onClick={() => handleNavClick('green-tech')} />
                 </MobileAccordionSection>
                 <MobileNavButton label="Finance" active={activeTopLevelNav === 'finance'} onClick={handleFinanceClick} />

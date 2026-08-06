@@ -6,12 +6,17 @@
 import businessJourney from '../assets/images/business_journey.jpg';
 import avtr4625hLaStudioExterior from '../assets/images/avtr_4625h_la_studio_exterior.jpg';
 import avtr4525hDtlaStudioExterior from '../assets/images/avtr_4525h_dtla_studio_exterior.jpg';
+import badaDostI5Card from '../assets/images/bada-dost-i5-card.png';
 import badaDostI5PlusCard from '../assets/images/bada-dost-i5-plus-card.png';
+import badaDostI6Card from '../assets/images/bada-dost-i6-card.png';
+// Kept for temporarily disabled Gemini L-Series 2.5T — uncomment product block to use again.
 import commercialTruck from '../assets/images/commercial_truck.jpg';
 import dostXlExterior from '../assets/images/dost_xl_exterior.jpg';
 import dostXlHero from '../assets/images/dost_xl_hero.jpg';
 import fuelSolution from '../assets/images/fuel_solution.jpg';
+// Kept for temporarily disabled Partner 4 Tyre — uncomment product block to use again.
 import partner4TyreOnRoad from '../assets/images/partner_4_tyre_on_road.jpg';
+import partnerMunicipalCard from '../assets/images/partner-municipal-card.png';
 import saathiRetailDelivery from '../assets/images/saathi_retail_delivery.jpg';
 import tipper8x4HighwayExterior from '../assets/images/tipper_8x4_highway_exterior.jpg';
 import { AppDivision } from '../types';
@@ -64,7 +69,7 @@ export const commercialCategories: CommercialCategory[] = [
     imageUrl: dostXlExterior,
     route: '/commercial/light/',
     routeDivision: 'commercial-light',
-    modelCount: '5 Models',
+    modelCount: '7 Models',
     ctaLabel: 'Explore LCV Range',
   },
   {
@@ -81,26 +86,28 @@ export const commercialCategories: CommercialCategory[] = [
 ];
 
 export const lightCommercialVehicles: CommercialVehicleModel[] = [
-  {
-    id: 'l-series-25t',
-    slug: 'gemini-l-series-25t',
-    name: 'Gemini L-Series 2.5T',
-    categoryId: 'light',
-    imageUrl: commercialTruck,
-    metricLabel: 'Payload',
-    metricValue: '2,500 kg',
-    fuelType: 'Diesel / CNG',
-    usageLabel: 'Body Type',
-    usageValue: 'Mini truck',
-    shortSpecification: 'Turbo diesel with city-ready turning radius',
-    route: '/commercial/light/gemini-l-series-25t',
-    series: 'Gemini L-Series',
-    payloadKg: 2500,
-    payloadClass: 'above-1-5-ton',
-    sizeClass: 'large-deck',
-    applications: ['City logistics', 'Regional delivery'],
-    isGenericPlaceholderImage: true,
-  },
+  // Temporarily disabled - Gemini L-Series 2.5T
+  // Uncomment this block to enable the product again.
+  // {
+  //   id: 'l-series-25t',
+  //   slug: 'gemini-l-series-25t',
+  //   name: 'Gemini L-Series 2.5T',
+  //   categoryId: 'light',
+  //   imageUrl: commercialTruck,
+  //   metricLabel: 'Payload',
+  //   metricValue: '2,500 kg',
+  //   fuelType: 'Diesel / CNG',
+  //   usageLabel: 'Body Type',
+  //   usageValue: 'Mini truck',
+  //   shortSpecification: 'Turbo diesel with city-ready turning radius',
+  //   route: '/commercial/light/gemini-l-series-25t',
+  //   series: 'Gemini L-Series',
+  //   payloadKg: 2500,
+  //   payloadClass: 'above-1-5-ton',
+  //   sizeClass: 'large-deck',
+  //   applications: ['City logistics', 'Regional delivery'],
+  //   isGenericPlaceholderImage: true,
+  // },
   {
     id: 'bada-dost-i5-plus',
     slug: 'bada-dost-i5-plus',
@@ -186,24 +193,93 @@ export const lightCommercialVehicles: CommercialVehicleModel[] = [
     sizeClass: 'compact',
     applications: ['Retail delivery', 'Last-mile delivery'],
   },
+  // Temporarily disabled - Partner 4 Tyre
+  // Uncomment this block to enable the product again.
+  // {
+  //   id: 'partner-4-tyre',
+  //   slug: 'partner-4-tyre',
+  //   name: 'Partner 4 Tyre',
+  //   categoryId: 'light',
+  //   imageUrl: partner4TyreOnRoad,
+  //   metricLabel: 'Payload',
+  //   metricValue: '3760 / 4565 kg',
+  //   fuelType: 'Diesel',
+  //   usageLabel: 'Body Type',
+  //   usageValue: 'CBC / FSD / HSD',
+  //   shortSpecification: 'ZD30 DDTi diesel LCV with heavy-duty axle support',
+  //   route: '/commercial/light/partner-4-tyre',
+  //   series: 'Partner',
+  //   payloadKg: 3760,
+  //   payloadClass: 'above-1-5-ton',
+  //   sizeClass: 'heavy-duty',
+  //   applications: ['Cargo transport', 'Wholesale distribution', 'Construction material movement'],
+  // },
   {
-    id: 'partner-4-tyre',
-    slug: 'partner-4-tyre',
-    name: 'Partner 4 Tyre',
+    id: 'bada-dost-i5',
+    slug: 'bada-dost-i5',
+    name: 'BADA DOST i5',
     categoryId: 'light',
-    imageUrl: partner4TyreOnRoad,
+    imageUrl: badaDostI5Card,
+    imageAlt: 'Ashok Leyland BADA DOST i5',
     metricLabel: 'Payload',
-    metricValue: '3760 / 4565 kg',
+    metricValue: '1,817 kg',
     fuelType: 'Diesel',
     usageLabel: 'Body Type',
-    usageValue: 'CBC / FSD / HSD',
-    shortSpecification: 'ZD30 DDTi diesel LCV with heavy-duty axle support',
-    route: '/commercial/light/partner-4-tyre',
+    usageValue: 'FSD',
+    shortSpecification: '80 hp diesel LCV with 2951 mm load body length',
+    route: '/commercial/light/bada-dost-i5',
+    series: 'BADA DOST i5',
+    payloadKg: 1817,
+    payloadClass: 'above-1-5-ton',
+    bodyLengthFt: 9.7,
+    sizeClass: 'large-deck',
+    applications: ['Cargo movement', 'Urban deliveries', 'Highway logistics'],
+  },
+  {
+    id: 'bada-dost-i6',
+    slug: 'bada-dost-i6',
+    name: 'BADA DOST i6',
+    categoryId: 'light',
+    imageUrl: badaDostI6Card,
+    imageAlt: 'Ashok Leyland BADA DOST i6',
+    metricLabel: 'Payload',
+    metricValue: '2,567 kg',
+    fuelType: 'Diesel',
+    usageLabel: 'Body Type',
+    usageValue: 'CBC / FSD',
+    shortSpecification: '80 hp diesel pickup with 3250 mm load body and 15.1 kmpl ARAI mileage',
+    route: '/commercial/light/bada-dost-i6',
+    series: 'BADA DOST i6',
+    payloadKg: 2567,
+    payloadClass: 'above-1-5-ton',
+    bodyLengthFt: 10.7,
+    sizeClass: 'large-deck',
+    applications: ['Pickup cargo', 'Urban deliveries', 'Highway logistics'],
+  },
+  {
+    id: 'partner-municipal',
+    slug: 'partner-municipal',
+    name: 'Partner – Municipal Applications',
+    categoryId: 'light',
+    imageUrl: partnerMunicipalCard,
+    imageAlt: 'Ashok Leyland Partner municipal tipper truck',
+    metricLabel: 'Payload',
+    metricValue: '3,760 – 4,885 kg',
+    fuelType: 'Diesel',
+    usageLabel: 'Application',
+    usageValue: 'Municipal',
+    shortSpecification: 'ZD30 DDTi Partner platform for sky lift, sweeper, tipper and municipal bodies',
+    route: '/commercial/light/partner-municipal',
     series: 'Partner',
     payloadKg: 3760,
     payloadClass: 'above-1-5-ton',
     sizeClass: 'heavy-duty',
-    applications: ['Cargo transport', 'Wholesale distribution', 'Construction material movement'],
+    applications: [
+      'Municipal waste collection',
+      'Road sweeping',
+      'Sky lift maintenance',
+      'Water tanker and fire fighting',
+    ],
   },
 ];
 

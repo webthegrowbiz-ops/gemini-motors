@@ -3,6 +3,14 @@
   "trailingSlash": true,
   "rewrites": [
     {
+      "source": "/lcvlandingpage",
+      "destination": "/lcv/index.html"
+    },
+    {
+      "source": "/lcvlandingpage/(.*)",
+      "destination": "/lcv/index.html"
+    },
+    {
       "source": "/lcv",
       "destination": "/lcv/index.html"
     },

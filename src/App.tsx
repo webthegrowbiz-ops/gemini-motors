@@ -40,6 +40,7 @@ function getDivisionFromPath(pathname: string): AppDivision {
   if (normalizedPath === '/commercial/') return 'commercial';
   if (normalizedPath === '/commercial/light/') return 'commercial-light';
   if (normalizedPath === '/commercial/medium-heavy/') return 'commercial-medium-heavy';
+
   if (
     normalizedPath.startsWith('/commercial/light/') ||
     normalizedPath.startsWith('/commercial/medium-heavy/') ||
@@ -47,6 +48,7 @@ function getDivisionFromPath(pathname: string): AppDivision {
   ) {
     return 'product-page';
   }
+
   if (normalizedPath === '/electric-mobility/') return 'ev';
   if (normalizedPath === '/services/') return 'auto-services';
   if (normalizedPath === '/green-technologies/') return 'green-tech';
@@ -57,13 +59,9 @@ function getDivisionFromPath(pathname: string): AppDivision {
 }
 
 export default function App() {
-  const [currentDivision, setCurrentDivision] = useState<AppDivision>(() => getDivisionFromPath(window.location.pathname));
-
-  useEffect(() => {
-    if (window.location.pathname === '/lcv' || window.location.pathname === '/lcv/') {
-      window.location.replace('/lcv/index.html');
-    }
-  }, []);
+  const [currentDivision, setCurrentDivision] = useState<AppDivision>(
+    () => getDivisionFromPath(window.location.pathname)
+  );
 
   useEffect(() => {
     const handlePopState = () => {
@@ -76,37 +74,48 @@ export default function App() {
 
   const navigateToDivision = (division: AppDivision) => {
     setCurrentDivision(division);
+
     const nextPath = routeByDivision[division];
+
     if (window.location.pathname !== nextPath) {
       window.history.pushState(null, '', nextPath);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const navigateToProductRoute = (route: string) => {
     setCurrentDivision('product-page');
+
     if (window.location.pathname !== route) {
       window.history.pushState(null, '', route);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
+  // Opens the React Contact page instead of the old LCV landing page
   const handleContactOpen = (subject?: string) => {
     void subject;
-    window.location.href = '/lcv/index.html';
+    navigateToDivision('contact');
   };
 
   return (
     <div className="min-h-screen bg-[#f8f9ff] text-[#0b1c30] font-sans flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
-      
-      {/* Header section */}
-      <Header 
-        currentDivision={currentDivision} 
-        setDivision={navigateToDivision} 
+
+      <Header
+        currentDivision={currentDivision}
+        setDivision={navigateToDivision}
       />
 
-      {/* Main interactive screen contents based on active division tab */}
       <main className="flex-grow">
+
         {currentDivision === 'gemini-motors' && (
           <GeminiMotorsScreen onContactClick={handleContactOpen} />
         )}
@@ -159,13 +168,15 @@ export default function App() {
         )}
 
         {currentDivision === 'not-found' && (
-          <NotFoundScreen onNavigateHome={() => navigateToDivision('gemini-motors')} />
+          <NotFoundScreen
+            onNavigateHome={() => navigateToDivision('gemini-motors')}
+          />
         )}
+
       </main>
 
-      {/* Corporate footer */}
-      <Footer 
-        setDivision={navigateToDivision} 
+      <Footer
+        setDivision={navigateToDivision}
       />
 
     </div>

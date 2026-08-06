@@ -14,6 +14,8 @@ interface CommercialVehicleCardProps {
 }
 
 export default function CommercialVehicleCard({ model, onViewDetails }: CommercialVehicleCardProps) {
+  const isPartnerMunicipal = model.slug === 'partner-municipal';
+
   return (
     <motion.button
       type="button"
@@ -28,13 +30,13 @@ export default function CommercialVehicleCard({ model, onViewDetails }: Commerci
       <img
         src={model.imageUrl}
         alt={model.imageAlt || model.name}
-        className="absolute inset-0 h-full w-full object-contain object-center p-3 transition-transform duration-300 ease-out group-hover:scale-105"
+        className={`absolute inset-0 h-full w-full object-cover object-center transition-transform duration-300 ease-out ${isPartnerMunicipal ? 'scale-[1.44] group-hover:scale-[1.5]' : 'group-hover:scale-105'}`}
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/24 to-transparent transition-opacity duration-300 group-hover:opacity-95" />
+      <div className={`absolute inset-0 transition-opacity duration-300 group-hover:opacity-95 ${isPartnerMunicipal ? 'bg-gradient-to-b from-black/82 via-black/30 to-transparent' : 'bg-gradient-to-t from-black/78 via-black/24 to-transparent'}`} />
       <div className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/14 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]" />
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1f5fae] via-[#4a7fd1] to-[#e6a94c]" />
-      <div className="relative z-10 flex h-full flex-col justify-end p-5">
+      <div className={`relative z-10 flex h-full flex-col p-5 ${isPartnerMunicipal ? 'justify-start pt-7' : 'justify-end'}`}>
         <div className="transition-transform duration-300 group-hover:-translate-y-1">
           <div className="mb-3 flex flex-wrap gap-2">
             {model.series && (

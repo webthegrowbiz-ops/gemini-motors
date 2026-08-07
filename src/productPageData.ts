@@ -161,7 +161,7 @@ export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
     { src: businessJourney, alt: 'Gemini L-Series on-road placeholder', caption: 'On-road presence' },
     { src: fuelSolution, alt: 'Commercial logistics placeholder', caption: 'Fleet operations' },
     { src: partner4TyreHeavyDutyLoading, alt: 'Gemini Motors support location placeholder', caption: 'Service support' },
-    { src: switchIEV3, alt: 'Related commercial EV placeholder', caption: 'Future-ready fleet' },
+    { src: commercialTruck, alt: 'Related commercial EV placeholder', caption: 'Future-ready fleet' },
   ],
   features: [
     {

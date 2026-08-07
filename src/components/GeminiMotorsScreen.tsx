@@ -79,8 +79,7 @@ const featuredVehicles = [
   // lightCommercialVehicles.find((vehicle) => vehicle.slug === 'gemini-l-series-25t'),
   lightCommercialVehicles.find((vehicle) => vehicle.slug === 'bada-dost-i5-plus'),
   lightCommercialVehicles.find((vehicle) => vehicle.slug === 'dost-plus-xl'),
-  mediumHeavyCommercialVehicles[0],
-  mediumHeavyCommercialVehicles[5],
+  mediumHeavyCommercialVehicles.find((vehicle) => vehicle.slug === 'avtr-4625h-la'),
 ].filter(Boolean);
 
 const financeItems = [

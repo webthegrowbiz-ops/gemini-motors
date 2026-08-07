@@ -7,6 +7,22 @@ import commercialTruck from './assets/images/commercial_truck.jpg';
 import avtr4625hLaOnRoadExterior from './assets/images/avtr_4625h_la_on_road_exterior.jpg';
 import avtr4625hLaStudioExterior from './assets/images/avtr_4625h_la_studio_exterior.jpg';
 import avtr4525hDtlaStudioExterior from './assets/images/avtr_4525h_dtla_studio_exterior.jpg';
+import avtr4925hDtlaChassisWarehouse from './assets/images/avtr_4925h_dtla_chassis_warehouse.jpg';
+import avtr4925hDtlaCoastal from './assets/images/avtr_4925h_dtla_coastal.jpg';
+import avtr4925hDtlaHighway from './assets/images/avtr_4925h_dtla_highway.jpg';
+import avtr4925hDtlaStudioExterior from './assets/images/avtr_4925h_dtla_studio_exterior.jpg';
+import avtr10x2Banner from './assets/images/avtr_10x2_banner.jpg';
+import avtr10x2Hero from './assets/images/avtr_10x2_hero.jpg';
+import avtr10x2Studio from './assets/images/avtr_10x2_studio.jpg';
+import tipper10x4Alt from './assets/images/tipper_10x4_alt.jpg';
+import tipper10x4Hero from './assets/images/tipper_10x4_hero.jpg';
+import tipper10x4Side from './assets/images/tipper_10x4_side.jpg';
+import transitMixerBanner from './assets/images/transit_mixer_banner.jpg';
+import transitMixerHero from './assets/images/transit_mixer_hero.jpg';
+import transitMixerStudio from './assets/images/transit_mixer_studio.jpg';
+import tractor6x4Banner from './assets/images/tractor_6x4_banner.jpg';
+import tractor6x4Hero from './assets/images/tractor_6x4_hero.jpg';
+import tractor6x4Studio from './assets/images/tractor_6x4_studio.jpg';
 import badaDostI5Hero from './assets/images/bada_dost_i5_hero.jpg';
 import badaDostI5OnRoad from './assets/images/bada_dost_i5_on_road.jpg';
 import badaDostI5Specifications from './assets/images/bada_dost_i5_specifications.png';
@@ -144,7 +160,7 @@ export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
     { src: commercialTruck, alt: 'Gemini L-Series front exterior placeholder', caption: 'Front exterior' },
     { src: businessJourney, alt: 'Gemini L-Series on-road placeholder', caption: 'On-road presence' },
     { src: fuelSolution, alt: 'Commercial logistics placeholder', caption: 'Fleet operations' },
-    { src: indianOil, alt: 'Gemini Motors support location placeholder', caption: 'Service support' },
+    { src: partner4TyreHeavyDutyLoading, alt: 'Gemini Motors support location placeholder', caption: 'Service support' },
     { src: switchIEV3, alt: 'Related commercial EV placeholder', caption: 'Future-ready fleet' },
   ],
   features: [
@@ -1804,6 +1820,260 @@ export const AVTR_4525H_DTLA_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
+export const AVTR_4925H_DTLA_PRODUCT_PAGE: ProductPageData = {
+  id: 'avtr-4925h-dtla',
+  category: 'Medium & Heavy Commercial Vehicle',
+  name: 'AVTR 4925H DTLA',
+  tagline: '49T haulage truck with rear air suspension for heavy fleet duty.',
+  description:
+    'AVTR 4925H DTLA is Ashok Leyland’s 49T haulage truck with an H Series 6-cylinder engine, 184 kW power, 9S1110 9-speed direct drive gearbox, rear air suspension and loading span options from 8.7 m to 9.7 m.',
+  heroImage: avtr4925hDtlaHighway,
+  brochureLabel: 'AVTR 4925H DTLA Brochure',
+  seo: {
+    title: 'AVTR 4925H DTLA | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 4925H DTLA with 49T GVW, 184 kW H Series power, rear air suspension, cabin options and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/medium-heavy/avtr-4925h-dtla',
+  },
+  quickSpecs: [
+    { label: 'GVW', value: '49T', helper: 'Gross vehicle weight' },
+    { label: 'Power', value: '184 kW', helper: 'H Series 6-cylinder' },
+    { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
+    { label: 'Gearbox', value: '9S1110', helper: '9-speed Direct Drive' },
+    { label: 'Loading Span', value: '8.7 / 9.3 / 9.7 m', helper: 'Body span options' },
+  ],
+  overview: {
+    heading: 'AVTR 4925H DTLA Haulage Platform',
+    body:
+      'AVTR 4925H DTLA is a 49T haulage truck on Ashok Leyland’s AVTR platform with H Series 6-cylinder power, rear air suspension, multiple cabin and cowl options with AC, and loading spans of 8.7 m, 9.3 m and 9.7 m for market load, cement, iron and steel, tanker and construction material applications.',
+    highlights: [
+      {
+        title: '49T GVW',
+        description: 'Configured as a 49T haulage truck for heavy commercial load movement.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'H Series 6 Cylinder',
+        description: 'Compression ignition turbo-charged inter-cooled engine with 184 kW power and 6.0 L capacity.',
+        iconName: 'gauge',
+      },
+      {
+        title: 'Rear Air Suspension',
+        description: 'Rear air suspension supports load management and heavy-duty haulage comfort.',
+        iconName: 'settings',
+      },
+      {
+        title: 'Flexible Loading Span',
+        description: 'Loading span options of 8.7 m, 9.3 m and 9.7 m for application-focused body builds.',
+        iconName: 'boxes',
+      },
+    ],
+    trustIndicators: [
+      { label: 'GVW', value: '49T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Fuel Tank', value: '375 L' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for AVTR 4925H DTLA based on route, load, application and purchase timeline.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for M&HCV and fleet truck buyers',
+      'EMI planning for haulage, cement, steel and tanker applications',
+      'Support with documentation, insurance and delivery readiness',
+      'Commercial vehicle dealer guidance from Gemini Motors',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: avtr4925hDtlaHighway,
+      alt: 'Ashok Leyland AVTR 4925H DTLA on highway',
+      caption: 'Highway exterior',
+    },
+    {
+      src: avtr4925hDtlaStudioExterior,
+      alt: 'Ashok Leyland AVTR 4925H DTLA studio chassis exterior',
+      caption: 'Studio chassis exterior',
+    },
+    {
+      src: avtr4925hDtlaCoastal,
+      alt: 'Ashok Leyland AVTR 4925H DTLA coastal road exterior',
+      caption: 'Coastal exterior',
+    },
+    {
+      src: avtr4925hDtlaChassisWarehouse,
+      alt: 'Ashok Leyland AVTR 4925H DTLA chassis in warehouse setting',
+      caption: 'Chassis warehouse view',
+    },
+  ],
+  features: [
+    {
+      title: 'H Series 6 Cylinder Engine',
+      description: 'H Series 6-cylinder compression ignition turbo-charged inter-cooled engine.',
+      iconName: 'gauge',
+    },
+    {
+      title: '184 kW Power',
+      description: '184 kW output with 6.0 L cubic capacity for heavy haulage duty.',
+      iconName: 'zap',
+    },
+    {
+      title: '9S1110 Direct Drive Gearbox',
+      description: '9S1110 gearbox with 9-speed direct drive for haulage operations.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Rear Air Suspension',
+      description: 'Rear air suspension for heavy-duty load and ride management.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'Choice of Cabins & Cowl',
+      description: 'U-Value cabin, N-Premium cabin and G Cowl options with AC.',
+      iconName: 'armchair',
+    },
+    {
+      title: '375 L Polymer Fuel Tank',
+      description: '375 L rectangular polymer fuel tank capacity.',
+      iconName: 'boxes',
+    },
+  ],
+  variants: [
+    {
+      name: 'U-Value Cabin',
+      description: 'Cabin option with AC for commercial fleet duty.',
+      bestFor: 'Fleet operators looking for application-focused cabin value.',
+      specs: [
+        { label: 'Cabin', value: 'U-Value option with AC' },
+        { label: 'GVW', value: '49T' },
+      ],
+    },
+    {
+      name: 'N-Premium Cabin',
+      description: 'Premium cabin option with AC for long-haul and business fleet usage.',
+      bestFor: 'Long-haul logistics, market load and route-intensive applications.',
+      specs: [
+        { label: 'Cabin', value: 'N-Premium option with AC' },
+        { label: 'Loading span', value: '8.7 m | 9.3 m | 9.7 m' },
+      ],
+    },
+    {
+      name: 'G Cowl',
+      description: 'G Cowl option with AC for body and aggregate flexibility.',
+      bestFor: 'Tanker, cement, steel and application-specific body requirements.',
+      specs: [
+        { label: 'Cabin', value: 'G Cowl option with AC' },
+        { label: 'Gearbox', value: '9S1110, 9-speed Direct Drive' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Market Load',
+      description: 'Configured for market load haulage on the AVTR 4925H DTLA platform.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Cement',
+      description: 'Supports cement transport applications on heavy haulage routes.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Iron and Steel',
+      description: 'Built for iron and steel movement in heavy commercial operations.',
+      iconName: 'hard-hat',
+    },
+    {
+      title: 'Tanker',
+      description: 'Suitable for tanker body applications with flexible cabin and cowl options.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Construction Material',
+      description: 'Supports construction material transport for infrastructure supply routes.',
+      iconName: 'route',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: 'H Series 6 Cylinder' },
+        { label: 'Type', value: 'Compression Ignition Turbo-charged Inter-Cooled' },
+        { label: 'Power', value: '184 kW' },
+        { label: 'Cubic Capacity', value: '6.0 L' },
+      ],
+    },
+    {
+      title: 'Gearbox',
+      rows: [
+        { label: 'Type', value: '9S1110 Gearbox' },
+        { label: 'Drive', value: '9-speed Direct Drive' },
+      ],
+    },
+    {
+      title: 'Suspension & Fuel',
+      rows: [
+        { label: 'Rear Suspension', value: 'Air Suspension' },
+        { label: 'Fuel Tank Capacity', value: '375 L' },
+        { label: 'Tank Type', value: 'Rectangular Polymer' },
+      ],
+    },
+    {
+      title: 'Body & Cabin',
+      rows: [
+        { label: 'GVW', value: '49T' },
+        { label: 'Loading Span', value: '8.7 m | 9.3 m | 9.7 m' },
+        { label: 'Cabin Option', value: 'Multiple cabins and cowl option with AC' },
+        { label: 'Cabin Type', value: 'U-Value cabin, N-Premium cabin, and G Cowl' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy AVTR 4925H DTLA From Gemini Motors',
+    description:
+      'Gemini Motors supports heavy commercial truck buyers with M&HCV dealership guidance, route and load consultation, finance coordination and service support for haulage fleets.',
+    stats: [
+      { label: 'GVW', value: '49T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Capacity', value: '6.0 L' },
+      { label: 'Fuel Tank', value: '375 L' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'AVTR 4525H DTLA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4525hDtlaStudioExterior,
+      description: 'H Series heavy-duty truck with air suspension and loading span options.',
+    },
+    {
+      name: 'AVTR 4625H LA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4625hLaStudioExterior,
+      description: 'Heavy commercial truck for logistics, construction and fleet operations.',
+    },
+    {
+      name: '8x4 Tipper',
+      category: 'Medium & Heavy',
+      imageUrl: tipper8x4HighwayExterior,
+      description: 'Heavy-duty tipper for construction and mining routes.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About AVTR 4925H DTLA',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
+    defaultInterest: 'AVTR 4925H DTLA',
+  },
+};
+
 export const TIPPER_8X4_PRODUCT_PAGE: ProductPageData = {
   id: '8x4-tipper',
   category: 'Medium & Heavy Commercial Vehicle',
@@ -2040,6 +2310,963 @@ export const TIPPER_8X4_PRODUCT_PAGE: ProductPageData = {
     title: 'Enquire About 8x4 Tipper',
     description: 'Share your site, route, material and purchase timeline. Gemini Motors Goa will connect with M&HCV guidance.',
     defaultInterest: '8x4 Tipper',
+  },
+};
+
+export const AVTR_10X2_PRODUCT_PAGE: ProductPageData = {
+  id: 'avtr-10x2',
+  category: 'Medium & Heavy Commercial Vehicle',
+  name: 'AVTR 10X2',
+  tagline: 'Multi-axle haulage truck with 42–48T GVW for high payload logistics.',
+  description:
+    'AVTR 10X2 is Ashok Leyland’s 10X2 haulage platform (GVW 42–48T) with H Series BS-VI i-Gen6 technology, loading span options from 7.7 m to 9.7 m, and cabin options including G Economy Cowl, M Economy, U Value and N Premium.',
+  heroImage: avtr10x2Hero,
+  brochureLabel: 'AVTR 10X2 Brochure',
+  seo: {
+    title: 'AVTR 10X2 | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 10X2 haulage truck with 42–48T GVW, H Series BS-VI i-Gen6 power, cabin options and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/medium-heavy/avtr-10x2',
+  },
+  quickSpecs: [
+    { label: 'GVW', value: '42–48T', helper: 'Gross vehicle weight range' },
+    { label: 'Power', value: '147 kW', helper: '@ 2400 rpm' },
+    { label: 'Torque', value: '700 Nm', helper: '@ 1200–1900 rpm' },
+    { label: 'Loading Span', value: '7.7–9.7 m', helper: 'Body span options' },
+    { label: 'Cabin', value: '4 options', helper: 'G / M / U / N' },
+  ],
+  overview: {
+    heading: 'AVTR 10X2 Haulage Platform',
+    body:
+      'AVTR 10X2 is Ashok Leyland’s multi-axle haulage truck range for high payload logistics, with H Series BS-VI i-Gen6 technology, 42–48T GVW coverage across AVTR 4825H, AVTR 4225H and AVTR 4220H variants, and loading spans from 7.7 m to 9.7 m.',
+    highlights: [
+      {
+        title: '42–48T GVW',
+        description: 'Configured across the 10X2 haulage range for high payload multi-axle logistics.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'H Series BS-VI i-Gen6',
+        description: 'H Series engine with BS-VI i-Gen6 technology for modern haulage duty.',
+        iconName: 'gauge',
+      },
+      {
+        title: 'Flexible Loading Span',
+        description: 'Loading span options from 7.7 m to 9.7 m for application-focused body builds.',
+        iconName: 'settings',
+      },
+      {
+        title: 'Multiple Cabin Options',
+        description: 'G Economy Cowl, M Economy, U Value and N Premium cabins, with AC on U and N.',
+        iconName: 'armchair',
+      },
+    ],
+    trustIndicators: [
+      { label: 'GVW', value: '42–48T' },
+      { label: 'Power', value: '147 kW' },
+      { label: 'Fuel Tank', value: '375 L' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for AVTR 10X2 based on route, load, application and purchase timeline.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for M&HCV and fleet truck buyers',
+      'EMI planning for multi-axle haulage and logistics applications',
+      'Support with documentation, insurance and delivery readiness',
+      'Commercial vehicle dealer guidance from Gemini Motors',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: avtr10x2Hero,
+      alt: 'Ashok Leyland AVTR 10X2 haulage truck banner exterior',
+      caption: 'Haulage exterior',
+    },
+    {
+      src: avtr10x2Studio,
+      alt: 'Ashok Leyland AVTR 10X2 N cabin studio exterior',
+      caption: 'N cabin exterior',
+    },
+    {
+      src: avtr10x2Banner,
+      alt: 'Ashok Leyland AVTR 10X2 haulage N cabin banner view',
+      caption: 'Banner exterior',
+    },
+  ],
+  features: [
+    {
+      title: 'H Series BS-VI i-Gen6',
+      description: 'H Series BS-VI engine with i-Gen6 technology for multi-axle haulage.',
+      iconName: 'gauge',
+    },
+    {
+      title: '147 kW Power',
+      description: 'Max power of 147 kW @ 2400 rpm with 700 Nm torque @ 1200–1900 rpm.',
+      iconName: 'zap',
+    },
+    {
+      title: '6-Speed Synchromesh Gearbox',
+      description: '6-speed synchromesh gearbox with 380 mm clutch and air-assisted hydraulic booster.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Full Air Dual Line Brakes with ABS',
+      description: 'Full air dual line brakes with ABS for heavy commercial braking control.',
+      iconName: 'shield',
+    },
+    {
+      title: '375 L Polymer Fuel Tank',
+      description: 'Cross-linked polymer fuel tank with 375 L capacity on the LH side.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Choice of Cabins & Cowl',
+      description: 'G Economy Cowl, M Economy, U Value and N Premium cabins, with AC on U and N.',
+      iconName: 'armchair',
+    },
+  ],
+  variants: [
+    {
+      name: 'AVTR 4825H',
+      description: 'AVTR 4825H variant on the 10X2 haulage platform.',
+      bestFor: 'High payload multi-axle logistics and long-haul freight.',
+      specs: [
+        { label: 'Platform', value: '10X2 (GVW : 48T)' },
+        { label: 'Loading span', value: '7.7 to 9.7 m' },
+      ],
+    },
+    {
+      name: 'AVTR 4225H',
+      description: 'AVTR 4225H variant on the 10X2 haulage platform.',
+      bestFor: 'Fleet operators needing flexible 10X2 haulage configuration.',
+      specs: [
+        { label: 'Platform', value: '10X2 haulage' },
+        { label: 'Engine', value: 'H Series BS-VI i-Gen6' },
+      ],
+    },
+    {
+      name: 'AVTR 4220H',
+      description: 'AVTR 4220H variant on the 10X2 haulage platform.',
+      bestFor: 'Application-focused haulage with cabin and chassis flexibility.',
+      specs: [
+        { label: 'Platform', value: '10X2 haulage' },
+        { label: 'Cabin', value: 'G / M / U / N options' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'High Payload Logistics',
+      description: 'Configured for high payload multi-axle logistics on the 10X2 platform.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Long-Haul Freight',
+      description: 'Supports long-haul freight movement with flexible loading span options.',
+      iconName: 'route',
+    },
+    {
+      title: 'Multi-Axle Haulage',
+      description: 'Built for multi-axle haulage operations across AVTR 10X2 variants.',
+      iconName: 'boxes',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: 'H Series BS-VI with i-Gen6 technology' },
+        { label: 'Max Power', value: '147 kW @ 2400 rpm' },
+        { label: 'Max Torque', value: '700 Nm @ 1200–1900 rpm' },
+        { label: 'Electricals', value: '24 V - 120 Ah (150 Ah for AC Models)' },
+      ],
+    },
+    {
+      title: 'Performance',
+      rows: [
+        { label: 'Max Speed', value: '80 kmph (60 kmph for POL variants)' },
+        { label: 'Clutch', value: '380 mm dia - with air assisted hydraulic booster' },
+        { label: 'Gearbox', value: '6 speed synchromesh gear box' },
+      ],
+    },
+    {
+      title: 'Weight & Fuel',
+      rows: [
+        { label: 'GVW', value: '42–48T' },
+        { label: 'Chassis weight (Laden)', value: 'FAW - 7,000 kg; RAW - 21,000 kg; GVW - 42,000 kg' },
+        { label: 'Fuel Type', value: 'Diesel' },
+        { label: 'Fuel Tank', value: 'Cross linked polymer Capacity: 375 L on LH side' },
+        { label: 'DEF Tank', value: '48 L' },
+      ],
+    },
+    {
+      title: 'Axle, Suspension, Brakes & Tyres',
+      rows: [
+        { label: 'Front Axle', value: 'Forged I section – Reverse Elliot type' },
+        { label: 'Rear Axle', value: 'Fully floating single speed rear axle' },
+        { label: 'Front Suspension', value: 'Semi-elliptic multi leaf Optional: Parabolic springs' },
+        { label: 'Rear Suspension', value: 'Semi-elliptic multi leaf with parabolic helper springs' },
+        { label: 'Tyres', value: '295/90 R 20' },
+        { label: 'Brakes', value: 'Full air dual line brakes with ABS' },
+      ],
+    },
+    {
+      title: 'Body & Cabin',
+      rows: [
+        { label: 'Loading Span', value: '7.7 to 9.7 m' },
+        { label: 'Cabin', value: 'G - Economy Cowl, M - Economy cabin, U - Value cabin and N - Premium cabin' },
+        { label: 'AC Option', value: 'Available on U and N variants' },
+        { label: 'Vehicle Configuration', value: 'Cowl & chassis / Cabin & chassis' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy AVTR 10X2 From Gemini Motors',
+    description:
+      'Gemini Motors supports heavy commercial truck buyers with M&HCV dealership guidance, route and load consultation, finance coordination and service support for haulage fleets.',
+    stats: [
+      { label: 'GVW', value: '42–48T' },
+      { label: 'Power', value: '147 kW' },
+      { label: 'Torque', value: '700 Nm' },
+      { label: 'Fuel Tank', value: '375 L' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'AVTR 4925H DTLA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4925hDtlaStudioExterior,
+      description: '49T haulage truck with rear air suspension and 184 kW H Series power.',
+    },
+    {
+      name: 'AVTR 4525H DTLA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4525hDtlaStudioExterior,
+      description: 'H Series heavy-duty truck with air suspension and loading span options.',
+    },
+    {
+      name: 'AVTR 4625H LA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4625hLaStudioExterior,
+      description: 'Heavy commercial truck for logistics, construction and fleet operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About AVTR 10X2',
+    description: 'Share your route, load and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
+    defaultInterest: 'AVTR 10X2',
+  },
+};
+
+export const TIPPER_10X4_PRODUCT_PAGE: ProductPageData = {
+  id: '10x4-tipper',
+  category: 'Medium & Heavy Commercial Vehicle',
+  name: '10X4 Tipper',
+  tagline: '48T tipper with 184 kW H Series power and 18–29 CBM load body options.',
+  description:
+    '10X4 Tipper is Ashok Leyland’s 48T tipper with an H Series 6-cylinder engine, 184 kW power, ZF9S1110 9-speed direct drive gearbox, non-reactive or bogie rear suspension, and crash-test certified Premium N cabin.',
+  heroImage: tipper10x4Hero,
+  brochureLabel: '10X4 Tipper Brochure',
+  seo: {
+    title: '10X4 Tipper | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 10X4 Tipper with 48T GVW, 184 kW H Series power, 18–29 CBM load body options and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/medium-heavy/10x4-tipper',
+  },
+  quickSpecs: [
+    { label: 'GVW', value: '48T', helper: 'Gross vehicle weight' },
+    { label: 'Power', value: '184 kW', helper: 'H Series 6-cylinder' },
+    { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
+    { label: 'Gearbox', value: 'ZF9S1110', helper: '9 Speed Direct Drive' },
+    { label: 'Load Body', value: '18 / 23 / 29 CBM', helper: 'Box body options' },
+  ],
+  overview: {
+    heading: '10X4 Tipper Platform',
+    body:
+      '10X4 Tipper is a 48T heavy tipper on Ashok Leyland’s platform with H Series 6-cylinder power, ZF9S1110 9-speed direct drive, non-reactive or bogie rear suspension, single reduction rear axle with 5.83:1 or 6.5:1 RAR, and Premium N cabin for construction and mining duty.',
+    highlights: [
+      {
+        title: '48T GVW',
+        description: 'Configured as a 48T tipper for heavy construction and mining material movement.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'H Series 6 Cylinder',
+        description: 'Compression ignition turbo-charged inter-cooled engine with 184 kW power and 6.0 L capacity.',
+        iconName: 'gauge',
+      },
+      {
+        title: '18–29 CBM Load Body',
+        description: 'Box load body options of 18 CBM, 23 CBM and 29 CBM for tipper applications.',
+        iconName: 'settings',
+      },
+      {
+        title: 'Premium N Cabin',
+        description: 'Crash-test certified Premium N cabin for demanding tipper operations.',
+        iconName: 'armchair',
+      },
+    ],
+    trustIndicators: [
+      { label: 'GVW', value: '48T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Load Body', value: '18–29 CBM' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for 10X4 Tipper based on site, material, application and purchase timeline.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for heavy tipper truck buyers',
+      'EMI planning for construction, mining and infrastructure work',
+      'Support with documentation, insurance and delivery readiness',
+      'Commercial vehicle dealer guidance from Gemini Motors',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: tipper10x4Hero,
+      alt: 'Ashok Leyland 10X4 Tipper exterior',
+      caption: 'Tipper exterior',
+    },
+    {
+      src: tipper10x4Side,
+      alt: 'Ashok Leyland 10X4 Tipper side exterior',
+      caption: 'Side exterior',
+    },
+    {
+      src: tipper10x4Alt,
+      alt: 'Ashok Leyland 10X4 Tipper alternate exterior',
+      caption: 'Alternate exterior',
+    },
+  ],
+  features: [
+    {
+      title: 'H Series 6 Cylinder Engine',
+      description: 'H Series 6-cylinder compression ignition turbo-charged inter-cooled engine.',
+      iconName: 'gauge',
+    },
+    {
+      title: '184 kW Power',
+      description: '184 kW output with 6.0 L cubic capacity for heavy tipper duty.',
+      iconName: 'zap',
+    },
+    {
+      title: 'ZF9S1110 Direct Drive Gearbox',
+      description: 'ZF9S1110 gearbox with 9-speed direct drive for tipper operations.',
+      iconName: 'settings',
+    },
+    {
+      title: '430 mm Clutch',
+      description: '430 mm single plate dry type clutch for heavy-duty engagement.',
+      iconName: 'wrench',
+    },
+    {
+      title: 'NRS / Bogie Rear Suspension',
+      description: 'Non-reactive suspension and bogie suspension options for tipper sites.',
+      iconName: 'trending-up',
+    },
+    {
+      title: 'Premium N Cabin',
+      description: 'Crash-test certified Premium N cabin for tipper crew comfort and safety.',
+      iconName: 'armchair',
+    },
+  ],
+  variants: [
+    {
+      name: 'Box 18 CBM',
+      description: '18 CBM box body configuration for tipper material movement.',
+      bestFor: 'Construction and infrastructure tipper routes.',
+      specs: [
+        { label: 'Load body', value: '18 CBM' },
+        { label: 'GVW', value: '48T' },
+      ],
+    },
+    {
+      name: 'Box 23 CBM',
+      description: '23 CBM box body configuration for higher volume tipper duty.',
+      bestFor: 'Bulk material movement on construction and mining routes.',
+      specs: [
+        { label: 'Load body', value: '23 CBM' },
+        { label: 'Gearbox', value: 'ZF9S1110, 9 Speed Direct Drive' },
+      ],
+    },
+    {
+      name: 'Box 29 CBM',
+      description: '29 CBM box body configuration for maximum listed tipper volume.',
+      bestFor: 'High-volume tipper applications with Premium N cabin.',
+      specs: [
+        { label: 'Load body', value: '29 CBM' },
+        { label: 'Cabin', value: 'Crash-test certified Premium N cabin' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Construction',
+      description: 'Configured for construction tipper operations on the 10X4 platform.',
+      iconName: 'hard-hat',
+    },
+    {
+      title: 'Mining',
+      description: 'Supports mining and quarry material movement with heavy tipper capacity.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Infrastructure',
+      description: 'Built for infrastructure project tipper routes and bulk earthmoving supply.',
+      iconName: 'route',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: 'H Series 6 cylinder' },
+        { label: 'Type', value: 'Compression Ignition TCIC' },
+        { label: 'Power', value: '184 kW' },
+        { label: 'Cubic Capacity', value: '6.0 L' },
+      ],
+    },
+    {
+      title: 'Clutch & Gearbox',
+      rows: [
+        { label: 'Clutch Dia', value: '430 mm' },
+        { label: 'Clutch Type', value: 'Single plate dry type' },
+        { label: 'Gearbox', value: 'ZF9S1110 Gearbox' },
+        { label: 'Drive', value: '9 Speed Direct Drive' },
+      ],
+    },
+    {
+      title: 'Suspension & Axle',
+      rows: [
+        { label: 'Rear Suspension', value: 'Non-reactive Suspension | Bogie Suspension' },
+        { label: 'Rear Axle', value: 'Single Reduction' },
+        { label: 'RAR', value: '5.83:1 RAR | 6.5:1 RAR' },
+      ],
+    },
+    {
+      title: 'Body & Cabin',
+      rows: [
+        { label: 'GVW', value: '48T' },
+        { label: 'Load Body', value: '18 CBM | 23 CBM | 29 CBM' },
+        { label: 'Cabin', value: 'Crash-test certified Premium N cabin' },
+        { label: 'Variant', value: 'AVTR 4825T DTLA' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy 10X4 Tipper From Gemini Motors',
+    description:
+      'Gemini Motors supports heavy tipper buyers with M&HCV dealership guidance, site and load consultation, finance coordination and service support.',
+    stats: [
+      { label: 'GVW', value: '48T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Capacity', value: '6.0 L' },
+      { label: 'Load Body', value: '18–29 CBM' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: '8x4 Tipper',
+      category: 'Medium & Heavy',
+      imageUrl: tipper8x4HighwayExterior,
+      description: 'Heavy-duty tipper for construction and mining routes.',
+    },
+    {
+      name: 'AVTR 4925H DTLA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4925hDtlaStudioExterior,
+      description: '49T haulage truck with rear air suspension.',
+    },
+    {
+      name: 'Transit Mixer',
+      category: 'Medium & Heavy',
+      imageUrl: transitMixerStudio,
+      description: 'Ready-mix concrete transit mixer for construction sites.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About 10X4 Tipper',
+    description: 'Share your site, material and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
+    defaultInterest: '10X4 Tipper',
+  },
+};
+
+export const TRANSIT_MIXER_PRODUCT_PAGE: ProductPageData = {
+  id: 'transit-mixer',
+  category: 'Medium & Heavy Commercial Vehicle',
+  name: 'Transit Mixer',
+  tagline: '28–35T ready-mix transit mixer with 6–7 CBM drum capacity.',
+  description:
+    'Transit Mixer is Ashok Leyland’s ready-mix concrete platform with an H Series 6-cylinder engine, 147 kW power, ALGB940 6-speed direct drive gearbox, non-reactive rear suspension, 220 L polymer fuel tank and tiltable cargo day cabin.',
+  heroImage: transitMixerHero,
+  brochureLabel: 'Transit Mixer Brochure',
+  seo: {
+    title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/medium-heavy/transit-mixer',
+  },
+  quickSpecs: [
+    { label: 'GVW', value: '28–35T', helper: 'Gross vehicle weight range' },
+    { label: 'Power', value: '147 kW', helper: 'H Series 6-cylinder' },
+    { label: 'Capacity', value: '5.7 L', helper: 'Cubic capacity' },
+    { label: 'Gearbox', value: 'ALGB940', helper: '6 Speed Direct Drive' },
+    { label: 'Drum', value: '6 / 7 CBM', helper: 'Drum capacity' },
+  ],
+  overview: {
+    heading: 'Transit Mixer Platform',
+    body:
+      'Transit Mixers from Ashok Leyland cover 28–35T GVW with H Series 6-cylinder power, ALGB940 6-speed direct drive, non-reactive rear suspension, 220 L rectangular polymer fuel tank, 6–7 CBM drum capacity and tiltable cargo day cabin for ready-mix concrete movement.',
+    highlights: [
+      {
+        title: '28–35T GVW',
+        description: 'Configured across the transit mixer range for ready-mix concrete logistics.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'H Series 6 Cylinder',
+        description: 'Compression ignition turbo-charged inter-cooled engine with 147 kW power and 5.7 L capacity.',
+        iconName: 'gauge',
+      },
+      {
+        title: '6–7 CBM Drum',
+        description: 'Drum capacity options of 6 CBM and 7 CBM for ready-mix applications.',
+        iconName: 'settings',
+      },
+      {
+        title: 'Tiltable Cargo Day Cabin',
+        description: 'Tiltable cargo day cabin for transit mixer service and maintenance access.',
+        iconName: 'armchair',
+      },
+    ],
+    trustIndicators: [
+      { label: 'GVW', value: '28–35T' },
+      { label: 'Power', value: '147 kW' },
+      { label: 'Drum', value: '6–7 CBM' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for Transit Mixer based on plant, route, drum size and purchase timeline.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for ready-mix and construction fleet buyers',
+      'EMI planning for transit mixer and infrastructure applications',
+      'Support with documentation, insurance and delivery readiness',
+      'Commercial vehicle dealer guidance from Gemini Motors',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: transitMixerHero,
+      alt: 'Ashok Leyland Transit Mixer banner exterior',
+      caption: 'Transit mixer exterior',
+    },
+    {
+      src: transitMixerStudio,
+      alt: 'Ashok Leyland Transit Mixer cargo cabin exterior',
+      caption: 'Cargo cabin exterior',
+    },
+    {
+      src: transitMixerBanner,
+      alt: 'Ashok Leyland Transit Mixer alternate banner exterior',
+      caption: 'Banner exterior',
+    },
+  ],
+  features: [
+    {
+      title: 'H Series 6 Cylinder Engine',
+      description: 'H Series 6-cylinder compression ignition turbo-charged inter-cooled engine.',
+      iconName: 'gauge',
+    },
+    {
+      title: '147 kW Power',
+      description: '147 kW output with 5.7 L cubic capacity for ready-mix transit duty.',
+      iconName: 'zap',
+    },
+    {
+      title: 'ALGB940 Direct Drive Gearbox',
+      description: 'ALGB940 gearbox with 6-speed direct drive for transit mixer operations.',
+      iconName: 'settings',
+    },
+    {
+      title: '380 mm Clutch',
+      description: '380 mm single plate dry type clutch.',
+      iconName: 'wrench',
+    },
+    {
+      title: 'Non-Reactive Rear Suspension',
+      description: 'Non-reactive rear suspension for ready-mix route stability.',
+      iconName: 'trending-up',
+    },
+    {
+      title: '220 L Polymer Fuel Tank',
+      description: '220 L rectangular polymer fuel tank capacity.',
+      iconName: 'boxes',
+    },
+  ],
+  variants: [
+    {
+      name: 'AVTR 3525 RMC',
+      description: 'AVTR 3525 RMC variant on the Transit Mixers platform.',
+      bestFor: 'Higher GVW ready-mix concrete movement.',
+      specs: [
+        { label: 'Platform', value: 'Transit Mixers' },
+        { label: 'Drum', value: '6 CBM | 7 CBM' },
+      ],
+    },
+    {
+      name: 'AVTR 2820 RMC',
+      description: 'AVTR 2820 RMC variant on the Transit Mixers platform.',
+      bestFor: 'Ready-mix plant and site delivery operations.',
+      specs: [
+        { label: 'Platform', value: 'Transit Mixers' },
+        { label: 'Power', value: '147 kW' },
+      ],
+    },
+    {
+      name: 'Cargo 2820 RMC',
+      description: 'Cargo 2820 RMC variant with tiltable cargo day cabin.',
+      bestFor: 'Construction site ready-mix delivery with cargo cabin packaging.',
+      specs: [
+        { label: 'Cabin', value: 'Tiltable Cargo day cabin' },
+        { label: 'Fuel tank', value: '220 L rectangular polymer' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Ready-Mix Concrete',
+      description: 'Configured for ready-mix concrete transport on the Transit Mixers platform.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Construction Sites',
+      description: 'Supports construction site concrete delivery with 6–7 CBM drum options.',
+      iconName: 'hard-hat',
+    },
+    {
+      title: 'Infrastructure',
+      description: 'Built for infrastructure project concrete supply routes.',
+      iconName: 'route',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Engine', value: 'H Series 6 cylinder' },
+        { label: 'Type', value: 'Compression Ignition TCIC' },
+        { label: 'Power', value: '147 kW' },
+        { label: 'Cubic Capacity', value: '5.7 L' },
+      ],
+    },
+    {
+      title: 'Clutch & Gearbox',
+      rows: [
+        { label: 'Clutch Dia', value: '380 mm' },
+        { label: 'Clutch Type', value: 'Single plate dry type' },
+        { label: 'Gearbox', value: 'ALGB940 Gearbox' },
+        { label: 'Drive', value: '6 Speed Direct Drive' },
+      ],
+    },
+    {
+      title: 'Suspension & Fuel',
+      rows: [
+        { label: 'Rear Suspension', value: 'Non-reactive Suspension' },
+        { label: 'Fuel Tank Capacity', value: '220 L' },
+        { label: 'Tank Type', value: 'Rectangular polymer' },
+      ],
+    },
+    {
+      title: 'Body & Cabin',
+      rows: [
+        { label: 'GVW', value: '28–35T' },
+        { label: 'Drum Capacity', value: '6 CBM | 7 CBM' },
+        { label: 'Cabin', value: 'Tiltable Cargo day cabin' },
+        { label: 'Loadbody Range', value: '6 to 10 CBM' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy Transit Mixer From Gemini Motors',
+    description:
+      'Gemini Motors supports ready-mix and construction buyers with M&HCV dealership guidance, drum and route consultation, finance coordination and service support.',
+    stats: [
+      { label: 'GVW', value: '28–35T' },
+      { label: 'Power', value: '147 kW' },
+      { label: 'Capacity', value: '5.7 L' },
+      { label: 'Drum', value: '6–7 CBM' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: '10X4 Tipper',
+      category: 'Medium & Heavy',
+      imageUrl: tipper10x4Hero,
+      description: '48T tipper with 18–29 CBM load body options.',
+    },
+    {
+      name: '8x4 Tipper',
+      category: 'Medium & Heavy',
+      imageUrl: tipper8x4HighwayExterior,
+      description: 'Heavy-duty tipper for construction and mining routes.',
+    },
+    {
+      name: 'AVTR 4625H LA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4625hLaStudioExterior,
+      description: 'Heavy commercial truck for logistics, construction and fleet operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About Transit Mixer',
+    description: 'Share your plant, route and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
+    defaultInterest: 'Transit Mixer',
+  },
+};
+
+export const TRACTOR_6X4_PRODUCT_PAGE: ProductPageData = {
+  id: '6x4-tractor',
+  category: 'Medium & Heavy Commercial Vehicle',
+  name: '6X4 Tractor',
+  tagline: '55T GCW tractor for 3-axle trailer and heavy cargo movement.',
+  description:
+    '6X4 Tractor is Ashok Leyland’s 6X4 tractor with 3-axle trailer capability, 55,000 kg GCW, H6 6L engine, 184 kW power, cowl and three cabin options, and a fully built tip trailer option.',
+  heroImage: tractor6x4Hero,
+  brochureLabel: '6X4 Tractor Brochure',
+  seo: {
+    title: '6X4 Tractor | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 6X4 Tractor with 55T GCW, H6 6L 184 kW power, cabin options and enquiry support from Gemini Motors.',
+    canonicalPath: '/commercial/medium-heavy/6x4-tractor',
+  },
+  quickSpecs: [
+    { label: 'GCW', value: '55T', helper: 'Gross combination weight' },
+    { label: 'Engine', value: 'H6 – 6L', helper: 'Engine family' },
+    { label: 'Power', value: '184 kW', helper: 'Rated power' },
+    { label: 'Cabin', value: 'N Premium', helper: 'Cabin option' },
+    { label: 'Tyre', value: '2 options', helper: 'Tyre choices' },
+  ],
+  overview: {
+    heading: '6X4 Tractor Platform',
+    body:
+      '6X4 with 3-axle Trailer is Ashok Leyland’s tractor platform with 55,000 kg GCW, H6 6L engine and 184 kW power, offered with cowl and three cabin options plus a fully built tip trailer option for heavy cargo movement.',
+    highlights: [
+      {
+        title: '55T GCW',
+        description: 'Configured at 55,000 kg gross combination weight for 3-axle trailer operations.',
+        iconName: 'boxes',
+      },
+      {
+        title: 'H6 – 6L Engine',
+        description: 'H6 6L engine with 184 kW power for heavy tractor-trailer duty.',
+        iconName: 'gauge',
+      },
+      {
+        title: 'Cabin Flexibility',
+        description: 'Cowl and three cabin options, including N Premium cabin packaging.',
+        iconName: 'armchair',
+      },
+      {
+        title: 'Tip Trailer Option',
+        description: 'Fully built tip trailer option for application-ready tractor combinations.',
+        iconName: 'settings',
+      },
+    ],
+    trustIndicators: [
+      { label: 'GCW', value: '55T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Engine', value: 'H6 – 6L' },
+    ],
+  },
+  finance: {
+    title: 'Flexible EMI & Finance',
+    description:
+      'Gemini Motors can help buyers compare finance options for 6X4 Tractor based on trailer, route, load and purchase timeline.',
+    interestRate: 'Starting from 9.75% p.a.',
+    benefits: [
+      'Finance assistance for tractor-trailer and fleet buyers',
+      'EMI planning for heavy cargo and tip trailer applications',
+      'Support with documentation, insurance and delivery readiness',
+      'Commercial vehicle dealer guidance from Gemini Motors',
+    ],
+    examples: [
+      { label: 'Starter Plan', downPayment: '15%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Balanced Plan', downPayment: '25%', emi: 'Illustrative quote on request', tenure: '60 months' },
+      { label: 'Fast Ownership', downPayment: '35%', emi: 'Illustrative quote on request', tenure: '36 months' },
+    ],
+  },
+  gallery: [
+    {
+      src: tractor6x4Hero,
+      alt: 'Ashok Leyland 6X4 Tractor banner exterior',
+      caption: 'Tractor exterior',
+    },
+    {
+      src: tractor6x4Studio,
+      alt: 'Ashok Leyland 6X4 Tractor studio exterior',
+      caption: 'Studio exterior',
+    },
+    {
+      src: tractor6x4Banner,
+      alt: 'Ashok Leyland 6X4 Tractor alternate banner exterior',
+      caption: 'Banner exterior',
+    },
+  ],
+  features: [
+    {
+      title: 'H6 – 6L Engine',
+      description: 'H6 6L engine configured for 6X4 tractor-trailer duty.',
+      iconName: 'gauge',
+    },
+    {
+      title: '184 kW Power',
+      description: '184 kW output for heavy cargo and 3-axle trailer operations.',
+      iconName: 'zap',
+    },
+    {
+      title: '55T GCW',
+      description: '55,000 kg gross combination weight for demanding tractor applications.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Cowl and Cabin Options',
+      description: 'Cowl and three cabin options, including N Premium cabin.',
+      iconName: 'armchair',
+    },
+    {
+      title: 'Fully Built Tip Trailer Option',
+      description: 'Fully built tip trailer option for application-ready combinations.',
+      iconName: 'settings',
+    },
+    {
+      title: 'Tyre Options',
+      description: 'Two tyre options listed on the official 6X4 tractor platform.',
+      iconName: 'trending-up',
+    },
+  ],
+  variants: [
+    {
+      name: '5525',
+      description: '5525 variant on the 6X4 with 3-axle Trailer platform.',
+      bestFor: 'Heavy cargo tractor-trailer operations at 55T GCW.',
+      specs: [
+        { label: 'GCW', value: '55,000 kg' },
+        { label: 'Power', value: '184 kW' },
+      ],
+    },
+    {
+      name: '5532 Tractor 6X4',
+      description: '5532 Tractor 6X4 variant on the same tractor platform.',
+      bestFor: 'Operators needing an alternate 6X4 tractor configuration.',
+      specs: [
+        { label: 'Platform', value: '6X4 with 3-axle Trailer' },
+        { label: 'Engine', value: 'H6 – 6L' },
+      ],
+    },
+  ],
+  applications: [
+    {
+      title: 'Heavy Cargo',
+      description: 'Configured for heavy cargo movement with 55T GCW tractor capability.',
+      iconName: 'package-check',
+    },
+    {
+      title: 'Tip Trailer',
+      description: 'Supports fully built tip trailer combinations on the 6X4 platform.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Long-Haul Tractor Trailer',
+      description: 'Built for long-haul tractor-trailer operations with 3-axle trailer pairing.',
+      iconName: 'route',
+    },
+  ],
+  specifications: [
+    {
+      title: 'Engine & Weight',
+      rows: [
+        { label: 'GCW', value: '55,000 kg' },
+        { label: 'Engine', value: 'H6 – 6L' },
+        { label: 'Power', value: '184 kW' },
+      ],
+    },
+    {
+      title: 'Cabin & Body',
+      rows: [
+        { label: 'Cabin', value: 'Cowl and 3 cabin options' },
+        { label: 'Cabin Highlight', value: 'N Premium Cabin' },
+        { label: 'Tip Trailer', value: 'Fully built option' },
+        { label: 'Tyre', value: '2 options' },
+      ],
+    },
+    {
+      title: 'Platform',
+      rows: [
+        { label: 'Configuration', value: '6X4 with 3-axle Trailer' },
+        { label: 'Variants', value: '5525 | 5532 Tractor 6X4' },
+        { label: 'Engine Options', value: '3 options' },
+      ],
+    },
+  ],
+  whyGemini: {
+    heading: 'Why Buy 6X4 Tractor From Gemini Motors',
+    description:
+      'Gemini Motors supports tractor-trailer buyers with M&HCV dealership guidance, trailer and route consultation, finance coordination and service support.',
+    stats: [
+      { label: 'GCW', value: '55T' },
+      { label: 'Power', value: '184 kW' },
+      { label: 'Engine', value: 'H6 – 6L' },
+      { label: 'Cabin', value: 'N Premium' },
+    ],
+  },
+  relatedProducts: [
+    {
+      name: 'AVTR 10X2',
+      category: 'Medium & Heavy',
+      imageUrl: avtr10x2Studio,
+      description: 'Multi-axle haulage truck with 42–48T GVW.',
+    },
+    {
+      name: 'AVTR 4925H DTLA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4925hDtlaStudioExterior,
+      description: '49T haulage truck with rear air suspension.',
+    },
+    {
+      name: 'AVTR 4625H LA',
+      category: 'Medium & Heavy',
+      imageUrl: avtr4625hLaStudioExterior,
+      description: 'Heavy commercial truck for logistics, construction and fleet operations.',
+    },
+  ],
+  enquiry: {
+    title: 'Enquire About 6X4 Tractor',
+    description: 'Share your trailer, route and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
+    defaultInterest: '6X4 Tractor',
   },
 };
 
@@ -3830,7 +5057,12 @@ export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [PARTNER_4_TYRE_PRODUCT_PAGE.id]: PARTNER_4_TYRE_PRODUCT_PAGE,
   [PARTNER_MUNICIPAL_PRODUCT_PAGE.id]: PARTNER_MUNICIPAL_PRODUCT_PAGE,
   [AVTR_4525H_DTLA_PRODUCT_PAGE.id]: AVTR_4525H_DTLA_PRODUCT_PAGE,
+  [AVTR_4925H_DTLA_PRODUCT_PAGE.id]: AVTR_4925H_DTLA_PRODUCT_PAGE,
   [TIPPER_8X4_PRODUCT_PAGE.id]: TIPPER_8X4_PRODUCT_PAGE,
+  [AVTR_10X2_PRODUCT_PAGE.id]: AVTR_10X2_PRODUCT_PAGE,
+  [TIPPER_10X4_PRODUCT_PAGE.id]: TIPPER_10X4_PRODUCT_PAGE,
+  [TRANSIT_MIXER_PRODUCT_PAGE.id]: TRANSIT_MIXER_PRODUCT_PAGE,
+  [TRACTOR_6X4_PRODUCT_PAGE.id]: TRACTOR_6X4_PRODUCT_PAGE,
   [AVTR_4625H_LA_PRODUCT_PAGE.id]: AVTR_4625H_LA_PRODUCT_PAGE,
   [BADA_DOST_I6_PRODUCT_PAGE.id]: BADA_DOST_I6_PRODUCT_PAGE,
   [BADA_DOST_I5_PRODUCT_PAGE.id]: BADA_DOST_I5_PRODUCT_PAGE,

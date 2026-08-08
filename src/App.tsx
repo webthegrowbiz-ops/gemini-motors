@@ -16,6 +16,7 @@ import NotFoundScreen from './components/NotFoundScreen';
 import ProductPageScreen from './components/ProductPageScreen';
 import CommercialVehiclesScreen from './components/commercial/CommercialVehiclesScreen';
 import CommercialCategoryScreen from './components/commercial/CommercialCategoryScreen';
+import WebsiteChatbot from './components/chat/WebsiteChatbot';
 import { AppDivision } from './types';
 
 const routeByDivision: Record<AppDivision, string> = {
@@ -179,6 +180,8 @@ export default function App() {
       <Footer
         setDivision={navigateToDivision}
       />
+
+      <WebsiteChatbot />
 
     </div>
   );

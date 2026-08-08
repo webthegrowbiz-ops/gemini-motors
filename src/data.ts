@@ -191,9 +191,9 @@ export const WHATSAPP_DEFAULT_MESSAGE =
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
 
 export const CHAT_WIDGET_CONFIG: ChatWidgetConfig = {
-  enabled: false,
-  mode: 'unconfirmed',
-  note: 'Client requested a chatbox, but the required type is not confirmed. WhatsApp CTAs open the configured wa.me chat directly.',
+  enabled: true,
+  mode: 'ai-chatbot',
+  note: 'Website AI chatbot connected to the n8n gemini-chat webhook. WhatsApp CTAs remain separate.',
 };
 
 export const HUBS = [

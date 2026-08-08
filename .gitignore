@@ -1,12 +1,35 @@
-node_modules/
-build/
-dist/
-coverage/
-.vercel/
-.tmp_*/
-qa-product-pages/
-Gemini-L-Series-HTML/
-.DS_Store
-*.log
-.env*
+# Environment files
+.env
+.env.*
 !.env.example
+
+# API keys and secrets
+credentials.json
+secrets.json
+*.key
+*.pem
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Build output
+dist/

@@ -21,6 +21,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { WHATSAPP_URL } from '../data';
+import { SITE_ORIGIN, STATIC_PAGE_SEO, applyPageSeo } from '../seo';
 
 interface ContactUsScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
@@ -148,43 +149,23 @@ function upsertPropertyMeta(property: string, content: string) {
   element.content = content;
 }
 
-function upsertCanonical(path: string) {
-  let element = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-  if (!element) {
-    element = document.createElement('link');
-    element.rel = 'canonical';
-    document.head.appendChild(element);
-  }
-  element.href = `${window.location.origin}${path}`;
-}
-
 export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps) {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    document.title = 'Contact Gemini Motors Goa | Commercial Vehicle Dealer';
-    upsertMeta(
-      'description',
-      'Contact Gemini Motors Goa for Ashok Leyland commercial vehicles, finance assistance, service support and fleet enquiries across Goa.',
-    );
+    const contactSeo = STATIC_PAGE_SEO['/contact/'];
+    applyPageSeo(contactSeo);
     upsertMeta(
       'keywords',
       'Gemini Motors Goa, commercial vehicle dealer Goa, Ashok Leyland dealer Goa, truck finance Goa, fleet service Goa',
     );
-    upsertCanonical('/contact/');
-    upsertPropertyMeta('og:title', 'Contact Gemini Motors Goa | Commercial Vehicle Dealer');
-    upsertPropertyMeta(
-      'og:description',
-      'Speak with Gemini Motors Goa for commercial vehicle sales, finance, fleet solutions, service support and product enquiries.',
-    );
+    upsertPropertyMeta('og:title', contactSeo.title);
+    upsertPropertyMeta('og:description', contactSeo.description);
     upsertPropertyMeta('og:type', 'website');
-    upsertPropertyMeta('og:url', `${window.location.origin}/contact/`);
+    upsertPropertyMeta('og:url', `${SITE_ORIGIN}/contact/`);
     upsertMeta('twitter:card', 'summary_large_image');
-    upsertMeta('twitter:title', 'Contact Gemini Motors Goa | Commercial Vehicle Dealer');
-    upsertMeta(
-      'twitter:description',
-      'Connect with Gemini Motors Goa for commercial vehicles, finance assistance and service support.',
-    );
+    upsertMeta('twitter:title', contactSeo.title);
+    upsertMeta('twitter:description', contactSeo.description);
 
     const schema = {
       '@context': 'https://schema.org',

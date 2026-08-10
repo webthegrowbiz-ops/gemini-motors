@@ -14,6 +14,7 @@ import {
   lightCommercialVehicles,
   mediumHeavyCommercialVehicles,
 } from '../../data/commercialVehiclesData';
+import { applyPageSeo } from '../../seo';
 import { AppDivision } from '../../types';
 import CommercialVehicleCard from './CommercialVehicleCard';
 
@@ -104,30 +105,18 @@ export default function CommercialCategoryScreen({ categoryId, onNavigate, onVie
   useEffect(() => {
     const title =
       category.id === 'light'
-        ? 'Light Commercial Vehicles Goa | LCV at Gemini Motors Goa'
-        : 'M&HCV Dealer Goa | Medium & Heavy Commercial Vehicles';
+        ? 'Ashok Leyland LCVs in Goa | Gemini Motors Dealer'
+        : 'Ashok Leyland Trucks in Goa | Gemini Motors Dealer';
     const description =
       category.id === 'light'
-        ? 'Explore LCV in Goa including DOST, SAATHI and other light commercial vehicles available through Gemini Motors Goa.'
-        : 'Explore medium and heavy commercial vehicles for cargo, construction, logistics and fleet requirements through Gemini Motors Goa.';
-    const canonicalPath = category.route;
+        ? 'Explore Ashok Leyland light commercial vehicles in Goa at Gemini Motors, with expert guidance, finance assistance and after-sales support.'
+        : 'Find Ashok Leyland medium and heavy-duty trucks in Goa at Gemini Motors for logistics, construction, transport and demanding applications.';
 
-    document.title = title;
-    let descriptionMeta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!descriptionMeta) {
-      descriptionMeta = document.createElement('meta');
-      descriptionMeta.name = 'description';
-      document.head.appendChild(descriptionMeta);
-    }
-    descriptionMeta.content = description;
-
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}${canonicalPath}`;
+    applyPageSeo({
+      title,
+      description,
+      path: category.route,
+    });
 
     let ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
     if (!ogTitle) {

@@ -97,10 +97,10 @@ export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
   heroImage: commercialTruck,
   brochureLabel: 'L-Series 2.5T Brochure',
   seo: {
-    title: 'Gemini L-Series 2.5T | Light Commercial Vehicle | Gemini Motors',
+    title: 'Gemini L Series 2.5T in Goa | Ashok Leyland Dealer',
     description:
-      'Explore the Gemini L-Series 2.5T light commercial vehicle with payload, gallery, specifications, finance options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/gemini-l-series-25t',
+      'Explore the Gemini L Series 2.5T at Gemini Motors, an Ashok Leyland dealer in Goa offering vehicle guidance, finance and sales support.',
+    canonicalPath: '/commercial/light/gemini-l-series-25t/',
   },
   quickSpecs: [
     { label: 'Payload', value: '2,500 kg', helper: 'Rated cargo capacity' },
@@ -323,10 +323,10 @@ export const DOST_PLUS_XL_PRODUCT_PAGE: ProductPageData = {
   heroImage: dostXlHero,
   brochureLabel: 'DOST + XL Brochure',
   seo: {
-    title: 'DOST + XL | Light Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Dost Plus XL in Goa | Gemini',
     description:
-      'Explore the DOST + XL light commercial vehicle with 1600 kg payload, 52 kW diesel power, gallery, specifications, finance options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/dost-plus-xl',
+      'Explore the Ashok Leyland Dost Plus XL at Gemini Motors, your local dealer in Goa for vehicle enquiries, finance assistance and support.',
+    canonicalPath: '/commercial/light/dost-plus-xl/',
   },
   quickSpecs: [
     { label: 'Payload', value: '1600 kg', helper: 'Rated cargo capacity' },
@@ -548,10 +548,10 @@ export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
   brochureLabel: 'DOST XL Brochure',
 
   seo: {
-    title: 'DOST XL | Light Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Dost XL in Goa | Gemini Motors Dealer',
     description:
-      'Explore the Ashok Leyland DOST XL with 1400 kg payload, 70 HP engine, 2645 mm load body, gallery, specifications and enquiry.',
-    canonicalPath: '/commercial/light/dost-xl',
+      'Find the Ashok Leyland Dost XL at Gemini Motors in Goa with expert guidance, finance assistance and support for your business needs.',
+    canonicalPath: '/commercial/light/dost-xl/',
   },
 
   quickSpecs: [
@@ -812,10 +812,10 @@ export const SAATHI_PRODUCT_PAGE: ProductPageData = {
   heroImage: saathiRetailDelivery,
   brochureLabel: 'SAATHI Brochure',
   seo: {
-    title: 'SAATHI Light Commercial Vehicle in Goa | Gemini Motors Goa',
+    title: 'Ashok Leyland Saathi in Goa | Gemini Motors',
     description:
-      'SAATHI is available at Gemini Motors Goa, a commercial vehicle dealer in Goa. Explore payload, specifications, applications and finance support for this light commercial vehicle in Goa.',
-    canonicalPath: '/commercial/light/saathi',
+      'Discover the Ashok Leyland Saathi at Gemini Motors, a trusted dealer in Goa offering vehicle guidance, finance options and customer support.',
+    canonicalPath: '/commercial/light/saathi/',
   },
   quickSpecs: [
     { label: 'Payload', value: '1120 kg', helper: 'Rated payload' },
@@ -1037,10 +1037,10 @@ export const PARTNER_MUNICIPAL_PRODUCT_PAGE: ProductPageData = {
   heroImage: partnerMunicipalHero,
   brochureLabel: 'Partner Municipal Applications Brochure',
   seo: {
-    title: 'Partner Municipal Applications | Light Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Partner Municipal in Goa | Gemini',
     description:
-      'Explore Ashok Leyland Partner municipal applications including sky lift, road sweeper, garbage tipper, water tanker, fire fighter and hook loader with specifications and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/partner-municipal',
+      'Explore the Ashok Leyland Partner Municipal at Gemini Motors in Goa, with solutions and support for municipal and waste management operations.',
+    canonicalPath: '/commercial/light/partner-municipal/',
   },
   quickSpecs: [
     { label: 'Engine', value: 'ZD30 DDTi', helper: '2953 cc diesel' },
@@ -1376,10 +1376,10 @@ export const PARTNER_4_TYRE_PRODUCT_PAGE: ProductPageData = {
   heroImage: partner4TyreOnRoad,
   brochureLabel: 'Partner 4 Tyre Brochure',
   seo: {
-    title: 'Partner 4 Tyre Truck in Goa | Gemini Motors Commercial Truck Dealer',
+    title: 'Ashok Leyland Partner 4 Tyre in Goa | Gemini',
     description:
-      'Partner 4 Tyre is available at Gemini Motors Goa, a commercial truck dealer in Goa. Explore this light commercial vehicle in Goa with ZD30 DDTi diesel power, payload options, specifications and enquiry support.',
-    canonicalPath: '/commercial/light/partner-4-tyre',
+      'Find the Ashok Leyland Partner 4 Tyre at Gemini Motors, a trusted dealer in Goa offering commercial vehicle sales and support.',
+    canonicalPath: '/commercial/light/partner-4-tyre/',
   },
   quickSpecs: [
     { label: 'Power', value: '103 kW', helper: '140 hp @ 2750 rpm' },
@@ -1600,10 +1600,10 @@ export const AVTR_4525H_DTLA_PRODUCT_PAGE: ProductPageData = {
   heroImage: avtr4525hDtlaStudioExterior,
   brochureLabel: 'AVTR 4525H DTLA Brochure',
   seo: {
-    title: 'AVTR 4525H DTLA Heavy Commercial Truck in Goa | Gemini Motors Goa',
+    title: 'Ashok Leyland AVTR 4525H DTLA in Goa | Gemini',
     description:
-      'AVTR 4525H DTLA is available at Gemini Motors Goa, an M&HCV dealer in Goa. Explore this heavy commercial truck for fleet trucks, cargo truck Goa routes, infrastructure projects and heavy-duty transport.',
-    canonicalPath: '/commercial/medium-heavy/avtr-4525h-dtla',
+      'Explore the Ashok Leyland AVTR 4525H DTLA at Gemini Motors in Goa for heavy-duty transport, with expert sales and finance assistance.',
+    canonicalPath: '/commercial/medium-heavy/avtr-4525h-dtla/',
     keywords: [
       'AVTR 4525H DTLA Goa',
       'Heavy Commercial Truck in Goa',
@@ -2084,10 +2084,10 @@ export const TIPPER_8X4_PRODUCT_PAGE: ProductPageData = {
   heroImage: tipper8x4HighwayExterior,
   brochureLabel: '8x4 Tipper Brochure',
   seo: {
-    title: '8x4 Tipper Goa | Heavy Tipper Truck at Gemini Motors Goa',
+    title: 'Ashok Leyland 8x4 Tipper in Goa | Gemini Motors',
     description:
-      'Explore the 8x4 Tipper at Gemini Motors Goa, an M&HCV dealer Goa businesses trust for heavy tipper truck, construction truck, mining truck and infrastructure truck requirements.',
-    canonicalPath: '/commercial/medium-heavy/8x4-tipper',
+      'Find the Ashok Leyland 8x4 Tipper at Gemini Motors, a trusted Goa dealer serving construction, mining and infrastructure requirements.',
+    canonicalPath: '/commercial/medium-heavy/8x4-tipper/',
     keywords: [
       '8x4 Tipper Goa',
       'Heavy Tipper Truck Goa',
@@ -3280,10 +3280,10 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
   heroImage: avtr4625hLaStudioExterior,
   brochureLabel: 'AVTR 4625H LA Reference',
   seo: {
-    title: 'AVTR 4625H LA Heavy-Duty Truck in Goa | Gemini Motors Goa',
+    title: 'Ashok Leyland AVTR 4625H LA in Goa | Gemini',
     description:
-      'Explore AVTR 4625H LA at Gemini Motors Goa for logistics, mining, construction and fleet owners in Panaji, Vasco, Margao, Ponda and Verna Industrial Estate.',
-    canonicalPath: '/commercial/medium-heavy/avtr-4625h-la',
+      'Explore the Ashok Leyland AVTR 4625H LA at Gemini Motors in Goa with expert assistance for heavy-duty transport and business needs.',
+    canonicalPath: '/commercial/medium-heavy/avtr-4625h-la/',
     keywords: [
       'AVTR 4625H LA Goa',
       'M&HCV Dealer Goa',
@@ -3558,10 +3558,10 @@ export const BADA_DOST_I6_PRODUCT_PAGE: ProductPageData = {
   heroImage: badaDostI6Hero,
   brochureLabel: 'BADA DOST i6 Brochure',
   seo: {
-    title: 'BADA DOST i6 | Light Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Bada Dost i6 in Goa | Gemini',
     description:
-      'Explore the Ashok Leyland BADA DOST i6 with 2,567 kg payload, 15.1 kmpl ARAI mileage, 3250 mm load body, gallery, specifications and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/bada-dost-i6',
+      'Explore the Ashok Leyland Bada Dost i6 at Gemini Motors, an authorised dealer in Goa offering sales guidance and finance assistance.',
+    canonicalPath: '/commercial/light/bada-dost-i6/',
   },
   quickSpecs: [
     { label: 'Payload', value: '2,567 kg', helper: 'CBC rated payload' },
@@ -3831,10 +3831,10 @@ export const BADA_DOST_I5_PRODUCT_PAGE: ProductPageData = {
   heroImage: badaDostI5Hero,
   brochureLabel: 'BADA DOST i5 Brochure',
   seo: {
-    title: 'BADA DOST i5 | Light Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Bada Dost i5 in Goa | Gemini',
     description:
-      'Explore the Ashok Leyland BADA DOST i5 with 1,817 kg payload, 80 hp diesel power, 190 Nm torque, gallery, specifications and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/light/bada-dost-i5',
+      'Discover the Ashok Leyland Bada Dost i5 at Gemini Motors in Goa with expert vehicle guidance, finance assistance and dealer support.',
+    canonicalPath: '/commercial/light/bada-dost-i5/',
   },
   quickSpecs: [
     { label: 'Payload', value: '1,817 kg', helper: 'Rated payload' },
@@ -4083,9 +4083,10 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
   heroImage: badaDostI5PlusHero,
   brochureLabel: 'Bada Dost i5+ Specifications',
   seo: {
-    title: 'Bada Dost i5+ | Electric Pickup | Gemini Motors',
-    description: 'Explore the Ashok Leyland Bada Dost i5+ with 58 kWh battery capacity, 1,500 kg payload, up to 210 km real-world range and fast charging support.',
-    canonicalPath: '/commercial/light/bada-dost-i5-plus',
+    title: 'Ashok Leyland Bada Dost i5 Plus in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Bada Dost i5 Plus at Gemini Motors, a trusted Goa dealer offering sales guidance, finance and customer support.',
+    canonicalPath: '/commercial/light/bada-dost-i5-plus/',
   },
   quickSpecs: [
     { label: 'Battery', value: '58 kWh', helper: 'Lithium-ion NMC' },
@@ -4193,10 +4194,10 @@ export const SWITCH_IEV4_PRODUCT_PAGE: ProductPageData = {
   heroImage: switchIev4Hero,
   brochureLabel: 'SWITCH IeV4 Brochure',
   seo: {
-    title: 'SWITCH IeV4 | Electric Commercial Vehicle | Gemini Motors',
+    title: 'SWITCH IeV4 Electric Vehicle in Goa | Gemini',
     description:
-      'Explore the SWITCH IeV4 with 1,750 kg payload, 32.2 kWh LFP battery, 130 km range, CCS2 charging, gallery, specifications and enquiry support from Gemini Motors.',
-    canonicalPath: '/electric-mobility/switch-iev4',
+      'Discover the SWITCH IeV4 at Gemini Motors, a trusted electric commercial vehicle dealer in Goa offering sales and expert assistance.',
+    canonicalPath: '/electric-mobility/switch-iev4/',
   },
   quickSpecs: [
     { label: 'Payload', value: '1,750 kg', helper: 'FSD rated payload' },
@@ -4431,10 +4432,10 @@ export const SWITCH_IEV4_GARBAGE_TIPPER_PRODUCT_PAGE: ProductPageData = {
   heroImage: switchIev4GarbageHero,
   brochureLabel: 'SWITCH IeV4 Garbage Tipper Brochure',
   seo: {
-    title: 'SWITCH IeV4 Garbage Tipper Truck | Electric Commercial Vehicle | Gemini Motors',
+    title: 'SWITCH IeV4 Garbage Tipper in Goa | Gemini',
     description:
-      'Explore the SWITCH IeV4 Garbage Tipper Truck for municipal waste collection, with tipper application images, SWITCH Mobility overview and enquiry support from Gemini Motors.',
-    canonicalPath: '/electric-mobility/switch-iev4-garbage-tipper',
+      'Explore the SWITCH IeV4 Garbage Tipper at Gemini Motors, serving Goa with electric waste management vehicle solutions and dealer support.',
+    canonicalPath: '/electric-mobility/switch-iev4-garbage-tipper/',
   },
   quickSpecs: [
     { label: 'Model', value: 'IeV4', helper: 'Garbage tipper truck' },
@@ -4665,10 +4666,10 @@ export const SWITCH_IEV3_PRODUCT_PAGE: ProductPageData = {
   heroImage: switchIev3Hero,
   brochureLabel: 'SWITCH IeV3 Brochure',
   seo: {
-    title: 'SWITCH IeV3 | Electric Commercial Vehicle | Gemini Motors',
+    title: 'SWITCH IeV3 Electric Vehicle in Goa | Gemini Motors',
     description:
-      'Explore the SWITCH IeV3 with 1,250 kg payload, 25.6 kWh lithium-ion battery, 140 km range, CCS2 charging, gallery, specifications and enquiry support from Gemini Motors.',
-    canonicalPath: '/electric-mobility/switch-iev3',
+      'Explore the SWITCH IeV3 at Gemini Motors, an electric commercial vehicle dealer in Goa offering sales guidance and support for businesses.',
+    canonicalPath: '/electric-mobility/switch-iev3/',
   },
   quickSpecs: [
     { label: 'Payload', value: '1,250 kg', helper: 'FSD rated payload' },

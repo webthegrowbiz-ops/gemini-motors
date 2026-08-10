@@ -5,6 +5,7 @@
 
 import React, { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
+import { applyPageSeo } from '../../seo';
 import {
   Armchair,
   ArrowRight,
@@ -315,23 +316,11 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
   useEffect(() => {
     if (!product.seo) return;
 
-    document.title = product.seo.title;
-
-    let descriptionMeta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!descriptionMeta) {
-      descriptionMeta = document.createElement('meta');
-      descriptionMeta.name = 'description';
-      document.head.appendChild(descriptionMeta);
-    }
-    descriptionMeta.content = product.seo.description;
-
-    let canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.rel = 'canonical';
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = `${window.location.origin}${product.seo.canonicalPath}`;
+    applyPageSeo({
+      title: product.seo.title,
+      description: product.seo.description,
+      path: product.seo.canonicalPath,
+    });
   }, [product]);
 
   const activeGalleryImage = product.gallery[activeGalleryIndex] || product.gallery[0];

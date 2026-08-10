@@ -18,6 +18,7 @@ import CommercialVehiclesScreen from './components/commercial/CommercialVehicles
 import CommercialCategoryScreen from './components/commercial/CommercialCategoryScreen';
 import WebsiteChatbot from './components/chat/WebsiteChatbot';
 import { AppDivision } from './types';
+import { applyStaticSeoForPath } from './seo';
 
 const routeByDivision: Record<AppDivision, string> = {
   'gemini-motors': '/',
@@ -66,13 +67,24 @@ export default function App() {
   );
 
   useEffect(() => {
-    const handlePopState = () => {
-      setCurrentDivision(getDivisionFromPath(window.location.pathname));
+    const syncFromLocation = () => {
+      const pathname = window.location.pathname;
+      const division = getDivisionFromPath(pathname);
+      setCurrentDivision(division);
+      if (division !== 'product-page') {
+        applyStaticSeoForPath(pathname);
+      }
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', syncFromLocation);
+    return () => window.removeEventListener('popstate', syncFromLocation);
   }, []);
+
+  useEffect(() => {
+    // Product pages apply SEO from productPageData via ProductPageTemplate.
+    if (currentDivision === 'product-page') return;
+    applyStaticSeoForPath(window.location.pathname);
+  }, [currentDivision]);
 
   const navigateToDivision = (division: AppDivision) => {
     setCurrentDivision(division);
@@ -81,6 +93,10 @@ export default function App() {
 
     if (window.location.pathname !== nextPath) {
       window.history.pushState(null, '', nextPath);
+    }
+
+    if (division !== 'product-page') {
+      applyStaticSeoForPath(nextPath);
     }
 
     window.scrollTo({

@@ -1,24 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
-  "functions": {
-    "api/chat.ts": {
-      "maxDuration": 60,
-      "memory": 1024
-    }
-  },
+  "trailingSlash": true,
 
   "redirects": [
-    {
-      "source": "/commercial/mhcv/:slug",
-      "destination": "/commercial/medium-heavy/:slug",
-      "permanent": true
-    },
-    {
-      "source": "/commercial/mhcv/:slug/",
-      "destination": "/commercial/medium-heavy/:slug",
-      "permanent": true
-    },
     {
       "source": "/lcv",
       "destination": "/lcvlandingpage/",
@@ -59,7 +43,7 @@
       "destination": "/thank-you.html"
     },
     {
-      "source": "/((?!api/|src/|@vite|@react-refresh|@fs|node_modules/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]

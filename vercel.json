@@ -60,7 +60,7 @@
       "destination": "/thank-you.html"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/((?!api/|assets/|brand/).*)",
       "destination": "/index.html"
     }
   ]

@@ -149,6 +149,36 @@ export const PRODUCT_PAGE_SEO: Record<string, PageSeo> = {
       'Explore the Ashok Leyland AVTR 4625H LA at Gemini Motors in Goa with expert assistance for heavy-duty transport and business needs.',
     path: '/commercial/medium-heavy/avtr-4625h-la/',
   },
+  '/commercial/medium-heavy/avtr-4925h-dtla/': {
+    title: 'AVTR 4925H DTLA | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 4925H DTLA with 49T GVW, 184 kW H Series power, rear air suspension, cabin options and enquiry support from Gemini Motors.',
+    path: '/commercial/medium-heavy/avtr-4925h-dtla/',
+  },
+  '/commercial/medium-heavy/avtr-10x2/': {
+    title: 'AVTR 10X2 | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 10X2 haulage truck with 42–48T GVW, H Series BS-VI i-Gen6 power, cabin options and enquiry support from Gemini Motors.',
+    path: '/commercial/medium-heavy/avtr-10x2/',
+  },
+  '/commercial/medium-heavy/10x4-tipper/': {
+    title: '10X4 Tipper | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 10X4 Tipper with 48T GVW, 184 kW H Series power, 18–29 CBM load body options and enquiry support from Gemini Motors.',
+    path: '/commercial/medium-heavy/10x4-tipper/',
+  },
+  '/commercial/medium-heavy/transit-mixer/': {
+    title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
+    path: '/commercial/medium-heavy/transit-mixer/',
+  },
+  '/commercial/medium-heavy/6x4-tractor/': {
+    title: '6X4 Tractor | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 6X4 Tractor with 55T GCW, H6 6L 184 kW power, cabin options and enquiry support from Gemini Motors.',
+    path: '/commercial/medium-heavy/6x4-tractor/',
+  },
   '/electric-mobility/switch-iev4/': {
     title: 'SWITCH IeV4 Electric Vehicle in Goa | Gemini',
     description:

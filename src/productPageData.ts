@@ -1833,7 +1833,7 @@ export const AVTR_4925H_DTLA_PRODUCT_PAGE: ProductPageData = {
     title: 'AVTR 4925H DTLA | Medium & Heavy Commercial Vehicle | Gemini Motors',
     description:
       'Explore the Ashok Leyland AVTR 4925H DTLA with 49T GVW, 184 kW H Series power, rear air suspension, cabin options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/medium-heavy/avtr-4925h-dtla',
+    canonicalPath: '/commercial/medium-heavy/avtr-4925h-dtla/',
   },
   quickSpecs: [
     { label: 'GVW', value: '49T', helper: 'Gross vehicle weight' },
@@ -2326,7 +2326,7 @@ export const AVTR_10X2_PRODUCT_PAGE: ProductPageData = {
     title: 'AVTR 10X2 | Medium & Heavy Commercial Vehicle | Gemini Motors',
     description:
       'Explore the Ashok Leyland AVTR 10X2 haulage truck with 42–48T GVW, H Series BS-VI i-Gen6 power, cabin options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/medium-heavy/avtr-10x2',
+    canonicalPath: '/commercial/medium-heavy/avtr-10x2/',
   },
   quickSpecs: [
     { label: 'GVW', value: '42–48T', helper: 'Gross vehicle weight range' },
@@ -2579,7 +2579,7 @@ export const TIPPER_10X4_PRODUCT_PAGE: ProductPageData = {
     title: '10X4 Tipper | Medium & Heavy Commercial Vehicle | Gemini Motors',
     description:
       'Explore the Ashok Leyland 10X4 Tipper with 48T GVW, 184 kW H Series power, 18–29 CBM load body options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/medium-heavy/10x4-tipper',
+    canonicalPath: '/commercial/medium-heavy/10x4-tipper/',
   },
   quickSpecs: [
     { label: 'GVW', value: '48T', helper: 'Gross vehicle weight' },
@@ -2820,7 +2820,7 @@ export const TRANSIT_MIXER_PRODUCT_PAGE: ProductPageData = {
     title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
     description:
       'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/medium-heavy/transit-mixer',
+    canonicalPath: '/commercial/medium-heavy/transit-mixer/',
   },
   quickSpecs: [
     { label: 'GVW', value: '28–35T', helper: 'Gross vehicle weight range' },
@@ -3061,7 +3061,7 @@ export const TRACTOR_6X4_PRODUCT_PAGE: ProductPageData = {
     title: '6X4 Tractor | Medium & Heavy Commercial Vehicle | Gemini Motors',
     description:
       'Explore the Ashok Leyland 6X4 Tractor with 55T GCW, H6 6L 184 kW power, cabin options and enquiry support from Gemini Motors.',
-    canonicalPath: '/commercial/medium-heavy/6x4-tractor',
+    canonicalPath: '/commercial/medium-heavy/6x4-tractor/',
   },
   quickSpecs: [
     { label: 'GCW', value: '55T', helper: 'Gross combination weight' },

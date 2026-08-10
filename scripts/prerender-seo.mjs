@@ -1,6 +1,9 @@
 /**
  * Post-build: write one HTML shell per SEO path so direct URL loads
- * serve the correct title/description/canonical (not the home meta).
+ * serve the correct title/description/canonical/OG (not the home meta).
+ *
+ * DOCX routes use exact approved metadata.
+ * Additional live product routes use existing productPageData SEO (no invented copy).
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,10 +14,10 @@ const root = path.resolve(__dirname, '..');
 const distDir = path.join(root, 'dist');
 const indexPath = path.join(distDir, 'index.html');
 
-const SITE_ORIGIN = 'https://geminimotorsgoa.in';
+export const SITE_ORIGIN = 'https://geminimotorsgoa.in';
 
-/** Exact values from Gemini Motors SEO DOCX files. */
-const PAGES = [
+/** Exact values from Gemini Motors SEO DOCX files + existing product SEO for other live routes. */
+export const PAGES = [
   {
     path: '/',
     title: 'Authorised Ashok Leyland Dealer in Goa | Gemini Motors',
@@ -147,6 +150,37 @@ const PAGES = [
     description:
       'Explore the Ashok Leyland AVTR 4625H LA at Gemini Motors in Goa with expert assistance for heavy-duty transport and business needs.',
   },
+  // Live product routes not listed in DOCX — use existing productPageData SEO (do not invent).
+  {
+    path: '/commercial/medium-heavy/avtr-4925h-dtla/',
+    title: 'AVTR 4925H DTLA | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 4925H DTLA with 49T GVW, 184 kW H Series power, rear air suspension, cabin options and enquiry support from Gemini Motors.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-10x2/',
+    title: 'AVTR 10X2 | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland AVTR 10X2 haulage truck with 42–48T GVW, H Series BS-VI i-Gen6 power, cabin options and enquiry support from Gemini Motors.',
+  },
+  {
+    path: '/commercial/medium-heavy/10x4-tipper/',
+    title: '10X4 Tipper | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 10X4 Tipper with 48T GVW, 184 kW H Series power, 18–29 CBM load body options and enquiry support from Gemini Motors.',
+  },
+  {
+    path: '/commercial/medium-heavy/transit-mixer/',
+    title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
+  },
+  {
+    path: '/commercial/medium-heavy/6x4-tractor/',
+    title: '6X4 Tractor | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    description:
+      'Explore the Ashok Leyland 6X4 Tractor with 55T GCW, H6 6L 184 kW power, cabin options and enquiry support from Gemini Motors.',
+  },
   {
     path: '/electric-mobility/switch-iev4/',
     title: 'SWITCH IeV4 Electric Vehicle in Goa | Gemini',
@@ -167,6 +201,8 @@ const PAGES = [
   },
 ];
 
+const HOME_TITLE = PAGES[0].title;
+
 function escapeAttr(value) {
   return value
     .replace(/&/g, '&amp;')
@@ -175,64 +211,65 @@ function escapeAttr(value) {
     .replace(/>/g, '&gt;');
 }
 
-function applySeoToHtml(html, page) {
-  const canonical = page.path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${page.path}`;
+function canonicalFor(pagePath) {
+  return pagePath === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${pagePath}`;
+}
+
+function buildSeoHeadBlock(page) {
   const title = escapeAttr(page.title);
   const description = escapeAttr(page.description);
-  const canonicalEscaped = escapeAttr(canonical);
+  const canonical = escapeAttr(canonicalFor(page.path));
 
-  let next = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${canonical}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:url" content="${canonical}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+  ].join('\n    ');
+}
 
-  if (/<meta\s+name="description"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+name="description"[^>]*>/i,
-      `<meta name="description" content="${description}" />`
-    );
-  } else {
-    next = next.replace('</title>', `</title>\n    <meta name="description" content="${description}" />`);
+/**
+ * Remove every existing SEO tag (including multiline variants), then inject
+ * one clean route-specific block so home OG/title cannot remain.
+ */
+export function applySeoToHtml(html, page) {
+  let next = html;
+
+  next = next.replace(/<title>[\s\S]*?<\/title>\s*/i, '');
+  next = next.replace(/<meta\s+[^>]*name=["']description["'][^>]*>\s*/gi, '');
+  next = next.replace(/<link\s+[^>]*rel=["']canonical["'][^>]*>\s*/gi, '');
+  next = next.replace(/<meta\s+[^>]*property=["']og:(title|description|type|url)["'][^>]*>\s*/gi, '');
+  next = next.replace(/<meta\s+[^>]*name=["']twitter:(card|title|description)["'][^>]*>\s*/gi, '');
+
+  // Handle multiline meta tags Vite may leave in the template before minify
+  next = next.replace(/<meta\s*\n\s*name=["']description["'][\s\S]*?>\s*/gi, '');
+  next = next.replace(/<meta\s*\n\s*property=["']og:description["'][\s\S]*?>\s*/gi, '');
+  next = next.replace(/<meta\s*\n\s*name=["']twitter:description["'][\s\S]*?>\s*/gi, '');
+
+  const block = buildSeoHeadBlock(page);
+  if (!/<!-- End Google Tag Manager -->/i.test(next)) {
+    throw new Error(`Cannot locate head insertion point for ${page.path}`);
   }
-
-  // Ensure exactly one canonical
-  next = next.replace(/<link\s+rel="canonical"[^>]*>\s*/gi, '');
   next = next.replace(
-    /(<meta\s+name="description"[^>]*>)/i,
-    `$1\n    <link rel="canonical" href="${canonicalEscaped}" />`
+    /<!-- End Google Tag Manager -->\s*/i,
+    `<!-- End Google Tag Manager -->\n\n    ${block}\n\n    `
   );
 
-  if (/<meta\s+property="og:title"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+property="og:title"[^>]*>/i,
-      `<meta property="og:title" content="${title}" />`
-    );
-  }
-  if (/<meta\s+property="og:description"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+property="og:description"[^>]*>/i,
-      `<meta property="og:description" content="${description}" />`
-    );
-  }
-  if (/<meta\s+property="og:url"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+property="og:url"[^>]*>/i,
-      `<meta property="og:url" content="${canonicalEscaped}" />`
-    );
-  }
-  if (/<meta\s+name="twitter:title"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+name="twitter:title"[^>]*>/i,
-      `<meta name="twitter:title" content="${title}" />`
-    );
-  }
-  if (/<meta\s+name="twitter:description"[^>]*>/i.test(next)) {
-    next = next.replace(
-      /<meta\s+name="twitter:description"[^>]*>/i,
-      `<meta name="twitter:description" content="${description}" />`
-    );
-  }
-
-  const canonicalCount = (next.match(/rel="canonical"/gi) || []).length;
+  const canonicalCount = (next.match(/rel=["']canonical["']/gi) || []).length;
   if (canonicalCount !== 1) {
     throw new Error(`Expected 1 canonical for ${page.path}, found ${canonicalCount}`);
+  }
+  if (page.path !== '/' && next.includes(HOME_TITLE)) {
+    throw new Error(`Home title leaked into ${page.path}`);
+  }
+  if (!next.includes(`content="${escapeAttr(page.title)}"`) && !next.includes(`<title>${escapeAttr(page.title)}</title>`)) {
+    throw new Error(`Title missing after inject for ${page.path}`);
   }
 
   return next;
@@ -244,21 +281,25 @@ function outputPathFor(pagePath) {
   return path.join(distDir, relative, 'index.html');
 }
 
-if (!fs.existsSync(indexPath)) {
-  console.error('dist/index.html missing. Run vite build first.');
-  process.exit(1);
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isMain) {
+  if (!fs.existsSync(indexPath)) {
+    console.error('dist/index.html missing. Run vite build first.');
+    process.exit(1);
+  }
+
+  const template = fs.readFileSync(indexPath, 'utf8');
+  let written = 0;
+
+  for (const page of PAGES) {
+    const html = applySeoToHtml(template, page);
+    const out = outputPathFor(page.path);
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    fs.writeFileSync(out, html);
+    written += 1;
+    console.log('prerendered', page.path);
+  }
+
+  console.log(`SEO prerender complete: ${written} pages`);
 }
-
-const template = fs.readFileSync(indexPath, 'utf8');
-let written = 0;
-
-for (const page of PAGES) {
-  const html = applySeoToHtml(template, page);
-  const out = outputPathFor(page.path);
-  fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, html);
-  written += 1;
-  console.log('prerendered', page.path);
-}
-
-console.log(`SEO prerender complete: ${written} pages`);

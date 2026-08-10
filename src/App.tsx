@@ -18,14 +18,14 @@ import CommercialVehiclesScreen from './components/commercial/CommercialVehicles
 import CommercialCategoryScreen from './components/commercial/CommercialCategoryScreen';
 import WebsiteChatbot from './components/chat/WebsiteChatbot';
 import { AppDivision } from './types';
-import { applyStaticSeoForPath } from './seo';
+import { applySeoForPath, normalizeSeoPath, notifyLocationChanged } from './seo';
 
 const routeByDivision: Record<AppDivision, string> = {
   'gemini-motors': '/',
   commercial: '/commercial/',
   'commercial-light': '/commercial/light/',
   'commercial-medium-heavy': '/commercial/medium-heavy/',
-  'product-page': '/commercial/light/gemini-l-series-25t',
+  'product-page': '/commercial/light/gemini-l-series-25t/',
   ev: '/electric-mobility/',
   'auto-services': '/services/',
   'green-tech': '/green-technologies/',
@@ -71,20 +71,18 @@ export default function App() {
       const pathname = window.location.pathname;
       const division = getDivisionFromPath(pathname);
       setCurrentDivision(division);
-      if (division !== 'product-page') {
-        applyStaticSeoForPath(pathname);
-      }
+      applySeoForPath(pathname);
     };
 
     window.addEventListener('popstate', syncFromLocation);
-    return () => window.removeEventListener('popstate', syncFromLocation);
+    window.addEventListener('geminimotors:locationchange', syncFromLocation);
+    // Initial load (direct URL)
+    applySeoForPath(window.location.pathname);
+    return () => {
+      window.removeEventListener('popstate', syncFromLocation);
+      window.removeEventListener('geminimotors:locationchange', syncFromLocation);
+    };
   }, []);
-
-  useEffect(() => {
-    // Product pages apply SEO from productPageData via ProductPageTemplate.
-    if (currentDivision === 'product-page') return;
-    applyStaticSeoForPath(window.location.pathname);
-  }, [currentDivision]);
 
   const navigateToDivision = (division: AppDivision) => {
     setCurrentDivision(division);
@@ -95,9 +93,8 @@ export default function App() {
       window.history.pushState(null, '', nextPath);
     }
 
-    if (division !== 'product-page') {
-      applyStaticSeoForPath(nextPath);
-    }
+    applySeoForPath(nextPath);
+    notifyLocationChanged();
 
     window.scrollTo({
       top: 0,
@@ -106,11 +103,15 @@ export default function App() {
   };
 
   const navigateToProductRoute = (route: string) => {
+    const nextPath = normalizeSeoPath(route);
     setCurrentDivision('product-page');
 
-    if (window.location.pathname !== route) {
-      window.history.pushState(null, '', route);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState(null, '', nextPath);
     }
+
+    applySeoForPath(nextPath);
+    notifyLocationChanged();
 
     window.scrollTo({
       top: 0,

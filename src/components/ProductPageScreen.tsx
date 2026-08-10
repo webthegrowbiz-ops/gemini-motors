@@ -16,10 +16,14 @@ export default function ProductPageScreen({ onContactClick }: ProductPageScreenP
   const [pathname, setPathname] = useState(() => window.location.pathname);
 
   useEffect(() => {
-    const handlePopState = () => setPathname(window.location.pathname);
+    const syncPath = () => setPathname(window.location.pathname);
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', syncPath);
+    window.addEventListener('geminimotors:locationchange', syncPath);
+    return () => {
+      window.removeEventListener('popstate', syncPath);
+      window.removeEventListener('geminimotors:locationchange', syncPath);
+    };
   }, []);
 
   const slug = pathname.split('/').filter(Boolean).at(-1) || '';

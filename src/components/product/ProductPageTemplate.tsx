@@ -5,7 +5,7 @@
 
 import React, { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { applyPageSeo } from '../../seo';
+import { applyPageSeo, getProductSeoBySlug } from '../../seo';
 import {
   Armchair,
   ArrowRight,
@@ -314,8 +314,12 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
   }, [product]);
 
   useEffect(() => {
+    const fromDocs = getProductSeoBySlug(product.id);
+    if (fromDocs) {
+      applyPageSeo(fromDocs);
+      return;
+    }
     if (!product.seo) return;
-
     applyPageSeo({
       title: product.seo.title,
       description: product.seo.description,

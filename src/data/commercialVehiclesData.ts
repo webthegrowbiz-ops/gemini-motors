@@ -295,7 +295,7 @@ export const mediumHeavyCommercialVehicles: CommercialVehicleModel[] = [
     usageLabel: 'Application',
     usageValue: 'Long-haul logistics',
     shortSpecification: '184 kW H Series heavy-duty truck for logistics, construction and fleet operations',
-    route: '/commercial/mhcv/avtr-4625h-la',
+    route: '/commercial/medium-heavy/avtr-4625h-la',
     series: 'AVTR',
     sizeClass: 'heavy-duty',
     applications: ['Long-haul logistics', 'Construction', 'Fleet operations'],

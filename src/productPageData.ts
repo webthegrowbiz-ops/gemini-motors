@@ -3283,7 +3283,7 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
     title: 'AVTR 4625H LA Heavy-Duty Truck in Goa | Gemini Motors Goa',
     description:
       'Explore AVTR 4625H LA at Gemini Motors Goa for logistics, mining, construction and fleet owners in Panaji, Vasco, Margao, Ponda and Verna Industrial Estate.',
-    canonicalPath: '/commercial/mhcv/avtr-4625h-la',
+    canonicalPath: '/commercial/medium-heavy/avtr-4625h-la',
     keywords: [
       'AVTR 4625H LA Goa',
       'M&HCV Dealer Goa',

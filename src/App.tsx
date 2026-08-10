@@ -85,17 +85,17 @@ export default function App() {
   }, []);
 
   const navigateToDivision = (division: AppDivision) => {
-    setCurrentDivision(division);
-
     const nextPath = routeByDivision[division];
 
-    if (window.location.pathname !== nextPath) {
-      window.history.pushState(null, '', nextPath);
+    // Full document navigation so View Source / direct HTTP responses
+    // serve the prerendered route HTML (not the previously loaded home shell).
+    if (normalizeSeoPath(window.location.pathname) !== normalizeSeoPath(nextPath)) {
+      window.location.assign(nextPath);
+      return;
     }
 
+    setCurrentDivision(division);
     applySeoForPath(nextPath);
-    notifyLocationChanged();
-
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -104,15 +104,15 @@ export default function App() {
 
   const navigateToProductRoute = (route: string) => {
     const nextPath = normalizeSeoPath(route);
-    setCurrentDivision('product-page');
 
-    if (window.location.pathname !== nextPath) {
-      window.history.pushState(null, '', nextPath);
+    if (normalizeSeoPath(window.location.pathname) !== nextPath) {
+      window.location.assign(nextPath);
+      return;
     }
 
+    setCurrentDivision('product-page');
     applySeoForPath(nextPath);
     notifyLocationChanged();
-
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

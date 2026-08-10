@@ -175,16 +175,9 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
   };
 
   const handleFinanceClick = () => {
-    setDivision('gemini-motors');
     closeMenus();
-    window.history.pushState(null, '', '/finance/');
-    setCurrentPathname('/finance/');
-    window.setTimeout(() => {
-      const financeSection = Array.from(document.querySelectorAll('section')).find((section) =>
-        section.textContent?.includes('Flexible EMI plans for serious fleet growth.'),
-      );
-      financeSection?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-    }, 80);
+    // Full navigation so /finance/ returns finance meta in View Source.
+    window.location.assign('/finance/');
   };
 
   const handleContactClick = () => {

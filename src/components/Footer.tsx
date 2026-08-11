@@ -115,6 +115,32 @@ export default function Footer({ setDivision }: FooterProps) {
               <ShieldCheck size={16} className="text-green-400 mt-0.5 shrink-0" />
               <span>ISO 9001:2015 safety operations</span>
             </li>
+            <li>
+              <a
+                href="/privacy-policy/"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLinkClick('privacy-policy');
+                }}
+                className="flex items-center gap-1.5 hover:text-white hover:underline transition-colors text-sm font-medium text-left text-gray-300"
+              >
+                <ChevronRight size={14} className="text-blue-500" />
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a
+                href="/terms-and-conditions/"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLinkClick('terms-and-conditions');
+                }}
+                className="flex items-center gap-1.5 hover:text-white hover:underline transition-colors text-sm font-medium text-left text-gray-300"
+              >
+                <ChevronRight size={14} className="text-blue-500" />
+                Terms & Conditions
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -159,10 +185,35 @@ export default function Footer({ setDivision }: FooterProps) {
       {/* Sub-footer banner */}
       <div className="bg-gray-950 py-8 px-6 md:px-16 border-t border-gray-850">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-500 text-center md:text-left leading-relaxed">
-            © {new Date().getFullYear()} Gemini Motors Conglomerate. All rights reserved. 
-            <br className="md:hidden" /> Developed in strict accordance with project MoM guidelines.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-xs text-gray-500 text-center md:text-left">
+            <p className="leading-relaxed">
+              © {new Date().getFullYear()} Gemini Motors Conglomerate. All rights reserved.
+              <br className="md:hidden" /> Developed in strict accordance with project MoM guidelines.
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="/privacy-policy/"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLinkClick('privacy-policy');
+                }}
+                className="hover:text-white hover:underline transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-gray-700" aria-hidden="true">|</span>
+              <a
+                href="/terms-and-conditions/"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLinkClick('terms-and-conditions');
+                }}
+                className="hover:text-white hover:underline transition-colors"
+              >
+                Terms & Conditions
+              </a>
+            </div>
+          </div>
           <div className="flex items-center gap-2 text-blue-400 text-xs font-bold tracking-wider">
             <ShieldCheck size={16} className="text-blue-400" />
             <span>AUTHORISED DEALER - ASHOK LEYLAND & SWITCH MOBILITY</span>

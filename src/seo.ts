@@ -73,6 +73,12 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
       'Discover Ashok Leyland green technologies in Goa at Gemini Motors, supporting cleaner mobility, efficient transport and sustainable solutions.',
     path: '/green-technologies/',
   },
+  '/privacy-policy/': {
+    title: 'Privacy Policy | Gemini Motors Goa',
+    description:
+      'Read how Gemini Motors handles personal information collected through website enquiries, phone, WhatsApp, chatbot and analytics tools.',
+    path: '/privacy-policy/',
+  },
 };
 
 /** Product pages from SEO Metadata + Canonical Tags docs. */

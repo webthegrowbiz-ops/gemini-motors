@@ -79,6 +79,12 @@ export const PAGES = [
       'Discover Ashok Leyland green technologies in Goa at Gemini Motors, supporting cleaner mobility, efficient transport and sustainable solutions.',
   },
   {
+    path: '/privacy-policy/',
+    title: 'Privacy Policy | Gemini Motors Goa',
+    description:
+      'Read how Gemini Motors handles personal information collected through website enquiries, phone, WhatsApp, chatbot and analytics tools.',
+  },
+  {
     path: '/commercial/light/gemini-l-series-25t/',
     title: 'Gemini L Series 2.5T in Goa | Ashok Leyland Dealer',
     description:

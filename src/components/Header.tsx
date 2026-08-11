@@ -67,6 +67,8 @@ const pathByDivision: Partial<Record<AppDivision, string>> = {
   'green-tech': '/green-technologies/',
   'about-us': '/about/',
   contact: '/contact/',
+  'privacy-policy': '/privacy-policy/',
+  'terms-and-conditions': '/terms-and-conditions/',
 };
 
 const commercialMenuItems = [

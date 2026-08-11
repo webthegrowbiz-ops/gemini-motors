@@ -14,6 +14,8 @@ export type AppDivision =
   | 'green-tech'
   | 'about-us'
   | 'contact'
+  | 'privacy-policy'
+  | 'terms-and-conditions'
   | 'not-found';
 
 export interface ProductSpec {

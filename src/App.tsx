@@ -12,6 +12,8 @@ import AutoServicesScreen from './components/AutoServicesScreen';
 import GreenTechScreen from './components/GreenTechScreen';
 import AboutUsScreen from './components/AboutUsScreen';
 import ContactUsScreen from './components/ContactUsScreen';
+import PrivacyPolicyScreen from './components/PrivacyPolicyScreen';
+import TermsConditionsScreen from './components/TermsConditionsScreen';
 import NotFoundScreen from './components/NotFoundScreen';
 import ProductPageScreen from './components/ProductPageScreen';
 import CommercialVehiclesScreen from './components/commercial/CommercialVehiclesScreen';
@@ -31,6 +33,8 @@ const routeByDivision: Record<AppDivision, string> = {
   'green-tech': '/green-technologies/',
   'about-us': '/about/',
   contact: '/contact/',
+  'privacy-policy': '/privacy-policy/',
+  'terms-and-conditions': '/terms-and-conditions/',
   'not-found': '/404/',
 };
 
@@ -57,6 +61,8 @@ function getDivisionFromPath(pathname: string): AppDivision {
   if (normalizedPath === '/green-technologies/') return 'green-tech';
   if (normalizedPath === '/about/') return 'about-us';
   if (normalizedPath === '/contact/') return 'contact';
+  if (normalizedPath === '/privacy-policy/') return 'privacy-policy';
+  if (normalizedPath === '/terms-and-conditions/') return 'terms-and-conditions';
 
   return 'not-found';
 }
@@ -185,6 +191,10 @@ export default function App() {
             onNavigateHome={() => navigateToDivision('gemini-motors')}
           />
         )}
+
+        {currentDivision === 'privacy-policy' && <PrivacyPolicyScreen />}
+
+        {currentDivision === 'terms-and-conditions' && <TermsConditionsScreen />}
 
         {currentDivision === 'not-found' && (
           <NotFoundScreen

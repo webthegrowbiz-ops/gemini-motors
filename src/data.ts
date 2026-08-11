@@ -193,7 +193,9 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 export const CHAT_WIDGET_CONFIG: ChatWidgetConfig = {
   enabled: true,
   mode: 'ai-chatbot',
-  note: 'Website AI chatbot connected to the n8n gemini-chat webhook. WhatsApp CTAs remain separate.',
+  // TEMPORARILY DISABLED — original n8n note (restore with n8n):
+  // note: 'Website AI chatbot connected to the n8n gemini-chat webhook. WhatsApp CTAs remain separate.',
+  note: 'Website AI chatbot (n8n webhook temporarily disabled). WhatsApp CTAs remain separate.',
 };
 
 export const HUBS = [

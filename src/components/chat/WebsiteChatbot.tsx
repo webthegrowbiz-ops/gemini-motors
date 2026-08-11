@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  * Isolated Gemini Motors website AI chatbot.
- * Sends messages to the n8n webhook and displays response.reply.
+ * Sends messages to server-side /api/chat (Qdrant RAG + Gemini).
+ * TEMP: n8n webhook integration remains disabled (preserved below for restore).
+ * // Sends messages to the n8n webhook and displays response.reply.
  */
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
@@ -18,8 +20,9 @@ const ERROR_MESSAGE =
 
 const SESSION_STORAGE_KEY = 'gm_website_chat_session_v1';
 
-const TEST_WEBHOOK_URL = 'https://thegrowbiz.app.n8n.cloud/webhook-test/gemini-chat';
-const PRODUCTION_WEBHOOK_URL = 'https://thegrowbiz.app.n8n.cloud/webhook/gemini-chat';
+// TEMPORARILY DISABLED — n8n webhook URLs (restore when re-enabling n8n):
+// const TEST_WEBHOOK_URL = 'https://thegrowbiz.app.n8n.cloud/webhook-test/gemini-chat';
+// const PRODUCTION_WEBHOOK_URL = 'https://thegrowbiz.app.n8n.cloud/webhook/gemini-chat';
 
 type ChatRole = 'assistant' | 'user';
 
@@ -35,16 +38,18 @@ interface PersistedChatSession {
   phone: string;
 }
 
-interface N8nChatResponse {
-  success?: boolean;
-  reply?: string;
-}
+// TEMPORARILY DISABLED — n8n response shape:
+// interface N8nChatResponse {
+//   success?: boolean;
+//   reply?: string;
+// }
 
-function getWebhookUrl(): string {
-  const fromEnv = import.meta.env.VITE_N8N_CHAT_WEBHOOK_URL?.trim();
-  if (fromEnv) return fromEnv;
-  return PRODUCTION_WEBHOOK_URL;
-}
+// TEMPORARILY DISABLED — n8n webhook URL resolver:
+// function getWebhookUrl(): string {
+//   const fromEnv = import.meta.env.VITE_N8N_CHAT_WEBHOOK_URL?.trim();
+//   if (fromEnv) return fromEnv;
+//   return PRODUCTION_WEBHOOK_URL;
+// }
 
 function createId(prefix: string): string {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -90,13 +95,20 @@ function isValidPhone(phone: string): boolean {
   return digits.length >= 10 && digits.length <= 15;
 }
 
+interface ChatApiResponse {
+  success?: boolean;
+  reply?: string;
+  error?: string;
+}
+
 async function sendChatMessage(payload: {
   sessionId: string;
   name: string;
   phone: string;
   message: string;
 }): Promise<string> {
-  const response = await fetch(getWebhookUrl(), {
+  // Direct server-side chat API (RAG via Qdrant + Gemini).
+  const response = await fetch('/api/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -110,18 +122,51 @@ async function sendChatMessage(payload: {
     }),
   });
 
-  if (!response.ok) {
-    throw new Error(`Webhook responded with ${response.status}`);
+  let data: ChatApiResponse = {};
+  try {
+    data = (await response.json()) as ChatApiResponse;
+  } catch {
+    // Non-JSON body; fall through to status-based error.
   }
 
-  const data = (await response.json()) as N8nChatResponse;
-  const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
+  if (!response.ok) {
+    throw new Error(data.error || `Chat API responded with ${response.status}`);
+  }
 
+  const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
   if (!reply) {
-    throw new Error('Webhook response missing reply');
+    throw new Error(data.error || 'Chat API response missing reply');
   }
 
   return reply;
+
+  // TEMPORARILY DISABLED — n8n webhook POST. Original implementation preserved below.
+  // const response = await fetch(getWebhookUrl(), {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Accept: 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     sessionId: payload.sessionId,
+  //     name: payload.name,
+  //     phone: payload.phone,
+  //     message: payload.message,
+  //   }),
+  // });
+  //
+  // if (!response.ok) {
+  //   throw new Error(`Webhook responded with ${response.status}`);
+  // }
+  //
+  // const data = (await response.json()) as N8nChatResponse;
+  // const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
+  //
+  // if (!reply) {
+  //   throw new Error('Webhook response missing reply');
+  // }
+  //
+  // return reply;
 }
 
 export default function WebsiteChatbot() {
@@ -144,7 +189,10 @@ export default function WebsiteChatbot() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const hasContactDetails = Boolean(session.name && session.phone);
-  const webhookReady = useMemo(() => Boolean(getWebhookUrl()), []);
+  // Direct /api/chat is always addressable from the site origin.
+  // TEMPORARILY DISABLED — n8n webhook readiness:
+  // const webhookReady = useMemo(() => Boolean(getWebhookUrl()), []);
+  const webhookReady = useMemo(() => true, []);
 
   useEffect(() => {
     persistSession(session);

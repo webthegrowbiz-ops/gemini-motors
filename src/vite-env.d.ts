@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_N8N_CHAT_WEBHOOK_URL?: string;
+  // TEMPORARILY DISABLED — n8n chatbot webhook env (restore when re-enabling n8n):
+  // readonly VITE_N8N_CHAT_WEBHOOK_URL?: string;
 }
 
 interface ImportMeta {

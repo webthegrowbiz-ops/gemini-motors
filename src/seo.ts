@@ -174,9 +174,9 @@ export const PRODUCT_PAGE_SEO: Record<string, PageSeo> = {
     path: '/commercial/medium-heavy/10x4-tipper/',
   },
   '/commercial/medium-heavy/transit-mixer/': {
-    title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Transit Mixers in Goa | Gemini',
     description:
-      'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
+      'Explore the Ashok Leyland Transit Mixers at Gemini Motors in Goa, starting ₹ 51 L* onwards. Enquire for sales, finance and support.',
     path: '/commercial/medium-heavy/transit-mixer/',
   },
   '/commercial/medium-heavy/6x4-tractor/': {
@@ -184,6 +184,174 @@ export const PRODUCT_PAGE_SEO: Record<string, PageSeo> = {
     description:
       'Explore the Ashok Leyland 6X4 Tractor with 55T GCW, H6 6L 184 kW power, cabin options and enquiry support from Gemini Motors.',
     path: '/commercial/medium-heavy/6x4-tractor/',
+  },
+  '/commercial/light/dost-plus-xl-cng/': {
+    title: 'Ashok Leyland DOST + XL CNG in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland DOST + XL CNG at Gemini Motors in Goa, starting ₹ 8.65 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/dost-plus-xl-cng/',
+  },
+  '/commercial/light/bada-dost-i3-plus-with-lnt/': {
+    title: 'Ashok Leyland BADA DOST i3+ with LNT in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BADA DOST i3+ with LNT at Gemini Motors in Goa, starting ₹ 9.80 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i3-plus-with-lnt/',
+  },
+  '/commercial/light/dost-plus-xl-twin-fuel/': {
+    title: 'Ashok Leyland DOST + XL Twin Fuel in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland DOST + XL Twin Fuel at Gemini Motors in Goa, starting ₹ 8.75 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/dost-plus-xl-twin-fuel/',
+  },
+  '/commercial/light/dost-twin-fuel/': {
+    title: 'Ashok Leyland DOST Twin Fuel in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland DOST Twin Fuel at Gemini Motors in Goa, starting ₹ 8.20 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/dost-twin-fuel/',
+  },
+  '/commercial/light/bada-dost-i3-plus-xl/': {
+    title: 'Ashok Leyland Bada Dost i3+XL in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Bada Dost i3+XL at Gemini Motors in Goa, starting ₹ 10.10 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i3-plus-xl/',
+  },
+  '/commercial/light/bada-dost-i3-plus/': {
+    title: 'Ashok Leyland BADA DOST i3+ in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BADA DOST i3+ at Gemini Motors in Goa, starting ₹ 9.80 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i3-plus/',
+  },
+  '/commercial/light/bada-dost-i5-xl/': {
+    title: 'Ashok Leyland Bada Dost i5 XL in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Bada Dost i5 XL at Gemini Motors in Goa, starting ₹ 10.22 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i5-xl/',
+  },
+  '/commercial/light/bada-dost-i4/': {
+    title: 'Ashok Leyland BADA DOST i4 in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BADA DOST i4 at Gemini Motors in Goa, starting ₹ 9.80 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i4/',
+  },
+  '/commercial/light/bada-dost-cng/': {
+    title: 'Ashok Leyland BADA DOST CNG in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BADA DOST CNG at Gemini Motors in Goa, starting ₹ 9.00 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-cng/',
+  },
+  '/commercial/light/dost-cng/': {
+    title: 'Ashok Leyland DOST CNG in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland DOST CNG at Gemini Motors in Goa, starting ₹ 8.15 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/dost-cng/',
+  },
+  '/commercial/light/bada-dost-i2/': {
+    title: 'Ashok Leyland BADA DOST i2 in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BADA DOST i2 at Gemini Motors in Goa, starting ₹ 8.85 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/bada-dost-i2/',
+  },
+  '/commercial/light/partner-6-tyre/': {
+    title: 'Ashok Leyland Partner 6 Tyre in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Partner 6 Tyre at Gemini Motors in Goa, starting ₹ 16.18 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/partner-6-tyre/',
+  },
+  '/commercial/light/mitr-ambulance/': {
+    title: 'Ashok Leyland MiTR Ambulance in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland MiTR Ambulance at Gemini Motors in Goa. Enquire for LCV passenger vehicle guidance, sales and support.',
+    path: '/commercial/light/mitr-ambulance/',
+  },
+  '/commercial/light/mitr-staff-bus/': {
+    title: 'Ashok Leyland MiTR Staff Bus in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland MiTR Staff Bus at Gemini Motors in Goa, starting ₹ 25.19 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/mitr-staff-bus/',
+  },
+  '/commercial/light/mitr-school-bus/': {
+    title: 'Ashok Leyland MiTR School Bus in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland MiTR School Bus at Gemini Motors in Goa, starting ₹ 22.32 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/light/mitr-school-bus/',
+  },
+  '/commercial/medium-heavy/10x2-tipper/': {
+    title: 'Ashok Leyland 10x2 Tipper in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 10x2 Tipper at Gemini Motors in Goa, starting ₹ 58 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/10x2-tipper/',
+  },
+  '/commercial/medium-heavy/boom-pump/': {
+    title: 'Ashok Leyland Boom Pump in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Boom Pump at Gemini Motors in Goa, starting ₹ 41 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/boom-pump/',
+  },
+  '/commercial/medium-heavy/4x2-with-3-axle-trailer/': {
+    title: 'Ashok Leyland 4X2 with 3-axle Trailer in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 4X2 with 3-axle Trailer at Gemini Motors in Goa, starting ₹ 33.50 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/4x2-with-3-axle-trailer/',
+  },
+  '/commercial/medium-heavy/4x2-with-2-axle-trailer/': {
+    title: 'Ashok Leyland 4X2 with 2-axle Trailer in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 4X2 with 2-axle Trailer at Gemini Motors in Goa, starting ₹ 32.40 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/4x2-with-2-axle-trailer/',
+  },
+  '/commercial/medium-heavy/10x2-gvw-48t/': {
+    title: 'Ashok Leyland 10X2 (GVW : 48T) in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 10X2 (GVW : 48T) at Gemini Motors in Goa, starting ₹ 43.75 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/10x2-gvw-48t/',
+  },
+  '/commercial/medium-heavy/8x2-gvw-35t/': {
+    title: 'Ashok Leyland 8X2 (GVW : 35T) in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 8X2 (GVW : 35T) at Gemini Motors in Goa, starting ₹ 40 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/8x2-gvw-35t/',
+  },
+  '/commercial/medium-heavy/6x2-gvw-26t-31t/': {
+    title: 'Ashok Leyland 6X2 (GVW : 26T - 31T) in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 6X2 (GVW : 26T - 31T) at Gemini Motors in Goa, starting ₹ 33.20 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/6x2-gvw-26t-31t/',
+  },
+  '/commercial/medium-heavy/4x2-gvw-19t/': {
+    title: 'Ashok Leyland 4x2 (GVW : 19T) in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland 4x2 (GVW : 19T) at Gemini Motors in Goa, starting ₹ 25.50 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/4x2-gvw-19t/',
+  },
+  '/commercial/medium-heavy/boss-1115-he/': {
+    title: 'Ashok Leyland BOSS 1115 HE in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BOSS 1115 HE at Gemini Motors in Goa, starting ₹ 22 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/boss-1115-he/',
+  },
+  '/commercial/medium-heavy/partner-super/': {
+    title: 'Ashok Leyland Partner Super in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland Partner Super at Gemini Motors in Goa, starting ₹ 19.50 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/partner-super/',
+  },
+  '/commercial/medium-heavy/ecomet-star/': {
+    title: 'Ashok Leyland ecomet STAR in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland ecomet STAR at Gemini Motors in Goa, starting ₹ 21.50 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/ecomet-star/',
+  },
+  '/commercial/medium-heavy/boss/': {
+    title: 'Ashok Leyland BOSS in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland BOSS at Gemini Motors in Goa, starting ₹ 22 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/boss/',
+  },
+  '/commercial/medium-heavy/icv-tippers/': {
+    title: 'Ashok Leyland ICV Tippers in Goa | Gemini',
+    description:
+      'Explore the Ashok Leyland ICV Tippers at Gemini Motors in Goa, starting ₹ 23 L* onwards. Enquire for sales, finance and support.',
+    path: '/commercial/medium-heavy/icv-tippers/',
   },
   '/electric-mobility/switch-iev4/': {
     title: 'SWITCH IeV4 Electric Vehicle in Goa | Gemini',

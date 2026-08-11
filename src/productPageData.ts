@@ -2810,18 +2810,19 @@ export const TIPPER_10X4_PRODUCT_PAGE: ProductPageData = {
 export const TRANSIT_MIXER_PRODUCT_PAGE: ProductPageData = {
   id: 'transit-mixer',
   category: 'Medium & Heavy Commercial Vehicle',
-  name: 'Transit Mixer',
+  name: 'Transit Mixers',
   tagline: '28–35T ready-mix transit mixer with 6–7 CBM drum capacity.',
   description:
-    'Transit Mixer is Ashok Leyland’s ready-mix concrete platform with an H Series 6-cylinder engine, 147 kW power, ALGB940 6-speed direct drive gearbox, non-reactive rear suspension, 220 L polymer fuel tank and tiltable cargo day cabin.',
+    'Transit Mixers are Ashok Leyland’s ready-mix concrete platform with an H Series 6-cylinder engine, 147 kW power, ALGB940 6-speed direct drive gearbox, non-reactive rear suspension, 220 L polymer fuel tank and tiltable cargo day cabin.',
   heroImage: transitMixerHero,
-  brochureLabel: 'Transit Mixer Brochure',
+  brochureLabel: 'Transit Mixers Brochure',
   seo: {
-    title: 'Transit Mixer | Medium & Heavy Commercial Vehicle | Gemini Motors',
+    title: 'Ashok Leyland Transit Mixers in Goa | Gemini',
     description:
-      'Explore Ashok Leyland Transit Mixers with 28–35T GVW, 147 kW H Series power, 6–7 CBM drum capacity and enquiry support from Gemini Motors.',
+      'Explore the Ashok Leyland Transit Mixers at Gemini Motors in Goa, starting ₹ 51 L* onwards. Enquire for sales, finance and support.',
     canonicalPath: '/commercial/medium-heavy/transit-mixer/',
   },
+
   quickSpecs: [
     { label: 'GVW', value: '28–35T', helper: 'Gross vehicle weight range' },
     { label: 'Power', value: '147 kW', helper: 'H Series 6-cylinder' },
@@ -3042,9 +3043,9 @@ export const TRANSIT_MIXER_PRODUCT_PAGE: ProductPageData = {
     },
   ],
   enquiry: {
-    title: 'Enquire About Transit Mixer',
+    title: 'Enquire About Transit Mixers',
     description: 'Share your plant, route and purchase timeline. Gemini Motors will connect with M&HCV guidance.',
-    defaultInterest: 'Transit Mixer',
+    defaultInterest: 'Transit Mixers',
   },
 };
 
@@ -4895,28 +4896,59 @@ export const SWITCH_IEV3_PRODUCT_PAGE: ProductPageData = {
   },
 };
 
-const missingProductPageSlugs = new Set<string>([]);
+const missingProductPageSlugs = new Set<string>([
+  'dost-plus-xl-cng',
+  'bada-dost-i3-plus-with-lnt',
+  'dost-plus-xl-twin-fuel',
+  'dost-twin-fuel',
+  'bada-dost-i3-plus-xl',
+  'bada-dost-i3-plus',
+  'bada-dost-i5-xl',
+  'bada-dost-i4',
+  'bada-dost-cng',
+  'dost-cng',
+  'bada-dost-i2',
+  'partner-6-tyre',
+  'mitr-ambulance',
+  'mitr-staff-bus',
+  'mitr-school-bus',
+  '10x2-tipper',
+  'boom-pump',
+  '4x2-with-3-axle-trailer',
+  '4x2-with-2-axle-trailer',
+  '10x2-gvw-48t',
+  '8x2-gvw-35t',
+  '6x2-gvw-26t-31t',
+  '4x2-gvw-19t',
+  'boss-1115-he',
+  'partner-super',
+  'ecomet-star',
+  'boss',
+  'icv-tippers',
+]);
 
 function createMissingProductPage(model: CommercialVehicleModel): ProductPageData {
   const isLightCommercial = model.categoryId === 'light';
   const category = isLightCommercial ? 'Light Commercial Vehicle' : 'Medium & Heavy Commercial Vehicle';
   const operatingFocus = model.applications?.join(', ') || model.usageValue.toLowerCase();
+  const canonicalPath = model.route.endsWith('/') ? model.route : `${model.route}/`;
+  const priceNote = model.startingPrice ? ` Starting ${model.startingPrice}.` : '';
 
   return {
     id: model.slug,
     category,
     name: model.name,
     tagline: `${model.shortSpecification}.`,
-    description: `${model.name} is a ${category.toLowerCase()} for ${operatingFocus}, available through Gemini Motors Goa with sales, finance and service guidance.`,
+    description: `${model.name} is available through Gemini Motors Goa with sales, finance and service guidance.${priceNote} Final specifications and commercial terms are confirmed on enquiry.`,
     heroImage: model.imageUrl,
     brochureLabel: `${model.name} Brochure`,
     seo: {
-      title: `${model.name} | ${category} | Gemini Motors`,
-      description: `Explore ${model.name} with specifications, applications, finance guidance and enquiry support from Gemini Motors Goa.`,
-      canonicalPath: model.route,
+      title: `Ashok Leyland ${model.name} in Goa | Gemini`,
+      description: `Explore the Ashok Leyland ${model.name} at Gemini Motors in Goa${model.startingPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
+      canonicalPath,
     },
     quickSpecs: [
-      { label: model.metricLabel, value: model.metricValue, helper: 'Vehicle class' },
+      { label: model.metricLabel, value: model.metricValue, helper: model.metricLabel === 'Price' ? 'Starting price' : model.metricLabel === 'Segment' ? 'Vehicle segment' : 'Vehicle class' },
       { label: 'Fuel', value: model.fuelType, helper: 'Available fuel type' },
       { label: model.usageLabel, value: model.usageValue, helper: 'Primary configuration' },
       { label: 'Series', value: model.series || model.name, helper: 'Model family' },
@@ -4924,7 +4956,7 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
     ],
     overview: {
       heading: `Built for ${model.usageValue}`,
-      body: `${model.name} is positioned for businesses that need dependable ${operatingFocus}. Gemini Motors Goa can help align the vehicle configuration, finance plan and support requirements with your daily operating needs.`,
+      body: `${model.name} is positioned for businesses that need dependable ${operatingFocus}.${priceNote} Gemini Motors Goa can help align configuration, finance and support requirements with your operating needs. Detailed specifications are confirmed on enquiry.`,
       highlights: [
         { title: 'Business-Ready Capability', description: model.shortSpecification, iconName: 'truck' },
         { title: 'Application-Focused', description: `Configured for ${operatingFocus}.`, iconName: 'route' },

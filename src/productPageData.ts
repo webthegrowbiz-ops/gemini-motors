@@ -4094,8 +4094,9 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
   id: 'bada-dost-i5-plus',
   category: 'Light Commercial Vehicle',
   name: 'Bada Dost i5+',
-  tagline: 'Efficient electric pickup capability for urban commercial movement.',
-  description: 'Bada Dost i5+ is an electric light commercial pickup with a 58 kWh Lithium-ion NMC battery, 1,500 kg payload capacity and up to 210 km real-world range.',
+  tagline: 'Diesel pickup capability for urban commercial movement.',
+  description:
+    'Bada Dost i5+ is a diesel light commercial pickup with a 1.5-litre, 3-cylinder turbocharged diesel engine (1,478 cc), 59 kW (80 hp) @ 3,300 RPM, 190 Nm @ 1,600–2,400 RPM and 1,500 kg payload capacity.',
   heroImage: badaDostI5PlusHero,
   brochureLabel: 'Bada Dost i5+ Specifications',
   seo: {
@@ -4105,26 +4106,43 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
     canonicalPath: '/commercial/light/bada-dost-i5-plus/',
   },
   quickSpecs: [
-    { label: 'Battery', value: '58 kWh', helper: 'Lithium-ion NMC' },
-    { label: 'Price', value: '₹ 9.63 L* onwards', helper: 'Starting price' },
     { label: 'Payload', value: '1,500 kg', helper: '1.5 Ton payload capacity' },
-    { label: 'Range', value: 'Up to 210 km', helper: 'Real-world range' },
-    { label: 'Fast Charging', value: '< 60 minutes', helper: '10-80%' },
-    { label: 'Power', value: '105 kW', helper: 'Peak motor power' },
+    { label: 'Price', value: '₹ 9.63 L* onwards', helper: 'Starting price' },
+    { label: 'Power', value: '59 kW (80 hp)', helper: '@ 3,300 RPM' },
+    { label: 'Torque', value: '190 Nm', helper: '@ 1,600–2,400 RPM' },
+    { label: 'Displacement', value: '1,478 cc', helper: '1.5-litre diesel' },
+    { label: 'Fuel', value: 'Diesel', helper: 'Fuel type' },
   ],
   overview: {
-    heading: 'Bada Dost i5+ Electric Pickup',
-    body: 'Bada Dost i5+ combines a 58 kWh Lithium-ion NMC battery, 1,500 kg / 1.5 Ton payload capacity, up to 210 km real-world range and fast charging from 10-80% in under 60 minutes.',
+    heading: 'Bada Dost i5+ Diesel Pickup',
+    body:
+      'Bada Dost i5+ combines a 1.5-litre, 3-cylinder turbocharged diesel engine (1,478 cc), 59 kW (80 hp) @ 3,300 RPM, 190 Nm @ 1,600–2,400 RPM and 1,500 kg / 1.5 Ton payload capacity for urban commercial pickup duty.',
     highlights: [
-      { title: '58 kWh Battery Capacity', description: 'Lithium-ion NMC battery pack for commercial electric operation.', iconName: 'zap' },
-      { title: '1,500 kg / 1.5 Ton Payload', description: 'Pickup capability for urban goods movement.', iconName: 'boxes' },
-      { title: 'Up to 210 km Range', description: 'Real-world driving range for daily route planning.', iconName: 'route' },
-      { title: '< 60 Minute Fast Charging', description: 'Fast charging from 10-80%.', iconName: 'settings' },
+      {
+        title: '1.5-litre Turbo Diesel',
+        description: '1.5-litre, 3-cylinder turbocharged diesel engine with 1,478 cc displacement.',
+        iconName: 'gauge',
+      },
+      {
+        title: '59 kW (80 hp)',
+        description: 'Power output of 59 kW (80 hp) @ 3,300 RPM.',
+        iconName: 'settings',
+      },
+      {
+        title: '190 Nm Torque',
+        description: 'Torque of 190 Nm @ 1,600–2,400 RPM.',
+        iconName: 'settings',
+      },
+      {
+        title: '1,500 kg / 1.5 Ton Payload',
+        description: 'Pickup capability for urban goods movement.',
+        iconName: 'boxes',
+      },
     ],
     trustIndicators: [
-      { label: 'Battery capacity', value: '58 kWh' },
+      { label: 'Fuel Type', value: 'Diesel' },
+      { label: 'Displacement', value: '1,478 cc' },
       { label: 'Payload capacity', value: '1,500 kg / 1.5 Ton' },
-      { label: 'Motor power', value: '105 kW peak' },
     ],
   },
   finance: {
@@ -4146,47 +4164,95 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
     { name: 'Golden Brown', hex: '#C97B4D' },
   ],
   features: [
-    { title: '58 kWh Battery Capacity', description: 'Lithium-ion NMC battery capacity for commercial routes.', iconName: 'zap' },
-    { title: '1,500 kg / 1.5 Ton Payload', description: 'Payload capacity for pickup delivery applications.', iconName: 'boxes' },
-    { title: 'Up to 210 km Real-World Range', description: 'Range support for daily urban operations.', iconName: 'route' },
-    { title: '< 60 Minute Fast Charging', description: 'Fast charging from 10-80%.', iconName: 'settings' },
-    { title: '105 kW Peak Motor Power', description: 'Efficient AC synchronous motor output.', iconName: 'gauge' },
-    { title: '170 Nm Torque', description: 'Torque delivery for loaded urban use.', iconName: 'settings' },
-    { title: 'Robust Chassis', description: 'Robust structure for commercial pickup duty.', iconName: 'shield' },
-    { title: 'Pickup Body Type', description: 'Pickup body configuration with maximum urban GVW positioning.', iconName: 'truck' },
+    {
+      title: '1.5-litre Turbo Diesel Engine',
+      description: '1.5-litre, 3-cylinder turbocharged diesel engine.',
+      iconName: 'gauge',
+    },
+    {
+      title: '1,478 cc Displacement',
+      description: 'Engine displacement of 1,478 cc.',
+      iconName: 'settings',
+    },
+    {
+      title: '59 kW (80 hp) Power',
+      description: 'Power of 59 kW (80 hp) @ 3,300 RPM.',
+      iconName: 'gauge',
+    },
+    {
+      title: '190 Nm Torque',
+      description: 'Torque of 190 Nm @ 1,600–2,400 RPM.',
+      iconName: 'settings',
+    },
+    {
+      title: '1,500 kg / 1.5 Ton Payload',
+      description: 'Payload capacity for pickup delivery applications.',
+      iconName: 'boxes',
+    },
+    {
+      title: 'Diesel Fuel Type',
+      description: 'Diesel fuel type for commercial pickup duty.',
+      iconName: 'truck',
+    },
+    {
+      title: 'Robust Chassis',
+      description: 'Robust structure for commercial pickup duty.',
+      iconName: 'shield',
+    },
+    {
+      title: 'Pickup Body Type',
+      description: 'Pickup body configuration for urban commercial movement.',
+      iconName: 'truck',
+    },
   ],
-  variants: [{ name: 'Bada Dost i5+', description: 'Electric light commercial pickup with an efficient AC synchronous motor.', bestFor: 'Urban pickup delivery with 1,500 kg / 1.5 Ton payload capacity.', specs: [{ label: 'Battery Capacity', value: '58 kWh' }, { label: 'Payload Capacity', value: '1,500 kg / 1.5 Ton' }, { label: 'Body Type', value: 'Pickup' }] }],
+  variants: [
+    {
+      name: 'Bada Dost i5+',
+      description: 'Diesel light commercial pickup with a 1.5-litre, 3-cylinder turbocharged diesel engine.',
+      bestFor: 'Urban pickup delivery with 1,500 kg / 1.5 Ton payload capacity.',
+      specs: [
+        { label: 'Fuel Type', value: 'Diesel' },
+        { label: 'Displacement', value: '1,478 cc' },
+        { label: 'Power', value: '59 kW (80 hp) @ 3,300 RPM' },
+        { label: 'Torque', value: '190 Nm @ 1,600–2,400 RPM' },
+        { label: 'Payload Capacity', value: '1,500 kg / 1.5 Ton' },
+        { label: 'Body Type', value: 'Pickup' },
+      ],
+    },
+  ],
   applications: [
     { title: 'Pickup Delivery', description: '1,500 kg / 1.5 Ton payload capacity for pickup delivery.', iconName: 'boxes' },
-    { title: 'Urban Commercial Cargo', description: 'Maximum urban GVW positioning with efficient electric operation.', iconName: 'truck' },
+    { title: 'Urban Commercial Cargo', description: 'Diesel pickup capability for urban commercial cargo movement.', iconName: 'truck' },
   ],
   specifications: [
-    { title: 'Battery & Charging', rows: [
-      { label: 'Battery Capacity', value: '58 kWh' },
-      { label: 'Battery Type', value: 'Lithium-ion NMC' },
-      { label: 'Real-World Range', value: 'Up to 210 km' },
-      { label: 'Fast Charging', value: '< 60 minutes, 10-80%' },
-    ] },
-    { title: 'Motor', rows: [
-      { label: 'Motor Power', value: '105 kW peak' },
-      { label: 'Torque', value: '170 Nm' },
-      { label: 'Motor Type', value: 'Efficient AC synchronous motor' },
-    ] },
-    { title: 'Payload & Body', rows: [
-      { label: 'Payload Capacity', value: '1,500 kg / 1.5 Ton' },
-      { label: 'Maximum Urban GVW', value: 'Maximum Urban GVW' },
-      { label: 'Body Type', value: 'Pickup' },
-      { label: 'Chassis', value: 'Robust structure' },
-    ] },
+    {
+      title: 'Engine',
+      rows: [
+        { label: 'Fuel Type', value: 'Diesel' },
+        { label: 'Engine', value: '1.5-litre, 3-cylinder turbocharged diesel engine' },
+        { label: 'Displacement', value: '1,478 cc' },
+        { label: 'Power', value: '59 kW (80 hp) @ 3,300 RPM' },
+        { label: 'Torque', value: '190 Nm @ 1,600–2,400 RPM' },
+      ],
+    },
+    {
+      title: 'Payload & Body',
+      rows: [
+        { label: 'Payload Capacity', value: '1,500 kg / 1.5 Ton' },
+        { label: 'Body Type', value: 'Pickup' },
+        { label: 'Chassis', value: 'Robust structure' },
+      ],
+    },
   ],
   whyGemini: {
     heading: 'Bada Dost i5+ Highlights',
-    description: 'Key Bada Dost i5+ highlights include battery capacity, payload capacity, range, fast charging, motor output, torque, battery type, chassis strength and pickup body configuration.',
+    description:
+      'Key Bada Dost i5+ highlights include diesel fuel type, 1,478 cc displacement, 59 kW (80 hp) power, 190 Nm torque, payload capacity and pickup body configuration.',
     stats: [
-      { label: 'Battery Capacity', value: '58 kWh' },
-      { label: 'Payload Capacity', value: '1,500 kg / 1.5 Ton' },
-      { label: 'Real-World Range', value: 'Up to 210 km' },
-      { label: 'Torque', value: '170 Nm' },
+      { label: 'Fuel Type', value: 'Diesel' },
+      { label: 'Displacement', value: '1,478 cc' },
+      { label: 'Power', value: '59 kW (80 hp)' },
+      { label: 'Torque', value: '190 Nm' },
     ],
   },
   relatedProducts: [

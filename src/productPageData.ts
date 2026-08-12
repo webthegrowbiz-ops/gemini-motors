@@ -5047,6 +5047,15 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
           { label: 'Series', value: model.series || model.name },
           { label: model.metricLabel, value: model.metricValue },
           { label: 'Fuel type', value: model.fuelType },
+          ...(typeof model.payloadKg === 'number'
+            ? [{ label: 'Payload', value: `${model.payloadKg.toLocaleString('en-IN')} kg` }]
+            : []),
+          ...(typeof model.bodyLengthFt === 'number'
+            ? [{ label: 'Load Body', value: `${model.bodyLengthFt} ft` }]
+            : []),
+          ...(model.sizeClass
+            ? [{ label: 'Size class', value: model.sizeClass.replace(/-/g, ' ') }]
+            : []),
         ],
       },
       {

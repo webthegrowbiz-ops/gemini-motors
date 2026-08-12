@@ -41,6 +41,7 @@ import {
 
 import { ProductPageData } from '../../types';
 import { WHATSAPP_URL } from '../../data';
+import { resolveLowerQuickSpecs } from '../../utils/resolveLowerQuickSpecs';
 
 export const revealTransition = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -297,6 +298,9 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
     consent: false,
   });
   const [formMessage, setFormMessage] = useState('');
+
+  const heroQuickSpecs = useMemo(() => product.quickSpecs.slice(0, 3), [product]);
+  const lowerQuickSpecs = useMemo(() => resolveLowerQuickSpecs(product), [product]);
 
   useEffect(() => {
     setActiveGalleryIndex(0);
@@ -563,7 +567,7 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
               </a>
             </div>
             <div className="grid grid-cols-3 gap-2 border-y border-white/15 py-4 sm:gap-3">
-              {product.quickSpecs.slice(0, 3).map((spec) => (
+              {heroQuickSpecs.map((spec) => (
                 <div key={`hero-${spec.label}`} className="flex min-w-0 flex-col justify-center rounded-lg border border-white/10 bg-slate-950/35 px-2.5 py-2.5 text-center sm:border-0 sm:bg-transparent sm:p-0 sm:text-left">
                   <p className="break-words font-display text-[clamp(1rem,4.4vw,1.25rem)] font-extrabold leading-tight text-white sm:text-2xl">
                     {shouldAnimateStatValue(spec.value) ? (
@@ -585,9 +589,9 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
 
       <section className="relative z-20 order-20 -mt-10 px-3 sm:px-6 md:-mt-12 md:px-16">
         <div className="mx-auto grid max-w-7xl auto-rows-fr grid-cols-2 items-stretch gap-2 rounded-2xl border border-white/70 bg-white/55 p-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl sm:gap-3 sm:p-3 md:grid-cols-3 lg:grid-cols-5">
-          {product.quickSpecs.map((spec, index) => (
+          {lowerQuickSpecs.map((spec, index) => (
             <motion.div
-              key={spec.label}
+              key={`lower-${spec.label}`}
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}

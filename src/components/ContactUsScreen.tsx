@@ -166,52 +166,7 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
     upsertMeta('twitter:card', 'summary_large_image');
     upsertMeta('twitter:title', contactSeo.title);
     upsertMeta('twitter:description', contactSeo.description);
-
-    const schema = {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': ['LocalBusiness', 'AutoDealer'],
-          '@id': `${window.location.origin}/contact/#gemini-motors-goa`,
-          name: 'Gemini Motors Goa',
-          description:
-            'Commercial vehicle dealer in Goa supporting Ashok Leyland vehicle enquiries, finance assistance, service support and fleet requirements.',
-          url: window.location.origin,
-          telephone: phoneDisplay,
-          email: emailAddress,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Panaji',
-            addressRegion: 'Goa',
-            postalCode: '403001',
-            addressCountry: 'IN',
-          },
-          areaServed: ['Goa', 'Panaji', 'Vasco', 'Margao', 'Ponda', 'Verna Industrial Estate'],
-        },
-        {
-          '@type': 'Organization',
-          '@id': `${window.location.origin}/#organization`,
-          name: 'Gemini Motors',
-          url: window.location.origin,
-          contactPoint: {
-            '@type': 'ContactPoint',
-            telephone: phoneDisplay,
-            contactType: 'sales',
-            areaServed: 'IN-GA',
-            availableLanguage: ['English', 'Hindi', 'Konkani'],
-          },
-        },
-      ],
-    };
-
-    let schemaNode = document.getElementById('contact-page-schema');
-    if (!schemaNode) {
-      schemaNode = document.createElement('script');
-      schemaNode.id = 'contact-page-schema';
-      schemaNode.setAttribute('type', 'application/ld+json');
-      document.head.appendChild(schemaNode);
-    }
-    schemaNode.textContent = JSON.stringify(schema);
+    // JSON-LD is applied via applyStructuredDataForPath (ContactPage + LocalBusiness + BreadcrumbList).
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

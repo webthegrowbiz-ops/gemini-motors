@@ -184,7 +184,7 @@ export const SERVICE_CENTRES: ServiceCentre[] = [
   },
 ];
 
-/** Central WhatsApp number/message — matches public/lcv/index.html */
+/** Central WhatsApp number/message — shared site contact */
 export const WHATSAPP_NUMBER = '919422393288';
 export const WHATSAPP_DEFAULT_MESSAGE =
   "Hi, I'm interested in the Gemini Motors LCV range in Goa. Please share pricing and availability.";

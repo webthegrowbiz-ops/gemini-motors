@@ -21,6 +21,7 @@ import CommercialCategoryScreen from './components/commercial/CommercialCategory
 import WebsiteChatbot from './components/chat/WebsiteChatbot';
 import { AppDivision } from './types';
 import { applySeoForPath, normalizeSeoPath, notifyLocationChanged } from './seo';
+import { applyStructuredDataForPath } from './structuredData';
 
 const routeByDivision: Record<AppDivision, string> = {
   'gemini-motors': '/',
@@ -78,12 +79,14 @@ export default function App() {
       const division = getDivisionFromPath(pathname);
       setCurrentDivision(division);
       applySeoForPath(pathname);
+      applyStructuredDataForPath(pathname);
     };
 
     window.addEventListener('popstate', syncFromLocation);
     window.addEventListener('geminimotors:locationchange', syncFromLocation);
     // Initial load (direct URL)
     applySeoForPath(window.location.pathname);
+    applyStructuredDataForPath(window.location.pathname);
     return () => {
       window.removeEventListener('popstate', syncFromLocation);
       window.removeEventListener('geminimotors:locationchange', syncFromLocation);
@@ -102,6 +105,7 @@ export default function App() {
 
     setCurrentDivision(division);
     applySeoForPath(nextPath);
+    applyStructuredDataForPath(nextPath);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

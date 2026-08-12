@@ -54,12 +54,18 @@ export default function CommercialVehicleCard({ model, onViewDetails }: Commerci
           {model.name}
           </h3>
           <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] font-bold text-white/88">
-            <span>{model.metricLabel}: {model.metricValue}</span>
+            <span className={model.metricLabel === 'Price' ? 'text-[#f0d08a]' : undefined}>
+              {model.metricLabel === 'Price'
+                ? `Starting ${model.metricValue}`
+                : `${model.metricLabel}: ${model.metricValue}`}
+            </span>
             <span>{model.usageLabel}: {model.usageValue}</span>
           </div>
           {model.startingPrice && model.metricLabel !== 'Price' && (
             <p className="mt-2 text-[11px] font-bold text-[#f0d08a]">
-              Starting {model.startingPrice}
+              {model.startingPrice === 'On Request'
+                ? 'Price: On Request'
+                : `Starting ${model.startingPrice}`}
             </p>
           )}
           {model.isGenericPlaceholderImage && (

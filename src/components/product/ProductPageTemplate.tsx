@@ -6,6 +6,7 @@
 import React, { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { applyPageSeo, getProductSeoBySlug } from '../../seo';
+import { applyProductStructuredData } from '../../structuredData';
 import {
   Armchair,
   ArrowRight,
@@ -317,14 +318,14 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
     const fromDocs = getProductSeoBySlug(product.id);
     if (fromDocs) {
       applyPageSeo(fromDocs);
-      return;
+    } else if (product.seo) {
+      applyPageSeo({
+        title: product.seo.title,
+        description: product.seo.description,
+        path: product.seo.canonicalPath,
+      });
     }
-    if (!product.seo) return;
-    applyPageSeo({
-      title: product.seo.title,
-      description: product.seo.description,
-      path: product.seo.canonicalPath,
-    });
+    applyProductStructuredData(product.id);
   }, [product]);
 
   const activeGalleryImage = product.gallery[activeGalleryIndex] || product.gallery[0];

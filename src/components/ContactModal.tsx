@@ -32,7 +32,7 @@ Subject: ${formData.subject}
 Message: ${formData.message}`;
     const encodedText = encodeURIComponent(baseText);
     void encodedText;
-    window.location.href = '/lcv/index.html';
+    window.location.href = '/commercial/light/';
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);

@@ -104,6 +104,7 @@ export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '2,500 kg', helper: 'Rated cargo capacity' },
+    { label: 'Price', value: 'On Request', helper: 'Price on request' },
     { label: 'Torque', value: '320 Nm', helper: 'Low-end pulling strength' },
     { label: 'Power', value: '95 hp', helper: 'Turbo diesel output' },
     { label: 'Load Body', value: '12.8 ft', helper: 'Practical urban bed size' },
@@ -330,6 +331,7 @@ export const DOST_PLUS_XL_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '1600 kg', helper: 'Rated cargo capacity' },
+    { label: 'Price', value: '₹ 8.20 L* onwards', helper: 'Starting price' },
     { label: 'Torque', value: '190 Nm', helper: 'Low-speed diesel pull' },
     { label: 'Power', value: '52 kW', helper: '70 hp diesel output' },
     { label: 'Load Body', value: '2805 mm', helper: 'Cargo body length' },
@@ -556,6 +558,7 @@ export const DOST_XL_PRODUCT_PAGE: ProductPageData = {
 
   quickSpecs: [
     { label: 'Payload', value: '1400 kg', helper: 'Rated payload' },
+    { label: 'Price', value: '₹ 7.90 L* onwards', helper: 'Starting price' },
     { label: 'Power', value: '70 HP', helper: 'Maximum power' },
     { label: 'Torque', value: '170 Nm', helper: 'Peak torque' },
     { label: 'Mileage', value: '18.01 kmpl', helper: 'ARAI Certified' },
@@ -819,6 +822,7 @@ export const SAATHI_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '1120 kg', helper: 'Rated payload' },
+    { label: 'Price', value: '₹ 6.45 L* onwards', helper: 'Starting price' },
     { label: 'Power', value: '45 HP', helper: 'At 3300 RPM' },
     { label: 'Torque', value: '110 Nm', helper: '1000-2400 RPM' },
     { label: 'Load Body', value: '2500 mm', helper: 'Cargo body length' },
@@ -1044,6 +1048,7 @@ export const PARTNER_MUNICIPAL_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Engine', value: 'ZD30 DDTi', helper: '2953 cc diesel' },
+    { label: 'Price', value: 'On Request', helper: 'Price on request' },
     { label: 'Power', value: '140 hp', helper: '103 kW @ 2750 rpm' },
     { label: 'Payload', value: '3,760 – 4,885 kg', helper: 'Variant dependent' },
     { label: 'GVW', value: '6,250 – 7,490 kg', helper: '4-tyre / 6-tyre' },
@@ -1383,6 +1388,7 @@ export const PARTNER_4_TYRE_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Power', value: '103 kW', helper: '140 hp @ 2750 rpm' },
+    { label: 'Price', value: '₹ 15.95 L* onwards', helper: 'Starting price' },
     { label: 'Torque', value: '360 Nm', helper: '1350-2750 rpm' },
     { label: 'GVW', value: '6250 / 7200 kg', helper: 'Variant dependent' },
     { label: 'Payload', value: '3760 / 4565 kg', helper: 'Variant dependent' },
@@ -1617,6 +1623,7 @@ export const AVTR_4525H_DTLA_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Power', value: '184 kW', helper: 'H Series 6-cylinder' },
+    { label: 'Price', value: 'On Request', helper: 'Price on request' },
     { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
     { label: 'Gearbox', value: '9S1110', helper: '9-speed Direct Drive' },
     { label: 'Fuel Tank', value: '375 L', helper: 'Rectangular polymer' },
@@ -1837,6 +1844,7 @@ export const AVTR_4925H_DTLA_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'GVW', value: '49T', helper: 'Gross vehicle weight' },
+    { label: 'Price', value: 'On Request', helper: 'Price on request' },
     { label: 'Power', value: '184 kW', helper: 'H Series 6-cylinder' },
     { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
     { label: 'Gearbox', value: '9S1110', helper: '9-speed Direct Drive' },
@@ -2101,6 +2109,7 @@ export const TIPPER_8X4_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Power', value: '184 kW', helper: 'H Series engine' },
+    { label: 'Price', value: '₹ 55 L* onwards', helper: 'Starting price' },
     { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
     { label: 'Clutch', value: '430 mm', helper: 'Single plate dry type' },
     { label: 'Gearbox', value: 'ZF9S1110', helper: '9 Speed Direct Drive' },
@@ -2330,6 +2339,7 @@ export const AVTR_10X2_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'GVW', value: '42–48T', helper: 'Gross vehicle weight range' },
+    { label: 'Price', value: '₹ 55.50 L* onwards', helper: 'Starting price' },
     { label: 'Power', value: '147 kW', helper: '@ 2400 rpm' },
     { label: 'Torque', value: '700 Nm', helper: '@ 1200–1900 rpm' },
     { label: 'Loading Span', value: '7.7–9.7 m', helper: 'Body span options' },
@@ -2583,6 +2593,7 @@ export const TIPPER_10X4_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'GVW', value: '48T', helper: 'Gross vehicle weight' },
+    { label: 'Price', value: '₹ 59 L* onwards', helper: 'Starting price' },
     { label: 'Power', value: '184 kW', helper: 'H Series 6-cylinder' },
     { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
     { label: 'Gearbox', value: 'ZF9S1110', helper: '9 Speed Direct Drive' },
@@ -3066,6 +3077,7 @@ export const TRACTOR_6X4_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'GCW', value: '55T', helper: 'Gross combination weight' },
+    { label: 'Price', value: '₹ 43.50 L* onwards', helper: 'Starting price' },
     { label: 'Engine', value: 'H6 – 6L', helper: 'Engine family' },
     { label: 'Power', value: '184 kW', helper: 'Rated power' },
     { label: 'Cabin', value: 'N Premium', helper: 'Cabin option' },
@@ -3326,6 +3338,7 @@ export const AVTR_4625H_LA_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Power', value: '184 kW', helper: 'H Series 6 cylinder' },
+    { label: 'Price', value: '₹ 38.50 L* onwards', helper: 'Starting price' },
     { label: 'Capacity', value: '6.0 L', helper: 'Cubic capacity' },
     { label: 'Gearbox', value: '9S1110', helper: '9 speed Direct Drive' },
     { label: 'Fuel Tank', value: '375 L', helper: 'Rectangular polymer' },
@@ -3566,6 +3579,7 @@ export const BADA_DOST_I6_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '2,567 kg', helper: 'CBC rated payload' },
+    { label: 'Price', value: '₹ 10.99 L* onwards', helper: 'Starting price' },
     { label: 'Mileage', value: '15.1 kmpl', helper: 'Highest ARAI tested' },
     { label: 'Load Body', value: '10 ft 8 in', helper: '3250 mm length' },
     { label: 'Loading Area', value: '61 sq ft', helper: '5.7 sq m' },
@@ -3839,6 +3853,7 @@ export const BADA_DOST_I5_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '1,817 kg', helper: 'Rated payload' },
+    { label: 'Price', value: '₹ 9.81 L* onwards', helper: 'Starting price' },
     { label: 'Power', value: '80 hp', helper: '59 kW @ 3300 RPM' },
     { label: 'Torque', value: '190 Nm', helper: '1600 to 2400 RPM' },
     { label: 'GVW', value: '3,490 kg', helper: '3.49 Ton' },
@@ -4091,6 +4106,7 @@ export const BADA_DOST_I5_PLUS_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Battery', value: '58 kWh', helper: 'Lithium-ion NMC' },
+    { label: 'Price', value: '₹ 9.63 L* onwards', helper: 'Starting price' },
     { label: 'Payload', value: '1,500 kg', helper: '1.5 Ton payload capacity' },
     { label: 'Range', value: 'Up to 210 km', helper: 'Real-world range' },
     { label: 'Fast Charging', value: '< 60 minutes', helper: '10-80%' },
@@ -4202,6 +4218,7 @@ export const SWITCH_IEV4_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '1,750 kg', helper: 'FSD rated payload' },
+    { label: 'Price', value: '₹ 15.29 L* onwards', helper: 'Starting price' },
     { label: 'Battery', value: '32.2 kWh', helper: 'Lithium iron phosphate' },
     { label: 'Range', value: '130 km', helper: 'Standard duty cycle' },
     { label: 'Power', value: '60 kW', helper: 'Peak motor power' },
@@ -4440,6 +4457,7 @@ export const SWITCH_IEV4_GARBAGE_TIPPER_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Model', value: 'IeV4', helper: 'Garbage tipper truck' },
+    { label: 'Price', value: '₹ 15.29 L* onwards', helper: 'Starting price' },
     { label: 'Category', value: 'EV Vehicles', helper: 'Electric commercial' },
     { label: 'Application', value: 'Garbage tipper', helper: 'Municipal waste body' },
     { label: 'Brand', value: 'SWITCH', helper: 'SWITCH Mobility' },
@@ -4674,6 +4692,7 @@ export const SWITCH_IEV3_PRODUCT_PAGE: ProductPageData = {
   },
   quickSpecs: [
     { label: 'Payload', value: '1,250 kg', helper: 'FSD rated payload' },
+    { label: 'Price', value: '₹ 12.32 L* onwards', helper: 'Starting price' },
     { label: 'Battery', value: '25.6 kWh', helper: 'Advanced lithium-ion' },
     { label: 'Range', value: '140 km', helper: 'Standard duty cycle' },
     { label: 'Power', value: '40 kW', helper: 'Peak motor power' },
@@ -4932,7 +4951,12 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
   const category = isLightCommercial ? 'Light Commercial Vehicle' : 'Medium & Heavy Commercial Vehicle';
   const operatingFocus = model.applications?.join(', ') || model.usageValue.toLowerCase();
   const canonicalPath = model.route.endsWith('/') ? model.route : `${model.route}/`;
-  const priceNote = model.startingPrice ? ` Starting ${model.startingPrice}.` : '';
+  const isOnRequestPrice = model.startingPrice === 'On Request';
+  const priceNote = model.startingPrice
+    ? isOnRequestPrice
+      ? ' Pricing is available on request.'
+      : ` Starting ${model.startingPrice}.`
+    : '';
 
   return {
     id: model.slug,
@@ -4944,10 +4968,13 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
     brochureLabel: `${model.name} Brochure`,
     seo: {
       title: `Ashok Leyland ${model.name} in Goa | Gemini`,
-      description: `Explore the Ashok Leyland ${model.name} at Gemini Motors in Goa${model.startingPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
+      description: `Explore the Ashok Leyland ${model.name} at Gemini Motors in Goa${model.startingPrice && !isOnRequestPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
       canonicalPath,
     },
     quickSpecs: [
+      ...(model.startingPrice && model.metricLabel !== 'Price'
+        ? [{ label: 'Price' as const, value: model.startingPrice, helper: isOnRequestPrice ? 'Price on request' : 'Starting price' }]
+        : []),
       { label: model.metricLabel, value: model.metricValue, helper: model.metricLabel === 'Price' ? 'Starting price' : model.metricLabel === 'Segment' ? 'Vehicle segment' : 'Vehicle class' },
       { label: 'Fuel', value: model.fuelType, helper: 'Available fuel type' },
       { label: model.usageLabel, value: model.usageValue, helper: 'Primary configuration' },

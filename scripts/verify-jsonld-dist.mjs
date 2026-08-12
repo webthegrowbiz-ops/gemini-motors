@@ -1,0 +1,178 @@
+/**
+ * Verify JSON-LD presence and key types in prerendered dist HTML.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { PAGES, SITE_ORIGIN } from './prerender-seo.mjs';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const distDir = path.resolve(__dirname, '../dist');
+
+function fileFor(pagePath) {
+  if (pagePath === '/') return path.join(distDir, 'index.html');
+  return path.join(distDir, pagePath.replace(/^\/+|\/+$/g, ''), 'index.html');
+}
+
+function extractJsonLd(html) {
+  const match = html.match(
+    /<script[^>]*type=["']application\/ld\+json["'][^>]*id=["']gemini-jsonld["'][^>]*>([\s\S]*?)<\/script>/i,
+  ) || html.match(
+    /<script[^>]*id=["']gemini-jsonld["'][^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i,
+  );
+  if (!match) return null;
+  return JSON.parse(match[1]);
+}
+
+function typesInGraph(doc) {
+  const graph = Array.isArray(doc['@graph']) ? doc['@graph'] : [doc];
+  const types = new Set();
+  for (const node of graph) {
+    const t = node['@type'];
+    if (Array.isArray(t)) t.forEach((x) => types.add(x));
+    else if (t) types.add(t);
+  }
+  return types;
+}
+
+function expectedTypes(pagePath) {
+  if (pagePath === '/') return ['AutoDealer', 'Organization', 'WebSite'];
+  if (pagePath === '/about/') return ['AboutPage', 'AutoDealer', 'BreadcrumbList'];
+  if (
+    pagePath === '/commercial/' ||
+    pagePath === '/commercial/light/' ||
+    pagePath === '/commercial/medium-heavy/' ||
+    pagePath === '/electric-mobility/'
+  ) {
+    return ['CollectionPage', 'ItemList', 'BreadcrumbList', 'AutoDealer'];
+  }
+  if (pagePath === '/services/' || pagePath === '/finance/') {
+    return ['Service', 'BreadcrumbList', 'AutoDealer'];
+  }
+  if (pagePath === '/contact/') {
+    return ['ContactPage', 'LocalBusiness', 'BreadcrumbList', 'AutoDealer'];
+  }
+  if (pagePath === '/green-technologies/') {
+    return ['WebPage', 'BreadcrumbList', 'AutoDealer'];
+  }
+  if (
+    pagePath.startsWith('/commercial/light/') ||
+    pagePath.startsWith('/commercial/medium-heavy/') ||
+    pagePath.startsWith('/electric-mobility/')
+  ) {
+    return ['Product', 'BreadcrumbList', 'AutoDealer'];
+  }
+  return ['AutoDealer'];
+}
+
+let failed = 0;
+let productPages = 0;
+let listingPages = 0;
+const onRequestWithoutPrice = [];
+const pricedOffers = [];
+
+for (const page of PAGES) {
+  const file = fileFor(page.path);
+  if (!fs.existsSync(file)) {
+    console.error(`MISSING FILE: ${file}`);
+    failed += 1;
+    continue;
+  }
+
+  const html = fs.readFileSync(file, 'utf8');
+  let doc;
+  try {
+    doc = extractJsonLd(html);
+  } catch (error) {
+    console.error(`FAIL ${page.path}: invalid JSON-LD (${error.message})`);
+    failed += 1;
+    continue;
+  }
+
+  if (!doc) {
+    console.error(`FAIL ${page.path}: missing #gemini-jsonld`);
+    failed += 1;
+    continue;
+  }
+
+  const types = typesInGraph(doc);
+  const want = expectedTypes(page.path);
+  const missing = want.filter((t) => !types.has(t));
+  if (missing.length) {
+    console.error(`FAIL ${page.path}: missing types ${missing.join(', ')} (have ${[...types].join(', ')})`);
+    failed += 1;
+    continue;
+  }
+
+  const isListing =
+    page.path === '/commercial/' ||
+    page.path === '/commercial/light/' ||
+    page.path === '/commercial/medium-heavy/' ||
+    page.path === '/electric-mobility/';
+  const isProduct =
+    !isListing &&
+    (page.path.startsWith('/commercial/light/') ||
+      page.path.startsWith('/commercial/medium-heavy/') ||
+      page.path.startsWith('/electric-mobility/'));
+
+  if (isListing) {
+    listingPages += 1;
+    const graph = doc['@graph'] || [];
+    const itemList = graph.find((n) => n['@type'] === 'ItemList');
+    const urls = (itemList?.itemListElement || []).map((el) => el.url || el.item).filter(Boolean);
+    const bad = urls.filter((u) => typeof u !== 'string' || !u.startsWith(SITE_ORIGIN));
+    if (!urls.length) {
+      console.error(`FAIL ${page.path}: ItemList empty`);
+      failed += 1;
+      continue;
+    }
+    if (bad.length) {
+      console.error(`FAIL ${page.path}: bad ItemList URLs`);
+      failed += 1;
+      continue;
+    }
+  }
+
+  if (isProduct) {
+    productPages += 1;
+    const graph = doc['@graph'] || [];
+    const products = graph.filter((n) => n['@type'] === 'Product');
+    if (products.length !== 1) {
+      console.error(`FAIL ${page.path}: expected 1 Product, got ${products.length}`);
+      failed += 1;
+      continue;
+    }
+    const product = products[0];
+    if (product.offers) {
+      if (product.offers['@type'] !== 'Offer') {
+        console.error(`FAIL ${page.path}: offers not nested Offer`);
+        failed += 1;
+        continue;
+      }
+      if (product.offers.price == null) {
+        console.error(`FAIL ${page.path}: Offer without price`);
+        failed += 1;
+        continue;
+      }
+      pricedOffers.push({ path: page.path, price: product.offers.price });
+    } else {
+      onRequestWithoutPrice.push(page.path);
+    }
+    if (product.aggregateRating || product.review) {
+      console.error(`FAIL ${page.path}: invented rating/review`);
+      failed += 1;
+      continue;
+    }
+  }
+
+  console.log(`OK   ${page.path} [${want.join('+')}]`);
+}
+
+if (failed) {
+  console.error(`JSON-LD verification failed: ${failed} page(s)`);
+  process.exit(1);
+}
+
+console.log(
+  `JSON-LD verification passed: ${PAGES.length} pages (products=${productPages}, listings=${listingPages}, offers=${pricedOffers.length}, no-offer=${onRequestWithoutPrice.length})`,
+);

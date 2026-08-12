@@ -22,35 +22,37 @@
     },
     {
       "source": "/lcv",
-      "destination": "/lcvlandingpage/",
+      "destination": "/commercial/light/",
       "permanent": true
     },
     {
       "source": "/lcv/",
-      "destination": "/lcvlandingpage/",
+      "destination": "/commercial/light/",
       "permanent": true
     },
     {
       "source": "/lcv/index.html",
-      "destination": "/lcvlandingpage/",
+      "destination": "/commercial/light/",
       "permanent": true
     },
     {
       "source": "/lcv/:path*",
-      "destination": "/lcvlandingpage/",
+      "destination": "/commercial/light/",
+      "permanent": true
+    },
+    {
+      "source": "/lcvlandingpage",
+      "destination": "/commercial/light/",
+      "permanent": true
+    },
+    {
+      "source": "/lcvlandingpage/",
+      "destination": "/commercial/light/",
       "permanent": true
     }
   ],
 
   "rewrites": [
-    {
-      "source": "/lcvlandingpage",
-      "destination": "/lcv/index.html"
-    },
-    {
-      "source": "/lcvlandingpage/",
-      "destination": "/lcv/index.html"
-    },
     {
       "source": "/thank-you",
       "destination": "/thank-you.html"

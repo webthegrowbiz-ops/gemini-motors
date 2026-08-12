@@ -60,7 +60,7 @@ export function buildAutoDealerOrganization(): JsonLd {
 
 export function buildLocalBusiness(): JsonLd {
   return {
-    '@type': ['LocalBusiness', 'AutoDealer'],
+    '@type': 'LocalBusiness',
     '@id': `${SITE_ORIGIN}/contact/#localbusiness`,
     name: DEALER.legalName,
     url: DEALER.url,
@@ -92,8 +92,8 @@ export function buildWebSite(): JsonLd {
 
 export type BreadcrumbItem = { name: string; path: string };
 
-export function buildBreadcrumbList(items: BreadcrumbItem[]): JsonLd {
-  return {
+export function buildBreadcrumbList(items: BreadcrumbItem[], pagePath?: string): JsonLd {
+  const breadcrumb: JsonLd = {
     '@type': 'BreadcrumbList',
     itemListElement: items.map((item, index) => ({
       '@type': 'ListItem',
@@ -102,6 +102,10 @@ export function buildBreadcrumbList(items: BreadcrumbItem[]): JsonLd {
       item: canonicalUrlForPath(item.path),
     })),
   };
+  if (pagePath) {
+    breadcrumb['@id'] = `${canonicalUrlForPath(pagePath)}#breadcrumb`;
+  }
+  return breadcrumb;
 }
 
 export function buildAboutPage(seo: { title: string; description: string; path: string }): JsonLd {
@@ -230,6 +234,140 @@ function brandForProduct(product: ProductPageData): string {
   return 'Ashok Leyland';
 }
 
+function findSpecValue(product: ProductPageData, labels: string[]): string | undefined {
+  const wanted = new Set(labels.map((label) => label.toLowerCase()));
+  for (const spec of product.quickSpecs) {
+    if (wanted.has(spec.label.toLowerCase()) && spec.value?.trim()) return spec.value.trim();
+  }
+  for (const group of product.specifications || []) {
+    for (const row of group.rows) {
+      if (wanted.has(row.label.toLowerCase()) && row.value?.trim()) return row.value.trim();
+    }
+  }
+  for (const indicator of product.overview?.trustIndicators || []) {
+    if (wanted.has(indicator.label.toLowerCase()) && indicator.value?.trim()) return indicator.value.trim();
+  }
+  return undefined;
+}
+
+/** fuelType from listing or product specs — skip unverified enquiry placeholders. */
+export function resolveVehicleFuelType(
+  product: ProductPageData,
+  listing?: CommercialVehicleModel | null,
+): string | undefined {
+  const fromListing = listing?.fuelType?.trim();
+  if (fromListing && !/^confirm on enquiry$/i.test(fromListing)) return fromListing;
+
+  return findSpecValue(product, ['Fuel type', 'Fuel Type', 'Fuel']);
+}
+
+/**
+ * bodyType from existing category / body / application fields only.
+ * Prefer listing usageValue (Tipper, Haulage, Pickup, …) then product.category.
+ */
+export function resolveVehicleBodyType(
+  product: ProductPageData,
+  listing?: CommercialVehicleModel | null,
+): string | undefined {
+  const usage = listing?.usageValue?.trim();
+  if (usage) return usage;
+
+  const bodyConfig = findSpecValue(product, ['Body configuration', 'Body Type', 'Body type', 'Body']);
+  if (bodyConfig) return bodyConfig;
+
+  const category = product.category?.trim();
+  return category || undefined;
+}
+
+/**
+ * numberOfAxles only when an explicit NxM wheel/axle configuration exists in name/slug
+ * (e.g. 4x2 → 2, 8x4 → 4, 10x2 → 5). Never invent for products without that config.
+ */
+export function resolveVehicleNumberOfAxles(
+  product: ProductPageData,
+  listing?: CommercialVehicleModel | null,
+): number | undefined {
+  const haystack = [product.id, product.name, listing?.slug, listing?.name, listing?.route]
+    .filter(Boolean)
+    .join(' ');
+  const match = haystack.match(/\b([4-9]|1[0-6])\s*[xX×]\s*([0-9]|1[0-6])\b/);
+  if (!match) return undefined;
+  const wheelEnds = Number.parseInt(match[1], 10);
+  if (!Number.isFinite(wheelEnds) || wheelEnds < 2 || wheelEnds % 2 !== 0) return undefined;
+  return wheelEnds / 2;
+}
+
+type WeightTotal = {
+  '@type': 'QuantitativeValue';
+  value?: number;
+  minValue?: number;
+  maxValue?: number;
+  unitCode: 'KGM';
+};
+
+function parseKgNumber(raw: string): number | null {
+  const cleaned = raw.replace(/,/g, '').trim();
+  if (!cleaned) return null;
+
+  const tons = cleaned.match(/^([\d.]+)\s*T$/i);
+  if (tons) {
+    const t = Number.parseFloat(tons[1]);
+    return Number.isFinite(t) && t > 0 ? Math.round(t * 1000) : null;
+  }
+
+  const kg = cleaned.match(/^([\d.]+)\s*(?:kg|kgs)?$/i);
+  if (kg) {
+    const n = Number.parseFloat(kg[1]);
+    return Number.isFinite(n) && n > 0 ? Math.round(n) : null;
+  }
+
+  return null;
+}
+
+/** Parse GVW/GCW labels into Schema.org QuantitativeValue (kg). Ranges become min/max. */
+export function resolveVehicleWeightTotal(
+  product: ProductPageData,
+  listing?: CommercialVehicleModel | null,
+): WeightTotal | undefined {
+  const raw =
+    findSpecValue(product, ['GVW', 'Gross Vehicle Weight', 'GCW', 'Maximum Urban GVW']) ||
+    (listing?.metricLabel === 'GVW' || listing?.metricLabel === 'GCW' ? listing.metricValue : undefined);
+
+  if (!raw) return undefined;
+  if (raw.trim().toLowerCase() === 'maximum urban gvw') return undefined;
+
+  const normalized = raw.replace(/–|—/g, '-').replace(/\s*\/\s*/g, '-').trim();
+
+  // e.g. 42-48T, 6250-7200 kg, 6,250 - 7,490 kg
+  const rangeMatch = normalized.match(
+    /^([\d,.]+)\s*(T|kg|kgs)?\s*-\s*([\d,.]+)\s*(T|kg|kgs)?$/i,
+  );
+  if (rangeMatch) {
+    const unit = (rangeMatch[4] || rangeMatch[2] || 'kg').toLowerCase();
+    const left = parseKgNumber(`${rangeMatch[1]}${unit === 't' ? 'T' : ''}`);
+    const right = parseKgNumber(`${rangeMatch[3]}${unit === 't' ? 'T' : ' kg'}`);
+    if (left != null && right != null) {
+      return {
+        '@type': 'QuantitativeValue',
+        minValue: Math.min(left, right),
+        maxValue: Math.max(left, right),
+        unitCode: 'KGM',
+      };
+    }
+  }
+
+  const single = parseKgNumber(normalized.replace(/\s*kg\s*$/i, ' kg').replace(/\s*T\s*$/i, 'T'));
+  if (single != null) {
+    return {
+      '@type': 'QuantitativeValue',
+      value: single,
+      unitCode: 'KGM',
+    };
+  }
+
+  return undefined;
+}
+
 /** Optional Vite build manifest for resolving stubbed asset imports during prerender. */
 let assetManifest: Record<string, { file?: string }> | null = null;
 
@@ -262,7 +400,7 @@ export function buildProductSchema(
   const price = resolveProductNumericPrice(product, listing);
 
   const productNode: JsonLd = {
-    '@type': 'Product',
+    '@type': ['Product', 'Vehicle'],
     '@id': `${url}#product`,
     name: structured?.name || product.name,
     description: structured?.description || description,
@@ -277,9 +415,19 @@ export function buildProductSchema(
   const image = absoluteImageUrl(product.heroImage);
   if (image) {
     productNode.image = image;
-  } else if (structured?.imageAlt) {
-    // Keep alt text only when no absolute image URL is available — do not invent image URL
   }
+
+  const bodyType = resolveVehicleBodyType(product, listing);
+  if (bodyType) productNode.bodyType = bodyType;
+
+  const fuelType = resolveVehicleFuelType(product, listing);
+  if (fuelType) productNode.fuelType = fuelType;
+
+  const numberOfAxles = resolveVehicleNumberOfAxles(product, listing);
+  if (numberOfAxles != null) productNode.numberOfAxles = numberOfAxles;
+
+  const weightTotal = resolveVehicleWeightTotal(product, listing);
+  if (weightTotal) productNode.weightTotal = weightTotal;
 
   if (price != null) {
     productNode.offers = {
@@ -322,17 +470,24 @@ function modelToListItem(model: CommercialVehicleModel): { name: string; url: st
 }
 
 export function buildHomeGraph(seo: { title: string; description: string; path: string }): JsonLd[] {
-  return [buildAutoDealerOrganization(), buildWebSite()];
+  return [
+    buildAutoDealerOrganization(),
+    buildWebSite(),
+    buildBreadcrumbList([{ name: 'Home', path: '/' }], seo.path),
+  ];
 }
 
 export function buildAboutGraph(seo: { title: string; description: string; path: string }): JsonLd[] {
   return [
     buildAutoDealerOrganization(),
     buildAboutPage(seo),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'About', path: '/about/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -343,10 +498,13 @@ export function buildCommercialGraph(seo: { title: string; description: string; 
     buildAutoDealerOrganization(),
     buildCollectionPage(seo, listId),
     buildItemList(listId, 'Ashok Leyland Commercial Vehicles', items),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Commercial Vehicles', path: '/commercial/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Commercial Vehicles', path: '/commercial/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -357,11 +515,14 @@ export function buildLcvGraph(seo: { title: string; description: string; path: s
     buildAutoDealerOrganization(),
     buildCollectionPage(seo, listId),
     buildItemList(listId, commercialCategories.find((c) => c.id === 'light')?.title || 'Light Commercial Vehicles', items),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Commercial Vehicles', path: '/commercial/' },
-      { name: 'Light Commercial Vehicles', path: '/commercial/light/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Commercial Vehicles', path: '/commercial/' },
+        { name: 'Light Commercial Vehicles', path: '/commercial/light/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -372,11 +533,14 @@ export function buildMhcvGraph(seo: { title: string; description: string; path: 
     buildAutoDealerOrganization(),
     buildCollectionPage(seo, listId),
     buildItemList(listId, 'Medium & Heavy Commercial Vehicles', items),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Commercial Vehicles', path: '/commercial/' },
-      { name: 'Medium & Heavy Commercial Vehicles', path: '/commercial/medium-heavy/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Commercial Vehicles', path: '/commercial/' },
+        { name: 'Medium & Heavy Commercial Vehicles', path: '/commercial/medium-heavy/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -387,10 +551,13 @@ export function buildEvGraph(seo: { title: string; description: string; path: st
     buildAutoDealerOrganization(),
     buildCollectionPage(seo, listId),
     buildItemList(listId, 'Electric Mobility', items),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Electric Mobility', path: '/electric-mobility/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Electric Mobility', path: '/electric-mobility/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -398,10 +565,13 @@ export function buildServicesGraph(seo: { title: string; description: string; pa
   return [
     buildAutoDealerOrganization(),
     buildServicePage(seo, 'Ashok Leyland Service Centre in Goa', 'Automotive service'),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Services', path: '/services/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -409,10 +579,13 @@ export function buildFinanceGraph(seo: { title: string; description: string; pat
   return [
     buildAutoDealerOrganization(),
     buildServicePage(seo, 'Ashok Leyland Vehicle Finance in Goa', 'Vehicle financing assistance'),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Finance', path: '/finance/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Finance', path: '/finance/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -421,10 +594,13 @@ export function buildContactGraph(seo: { title: string; description: string; pat
     buildAutoDealerOrganization(),
     buildLocalBusiness(),
     buildContactPage(seo),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Contact Us', path: '/contact/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Contact Us', path: '/contact/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -432,10 +608,13 @@ export function buildGreenTechGraph(seo: { title: string; description: string; p
   return [
     buildAutoDealerOrganization(),
     buildWebPage(seo),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: 'Green Technologies', path: '/green-technologies/' },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Green Technologies', path: '/green-technologies/' },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -443,10 +622,13 @@ export function buildGenericPageGraph(seo: { title: string; description: string;
   return [
     buildAutoDealerOrganization(),
     buildWebPage(seo),
-    buildBreadcrumbList([
-      { name: 'Home', path: '/' },
-      { name: seo.title.split('|')[0].trim(), path: seo.path },
-    ]),
+    buildBreadcrumbList(
+      [
+        { name: 'Home', path: '/' },
+        { name: seo.title.split('|')[0].trim(), path: seo.path },
+      ],
+      seo.path,
+    ),
   ];
 }
 
@@ -454,10 +636,11 @@ export function buildProductPageGraph(
   product: ProductPageData,
   listing?: CommercialVehicleModel | null,
 ): JsonLd[] {
+  const path = product.seo?.canonicalPath || `/${product.id}/`;
   return [
     buildAutoDealerOrganization(),
     buildProductSchema(product, listing),
-    buildBreadcrumbList(productBreadcrumbs(product)),
+    buildBreadcrumbList(productBreadcrumbs(product), path),
   ];
 }
 

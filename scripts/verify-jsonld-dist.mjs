@@ -36,7 +36,7 @@ function typesInGraph(doc) {
 }
 
 function expectedTypes(pagePath) {
-  if (pagePath === '/') return ['AutoDealer', 'Organization', 'WebSite'];
+  if (pagePath === '/') return ['AutoDealer', 'Organization', 'WebSite', 'BreadcrumbList'];
   if (pagePath === '/about/') return ['AboutPage', 'AutoDealer', 'BreadcrumbList'];
   if (
     pagePath === '/commercial/' ||
@@ -60,7 +60,7 @@ function expectedTypes(pagePath) {
     pagePath.startsWith('/commercial/medium-heavy/') ||
     pagePath.startsWith('/electric-mobility/')
   ) {
-    return ['Product', 'BreadcrumbList', 'AutoDealer'];
+    return ['Product', 'Vehicle', 'BreadcrumbList', 'AutoDealer'];
   }
   return ['AutoDealer'];
 }
@@ -136,13 +136,33 @@ for (const page of PAGES) {
   if (isProduct) {
     productPages += 1;
     const graph = doc['@graph'] || [];
-    const products = graph.filter((n) => n['@type'] === 'Product');
+    const products = graph.filter((n) => {
+      const t = n['@type'];
+      return t === 'Product' || (Array.isArray(t) && t.includes('Product'));
+    });
     if (products.length !== 1) {
       console.error(`FAIL ${page.path}: expected 1 Product, got ${products.length}`);
       failed += 1;
       continue;
     }
     const product = products[0];
+    const productTypes = Array.isArray(product['@type']) ? product['@type'] : [product['@type']];
+    if (!productTypes.includes('Vehicle')) {
+      console.error(`FAIL ${page.path}: Product missing Vehicle type`);
+      failed += 1;
+      continue;
+    }
+    for (const key of Object.keys(product)) {
+      if (/^lcv|^heavy|BodyType$|FuelType$/i.test(key) && !['bodyType', 'fuelType'].includes(key)) {
+        console.error(`FAIL ${page.path}: non-standard property ${key}`);
+        failed += 1;
+      }
+    }
+    if (Object.prototype.hasOwnProperty.call(product, 'lcvBodyType') || Object.prototype.hasOwnProperty.call(product, 'heavyFuelType')) {
+      console.error(`FAIL ${page.path}: custom body/fuel properties`);
+      failed += 1;
+      continue;
+    }
     if (product.offers) {
       if (product.offers['@type'] !== 'Offer') {
         console.error(`FAIL ${page.path}: offers not nested Offer`);

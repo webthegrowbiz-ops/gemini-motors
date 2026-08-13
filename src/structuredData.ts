@@ -1,6 +1,6 @@
 /**
- * Page-level JSON-LD routing.
- * Product pages are owned by ProductPageTemplate (and prerender) to avoid duplicate Product graphs.
+ * Page-level JSON-LD routing for all public SEO routes (including products).
+ * Shared AutoDealer/Organization is always injected via wrapJsonLdGraph.
  */
 
 import { PRODUCT_PAGE_BY_SLUG } from './productPageData';
@@ -84,14 +84,9 @@ export function serializeJsonLdForPath(pathname: string, seoOverride?: PageSeo |
 }
 
 export function applyStructuredDataForPath(pathname: string): boolean {
-  const path = normalizeSeoPath(pathname);
-
-  // Product routes: ProductPageTemplate owns Product + BreadcrumbList JSON-LD.
-  if (isProductPath(path)) {
-    return false;
-  }
-
-  const graph = getJsonLdGraphForPath(path);
+  // Apply for all public SEO routes (including product pages) so the shared
+  // AutoDealer/Organization entity is always present in the live document graph.
+  const graph = getJsonLdGraphForPath(pathname);
   if (!graph) return false;
   applyJsonLd(graph);
   return true;

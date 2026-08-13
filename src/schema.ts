@@ -47,8 +47,10 @@ export function buildAutoDealerOrganization(): JsonLd {
     url: DEALER.url,
     telephone: DEALER.telephone,
     email: DEALER.email,
+    logo: `${SITE_ORIGIN}/brand/gemini-motors-logo-transparent.png`,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: DEALER.address.streetAddress,
       addressLocality: DEALER.address.addressLocality,
       addressRegion: DEALER.address.addressRegion,
       postalCode: DEALER.address.postalCode,
@@ -644,10 +646,32 @@ export function buildProductPageGraph(
   ];
 }
 
+/**
+ * Guarantee exactly one shared AutoDealer/Organization node in every graph.
+ * Uses the canonical @id and drops any duplicate AutoDealer/Organization entries.
+ */
+export function ensureOrganizationInGraph(graph: JsonLd[]): JsonLd[] {
+  const sharedOrg = buildAutoDealerOrganization();
+  const orgId = organizationId();
+
+  const withoutOrgDuplicates = graph.filter((node) => {
+    const id = typeof node['@id'] === 'string' ? node['@id'] : '';
+    if (id === orgId) return false;
+
+    const rawType = node['@type'];
+    const types = Array.isArray(rawType) ? rawType : rawType ? [rawType] : [];
+    // Disallow any other AutoDealer entity (different @id) for the same business.
+    if (types.includes('AutoDealer')) return false;
+    return true;
+  });
+
+  return [sharedOrg, ...withoutOrgDuplicates];
+}
+
 export function wrapJsonLdGraph(graph: JsonLd[]): JsonLd {
   return {
     '@context': 'https://schema.org',
-    '@graph': graph,
+    '@graph': ensureOrganizationInGraph(graph),
   };
 }
 

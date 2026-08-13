@@ -14,6 +14,8 @@ interface CommercialCategoryCardProps {
 }
 
 export default function CommercialCategoryCard({ category, onSelect }: CommercialCategoryCardProps) {
+  const isLightCommercial = category.id === 'light';
+
   return (
     <motion.button
       type="button"
@@ -29,10 +31,20 @@ export default function CommercialCategoryCard({ category, onSelect }: Commercia
         <img
           src={category.imageUrl}
           alt={category.title}
-          className="h-full w-full object-cover opacity-86 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+          className={`h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110 ${
+            isLightCommercial
+              ? 'object-[center_62%] opacity-100'
+              : 'opacity-86'
+          }`}
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(31,95,174,0.22),transparent_35%),linear-gradient(180deg,rgba(7,17,31,0.10),rgba(7,17,31,0.92)_78%)]" />
+        <div
+          className={
+            isLightCommercial
+              ? 'absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(31,95,174,0.18),transparent_35%),linear-gradient(180deg,rgba(7,17,31,0.05),rgba(7,17,31,0.42)_52%,rgba(7,17,31,0.88)_86%)]'
+              : 'absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(31,95,174,0.22),transparent_35%),linear-gradient(180deg,rgba(7,17,31,0.10),rgba(7,17,31,0.92)_78%)]'
+          }
+        />
         <div className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/12 to-transparent transition-transform duration-1000 group-hover:translate-x-[120%]" />
       </div>
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1f5fae] via-[#4a7fd1] to-[#e6a94c] opacity-80" />

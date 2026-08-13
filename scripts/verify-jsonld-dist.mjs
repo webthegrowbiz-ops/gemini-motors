@@ -104,6 +104,40 @@ for (const page of PAGES) {
     continue;
   }
 
+  const graph = Array.isArray(doc['@graph']) ? doc['@graph'] : [];
+  const orgNodes = graph.filter((n) => n && n['@id'] === `${SITE_ORIGIN}/#organization`);
+  if (orgNodes.length !== 1) {
+    console.error(
+      `FAIL ${page.path}: expected exactly 1 organization @id ${SITE_ORIGIN}/#organization, got ${orgNodes.length}`,
+    );
+    failed += 1;
+    continue;
+  }
+  const org = orgNodes[0];
+  const orgTypes = Array.isArray(org['@type']) ? org['@type'] : [org['@type']];
+  if (!orgTypes.includes('AutoDealer') || !orgTypes.includes('Organization')) {
+    console.error(
+      `FAIL ${page.path}: organization node missing AutoDealer/Organization types (have ${orgTypes.join(', ')})`,
+    );
+    failed += 1;
+    continue;
+  }
+  const autoDealers = graph.filter((n) => {
+    const t = n?.['@type'];
+    const typesList = Array.isArray(t) ? t : t ? [t] : [];
+    return typesList.includes('AutoDealer');
+  });
+  if (autoDealers.length !== 1) {
+    console.error(`FAIL ${page.path}: expected exactly 1 AutoDealer entity, got ${autoDealers.length}`);
+    failed += 1;
+    continue;
+  }
+  if (autoDealers[0]['@id'] !== `${SITE_ORIGIN}/#organization`) {
+    console.error(`FAIL ${page.path}: AutoDealer @id is not the shared organization id`);
+    failed += 1;
+    continue;
+  }
+
   const isListing =
     page.path === '/commercial/' ||
     page.path === '/commercial/light/' ||

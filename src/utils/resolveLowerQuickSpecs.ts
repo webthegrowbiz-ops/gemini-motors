@@ -6,7 +6,7 @@
 
 import type { ProductPageData, ProductSpec } from '../types';
 
-const TARGET_LOWER_CARD_COUNT = 6;
+const TARGET_LOWER_CARD_COUNT = 4;
 
 /** Preferred label order for lower cards (first match wins per family). */
 const PREFERRED_LABELS = [

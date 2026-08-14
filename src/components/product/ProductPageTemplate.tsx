@@ -30,10 +30,8 @@ import {
   ShoppingBag,
   Snowflake,
   Sparkles,
-  Store,
   TrendingUp,
   Truck,
-  Wheat,
   Wrench,
   X,
   Zap,
@@ -42,6 +40,7 @@ import {
 import { ProductPageData } from '../../types';
 import { WHATSAPP_URL } from '../../data';
 import { resolveLowerQuickSpecs } from '../../utils/resolveLowerQuickSpecs';
+import { getBestSuitedForCards } from '../../data/bestSuitedForCards';
 
 export const revealTransition = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -240,36 +239,25 @@ function getIcon(iconName: string) {
   return iconMap[iconName as keyof typeof iconMap] || Sparkles;
 }
 
-const overviewUseCases = [
+const bestSuitedIconCycle = [Truck, HardHat, PackageCheck, ShoppingBag] as const;
+
+/** Fallback only when Excel has no row for this product URL (e.g. EV pages not in the workbook). */
+const overviewUseCasesFallback = [
   {
     title: 'Logistics & Delivery',
     description: 'Daily route operations for parcels, courier fleets and city distribution.',
-    Icon: Truck,
   },
   {
     title: 'Construction Material Transport',
     description: 'Practical payload support for site supply runs and local material movement.',
-    Icon: HardHat,
   },
   {
     title: 'FMCG Distribution',
     description: 'Reliable movement for packaged goods, distributors and wholesale networks.',
-    Icon: PackageCheck,
   },
   {
     title: 'Retail Goods Transport',
     description: 'Flexible cargo utility for shops, market supply and business deliveries.',
-    Icon: ShoppingBag,
-  },
-  {
-    title: 'Agriculture & Farm Produce',
-    description: 'Useful for produce movement between farms, mandis, hotels and retailers.',
-    Icon: Wheat,
-  },
-  {
-    title: 'Local Business Supply',
-    description: 'A dependable workhorse for owner-operators and growing local businesses.',
-    Icon: Store,
   },
 ];
 
@@ -301,6 +289,18 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
 
   const heroQuickSpecs = useMemo(() => product.quickSpecs.slice(0, 3), [product]);
   const lowerQuickSpecs = useMemo(() => resolveLowerQuickSpecs(product), [product]);
+  const bestSuitedForCards = useMemo(() => {
+    const path = product.seo?.canonicalPath || `/${product.id}/`;
+    const fromExcel = getBestSuitedForCards(path);
+    const source =
+      fromExcel.length > 0
+        ? fromExcel.map((card) => ({ title: card.title, description: card.description }))
+        : overviewUseCasesFallback;
+    return source.slice(0, 4).map((card, index) => ({
+      ...card,
+      Icon: bestSuitedIconCycle[index % bestSuitedIconCycle.length],
+    }));
+  }, [product]);
 
   useEffect(() => {
     setActiveGalleryIndex(0);
@@ -588,7 +588,7 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
       </section>
 
       <section className="relative z-20 order-20 -mt-10 px-3 sm:px-6 md:-mt-12 md:px-16">
-        <div className="mx-auto grid max-w-7xl auto-rows-fr grid-cols-2 items-stretch gap-2 rounded-2xl border border-white/70 bg-white/55 p-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl sm:gap-3 sm:p-3 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mx-auto grid max-w-7xl auto-rows-fr grid-cols-2 items-stretch gap-2 rounded-2xl border border-white/70 bg-white/55 p-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl sm:gap-3 sm:p-3 md:grid-cols-4 lg:grid-cols-4">
           {lowerQuickSpecs.map((spec, index) => (
             <motion.div
               key={`lower-${spec.label}`}
@@ -635,10 +635,10 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
           </span>
           <span className="h-px flex-1 bg-slate-200" />
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {overviewUseCases.map(({ title, description, Icon }, index) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {bestSuitedForCards.map(({ title, description, Icon }, index) => (
             <motion.div
-              key={title}
+              key={`best-suited-${index}-${title}`}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

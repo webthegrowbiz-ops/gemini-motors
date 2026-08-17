@@ -30,6 +30,7 @@ import businessJourney from '../assets/images/business_journey.jpg';
 import commercialTruck from '../assets/images/commercial_truck.jpg';
 import dostXlExterior from '../assets/images/dost_xl_exterior.jpg';
 import dostXlHeroReplacement from '../assets/images/dost-xl-hero-replacement.png';
+import servicesFleetSupport from '../assets/images/avtr_4625h_la_chassis_product_view.jpg';
 import sustainableGrowth from '../assets/images/sustainable_growth.jpg';
 import tipper8x4HighwayExterior from '../assets/images/tipper_8x4_highway_exterior.jpg';
 import { WHATSAPP_URL } from '../data';
@@ -627,7 +628,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
             transition={revealTransition}
             className="relative overflow-hidden rounded-3xl bg-slate-100 shadow-xl lg:col-span-6"
           >
-            <img src={businessJourney} alt="Gemini Motors service centre" className="h-[420px] w-full object-cover" />
+            <img src={servicesFleetSupport} alt="Gemini Motors service centre" className="h-[420px] w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/42 to-transparent" />
           </motion.div>
           <motion.div
@@ -746,7 +747,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
             transition={revealTransition}
             className="relative min-h-[360px] overflow-hidden rounded-3xl bg-slate-950 shadow-2xl lg:col-span-6"
           >
-            <img src={businessJourney} alt="Gemini Motors team and fleet support" className="absolute inset-0 h-full w-full object-cover opacity-82" />
+            <img src={dostXlExterior} alt="Gemini Motors team and fleet support" className="absolute inset-0 h-full w-full object-cover opacity-82" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-transparent to-transparent" />
           </motion.div>
         </div>

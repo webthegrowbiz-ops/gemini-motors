@@ -2,7 +2,7 @@
  * Best Suited For card copy sourced from:
  * Gemini_Motors_Model_Page_Best_Suited_For_Content_FINAL.xlsx (Model Content sheet).
  * Do not invent or rewrite values - regenerate from the Excel if content changes.
- * Cards 5-6 are retained for future use; the product page currently renders cards 1-4 only.
+ * Product pages render Cards 1-6 from this source.
  */
 
 export type BestSuitedForCard = {
@@ -375,7 +375,7 @@ export const BEST_SUITED_FOR_CARDS_BY_PATH: Record<string, BestSuitedForCard[]> 
   ],
 };
 
-export const BEST_SUITED_FOR_DISPLAY_CARD_COUNT = 4;
+export const BEST_SUITED_FOR_DISPLAY_CARD_COUNT = 6;
 
 export function getBestSuitedForCards(canonicalPath: string): BestSuitedForCard[] {
   const path = canonicalPath.endsWith('/') ? canonicalPath : `${canonicalPath}/`;

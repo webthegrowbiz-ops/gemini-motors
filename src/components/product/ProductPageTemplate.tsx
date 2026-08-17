@@ -40,7 +40,7 @@ import {
 import { ProductPageData } from '../../types';
 import { WHATSAPP_URL } from '../../data';
 import { resolveLowerQuickSpecs } from '../../utils/resolveLowerQuickSpecs';
-import { getBestSuitedForCards } from '../../data/bestSuitedForCards';
+import { getBestSuitedForCards, BEST_SUITED_FOR_DISPLAY_CARD_COUNT } from '../../data/bestSuitedForCards';
 
 export const revealTransition = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -296,7 +296,7 @@ export default function ProductPageTemplate({ product, onContactClick }: Product
       fromExcel.length > 0
         ? fromExcel.map((card) => ({ title: card.title, description: card.description }))
         : overviewUseCasesFallback;
-    return source.slice(0, 4).map((card, index) => ({
+    return source.slice(0, BEST_SUITED_FOR_DISPLAY_CARD_COUNT).map((card, index) => ({
       ...card,
       Icon: bestSuitedIconCycle[index % bestSuitedIconCycle.length],
     }));

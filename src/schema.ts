@@ -431,15 +431,20 @@ export function buildProductSchema(
   const weightTotal = resolveVehicleWeightTotal(product, listing);
   if (weightTotal) productNode.weightTotal = weightTotal;
 
+  // Offer is required by Google Product markup. Include a real nested Offer on
+  // every product page. Add price/priceCurrency only when a numeric INR value
+  // already exists in product/listing data — never invent On Request prices,
+  // availability, reviews, or ratings.
+  const offer: JsonLd = {
+    '@type': 'Offer',
+    url,
+    seller: { '@id': organizationId() },
+  };
   if (price != null) {
-    productNode.offers = {
-      '@type': 'Offer',
-      url,
-      priceCurrency: 'INR',
-      price: String(price),
-      seller: { '@id': organizationId() },
-    };
+    offer.priceCurrency = 'INR';
+    offer.price = String(price);
   }
+  productNode.offers = offer;
 
   return productNode;
 }

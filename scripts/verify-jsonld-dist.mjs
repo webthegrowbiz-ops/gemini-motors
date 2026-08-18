@@ -197,20 +197,15 @@ for (const page of PAGES) {
       failed += 1;
       continue;
     }
-    if (product.offers) {
-      if (product.offers['@type'] !== 'Offer') {
-        console.error(`FAIL ${page.path}: offers not nested Offer`);
-        failed += 1;
-        continue;
-      }
-      if (product.offers.price == null) {
-        console.error(`FAIL ${page.path}: Offer without price`);
-        failed += 1;
-        continue;
-      }
-      pricedOffers.push({ path: page.path, price: product.offers.price });
-    } else {
+    if (!product.offers || product.offers['@type'] !== 'Offer') {
+      console.error(`FAIL ${page.path}: expected nested Offer`);
+      failed += 1;
+      continue;
+    }
+    if (product.offers.price == null) {
       onRequestWithoutPrice.push(page.path);
+    } else {
+      pricedOffers.push({ path: page.path, price: product.offers.price });
     }
     if (product.aggregateRating || product.review) {
       console.error(`FAIL ${page.path}: invented rating/review`);

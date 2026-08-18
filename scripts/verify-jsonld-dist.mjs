@@ -60,7 +60,7 @@ function expectedTypes(pagePath) {
     pagePath.startsWith('/commercial/medium-heavy/') ||
     pagePath.startsWith('/electric-mobility/')
   ) {
-    return ['Product', 'Vehicle', 'BreadcrumbList', 'AutoDealer'];
+    return ['Product', 'Vehicle', 'BreadcrumbList', 'AutoDealer', 'Organization'];
   }
   return ['AutoDealer'];
 }
@@ -197,15 +197,27 @@ for (const page of PAGES) {
       failed += 1;
       continue;
     }
-    if (!product.offers || product.offers['@type'] !== 'Offer') {
-      console.error(`FAIL ${page.path}: expected nested Offer`);
-      failed += 1;
-      continue;
-    }
-    if (product.offers.price == null) {
-      onRequestWithoutPrice.push(page.path);
-    } else {
+    if (product.offers) {
+      if (product.offers['@type'] !== 'Offer') {
+        console.error(`FAIL ${page.path}: offers not nested Offer`);
+        failed += 1;
+        continue;
+      }
+      if (product.offers.price == null || product.offers.priceSpecification) {
+        console.error(
+          `FAIL ${page.path}: On-Request/invalid Offer — omit Offer unless a real price exists (do not invent priceSpecification)`,
+        );
+        failed += 1;
+        continue;
+      }
+      if (product.offers.priceCurrency !== 'INR') {
+        console.error(`FAIL ${page.path}: Offer missing INR priceCurrency`);
+        failed += 1;
+        continue;
+      }
       pricedOffers.push({ path: page.path, price: product.offers.price });
+    } else {
+      onRequestWithoutPrice.push(page.path);
     }
     if (product.aggregateRating || product.review) {
       console.error(`FAIL ${page.path}: invented rating/review`);

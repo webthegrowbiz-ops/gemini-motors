@@ -401,8 +401,10 @@ export function buildProductSchema(
   const structured = product.seo?.structuredProductSchema;
   const price = resolveProductNumericPrice(product, listing);
 
+  // Google Product snippets require offers, review, or aggregateRating.
+  // On-Request pages have none of those without fabricating data, so emit Vehicle only.
   const productNode: JsonLd = {
-    '@type': ['Product', 'Vehicle'],
+    '@type': price != null ? ['Product', 'Vehicle'] : 'Vehicle',
     '@id': `${url}#product`,
     name: structured?.name || product.name,
     description: structured?.description || description,
@@ -431,10 +433,8 @@ export function buildProductSchema(
   const weightTotal = resolveVehicleWeightTotal(product, listing);
   if (weightTotal) productNode.weightTotal = weightTotal;
 
-  // Nested Offer is valid Schema.org only with price or priceSpecification.
-  // Add Offer solely when a real numeric INR starting price exists in project data.
-  // On-Request products omit Offer rather than inventing price, priceSpecification,
-  // availability, reviews, or ratings.
+  // Offer is valid only with a real numeric INR price from existing product data.
+  // On-Request pages omit Product and Offer rather than inventing price, reviews, or ratings.
   if (price != null) {
     productNode.offers = {
       '@type': 'Offer',

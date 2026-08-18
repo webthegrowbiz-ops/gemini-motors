@@ -60,8 +60,9 @@ function expectedTypes(pagePath) {
     pagePath.startsWith('/commercial/medium-heavy/') ||
     pagePath.startsWith('/electric-mobility/')
   ) {
-    // Priced pages also include Product; On-Request pages are Vehicle-only (checked below).
-    return ['Vehicle', 'BreadcrumbList', 'AutoDealer', 'Organization'];
+    // Priced pages also include Product+Vehicle (checked below).
+    // On-Request pages omit Product/Vehicle because Vehicle is a Product subclass.
+    return ['BreadcrumbList', 'AutoDealer', 'Organization'];
   }
   return ['AutoDealer'];
 }
@@ -171,71 +172,78 @@ for (const page of PAGES) {
   if (isProduct) {
     productPages += 1;
     const graph = doc['@graph'] || [];
-    const vehicles = graph.filter((n) => {
-      const t = n['@type'];
-      return t === 'Vehicle' || (Array.isArray(t) && t.includes('Vehicle'));
-    });
-    if (vehicles.length !== 1) {
-      console.error(`FAIL ${page.path}: expected 1 Vehicle, got ${vehicles.length}`);
-      failed += 1;
-      continue;
-    }
-    const vehicle = vehicles[0];
-    const vehicleTypes = Array.isArray(vehicle['@type']) ? vehicle['@type'] : [vehicle['@type']];
-    const isProductType = vehicleTypes.includes('Product');
-    for (const key of Object.keys(vehicle)) {
-      if (/^lcv|^heavy|BodyType$|FuelType$/i.test(key) && !['bodyType', 'fuelType'].includes(key)) {
-        console.error(`FAIL ${page.path}: non-standard property ${key}`);
-        failed += 1;
-      }
-    }
-    if (Object.prototype.hasOwnProperty.call(vehicle, 'lcvBodyType') || Object.prototype.hasOwnProperty.call(vehicle, 'heavyFuelType')) {
-      console.error(`FAIL ${page.path}: custom body/fuel properties`);
-      failed += 1;
-      continue;
-    }
-    if (vehicle.aggregateRating || vehicle.review) {
-      console.error(`FAIL ${page.path}: invented rating/review`);
+    const typed = (typeName) =>
+      graph.filter((n) => {
+        const t = n['@type'];
+        return t === typeName || (Array.isArray(t) && t.includes(typeName));
+      });
+    const products = typed('Product');
+    const vehicles = typed('Vehicle');
+    const offers = graph.filter((n) => n.offers || n['@type'] === 'Offer');
+
+    if (products.length > 1) {
+      console.error(`FAIL ${page.path}: expected at most 1 Product, got ${products.length}`);
       failed += 1;
       continue;
     }
 
-    if (isProductType) {
-      if (!vehicle.offers || vehicle.offers['@type'] !== 'Offer') {
+    if (products.length === 1) {
+      const product = products[0];
+      const productTypes = Array.isArray(product['@type']) ? product['@type'] : [product['@type']];
+      if (!productTypes.includes('Vehicle')) {
+        console.error(`FAIL ${page.path}: Product missing Vehicle type`);
+        failed += 1;
+        continue;
+      }
+      for (const key of Object.keys(product)) {
+        if (/^lcv|^heavy|BodyType$|FuelType$/i.test(key) && !['bodyType', 'fuelType'].includes(key)) {
+          console.error(`FAIL ${page.path}: non-standard property ${key}`);
+          failed += 1;
+        }
+      }
+      if (Object.prototype.hasOwnProperty.call(product, 'lcvBodyType') || Object.prototype.hasOwnProperty.call(product, 'heavyFuelType')) {
+        console.error(`FAIL ${page.path}: custom body/fuel properties`);
+        failed += 1;
+        continue;
+      }
+      if (product.aggregateRating || product.review) {
+        console.error(`FAIL ${page.path}: invented rating/review`);
+        failed += 1;
+        continue;
+      }
+      if (!product.offers || product.offers['@type'] !== 'Offer') {
         console.error(`FAIL ${page.path}: Product requires nested Offer with a real price`);
         failed += 1;
         continue;
       }
-      if (vehicle.offers.price == null || vehicle.offers.priceSpecification) {
+      if (product.offers.price == null || product.offers.priceSpecification) {
         console.error(
-          `FAIL ${page.path}: invalid Offer — omit Product/Offer unless a real price exists (do not invent priceSpecification)`,
+          `FAIL ${page.path}: invalid Offer — omit Product/Vehicle unless a real price exists`,
         );
         failed += 1;
         continue;
       }
-      if (vehicle.offers.priceCurrency !== 'INR') {
+      if (product.offers.priceCurrency !== 'INR') {
         console.error(`FAIL ${page.path}: Offer missing INR priceCurrency`);
         failed += 1;
         continue;
       }
-      if (!vehicle.offers.seller || vehicle.offers.seller['@id'] !== `${SITE_ORIGIN}/#organization`) {
+      if (!product.offers.seller || product.offers.seller['@id'] !== `${SITE_ORIGIN}/#organization`) {
         console.error(`FAIL ${page.path}: Offer seller must reference shared organization @id`);
         failed += 1;
         continue;
       }
-      pricedOffers.push({ path: page.path, price: vehicle.offers.price });
+      pricedOffers.push({ path: page.path, price: product.offers.price });
     } else {
-      const products = graph.filter((n) => {
-        const t = n['@type'];
-        return t === 'Product' || (Array.isArray(t) && t.includes('Product'));
-      });
-      if (products.length) {
-        console.error(`FAIL ${page.path}: On-Request page must not emit Product markup`);
+      if (vehicles.length) {
+        console.error(
+          `FAIL ${page.path}: On-Request page must not emit Vehicle (Vehicle is a Product subclass and triggers Google Product snippet rules)`,
+        );
         failed += 1;
         continue;
       }
-      if (vehicle.offers) {
-        console.error(`FAIL ${page.path}: On-Request Vehicle must not include Offer`);
+      if (offers.length) {
+        console.error(`FAIL ${page.path}: On-Request page must not emit Offer`);
         failed += 1;
         continue;
       }

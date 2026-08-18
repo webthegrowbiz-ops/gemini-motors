@@ -394,17 +394,22 @@ function absoluteImageUrl(imageUrl: string): string | undefined {
 export function buildProductSchema(
   product: ProductPageData,
   listing?: CommercialVehicleModel | null,
-): JsonLd {
+): JsonLd | null {
   const path = product.seo?.canonicalPath || `/${product.id}/`;
   const url = canonicalUrlForPath(path);
   const description = product.seo?.description || product.description;
   const structured = product.seo?.structuredProductSchema;
   const price = resolveProductNumericPrice(product, listing);
 
-  // Google Product snippets require offers, review, or aggregateRating.
-  // On-Request pages have none of those without fabricating data, so emit Vehicle only.
+  // Google Product snippets apply to Product and to Vehicle (a Product subclass).
+  // On-Request pages cannot satisfy offers/review/aggregateRating without fabricated
+  // data, so omit both Product and Vehicle rather than emit an invalid Product type.
+  if (price == null) {
+    return null;
+  }
+
   const productNode: JsonLd = {
-    '@type': price != null ? ['Product', 'Vehicle'] : 'Vehicle',
+    '@type': ['Product', 'Vehicle'],
     '@id': `${url}#product`,
     name: structured?.name || product.name,
     description: structured?.description || description,
@@ -433,17 +438,13 @@ export function buildProductSchema(
   const weightTotal = resolveVehicleWeightTotal(product, listing);
   if (weightTotal) productNode.weightTotal = weightTotal;
 
-  // Offer is valid only with a real numeric INR price from existing product data.
-  // On-Request pages omit Product and Offer rather than inventing price, reviews, or ratings.
-  if (price != null) {
-    productNode.offers = {
-      '@type': 'Offer',
-      url,
-      priceCurrency: 'INR',
-      price: String(price),
-      seller: { '@id': organizationId() },
-    };
-  }
+  productNode.offers = {
+    '@type': 'Offer',
+    url,
+    priceCurrency: 'INR',
+    price: String(price),
+    seller: { '@id': organizationId() },
+  };
 
   return productNode;
 }
@@ -643,11 +644,13 @@ export function buildProductPageGraph(
   listing?: CommercialVehicleModel | null,
 ): JsonLd[] {
   const path = product.seo?.canonicalPath || `/${product.id}/`;
-  return [
-    buildAutoDealerOrganization(),
-    buildProductSchema(product, listing),
-    buildBreadcrumbList(productBreadcrumbs(product), path),
-  ];
+  const graph: JsonLd[] = [buildAutoDealerOrganization()];
+  const productNode = buildProductSchema(product, listing);
+  if (productNode) {
+    graph.push(productNode);
+  }
+  graph.push(buildBreadcrumbList(productBreadcrumbs(product), path));
+  return graph;
 }
 
 /**

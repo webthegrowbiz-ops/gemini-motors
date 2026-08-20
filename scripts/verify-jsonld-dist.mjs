@@ -228,8 +228,20 @@ for (const page of PAGES) {
         failed += 1;
         continue;
       }
-      if (!product.offers.seller || product.offers.seller['@id'] !== `${SITE_ORIGIN}/#organization`) {
-        console.error(`FAIL ${page.path}: Offer seller must reference shared organization @id`);
+      if (!product.offers.seller || typeof product.offers.seller !== 'object') {
+        console.error(`FAIL ${page.path}: Offer missing seller`);
+        failed += 1;
+        continue;
+      }
+      const seller = product.offers.seller;
+      const sellerPointsToOrg = seller['@id'] === `${SITE_ORIGIN}/#organization`;
+      const sellerIsOrg =
+        seller['@type'] === 'Organization' ||
+        (Array.isArray(seller['@type']) && seller['@type'].includes('Organization'));
+      if (!sellerPointsToOrg && !(sellerIsOrg && seller.name === 'Gemini Motors')) {
+        console.error(
+          `FAIL ${page.path}: Offer seller must reference shared organization or be Organization "Gemini Motors"`,
+        );
         failed += 1;
         continue;
       }

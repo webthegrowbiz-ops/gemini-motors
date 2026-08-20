@@ -443,7 +443,16 @@ export function buildProductSchema(
     url,
     priceCurrency: 'INR',
     price: String(price),
-    seller: { '@id': organizationId() },
+    // Do not @id-link the shared AutoDealer here. Schema Markup Validator nests
+    // any @id-referenced entity under Offer.seller, which removes
+    // AutoDealer/Organization from top-level Detected items on priced pages.
+    // The shared entity stays a top-level @graph node (@id #organization).
+    seller: {
+      '@type': 'Organization',
+      name: DEALER.name,
+      url: DEALER.url,
+      telephone: DEALER.telephone,
+    },
   };
 
   return productNode;

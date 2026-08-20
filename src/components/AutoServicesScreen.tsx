@@ -26,31 +26,58 @@ interface AutoServicesScreenProps {
   onContactClick: (prefilledSubject?: string) => void;
 }
 
+/** Same digit-length rule as WebsiteChatbot: 10–15 digits after stripping non-digits. */
+function isValidPhone(phone: string): boolean {
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 15;
+}
+
 export default function AutoServicesScreen({ onContactClick }: AutoServicesScreenProps) {
   const showPetrolPumpService = SERVICES_PAGE_CONFIG.showPetrolPumpService;
   // Bulk enquiry state
   const [companyName, setCompanyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [serviceType, setServiceType] = useState('Vehicle Service Support');
   const [estVolume, setEstVolume] = useState('');
   const [requirements, setRequirements] = useState('');
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [submittedPhone, setSubmittedPhone] = useState('');
 
   const handleQuotationRequest = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!companyName.trim() || !contactPerson.trim() || !estVolume.trim()) {
-      setErrorMsg('Please complete all required fields.');
+    const trimmedPhone = phoneNumber.trim();
+    if (!companyName.trim() || !contactPerson.trim() || !trimmedPhone || !estVolume.trim()) {
+      setErrorMsg('Please complete all required fields, including Phone Number.');
       return;
     }
+    if (!isValidPhone(trimmedPhone)) {
+      setErrorMsg('Please enter a valid phone number (10-digit Indian mobile or equivalent).');
+      return;
+    }
+
+    // Payload used by this form's submission flow (success confirmation).
+    const enquiryPayload = {
+      companyName: companyName.trim(),
+      contactPerson: contactPerson.trim(),
+      phoneNumber: trimmedPhone,
+      serviceType,
+      estVolume: estVolume.trim(),
+      requirements: requirements.trim(),
+    };
+
     setErrorMsg('');
+    setSubmittedPhone(enquiryPayload.phoneNumber);
     setSuccess(true);
     setTimeout(() => {
       setSuccess(false);
       setCompanyName('');
       setContactPerson('');
+      setPhoneNumber('');
       setEstVolume('');
       setRequirements('');
+      setSubmittedPhone('');
     }, 5000);
   };
 
@@ -437,7 +464,14 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                   Quotation Request Sent!
                 </h3>
                 <p className="text-sm text-gray-600 mt-2 max-w-sm leading-relaxed">
-                  Thank you, <strong className="text-blue-600">{contactPerson}</strong> from <strong className="text-gray-950">{companyName}</strong>. We have received your query for <strong className="text-gray-950">{serviceType}</strong> with details: <strong className="text-blue-600">{estVolume}</strong>.
+                  Thank you, <strong className="text-blue-600">{contactPerson}</strong> from <strong className="text-gray-950">{companyName}</strong>
+                  {submittedPhone ? (
+                    <>
+                      {' '}
+                      (<strong className="text-gray-950">{submittedPhone}</strong>)
+                    </>
+                  ) : null}
+                  . We have received your query for <strong className="text-gray-950">{serviceType}</strong> with details: <strong className="text-blue-600">{estVolume}</strong>.
                 </p>
                 <p className="text-xs text-gray-400 mt-4 font-mono">
                   Our central service desk will connect with the next steps shortly.
@@ -483,6 +517,20 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
 
               <div className="space-y-2">
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest">
+                  PHONE NUMBER
+                </label>
+                <input 
+                  type="tel" 
+                  required
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="e.g. 9876543210" 
+                  className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest">
                   SERVICE REQUIRED
                 </label>
                 <select 
@@ -497,7 +545,7 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                 </select>
               </div>
 
-              <div className="space-y-2">
+              <div className="md:col-span-2 space-y-2">
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest">
                   VEHICLE / SERVICE DETAILS
                 </label>
@@ -529,7 +577,7 @@ export default function AutoServicesScreen({ onContactClick }: AutoServicesScree
                   type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all uppercase tracking-widest text-xs shadow-md active:scale-[0.99] cursor-pointer"
                 >
-                  Request Quotation
+                  Request Service Date
                 </button>
               </div>
             </form>

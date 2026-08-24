@@ -6,287 +6,287 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/about</loc>
+        <loc>https://geminimotorsgoa.in/about/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial</loc>
+        <loc>https://geminimotorsgoa.in/commercial/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-cng</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-cng/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i2</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i2/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus-with-lnt</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus-with-lnt/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus-xl</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i3-plus-xl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i4</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i4/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5-plus</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5-plus/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5-xl</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i5-xl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i6</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/bada-dost-i6/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-cng</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-cng/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl-cng</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl-cng/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl-twin-fuel</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-plus-xl-twin-fuel/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-twin-fuel</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-twin-fuel/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/dost-xl</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/dost-xl/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/gemini-l-series-25t</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/gemini-l-series-25t/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/mitr-ambulance</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/mitr-ambulance/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/mitr-school-bus</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/mitr-school-bus/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/mitr-staff-bus</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/mitr-staff-bus/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/partner-4-tyre</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/partner-4-tyre/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/partner-6-tyre</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/partner-6-tyre/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/partner-municipal</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/partner-municipal/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/light/saathi</loc>
+        <loc>https://geminimotorsgoa.in/commercial/light/saathi/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x2-gvw-48t</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x2-gvw-48t/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x2-tipper</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x2-tipper/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x4-tipper</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/10x4-tipper/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-gvw-19t</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-gvw-19t/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-with-2-axle-trailer</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-with-2-axle-trailer/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-with-3-axle-trailer</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/4x2-with-3-axle-trailer/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/6x2-gvw-26t-31t</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/6x2-gvw-26t-31t/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/6x4-tractor</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/6x4-tractor/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/8x2-gvw-35t</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/8x2-gvw-35t/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/8x4-tipper</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/8x4-tipper/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-10x2</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-10x2/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4525h-dtla</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4525h-dtla/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4625h-la</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4625h-la/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4925h-dtla</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/avtr-4925h-dtla/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boom-pump</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boom-pump/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boss</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boss/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boss-1115-he</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/boss-1115-he/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/ecomet-star</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/ecomet-star/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/icv-tippers</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/icv-tippers/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/partner-super</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/partner-super/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/transit-mixer</loc>
+        <loc>https://geminimotorsgoa.in/commercial/medium-heavy/transit-mixer/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/contact</loc>
+        <loc>https://geminimotorsgoa.in/contact/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/electric-mobility</loc>
+        <loc>https://geminimotorsgoa.in/electric-mobility/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev3</loc>
+        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev3/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev4</loc>
+        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev4/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev4-garbage-tipper</loc>
+        <loc>https://geminimotorsgoa.in/electric-mobility/switch-iev4-garbage-tipper/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/green-technologies</loc>
+        <loc>https://geminimotorsgoa.in/green-technologies/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/lcvlandingpage</loc>
+        <loc>https://geminimotorsgoa.in/lcvlandingpage/</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://geminimotorsgoa.in/services</loc>
+        <loc>https://geminimotorsgoa.in/services/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

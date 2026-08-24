@@ -60,9 +60,9 @@ function expectedTypes(pagePath) {
     pagePath.startsWith('/commercial/medium-heavy/') ||
     pagePath.startsWith('/electric-mobility/')
   ) {
-    // Priced pages also include Product+Vehicle (checked below).
-    // On-Request pages omit Product/Vehicle because Vehicle is a Product subclass.
-    return ['BreadcrumbList', 'AutoDealer', 'Organization'];
+    // Vehicle pages omit Product/Vehicle/Offer (Product subclass triggers GSC
+    // Product snippet optional-field checks we cannot satisfy truthfully).
+    return ['WebPage', 'BreadcrumbList', 'AutoDealer', 'Organization'];
   }
   return ['AutoDealer'];
 }
@@ -70,8 +70,6 @@ function expectedTypes(pagePath) {
 let failed = 0;
 let productPages = 0;
 let listingPages = 0;
-const onRequestWithoutPrice = [];
-const pricedOffers = [];
 
 for (const page of PAGES) {
   const file = fileFor(page.path);
@@ -179,112 +177,23 @@ for (const page of PAGES) {
       });
     const products = typed('Product');
     const vehicles = typed('Vehicle');
+    const cars = typed('Car');
     const offers = graph.filter((n) => n.offers || n['@type'] === 'Offer');
 
-    if (products.length > 1) {
-      console.error(`FAIL ${page.path}: expected at most 1 Product, got ${products.length}`);
+    // Product and Product subclasses (Vehicle/Car) trigger Google Product snippet
+    // evaluation. Without genuine review/aggregateRating/availability data, these
+    // types must not be emitted on vehicle pages.
+    if (products.length || vehicles.length || cars.length) {
+      console.error(
+        `FAIL ${page.path}: must not emit Product/Vehicle/Car (triggers GSC Product snippet checks without genuine review/rating/availability data)`,
+      );
       failed += 1;
       continue;
     }
-
-    if (products.length === 1) {
-      const product = products[0];
-      const productTypes = Array.isArray(product['@type']) ? product['@type'] : [product['@type']];
-      if (!productTypes.includes('Vehicle')) {
-        console.error(`FAIL ${page.path}: Product missing Vehicle type`);
-        failed += 1;
-        continue;
-      }
-      for (const key of Object.keys(product)) {
-        if (/^lcv|^heavy|BodyType$|FuelType$/i.test(key) && !['bodyType', 'fuelType'].includes(key)) {
-          console.error(`FAIL ${page.path}: non-standard property ${key}`);
-          failed += 1;
-        }
-      }
-      if (Object.prototype.hasOwnProperty.call(product, 'lcvBodyType') || Object.prototype.hasOwnProperty.call(product, 'heavyFuelType')) {
-        console.error(`FAIL ${page.path}: custom body/fuel properties`);
-        failed += 1;
-        continue;
-      }
-      // Forbidden without a genuine per-product data source. Do not emit placeholders,
-      // InStock guesses, homepage testimonials, or decorative star ratings.
-      const forbiddenProductOfferKeys = ['review', 'aggregateRating', 'availability'];
-      const forbiddenOnProduct = forbiddenProductOfferKeys.find((key) =>
-        Object.prototype.hasOwnProperty.call(product, key),
-      );
-      if (forbiddenOnProduct) {
-        console.error(
-          `FAIL ${page.path}: Product must not emit ${forbiddenOnProduct} (no genuine source data)`,
-        );
-        failed += 1;
-        continue;
-      }
-      if (!product.offers || product.offers['@type'] !== 'Offer') {
-        console.error(`FAIL ${page.path}: Product requires nested Offer with a real price`);
-        failed += 1;
-        continue;
-      }
-      if (product.offers.price == null || product.offers.priceSpecification) {
-        console.error(
-          `FAIL ${page.path}: invalid Offer — omit Product/Vehicle unless a real price exists`,
-        );
-        failed += 1;
-        continue;
-      }
-      if (product.offers.priceCurrency !== 'INR') {
-        console.error(`FAIL ${page.path}: Offer missing INR priceCurrency`);
-        failed += 1;
-        continue;
-      }
-      const forbiddenOnOffer = forbiddenProductOfferKeys.find((key) =>
-        Object.prototype.hasOwnProperty.call(product.offers, key),
-      );
-      if (forbiddenOnOffer) {
-        console.error(
-          `FAIL ${page.path}: Offer must not emit ${forbiddenOnOffer} (no genuine source data)`,
-        );
-        failed += 1;
-        continue;
-      }
-      if (!product.offers.seller || typeof product.offers.seller !== 'object') {
-        console.error(`FAIL ${page.path}: Offer missing seller`);
-        failed += 1;
-        continue;
-      }
-      const seller = product.offers.seller;
-      const sellerIsOrg =
-        seller['@type'] === 'Organization' ||
-        (Array.isArray(seller['@type']) && seller['@type'].includes('Organization'));
-      // Keep seller as an Organization object (not a bare @id) so AutoDealer stays
-      // a top-level Detected item and merchant listings retain a named seller.
-      if (
-        !sellerIsOrg ||
-        seller.name !== 'Gemini Motors' ||
-        seller.url !== SITE_ORIGIN ||
-        !seller.telephone ||
-        seller['@id']
-      ) {
-        console.error(
-          `FAIL ${page.path}: Offer seller must be Organization {name,url,telephone} without @id`,
-        );
-        failed += 1;
-        continue;
-      }
-      pricedOffers.push({ path: page.path, price: product.offers.price });
-    } else {
-      if (vehicles.length) {
-        console.error(
-          `FAIL ${page.path}: On-Request page must not emit Vehicle (Vehicle is a Product subclass and triggers Google Product snippet rules)`,
-        );
-        failed += 1;
-        continue;
-      }
-      if (offers.length) {
-        console.error(`FAIL ${page.path}: On-Request page must not emit Offer`);
-        failed += 1;
-        continue;
-      }
-      onRequestWithoutPrice.push(page.path);
+    if (offers.length) {
+      console.error(`FAIL ${page.path}: must not emit Offer without a Product parent`);
+      failed += 1;
+      continue;
     }
   }
 
@@ -297,5 +206,5 @@ if (failed) {
 }
 
 console.log(
-  `JSON-LD verification passed: ${PAGES.length} pages (products=${productPages}, listings=${listingPages}, offers=${pricedOffers.length}, no-offer=${onRequestWithoutPrice.length})`,
+  `JSON-LD verification passed: ${PAGES.length} pages (vehicle-pages=${productPages}, listings=${listingPages}, no Product/Vehicle/Offer on vehicle pages)`,
 );

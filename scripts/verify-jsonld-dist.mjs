@@ -206,8 +206,16 @@ for (const page of PAGES) {
         failed += 1;
         continue;
       }
-      if (product.aggregateRating || product.review) {
-        console.error(`FAIL ${page.path}: invented rating/review`);
+      // Forbidden without a genuine per-product data source. Do not emit placeholders,
+      // InStock guesses, homepage testimonials, or decorative star ratings.
+      const forbiddenProductOfferKeys = ['review', 'aggregateRating', 'availability'];
+      const forbiddenOnProduct = forbiddenProductOfferKeys.find((key) =>
+        Object.prototype.hasOwnProperty.call(product, key),
+      );
+      if (forbiddenOnProduct) {
+        console.error(
+          `FAIL ${page.path}: Product must not emit ${forbiddenOnProduct} (no genuine source data)`,
+        );
         failed += 1;
         continue;
       }
@@ -228,37 +236,15 @@ for (const page of PAGES) {
         failed += 1;
         continue;
       }
-      // availability is optional. Only allow a real Schema.org ItemAvailability URI/name
-      // if present — never require a fabricated InStock/etc. value.
-      if (product.offers.availability != null) {
-        const availability = String(product.offers.availability);
-        const allowed = new Set([
-          'https://schema.org/BackOrder',
-          'https://schema.org/Discontinued',
-          'https://schema.org/InStock',
-          'https://schema.org/InStoreOnly',
-          'https://schema.org/LimitedAvailability',
-          'https://schema.org/OnlineOnly',
-          'https://schema.org/OutOfStock',
-          'https://schema.org/PreOrder',
-          'https://schema.org/PreSale',
-          'https://schema.org/SoldOut',
-          'BackOrder',
-          'Discontinued',
-          'InStock',
-          'InStoreOnly',
-          'LimitedAvailability',
-          'OnlineOnly',
-          'OutOfStock',
-          'PreOrder',
-          'PreSale',
-          'SoldOut',
-        ]);
-        if (!allowed.has(availability)) {
-          console.error(`FAIL ${page.path}: Offer.availability is not a valid Schema.org ItemAvailability`);
-          failed += 1;
-          continue;
-        }
+      const forbiddenOnOffer = forbiddenProductOfferKeys.find((key) =>
+        Object.prototype.hasOwnProperty.call(product.offers, key),
+      );
+      if (forbiddenOnOffer) {
+        console.error(
+          `FAIL ${page.path}: Offer must not emit ${forbiddenOnOffer} (no genuine source data)`,
+        );
+        failed += 1;
+        continue;
       }
       if (!product.offers.seller || typeof product.offers.seller !== 'object') {
         console.error(`FAIL ${page.path}: Offer missing seller`);

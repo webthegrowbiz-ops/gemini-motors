@@ -228,19 +228,58 @@ for (const page of PAGES) {
         failed += 1;
         continue;
       }
+      // availability is optional. Only allow a real Schema.org ItemAvailability URI/name
+      // if present — never require a fabricated InStock/etc. value.
+      if (product.offers.availability != null) {
+        const availability = String(product.offers.availability);
+        const allowed = new Set([
+          'https://schema.org/BackOrder',
+          'https://schema.org/Discontinued',
+          'https://schema.org/InStock',
+          'https://schema.org/InStoreOnly',
+          'https://schema.org/LimitedAvailability',
+          'https://schema.org/OnlineOnly',
+          'https://schema.org/OutOfStock',
+          'https://schema.org/PreOrder',
+          'https://schema.org/PreSale',
+          'https://schema.org/SoldOut',
+          'BackOrder',
+          'Discontinued',
+          'InStock',
+          'InStoreOnly',
+          'LimitedAvailability',
+          'OnlineOnly',
+          'OutOfStock',
+          'PreOrder',
+          'PreSale',
+          'SoldOut',
+        ]);
+        if (!allowed.has(availability)) {
+          console.error(`FAIL ${page.path}: Offer.availability is not a valid Schema.org ItemAvailability`);
+          failed += 1;
+          continue;
+        }
+      }
       if (!product.offers.seller || typeof product.offers.seller !== 'object') {
         console.error(`FAIL ${page.path}: Offer missing seller`);
         failed += 1;
         continue;
       }
       const seller = product.offers.seller;
-      const sellerPointsToOrg = seller['@id'] === `${SITE_ORIGIN}/#organization`;
       const sellerIsOrg =
         seller['@type'] === 'Organization' ||
         (Array.isArray(seller['@type']) && seller['@type'].includes('Organization'));
-      if (!sellerPointsToOrg && !(sellerIsOrg && seller.name === 'Gemini Motors')) {
+      // Keep seller as an Organization object (not a bare @id) so AutoDealer stays
+      // a top-level Detected item and merchant listings retain a named seller.
+      if (
+        !sellerIsOrg ||
+        seller.name !== 'Gemini Motors' ||
+        seller.url !== SITE_ORIGIN ||
+        !seller.telephone ||
+        seller['@id']
+      ) {
         console.error(
-          `FAIL ${page.path}: Offer seller must reference shared organization or be Organization "Gemini Motors"`,
+          `FAIL ${page.path}: Offer seller must be Organization {name,url,telephone} without @id`,
         );
         failed += 1;
         continue;

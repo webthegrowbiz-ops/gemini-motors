@@ -447,6 +447,10 @@ export function buildProductSchema(
     // any @id-referenced entity under Offer.seller, which removes
     // AutoDealer/Organization from top-level Detected items on priced pages.
     // The shared entity stays a top-level @graph node (@id #organization).
+    //
+    // Intentionally omit Offer.availability, Product.review, and
+    // Product.aggregateRating: the site has no per-vehicle stock/inventory status
+    // and no product-specific review or rating counts. Do not invent them for GSC.
     seller: {
       '@type': 'Organization',
       name: DEALER.name,

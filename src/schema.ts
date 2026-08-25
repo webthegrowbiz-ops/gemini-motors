@@ -677,9 +677,11 @@ export function buildProductPageGraph(
 
   const graph: JsonLd[] = [buildAutoDealerOrganization(), webPage];
 
+  // Keep Product as a separate top-level @graph node. Do not set
+  // WebPage.mainEntity:{@id} — Schema Markup Validator nests @id-referenced
+  // entities under the referrer and hides Product from top-level Detected items.
   const productNode = buildProductSchema(product, listing);
   if (productNode) {
-    webPage.mainEntity = { '@id': productNode['@id'] };
     graph.push(productNode);
   }
 

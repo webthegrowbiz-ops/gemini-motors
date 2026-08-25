@@ -392,21 +392,77 @@ function absoluteImageUrl(imageUrl: string): string | undefined {
 }
 
 /**
- * Intentionally unused for page graphs.
+ * Product + Vehicle schema for priced model pages.
+ * On-Request pages (no parseable INR price) omit Product/Vehicle/Offer —
+ * Vehicle is a Product subclass and would trigger Product snippet rules
+ * without a real Offer price.
  *
- * Google Product snippets evaluate Schema.org Product and its subclasses
- * (including Vehicle/Car). Emitting Product or Vehicle without genuine
- * review / aggregateRating / availability data produces GSC optional-field
- * warnings, and inventing those fields would be non-compliant.
- *
- * Vehicle pages therefore use WebPage + AutoDealer/Organization +
- * BreadcrumbList only. Price remains on the visible page and in meta SEO.
+ * Never invent review, aggregateRating, or availability.
  */
 export function buildProductSchema(
-  _product: ProductPageData,
-  _listing?: CommercialVehicleModel | null,
+  product: ProductPageData,
+  listing?: CommercialVehicleModel | null,
 ): JsonLd | null {
-  return null;
+  const path = product.seo?.canonicalPath || `/${product.id}/`;
+  const url = canonicalUrlForPath(path);
+  const description = product.seo?.description || product.description;
+  const structured = product.seo?.structuredProductSchema;
+  const price = resolveProductNumericPrice(product, listing);
+
+  if (price == null) {
+    return null;
+  }
+
+  const productNode: JsonLd = {
+    '@type': ['Product', 'Vehicle'],
+    '@id': `${url}#product`,
+    name: structured?.name || product.name,
+    description: structured?.description || description,
+    category: structured?.category || product.category,
+    brand: {
+      '@type': 'Brand',
+      name: structured?.brand || brandForProduct(product),
+    },
+    url,
+  };
+
+  const image = absoluteImageUrl(product.heroImage);
+  if (image) {
+    productNode.image = image;
+  }
+
+  const bodyType = resolveVehicleBodyType(product, listing);
+  if (bodyType) productNode.bodyType = bodyType;
+
+  const fuelType = resolveVehicleFuelType(product, listing);
+  if (fuelType) productNode.fuelType = fuelType;
+
+  const numberOfAxles = resolveVehicleNumberOfAxles(product, listing);
+  if (numberOfAxles != null) productNode.numberOfAxles = numberOfAxles;
+
+  const weightTotal = resolveVehicleWeightTotal(product, listing);
+  if (weightTotal) productNode.weightTotal = weightTotal;
+
+  productNode.offers = {
+    '@type': 'Offer',
+    url,
+    priceCurrency: 'INR',
+    price: String(price),
+    // Seller is an inline Organization object (not @id) so Schema Markup
+    // Validator does not nest the shared AutoDealer under Offer.seller.
+    // The shared AutoDealer stays a top-level @graph node (#organization).
+    //
+    // Intentionally omit availability / review / aggregateRating — no
+    // genuine inventory or product-review data exists in the project.
+    seller: {
+      '@type': 'Organization',
+      name: DEALER.name,
+      url: DEALER.url,
+      telephone: DEALER.telephone,
+    },
+  };
+
+  return productNode;
 }
 
 export function productBreadcrumbs(product: ProductPageData): BreadcrumbItem[] {
@@ -601,20 +657,34 @@ export function buildGenericPageGraph(seo: { title: string; description: string;
 
 export function buildProductPageGraph(
   product: ProductPageData,
-  _listing?: CommercialVehicleModel | null,
+  listing?: CommercialVehicleModel | null,
 ): JsonLd[] {
   const path = product.seo?.canonicalPath || `/${product.id}/`;
   const description = product.seo?.description || product.description;
   const title = product.seo?.title || `${product.name} | Gemini Motors Goa`;
+  const pageUrl = canonicalUrlForPath(path);
 
-  // Do not emit Product/Vehicle/Offer: Vehicle is a Product subclass and
-  // triggers Google Product snippet checks (review, aggregateRating, availability)
-  // that we cannot satisfy without fabricating business data.
-  return [
-    buildAutoDealerOrganization(),
-    buildWebPage({ title, description, path }),
-    buildBreadcrumbList(productBreadcrumbs(product), path),
-  ];
+  // WebPage without about:{@id} — Schema Markup Validator nests @id-referenced
+  // entities under the referrer, which hides AutoDealer from top-level Detected items.
+  const webPage: JsonLd = {
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    name: title,
+    description,
+    url: pageUrl,
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+  };
+
+  const graph: JsonLd[] = [buildAutoDealerOrganization(), webPage];
+
+  const productNode = buildProductSchema(product, listing);
+  if (productNode) {
+    webPage.mainEntity = { '@id': productNode['@id'] };
+    graph.push(productNode);
+  }
+
+  graph.push(buildBreadcrumbList(productBreadcrumbs(product), path));
+  return graph;
 }
 
 /**

@@ -79,6 +79,12 @@ export const PAGES = [
       'Discover Ashok Leyland green technologies in Goa at Gemini Motors, supporting cleaner mobility, efficient transport and sustainable solutions.',
   },
   {
+    path: '/spare-parts/',
+    title: 'Genuine Spare Parts in Goa | Gemini Motors',
+    description:
+      'Enquire about genuine spare parts for Ashok Leyland and SWITCH Mobility vehicles in Goa through Gemini Motors.',
+  },
+  {
     path: '/privacy-policy/',
     title: 'Privacy Policy | Gemini Motors Goa',
     description:

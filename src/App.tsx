@@ -16,6 +16,7 @@ import PrivacyPolicyScreen from './components/PrivacyPolicyScreen';
 import TermsConditionsScreen from './components/TermsConditionsScreen';
 import NotFoundScreen from './components/NotFoundScreen';
 import ProductPageScreen from './components/ProductPageScreen';
+import SparePartsScreen from './components/SparePartsScreen';
 import CommercialVehiclesScreen from './components/commercial/CommercialVehiclesScreen';
 import CommercialCategoryScreen from './components/commercial/CommercialCategoryScreen';
 import WebsiteChatbot from './components/chat/WebsiteChatbot';
@@ -29,6 +30,7 @@ const routeByDivision: Record<AppDivision, string> = {
   'commercial-light': '/commercial/light/',
   'commercial-medium-heavy': '/commercial/medium-heavy/',
   'product-page': '/commercial/light/gemini-l-series-25t/',
+  'spare-parts': '/spare-parts/',
   ev: '/electric-mobility/',
   'auto-services': '/services/',
   'green-tech': '/green-technologies/',
@@ -56,6 +58,7 @@ function getDivisionFromPath(pathname: string): AppDivision {
     return 'product-page';
   }
 
+  if (normalizedPath === '/spare-parts/') return 'spare-parts';
   if (normalizedPath === '/electric-mobility/') return 'ev';
   if (normalizedPath.startsWith('/electric-mobility/')) return 'product-page';
   if (normalizedPath === '/services/') return 'auto-services';

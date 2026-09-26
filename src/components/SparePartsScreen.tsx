@@ -140,7 +140,7 @@ const PRODUCTS: StoreProduct[] = [
     description: 'SWITCH documents a liquid-cooled battery pack in its official IeV material.',
     compatibility: 'Battery / service component selection requires VIN confirmation.',
     sourceLabel: 'SWITCH official brochure',
-    sourceUrl: 'https://www.switchmobilityev.com/enquire-now/',
+    sourceUrl: 'https://www.switchmobilityev.com/sites/default/files/IeV_Series_Brochure.pdf',
     visual: 'battery',
   },
   {
@@ -195,7 +195,7 @@ const PRODUCTS: StoreProduct[] = [
     description: 'Compact Mono PERC solar module listed in Waaree’s official online catalogue.',
     compatibility: 'Confirm system voltage, controller and installation requirements.',
     sourceLabel: 'Waaree official store',
-    sourceUrl: 'https://shop.waaree.com/solar-module/',
+    sourceUrl: 'https://shop.waaree.com/waaree-45wp-12v-mono-perc-solar-modules/',
     visual: 'solar-small',
     tag: 'Solar module',
   },
@@ -207,7 +207,7 @@ const PRODUCTS: StoreProduct[] = [
     description: 'Small-format Mono PERC PV module from Waaree’s official solar catalogue.',
     compatibility: 'Confirm system voltage, controller and installation requirements.',
     sourceLabel: 'Waaree official store',
-    sourceUrl: 'https://shop.waaree.com/solar-module/',
+    sourceUrl: 'https://shop.waaree.com/waaree-50wp-12v-mono-perc-solar-module/',
     visual: 'solar-compact',
   },
   {
@@ -218,7 +218,7 @@ const PRODUCTS: StoreProduct[] = [
     description: 'High-efficiency PV module listed in Waaree’s official store.',
     compatibility: 'Confirm system voltage, controller and installation requirements.',
     sourceLabel: 'Waaree official store',
-    sourceUrl: 'https://shop.waaree.com/solar-module/',
+    sourceUrl: 'https://shop.waaree.com/waaree-100-watt-12v-solar-panel-high-efficiency-pv-module/',
     visual: 'solar-standard',
   },
   {

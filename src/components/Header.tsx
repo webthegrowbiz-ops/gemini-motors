@@ -30,7 +30,7 @@ interface HeaderProps {
 
 type DesktopMenu = 'commercial' | 'services' | null;
 type MobileAccordion = 'commercial' | 'services' | null;
-type TopLevelNav = 'home' | 'commercial' | 'services' | 'finance' | 'about' | 'contact' | '';
+type TopLevelNav = 'home' | 'commercial' | 'services' | 'spare-parts' | 'finance' | 'about' | 'contact' | '';
 
 const getActiveNav = (pathname: string): TopLevelNav => {
   const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
@@ -50,6 +50,7 @@ const getActiveNav = (pathname: string): TopLevelNav => {
   ) {
     return 'services';
   }
+  if (normalizedPath.startsWith('/spare-parts')) return 'spare-parts';
   if (normalizedPath.startsWith('/finance')) return 'finance';
   if (normalizedPath.startsWith('/about')) return 'about';
   if (normalizedPath.startsWith('/contact')) return 'contact';
@@ -65,6 +66,7 @@ const pathByDivision: Partial<Record<AppDivision, string>> = {
   ev: '/electric-mobility/',
   'auto-services': '/services/',
   'green-tech': '/green-technologies/',
+  'spare-parts': '/spare-parts/',
   'about-us': '/about/',
   contact: '/contact/',
   'privacy-policy': '/privacy-policy/',
@@ -242,6 +244,13 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
             controls="services-nav-menu"
             onClick={() => handleNavClick('auto-services')}
             onMouseEnter={() => setDesktopMenu('services')}
+            prefersReducedMotion={prefersReducedMotion}
+          />
+          <DesktopNavButton
+            label="Spare Parts"
+            active={activeTopLevelNav === 'spare-parts'}
+            onClick={() => handleNavClick('spare-parts')}
+            onMouseEnter={() => setDesktopMenu(null)}
             prefersReducedMotion={prefersReducedMotion}
           />
           <DesktopNavButton
@@ -427,6 +436,7 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   <MobileSubButton label="Services" onClick={() => handleNavClick('auto-services')} />
                   <MobileSubButton label="Green Technology" onClick={() => handleNavClick('green-tech')} />
                 </MobileAccordionSection>
+                <MobileNavButton label="Spare Parts" active={activeTopLevelNav === 'spare-parts'} onClick={() => handleNavClick('spare-parts')} />
                 <MobileNavButton label="Finance" active={activeTopLevelNav === 'finance'} onClick={handleFinanceClick} />
                 <MobileNavButton label="About Us" active={isAboutActive} onClick={() => handleNavClick('about-us')} />
                 <MobileNavButton label="Contact Us" active={activeTopLevelNav === 'contact'} onClick={handleContactClick} />

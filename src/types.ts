@@ -9,6 +9,7 @@ export type AppDivision =
   | 'commercial-light'
   | 'commercial-medium-heavy'
   | 'product-page'
+  | 'spare-parts'
   | 'ev'
   | 'auto-services'
   | 'green-tech'

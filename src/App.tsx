@@ -184,6 +184,10 @@ export default function App() {
           <AutoServicesScreen onContactClick={handleContactOpen} />
         )}
 
+        {currentDivision === 'spare-parts' && (
+          <SparePartsScreen onContactClick={handleContactOpen} />
+        )}
+
         {currentDivision === 'green-tech' && (
           <GreenTechScreen onContactClick={handleContactOpen} />
         )}

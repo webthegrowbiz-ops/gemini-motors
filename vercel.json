@@ -55,14 +55,6 @@
       "destination": "/thank-you.html"
     },
     {
-      "source": "/spare-parts",
-      "destination": "/spare-parts/index.html"
-    },
-    {
-      "source": "/spare-parts/",
-      "destination": "/spare-parts/index.html"
-    },
-    {
       "source": "/((?!api/|assets/|brand/).*)",
       "destination": "/index.html"
     }

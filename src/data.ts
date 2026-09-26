@@ -9,6 +9,7 @@ import businessJourney from "./assets/images/business_journey.jpg";
 import fuelSolution from "./assets/images/fuel_solution.jpg";
 import switchAward from "./assets/images/switch_ev_award.jpg";
 import switchIEV3 from "./assets/images/switch_iev3.jpg";
+import indianOilPump from "./assets/images/indianoil_pump_motion_1784018549511.jpg";
 import mrAgnel from "./assets/images/mragnel.jpeg";
 import { Vehicle, FuelService, GreenTechProduct, ServiceCentre, ServicesPageConfig, ChatWidgetConfig } from './types';
 
@@ -153,7 +154,7 @@ export const FUEL_SERVICES: FuelService[] = [
     description: 'Mobile on-site fuel delivery for real-time machinery fueling at construction zones and mines. Fleet of high-capacity tankers for wholesale supply chains.',
     iconName: 'local_shipping',
     features: ['Capacities from 12,000L to 20,000L', 'Response times under 4 hours', 'GPS-tracked secure delivery routes', 'Weights & measures verified meters'],
-    imageUrl: '/src/assets/images/indianoil_pump_motion_1784018549511.jpg'
+    imageUrl: indianOilPump
   }
 ];
 

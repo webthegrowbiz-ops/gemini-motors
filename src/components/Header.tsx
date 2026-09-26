@@ -10,6 +10,7 @@ import {
   ChevronDown,
   Menu,
   MessageCircle,
+  PackageCheck,
   Phone,
   ShieldCheck,
   Wrench,
@@ -30,7 +31,7 @@ interface HeaderProps {
 
 type DesktopMenu = 'commercial' | 'services' | null;
 type MobileAccordion = 'commercial' | 'services' | null;
-type TopLevelNav = 'home' | 'commercial' | 'services' | 'spare-parts' | 'finance' | 'about' | 'contact' | '';
+type TopLevelNav = 'home' | 'commercial' | 'services' | 'finance' | 'about' | 'contact' | '';
 
 const getActiveNav = (pathname: string): TopLevelNav => {
   const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
@@ -46,11 +47,11 @@ const getActiveNav = (pathname: string): TopLevelNav => {
   if (
     normalizedPath.startsWith('/services') ||
     normalizedPath.startsWith('/green-technologies') ||
-    normalizedPath.startsWith('/green')
+    normalizedPath.startsWith('/green') ||
+    normalizedPath.startsWith('/spare-parts')
   ) {
     return 'services';
   }
-  if (normalizedPath.startsWith('/spare-parts')) return 'spare-parts';
   if (normalizedPath.startsWith('/finance')) return 'finance';
   if (normalizedPath.startsWith('/about')) return 'about';
   if (normalizedPath.startsWith('/contact')) return 'contact';
@@ -95,7 +96,8 @@ const commercialMenuItems = [
 ];
 
 const servicesMenuItems = [
-  { label: 'Services', helper: 'Fuel, logistics and business support services.', division: 'auto-services' as AppDivision, Icon: Wrench },
+  { label: 'Services', helper: 'Vehicle service, support and business services.', division: 'auto-services' as AppDivision, Icon: Wrench },
+  { label: 'Spare Parts', helper: 'Genuine parts and compatibility support for commercial vehicles.', division: 'spare-parts' as AppDivision, Icon: PackageCheck },
   { label: 'Green Technology', helper: 'Sustainable energy and efficiency products.', division: 'green-tech' as AppDivision, Icon: ShieldCheck },
 ];
 
@@ -244,13 +246,6 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
             controls="services-nav-menu"
             onClick={() => handleNavClick('auto-services')}
             onMouseEnter={() => setDesktopMenu('services')}
-            prefersReducedMotion={prefersReducedMotion}
-          />
-          <DesktopNavButton
-            label="Spare Parts"
-            active={activeTopLevelNav === 'spare-parts'}
-            onClick={() => handleNavClick('spare-parts')}
-            onMouseEnter={() => setDesktopMenu(null)}
             prefersReducedMotion={prefersReducedMotion}
           />
           <DesktopNavButton
@@ -434,9 +429,9 @@ export default function Header({ currentDivision, setDivision }: HeaderProps) {
                   prefersReducedMotion={prefersReducedMotion}
                 >
                   <MobileSubButton label="Services" onClick={() => handleNavClick('auto-services')} />
+                  <MobileSubButton label="Spare Parts" onClick={() => handleNavClick('spare-parts')} />
                   <MobileSubButton label="Green Technology" onClick={() => handleNavClick('green-tech')} />
                 </MobileAccordionSection>
-                <MobileNavButton label="Spare Parts" active={activeTopLevelNav === 'spare-parts'} onClick={() => handleNavClick('spare-parts')} />
                 <MobileNavButton label="Finance" active={activeTopLevelNav === 'finance'} onClick={handleFinanceClick} />
                 <MobileNavButton label="About Us" active={isAboutActive} onClick={() => handleNavClick('about-us')} />
                 <MobileNavButton label="Contact Us" active={activeTopLevelNav === 'contact'} onClick={handleContactClick} />

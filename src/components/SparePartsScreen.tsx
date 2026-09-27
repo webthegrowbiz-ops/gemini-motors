@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import {
   CheckCircle2,
   ExternalLink,
@@ -263,175 +263,67 @@ const CATEGORY_OPTIONS: Array<'All' | ProductCategory> = [
   'Solar',
 ];
 
-function ProductArtwork({ visual, reference }: { visual: ProductVisual; reference: string }) {
-  const common = 'h-28 w-28 drop-shadow-[0_18px_20px_rgba(15,23,42,0.16)]';
+const PRODUCT_IMAGE_BY_VISUAL: Record<ProductVisual, string> = {
+  bearing:
+    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=80',
+  seal:
+    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=80',
+  filter:
+    'https://images.unsplash.com/photo-1763679112092-053a6eadd72f?auto=format&fit=crop&w=1200&q=80',
+  brake:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
+  gasket:
+    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=80',
+  thermostat:
+    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=80',
+  charger:
+    'https://images.unsplash.com/photo-1696835307664-bac3f44ff9a5?auto=format&fit=crop&w=1200&q=80',
+  battery:
+    'https://images.unsplash.com/photo-1765211003026-f7666ea3a948?auto=format&fit=crop&w=1200&q=80',
+  disc:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
+  drum:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
+  steering:
+    'https://images.unsplash.com/photo-1769218401807-5495675a2eb1?auto=format&fit=crop&w=1200&q=80',
+  suspension:
+    'https://images.unsplash.com/photo-1769218401807-5495675a2eb1?auto=format&fit=crop&w=1200&q=80',
+  'solar-small':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+  'solar-compact':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+  'solar-standard':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+  'solar-flex':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+  'solar-bifacial':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+  'solar-topcon':
+    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+};
 
-  let art: ReactNode;
-
-  switch (visual) {
-    case 'bearing':
-    case 'seal':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <circle cx="60" cy="60" r="43" fill="#1e293b" />
-          <circle cx="60" cy="60" r="31" fill="#94a3b8" />
-          <circle cx="60" cy="60" r="17" fill="#f8fafc" />
-          {visual === 'bearing' &&
-            [0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
-              const rad = (deg * Math.PI) / 180;
-              return (
-                <circle
-                  key={deg}
-                  cx={60 + Math.cos(rad) * 25}
-                  cy={60 + Math.sin(rad) * 25}
-                  r="4.5"
-                  fill="#e2e8f0"
-                />
-              );
-            })}
-        </svg>
-      );
-      break;
-    case 'filter':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <ellipse cx="60" cy="28" rx="30" ry="12" fill="#1d4ed8" />
-          <path d="M30 28v58c0 9 13 17 30 17s30-8 30-17V28" fill="#2563eb" />
-          <ellipse cx="60" cy="86" rx="30" ry="13" fill="#1e40af" />
-          {[42, 51, 60, 69, 78].map((y) => (
-            <path key={y} d={`M36 ${y}h48`} stroke="#bfdbfe" strokeWidth="3" opacity=".72" />
-          ))}
-        </svg>
-      );
-      break;
-    case 'brake':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <circle cx="60" cy="60" r="37" fill="#334155" />
-          <circle cx="60" cy="60" r="19" fill="#cbd5e1" />
-          <path d="M28 37c-14 26-8 50 10 66" fill="none" stroke="#f59e0b" strokeWidth="11" strokeLinecap="round" />
-          <path d="M92 37c14 26 8 50-10 66" fill="none" stroke="#f59e0b" strokeWidth="11" strokeLinecap="round" />
-        </svg>
-      );
-      break;
-    case 'gasket':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <path d="M18 30h84v60H18z" fill="#94a3b8" stroke="#475569" strokeWidth="5" />
-          {[34, 60, 86].map((x) => <circle key={x} cx={x} cy="60" r="13" fill="#f8fafc" />)}
-          {[[24, 36], [96, 36], [24, 84], [96, 84]].map(([x, y]) => (
-            <circle key={`${x}-${y}`} cx={x} cy={y} r="4" fill="#334155" />
-          ))}
-        </svg>
-      );
-      break;
-    case 'thermostat':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <path d="M40 45c0-18 40-18 40 0v11H40z" fill="#cbd5e1" stroke="#64748b" strokeWidth="4" />
-          <path d="M51 56v13h18V56" fill="#94a3b8" />
-          <path d="M45 70h30l-5 28H50z" fill="#64748b" />
-          <path d="M48 76h24M49 83h22M50 90h20" stroke="#e2e8f0" strokeWidth="3" />
-        </svg>
-      );
-      break;
-    case 'charger':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <rect x="25" y="18" width="58" height="78" rx="10" fill="#0f766e" />
-          <rect x="35" y="29" width="38" height="26" rx="4" fill="#ccfbf1" />
-          <path d="M55 62l-8 13h9l-3 13 17-19H60l5-7z" fill="#facc15" />
-          <path d="M83 66c17 2 18 13 11 21" fill="none" stroke="#134e4a" strokeWidth="7" strokeLinecap="round" />
-          <rect x="90" y="82" width="13" height="20" rx="4" fill="#115e59" />
-        </svg>
-      );
-      break;
-    case 'battery':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <rect x="18" y="38" width="84" height="48" rx="8" fill="#0f766e" />
-          <rect x="27" y="30" width="12" height="8" rx="2" fill="#134e4a" />
-          <rect x="81" y="30" width="12" height="8" rx="2" fill="#134e4a" />
-          {[32, 48, 64, 80].map((x) => <rect key={x} x={x} y="48" width="9" height="28" rx="2" fill="#5eead4" />)}
-          <path d="M58 46l-8 15h9l-4 15 18-21H63l5-9z" fill="#facc15" />
-        </svg>
-      );
-      break;
-    case 'disc':
-    case 'drum':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <circle cx="60" cy="60" r="43" fill={visual === 'disc' ? '#94a3b8' : '#475569'} />
-          <circle cx="60" cy="60" r="20" fill="#e2e8f0" />
-          <circle cx="60" cy="60" r="8" fill="#334155" />
-          {[0, 72, 144, 216, 288].map((deg) => {
-            const rad = (deg * Math.PI) / 180;
-            return (
-              <circle
-                key={deg}
-                cx={60 + Math.cos(rad) * 29}
-                cy={60 + Math.sin(rad) * 29}
-                r="4"
-                fill="#334155"
-              />
-            );
-          })}
-        </svg>
-      );
-      break;
-    case 'steering':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <circle cx="60" cy="60" r="39" fill="none" stroke="#0f766e" strokeWidth="10" />
-          <circle cx="60" cy="60" r="11" fill="#115e59" />
-          <path d="M60 49V22M51 67L30 83M69 67l21 16" stroke="#115e59" strokeWidth="7" strokeLinecap="round" />
-        </svg>
-      );
-      break;
-    case 'suspension':
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          {[0, 8, 16, 24].map((offset) => (
-            <path
-              key={offset}
-              d={`M18 ${46 + offset} Q60 ${85 + offset} 102 ${46 + offset}`}
-              fill="none"
-              stroke={offset === 0 ? '#0f766e' : '#475569'}
-              strokeWidth="6"
-              strokeLinecap="round"
-            />
-          ))}
-          <circle cx="18" cy="46" r="8" fill="#cbd5e1" />
-          <circle cx="102" cy="46" r="8" fill="#cbd5e1" />
-        </svg>
-      );
-      break;
-    default:
-      art = (
-        <svg viewBox="0 0 120 120" className={common} aria-hidden="true">
-          <g transform={visual === 'solar-flex' ? 'rotate(-9 60 60)' : undefined}>
-            <rect x="19" y="18" width="82" height="76" rx={visual === 'solar-flex' ? 9 : 3} fill="#0f3b72" stroke="#1d4ed8" strokeWidth="4" />
-            {[39, 59, 79].map((x) => <path key={x} d={`M${x} 20v72`} stroke="#93c5fd" strokeWidth="2" />)}
-            {[37, 56, 75].map((y) => <path key={y} d={`M21 ${y}h78`} stroke="#93c5fd" strokeWidth="2" />)}
-            {visual === 'solar-bifacial' || visual === 'solar-topcon' ? (
-              <rect x="24" y="23" width="72" height="66" fill="none" stroke="#bfdbfe" strokeWidth="2" opacity=".8" />
-            ) : null}
-          </g>
-          <path d="M42 95h36M50 95l-8 12M70 95l8 12" stroke="#475569" strokeWidth="4" strokeLinecap="round" />
-          {visual === 'solar-topcon' ? <path d="M91 16l5 7 8 2-6 6 1 8-8-4-7 4 1-8-6-6 8-2z" fill="#facc15" /> : null}
-        </svg>
-      );
-      break;
-  }
-
+function ProductArtwork({
+  visual,
+  reference,
+  name,
+}: {
+  visual: ProductVisual;
+  reference: string;
+  name: string;
+}) {
   return (
-    <div className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <div className="absolute left-5 top-5 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500 shadow-sm">
-        Original product illustration
+    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <img
+        src={PRODUCT_IMAGE_BY_VISUAL[visual]}
+        alt={`${name} reference product photo`}
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-white/5" />
+      <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-600 shadow-sm backdrop-blur">
+        Reference product photo
       </div>
-      <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-100/60" />
-      <div className="absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-emerald-100/50" />
-      {art}
       <span className="absolute bottom-4 right-5 rounded-lg bg-slate-950/90 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
         {reference}
       </span>
@@ -595,7 +487,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
             Showing {visibleProducts.length} products
           </p>
           <p className="text-right text-xs leading-5 text-slate-500">
-            Illustrations are original representations; actual supplied parts may vary.
+            Reference photos are for visual guidance; actual supplied parts may vary.
           </p>
         </div>
 
@@ -608,7 +500,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
                 key={product.id}
                 className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <ProductArtwork visual={product.visual} reference={product.reference} />
+                <ProductArtwork visual={product.visual} reference={product.reference} name={product.name} />
 
                 <div className="p-6">
                   <div className="mb-4 flex items-start justify-between gap-3">

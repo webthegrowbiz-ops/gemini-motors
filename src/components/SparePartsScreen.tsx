@@ -1,12 +1,15 @@
 import { useMemo, useState } from 'react';
 import {
+  BatteryCharging,
   CheckCircle2,
   ExternalLink,
   MessageCircle,
+  PackageSearch,
   Minus,
   Plus,
   Search,
   ShoppingCart,
+  Sun,
   Trash2,
   X,
 } from 'lucide-react';
@@ -263,44 +266,21 @@ const CATEGORY_OPTIONS: Array<'All' | ProductCategory> = [
   'Solar',
 ];
 
-const PRODUCT_IMAGE_BY_VISUAL: Record<ProductVisual, string> = {
-  bearing:
-    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=80',
-  seal:
-    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=80',
-  filter:
-    'https://images.unsplash.com/photo-1763679112092-053a6eadd72f?auto=format&fit=crop&w=1200&q=80',
-  brake:
-    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
-  gasket:
-    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=80',
-  thermostat:
-    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=80',
-  charger:
-    'https://images.unsplash.com/photo-1696835307664-bac3f44ff9a5?auto=format&fit=crop&w=1200&q=80',
-  battery:
-    'https://images.unsplash.com/photo-1765211003026-f7666ea3a948?auto=format&fit=crop&w=1200&q=80',
-  disc:
-    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
-  drum:
-    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=80',
-  steering:
-    'https://images.unsplash.com/photo-1769218401807-5495675a2eb1?auto=format&fit=crop&w=1200&q=80',
-  suspension:
-    'https://images.unsplash.com/photo-1769218401807-5495675a2eb1?auto=format&fit=crop&w=1200&q=80',
-  'solar-small':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
-  'solar-compact':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
-  'solar-standard':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
-  'solar-flex':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
-  'solar-bifacial':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
-  'solar-topcon':
-    'https://images.unsplash.com/photo-1719848574176-125b8a1babcc?auto=format&fit=crop&w=1200&q=80',
+const CATEGORY_LABELS: Record<'All' | ProductCategory, string> = {
+  All: 'All Products',
+  'Ashok Leyland': 'Genuine Ashok Leyland Parts',
+  'SWITCH Mobility': 'SWITCH EV Parts',
+  Solar: 'Solar Products',
 };
+
+const SWITCH_VISUALS = new Set<ProductVisual>([
+  'charger',
+  'battery',
+  'disc',
+  'drum',
+  'steering',
+  'suspension',
+]);
 
 function ProductArtwork({
   visual,
@@ -311,21 +291,31 @@ function ProductArtwork({
   reference: string;
   name: string;
 }) {
+  const isSolar = visual.startsWith('solar-');
+  const isSwitch = SWITCH_VISUALS.has(visual);
+  const Icon = isSolar ? Sun : isSwitch ? BatteryCharging : PackageSearch;
+  const catalogueLabel = isSolar
+    ? 'Solar product reference'
+    : isSwitch
+      ? 'SWITCH service reference'
+      : 'Genuine-parts reference';
+
   return (
-    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <img
-        src={PRODUCT_IMAGE_BY_VISUAL[visual]}
-        alt={`${name} reference product photo`}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-white/5" />
-      <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-600 shadow-sm backdrop-blur">
-        Reference product photo
+    <div
+      className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#102541] to-blue-900 p-6 text-white"
+      role="img"
+      aria-label={`${name} catalogue reference`}
+    >
+      <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-blue-400/15 blur-2xl" />
+      <div className="relative flex flex-col items-center text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/10 shadow-xl backdrop-blur">
+          <Icon className="h-8 w-8 text-blue-200" aria-hidden="true" />
+        </span>
+        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-blue-200">{catalogueLabel}</p>
+        <p className="mt-2 max-w-[240px] text-sm font-extrabold leading-5 text-white">{reference}</p>
       </div>
-      <span className="absolute bottom-4 right-5 rounded-lg bg-slate-950/90 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
-        {reference}
+      <span className="absolute bottom-3 right-4 rounded-lg border border-white/15 bg-slate-950/55 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
+        Fitment confirmation required
       </span>
     </div>
   );
@@ -334,6 +324,7 @@ function ProductArtwork({
 export default function SparePartsScreen({ onContactClick }: SparePartsScreenProps) {
   const [activeCategory, setActiveCategory] = useState<'All' | ProductCategory>('All');
   const [search, setSearch] = useState('');
+  const [fitmentQuery, setFitmentQuery] = useState('');
   const [cart, setCart] = useState<Record<string, number>>({});
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -344,7 +335,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
       const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
       const matchesSearch =
         !query ||
-        [product.name, product.reference, product.category, product.description]
+        [product.name, product.reference, product.category, product.description, product.compatibility]
           .join(' ')
           .toLowerCase()
           .includes(query);
@@ -383,6 +374,26 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
     });
   };
 
+  const sendFitmentRequest = () => {
+    const details = fitmentQuery.trim();
+    if (!details) return;
+
+    const message = [
+      'Hello Gemini Motors,',
+      '',
+      'I need help finding the correct spare part.',
+      `Vehicle / part details: ${details}`,
+      '',
+      'Please confirm the correct part number, compatibility, availability and current price.',
+    ].join('\n');
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   const sendCartToWhatsApp = () => {
     if (!cartItems.length) return;
 
@@ -416,15 +427,15 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
           <div className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-700">
-                Gemini Motors Parts & Energy Store
+                Gemini Motors Genuine Parts & Energy
               </p>
               <h1 className="text-4xl font-black tracking-tight text-[#0b1c30] md:text-5xl">
-                Add to cart. Confirm on WhatsApp.
+                Genuine Ashok Leyland & SWITCH Parts in Goa
               </h1>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-                Browse selected Ashok Leyland genuine spares, SWITCH Mobility service components
-                and solar modules. Add what you need to one quote cart and send it directly to
-                Gemini Motors on WhatsApp.
+                Search by part number or browse genuine Ashok Leyland parts and SWITCH Mobility
+                service components. Solar products are kept in a separate category. Add listed
+                items to a quote cart or share your chassis / VIN for an exact fitment check.
               </p>
             </div>
 
@@ -453,13 +464,45 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
       </div>
 
       <div className="mx-auto max-w-7xl px-5 py-10 md:py-14">
+        <div className="mb-8 rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 shadow-sm md:p-7">
+          <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Find the exact part</p>
+              <h2 className="mt-2 text-2xl font-black text-[#0b1c30]">Search by part number, vehicle or chassis / VIN.</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Share any detail you have. The Gemini Motors parts team will confirm fitment before supply.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
+              <input
+                value={fitmentQuery}
+                onChange={(event) => setFitmentQuery(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' && fitmentQuery.trim()) sendFitmentRequest();
+                }}
+                placeholder="Part no., registration, chassis / VIN or vehicle model"
+                className="min-h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+              />
+              <button
+                type="button"
+                disabled={!fitmentQuery.trim()}
+                onClick={sendFitmentRequest}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 text-sm font-black text-slate-950 transition hover:bg-[#20ba5a] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp Parts Team
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto]">
           <label className="relative block">
             <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
             <input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search product, part number or category"
+              placeholder="Search listed products by name or part number"
               className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-4 text-sm font-medium text-slate-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
             />
           </label>
@@ -476,7 +519,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
                     : 'border border-slate-200 bg-white text-slate-700 hover:border-blue-300'
                 }`}
               >
-                {category}
+                {CATEGORY_LABELS[category]}
               </button>
             ))}
           </div>
@@ -487,7 +530,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
             Showing {visibleProducts.length} products
           </p>
           <p className="text-right text-xs leading-5 text-slate-500">
-            Reference photos are for visual guidance; actual supplied parts may vary.
+            Catalogue references are for discovery; final identity and fitment are confirmed by part number / chassis / VIN.
           </p>
         </div>
 
@@ -601,7 +644,7 @@ export default function SparePartsScreen({ onContactClick }: SparePartsScreenPro
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-300">
               Can’t find the exact part?
             </p>
-            <h2 className="mt-2 text-2xl font-black">Send your vehicle and part details to Gemini Motors.</h2>
+            <h2 className="mt-2 text-2xl font-black">Send your vehicle or part details to the parts team.</h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
               For Ashok Leyland and SWITCH parts, keep the registration number or chassis / VIN
               ready so the team can confirm the correct fitment before supplying.

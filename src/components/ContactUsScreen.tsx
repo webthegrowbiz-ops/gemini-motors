@@ -15,6 +15,7 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  PackageSearch,
   Phone,
   Send,
   Truck,
@@ -70,20 +71,26 @@ const quickContacts = [
   {
     title: 'Sales Team',
     description: 'Vehicle selection, model comparison, brochures and test drive support.',
-    subject: 'Sales enquiry from Contact page',
+    subject: 'vehicle sales',
     Icon: Truck,
   },
   {
-    title: 'Finance Team',
-    description: 'Loan guidance, EMI planning and documentation support for business buyers.',
-    subject: 'Finance enquiry from Contact page',
-    Icon: BadgeIndianRupee,
+    title: 'Spare Parts Team',
+    description: 'Part-number, chassis / VIN compatibility, availability and quote support.',
+    subject: 'spare parts',
+    Icon: PackageSearch,
   },
   {
     title: 'Service Team',
     description: 'Workshop assistance, fleet service coordination and roadside support guidance.',
-    subject: 'Service enquiry from Contact page',
+    subject: 'vehicle service',
     Icon: Wrench,
+  },
+  {
+    title: 'Finance Team',
+    description: 'Loan guidance, EMI planning and documentation support for business buyers.',
+    subject: 'vehicle finance',
+    Icon: BadgeIndianRupee,
   },
 ];
 
@@ -110,13 +117,15 @@ const faqs = [
   },
 ];
 
-const vehicleOptions = [
-  'Light Commercial Vehicle',
-  'Medium & Heavy Commercial Vehicle',
-  'Electric Mobility',
-  'Green Technology',
-  'Service Support',
-  'Fleet Finance',
+const requirementOptions = [
+  'Vehicle Sales - Light Commercial Vehicle',
+  'Vehicle Sales - Medium & Heavy Commercial Vehicle',
+  'SWITCH Electric Mobility',
+  'Spare Parts',
+  'Vehicle Service Support',
+  'Vehicle Finance',
+  'Fleet / Bulk Enquiry',
+  'Solar / Green Technology',
 ];
 
 const pageVariants = {
@@ -174,6 +183,15 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
     window.location.href = '/thank-you.html';
   };
 
+  const openTeamWhatsApp = (subject: string) => {
+    const message = `Hi Gemini Motors, I need help with ${subject}. Please connect me with the right team.`;
+    window.open(
+      `https://wa.me/919422393288?text=${encodeURIComponent(message)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   const motionProps = prefersReducedMotion
     ? {}
     : {
@@ -215,7 +233,7 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
                 Contact Gemini Motors Goa
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 md:text-lg">
-                Speak with our commercial vehicle specialists for sales, finance, fleet solutions, service support and product enquiries.
+                Speak with our Goa team for vehicle sales, genuine spare parts, finance, fleet solutions, service support and product enquiries.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -345,16 +363,16 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
                 </label>
               </div>
               <label className="grid gap-2 text-sm font-bold text-slate-700">
-                Vehicle Interested In
+                Enquiry Type / Requirement
                 <select
-                  name="vehicle"
+                  name="requirement"
                   defaultValue=""
                   className="min-h-12 rounded-xl border border-slate-200 bg-slate-50 px-4 text-slate-950 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100"
                 >
                   <option value="" disabled>
                     Select requirement
                   </option>
-                  {vehicleOptions.map((option) => (
+                  {requirementOptions.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -391,7 +409,7 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
             </h2>
           </motion.div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {quickContacts.map(({ title, description, subject, Icon }) => (
               <motion.article
                 variants={itemVariants}
@@ -413,7 +431,7 @@ export default function ContactUsScreen({ onNavigateHome }: ContactUsScreenProps
                   </a>
                   <button
                     type="button"
-                    onClick={() => window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')}
+                    onClick={() => openTeamWhatsApp(subject)}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#25D366] text-sm font-extrabold text-slate-950 transition-all hover:bg-[#20ba5a]"
                   >
                     <MessageCircle size={16} />

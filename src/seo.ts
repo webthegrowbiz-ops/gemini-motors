@@ -74,9 +74,9 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
     path: '/green-technologies/',
   },
   '/spare-parts/': {
-    title: 'Spare Parts & Solar Products in Goa | Gemini Motors',
+    title: 'Genuine Ashok Leyland Spare Parts in Goa | Gemini Motors',
     description:
-      'Browse selected Ashok Leyland spare parts, SWITCH Mobility service components and solar modules from Gemini Motors in Goa. Add items to a quote cart and enquire on WhatsApp.',
+      'Find genuine Ashok Leyland spare parts, SWITCH Mobility service components and selected solar products from Gemini Motors in Goa. Search by part number or share chassis / VIN details for fitment confirmation.',
     path: '/spare-parts/',
   },
   '/privacy-policy/': {
@@ -450,6 +450,9 @@ export function applyPageSeo(seo: Pick<PageSeo, 'title' | 'description' | 'path'
   upsertMetaByProperty('og:title', seo.title);
   upsertMetaByProperty('og:description', seo.description);
   upsertMetaByProperty('og:url', canonicalUrlForPath(seo.path));
+  upsertMetaByName('twitter:card', 'summary_large_image');
+  upsertMetaByName('twitter:title', seo.title);
+  upsertMetaByName('twitter:description', seo.description);
 }
 
 export function applySeoForPath(pathname: string): boolean {

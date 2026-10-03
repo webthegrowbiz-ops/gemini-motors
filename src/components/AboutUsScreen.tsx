@@ -61,11 +61,11 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
             <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white mt-6 tracking-tight leading-none">
               Engineering Trust <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-white">
-                Since 2000
+                Since 2005
               </span>
             </h1>
             <p className="text-gray-400 text-lg mt-6 leading-relaxed">
-              From an independent spare parts dealer to a leading multi-division conglomerate in Goa, our journey has been fueled by deep technical expertise, unwavering standards, and direct client commitment.
+              With operating roots dating to 1990 and Gemini Motors formally established in 2005, our journey has grown from spare-parts expertise into a multi-division business in Goa, guided by deep technical knowledge, consistent standards and direct client commitment.
             </p>
           </div>
         </div>
@@ -122,8 +122,8 @@ export default function AboutUsScreen({ onContactClick }: AboutUsScreenProps) {
                   <p className="text-xs text-gray-400 mt-1 uppercase font-semibold tracking-wider">Skilled Employees</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-black text-white">26+</p>
-                  <p className="text-xs text-gray-400 mt-1 uppercase font-semibold tracking-wider">Years Experience</p>
+                  <p className="text-3xl font-black text-white">20+</p>
+                  <p className="text-xs text-gray-400 mt-1 uppercase font-semibold tracking-wider">Years Since Establishment</p>
                 </div>
               </div>
             </div>

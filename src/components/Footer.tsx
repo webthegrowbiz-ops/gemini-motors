@@ -40,7 +40,7 @@ export default function Footer({ setDivision }: FooterProps) {
             />
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
-            Pioneering heavy commercial transport, sustainable organic green energy technology, and premium fuel supply networks across the Goan peninsula. Est. 1992.
+            Serving Goa with commercial mobility, engineering support and green-technology solutions. Established in 2005, with operating roots dating to 1990.
           </p>
           <div className="text-xs text-gray-500">
             Registered Office:<br />

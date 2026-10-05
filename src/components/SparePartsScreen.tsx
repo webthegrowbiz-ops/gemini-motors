@@ -273,6 +273,45 @@ const CATEGORY_LABELS: Record<'All' | ProductCategory, string> = {
   Solar: 'Solar Products',
 };
 
+const PRODUCT_IMAGE_BY_VISUAL: Record<ProductVisual, string> = {
+  bearing:
+    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=82',
+  seal:
+    'https://images.unsplash.com/photo-1683308743789-4910c3d16dae?auto=format&fit=crop&w=1200&q=82',
+  filter:
+    'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/g/6389bcc8a59f454cad85a4c24ec79cdb/fpa00200percent20-3--800x800.png',
+  brake:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=82',
+  gasket:
+    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=82',
+  thermostat:
+    'https://images.unsplash.com/photo-1767339736147-676bd47eddb6?auto=format&fit=crop&w=1200&q=82',
+  charger:
+    'https://www.evtrucks.switchmobilityev.com/IeV4/ProductHero/slides/slide1-mobile.jpg',
+  battery:
+    'https://www.evtrucks.switchmobilityev.com/IeV4/ProductHero/slides/slide2-mobile.jpg',
+  disc:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=82',
+  drum:
+    'https://images.unsplash.com/photo-1770275215437-a0f36921bae3?auto=format&fit=crop&w=1200&q=82',
+  steering:
+    'https://www.evtrucks.switchmobilityev.com/IeV4/ProductHero/slides/slide3-mobile.jpg',
+  suspension:
+    'https://www.evtrucks.switchmobilityev.com/IeV4/Applications/truck-open-container.png',
+  'solar-small':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/501x440/products/277/3085/01__38685__50736.1776148693.jpg?c=1',
+  'solar-compact':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/501x440/products/277/3085/01__38685__50736.1776148693.jpg?c=1',
+  'solar-standard':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/original/products/287/2552/01__92337.1769836865.jpg',
+  'solar-flex':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/501x440/products/277/3085/01__38685__50736.1776148693.jpg?c=1',
+  'solar-bifacial':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/original/products/287/2552/01__92337.1769836865.jpg',
+  'solar-topcon':
+    'https://cdn11.bigcommerce.com/s-unnwlv5df8/images/stencil/original/products/287/2552/01__92337.1769836865.jpg',
+};
+
 const SWITCH_VISUALS = new Set<ProductVisual>([
   'charger',
   'battery',
@@ -294,28 +333,28 @@ function ProductArtwork({
   const isSolar = visual.startsWith('solar-');
   const isSwitch = SWITCH_VISUALS.has(visual);
   const Icon = isSolar ? Sun : isSwitch ? BatteryCharging : PackageSearch;
-  const catalogueLabel = isSolar
-    ? 'Solar product reference'
-    : isSwitch
-      ? 'SWITCH service reference'
-      : 'Genuine-parts reference';
 
   return (
-    <div
-      className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#102541] to-blue-900 p-6 text-white"
-      role="img"
-      aria-label={`${name} catalogue reference`}
-    >
-      <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-blue-400/15 blur-2xl" />
-      <div className="relative flex flex-col items-center text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/10 shadow-xl backdrop-blur">
-          <Icon className="h-8 w-8 text-blue-200" aria-hidden="true" />
-        </span>
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-blue-200">{catalogueLabel}</p>
-        <p className="mt-2 max-w-[240px] text-sm font-extrabold leading-5 text-white">{reference}</p>
+    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-100 via-white to-blue-50">
+      <div className="absolute inset-0 flex items-center justify-center text-slate-300">
+        <Icon className="h-12 w-12" aria-hidden="true" />
       </div>
-      <span className="absolute bottom-3 right-4 rounded-lg border border-white/15 bg-slate-950/55 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
-        Fitment confirmation required
+      <img
+        src={PRODUCT_IMAGE_BY_VISUAL[visual]}
+        alt={`${name} reference product photo`}
+        loading="lazy"
+        decoding="async"
+        className="relative h-full w-full object-cover"
+        onError={(event) => {
+          event.currentTarget.style.display = 'none';
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-white/5" />
+      <div className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-700 shadow-sm backdrop-blur">
+        Real reference photo
+      </div>
+      <span className="absolute bottom-4 right-4 rounded-lg bg-slate-950/85 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
+        {reference}
       </span>
     </div>
   );

@@ -31,6 +31,31 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+      - name: Add static route entry points
+        run: |
+          routes=(
+            "spare-parts"
+            "commercial"
+            "commercial/light"
+            "commercial/medium-heavy"
+            "electric-mobility"
+            "services"
+            "green-technologies"
+            "about"
+            "contact"
+            "privacy-policy"
+            "terms-and-conditions"
+          )
+
+          for route in "${routes[@]}"; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
+          # GitHub Pages has no SPA rewrite support. This fallback keeps
+          # deeper vehicle/product URLs renderable by the React router.
+          cp dist/index.html dist/404.html
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

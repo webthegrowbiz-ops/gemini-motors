@@ -52,14 +52,20 @@ const trustItems = [
 
 const vehicleCategories = [
   {
-    title: 'LCV',
-    subtitle: 'Agile vehicles for city deliveries, retail routes and growing local businesses.',
+    title: 'Light Commercial Vehicles',
+    subtitle: 'City-ready vehicles for deliveries, retail routes and growing local businesses.',
     image: dostXlExterior,
     route: '/commercial/light/',
   },
   {
-    title: 'M&HCV',
-    subtitle: 'High-capacity haulage and construction-ready platforms for serious fleet work.',
+    title: 'Electric Mobility',
+    subtitle: 'SWITCH electric commercial vehicles for cleaner, lower-cost urban fleet operations.',
+    image: sustainableGrowth,
+    route: '/electric-mobility/',
+  },
+  {
+    title: 'Medium & Heavy Commercial',
+    subtitle: 'High-capacity haulage and construction-ready platforms for demanding fleet work.',
     image: tipper8x4HighwayExterior,
     route: '/commercial/medium-heavy/',
   },
@@ -248,8 +254,8 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
               transition={{ duration: 0.65, delay: 0.08, ease: 'easeOut' }}
               className="mb-6 font-display text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl"
             >
-              Powering Every <br />
-              <span className="text-blue-400">Business Journey</span>
+              Commercial Vehicles Built for <br />
+              <span className="text-blue-400">Business in Goa</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
@@ -257,9 +263,8 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
               transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
               className="mb-10 max-w-xl text-base leading-relaxed text-gray-300 md:text-lg"
             >
-              Commercial Vehicles, Electric Mobility & Reliable Power Solutions. Contact Us for Pricing. From urban
-              last-mile distribution to cross-continental bulk transport, Gemini Motors provides the fleet performance
-              you can trust.
+              Explore Ashok Leyland commercial vehicles and SWITCH electric mobility with Gemini Motors. Get help with
+              vehicle selection, pricing, finance, genuine parts and service support across Goa.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -272,16 +277,25 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
                 onClick={() => scrollToSection(inventoryRef)}
                 className="group inline-flex cursor-pointer items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-500/25 active:scale-95"
               >
-                Explore Fleet
+                Browse Vehicles
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#25D366] px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#20ba5a] active:scale-95"
+              >
+                WhatsApp Sales
+                <MessageCircle size={16} />
+              </a>
               <button
                 type="button"
-                onClick={() => navigateToRoute('/services/')}
+                onClick={() => onContactClick('Vehicle quote / test drive enquiry')}
                 className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/40 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 active:scale-95"
               >
-                Book Service
-                <Wrench size={16} className="transition-transform duration-300 group-hover:rotate-6" />
+                Get a Quote
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </motion.div>
           </motion.div>
@@ -301,13 +315,40 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
                 className="h-[380px] w-full rounded-lg object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
               <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-slate-800/60 bg-slate-900/90 p-4 backdrop-blur-md">
-                <p className="font-mono text-xs font-bold text-blue-400">OFFICIAL PARTNER</p>
-                <p className="mt-1 text-sm font-semibold text-white">Ashok Leyland & Switch Mobility Distributor</p>
+                <p className="font-mono text-xs font-bold text-blue-400">GEMINI MOTORS GOA</p>
+                <p className="mt-1 text-sm font-semibold text-white">Ashok Leyland commercial vehicles • SWITCH electric mobility</p>
+                <div className="mt-3 flex flex-wrap gap-2 text-[11px] font-semibold text-slate-200">
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">Sales</span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">Finance</span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">Service</span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">Genuine Parts</span>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
 
+      </section>
+
+      <section className="border-b border-slate-800 bg-[#0b1c30] text-white">
+        <div className="mx-auto grid max-w-7xl gap-3 px-6 py-4 sm:grid-cols-2 lg:grid-cols-4 md:px-16">
+          <button type="button" onClick={() => onContactClick('New vehicle enquiry')} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/10">
+            <span><span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">Fast Enquiry</span><span className="mt-1 block text-sm font-extrabold">Get Vehicle Price</span></span>
+            <BadgeIndianRupee size={18} className="text-blue-300" />
+          </button>
+          <button type="button" onClick={() => onContactClick('Test drive booking')} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/10">
+            <span><span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">Experience</span><span className="mt-1 block text-sm font-extrabold">Book Test Drive</span></span>
+            <Truck size={18} className="text-blue-300" />
+          </button>
+          <button type="button" onClick={() => setIsEmiOpen(true)} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/10">
+            <span><span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">Finance</span><span className="mt-1 block text-sm font-extrabold">Check EMI</span></span>
+            <FileText size={18} className="text-blue-300" />
+          </button>
+          <button type="button" onClick={() => navigateToRoute('/services/')} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/10">
+            <span><span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">After-sales</span><span className="mt-1 block text-sm font-extrabold">Book Service</span></span>
+            <Wrench size={18} className="text-blue-300" />
+          </button>
+        </div>
       </section>
 
       <section className="border-b border-slate-200/80 bg-white">
@@ -330,7 +371,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
 
       <section ref={inventoryRef} className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20 md:px-16">
         <SectionIntro eyebrow="Vehicle Categories" title="Choose the fleet class that fits your route." />
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {vehicleCategories.map((category, index) => (
             <motion.button
               key={category.title}
@@ -340,7 +381,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: '-80px' }}
               transition={{ ...revealTransition, delay: index * 0.08 }}
-              className="group relative min-h-[390px] overflow-hidden rounded-3xl bg-slate-950 text-left shadow-2xl shadow-slate-950/12 outline-none transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-950/20 focus-visible:ring-2 focus-visible:ring-[#e6a94c] md:min-h-[420px]"
+              className="group relative min-h-[360px] overflow-hidden rounded-3xl bg-slate-950 text-left shadow-2xl shadow-slate-950/12 outline-none transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-950/20 focus-visible:ring-2 focus-visible:ring-[#e6a94c] md:min-h-[390px]"
             >
               <img
                 src={category.image}
@@ -349,7 +390,7 @@ export default function GeminiMotorsScreen({ onContactClick }: GeminiMotorsScree
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/42 to-black/8 transition-opacity duration-300 group-hover:opacity-95" />
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1f5fae] via-[#4a7fd1] to-[#e6a94c]" />
-              <div className="relative z-10 flex min-h-[390px] flex-col justify-end p-7 md:min-h-[420px] md:p-9">
+              <div className="relative z-10 flex min-h-[390px] flex-col justify-end p-7 md:min-h-[390px] md:p-9">
                 <div className="flex min-h-[190px] flex-col transition-transform duration-300 group-hover:-translate-y-1 md:min-h-[210px]">
                   <h3 className="flex min-h-[54px] items-end whitespace-nowrap font-display text-3xl font-extrabold leading-tight text-white md:min-h-[58px] md:text-4xl">
                     {category.title}

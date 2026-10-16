@@ -38,15 +38,15 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
     path: '/commercial/light/',
   },
   '/commercial/medium-heavy/': {
-    title: 'Ashok Leyland Trucks in Goa | Gemini Motors Dealer',
+    title: 'Ashok Leyland Trucks & Buses in Goa | Gemini Motors Dealer',
     description:
-      'Find Ashok Leyland medium and heavy-duty trucks in Goa at Gemini Motors for logistics, construction, transport and demanding applications.',
+      'Find Ashok Leyland trucks and buses in Goa at Gemini Motors for logistics, construction, staff, school and intercity passenger applications.',
     path: '/commercial/medium-heavy/',
   },
   '/electric-mobility/': {
-    title: 'Ashok Leyland Electric Vehicles in Goa | Gemini',
+    title: 'SWITCH Electric Vehicles in Goa | Gemini Motors',
     description:
-      'Explore electric commercial vehicles from Ashok Leyland in Goa at Gemini Motors, with guidance on models, finance and sustainable mobility.',
+      'Explore SWITCH electric trucks and buses at Gemini Motors Goa, with model details, finance guidance and sustainable mobility support.',
     path: '/electric-mobility/',
   },
   '/services/': {

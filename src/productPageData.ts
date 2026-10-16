@@ -85,6 +85,7 @@ import tipper8x4HeavyDutyTipper from './assets/images/tipper_8x4_heavy_duty_tipp
 import tipper8x4HighwayExterior from './assets/images/tipper_8x4_highway_exterior.jpg';
 import tipper8x4StudioExterior from './assets/images/tipper_8x4_studio_exterior.jpg';
 import { commercialModels, type CommercialVehicleModel } from './data/commercialVehiclesData';
+import { switchElectricVehicles } from './data/electricVehiclesData';
 import { ProductPageData } from './types';
 
 export const L_SERIES_PRODUCT_PAGE: ProductPageData = {
@@ -5010,11 +5011,36 @@ const missingProductPageSlugs = new Set<string>([
   'ecomet-star',
   'boss',
   'icv-tippers',
+  'sunshine',
+  'oyster',
+  'oyster-wide',
+  'oyster-max',
+  'garud-13-5m',
+  '15m-garud',
+  'lynx-strong',
+  'lynx-smart',
+  'garud-12m',
+  'viking',
+  'cheetah',
+  'sunshine-li',
+  'avtr-4825t-dtla-10x2',
+  'avtr-2825-boom-pump',
+  'avtr-2820-boom-pump',
+  'avtr-3525-rmc',
+  'avtr-2820-rmc',
+  'cargo-2820-rmc',
+  'avtr-4825t-dtla',
+  'boss-1920h',
+  'avtr-2820h',
+  'avtr-3525h-la',
 ]);
 
 function createMissingProductPage(model: CommercialVehicleModel): ProductPageData {
-  const isLightCommercial = model.categoryId === 'light';
-  const category = isLightCommercial ? 'Light Commercial Vehicle' : 'Medium & Heavy Commercial Vehicle';
+  const isElectric = model.fuelType === 'Electric' || model.route.startsWith('/electric-mobility/');
+  const isLightCommercial = !isElectric && model.categoryId === 'light';
+  const brandName = isElectric ? 'SWITCH Mobility' : 'Ashok Leyland';
+  const brandedName = model.name.toLowerCase().startsWith('switch') ? model.name : `${brandName} ${model.name}`;
+  const category = isElectric ? 'Electric Commercial Vehicle' : isLightCommercial ? 'Light Commercial Vehicle' : 'Truck / Bus';
   const operatingFocus = model.applications?.join(', ') || model.usageValue.toLowerCase();
   const canonicalPath = model.route.endsWith('/') ? model.route : `${model.route}/`;
   const isOnRequestPrice = model.startingPrice === 'On Request';
@@ -5033,8 +5059,8 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
     heroImage: model.imageUrl,
     brochureLabel: `${model.name} Brochure`,
     seo: {
-      title: `Ashok Leyland ${model.name} in Goa | Gemini`,
-      description: `Explore the Ashok Leyland ${model.name} at Gemini Motors in Goa${model.startingPrice && !isOnRequestPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
+      title: `${brandedName} in Goa | Gemini Motors`,
+      description: `Explore ${brandedName} at Gemini Motors in Goa${model.startingPrice && !isOnRequestPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
       canonicalPath,
     },
     quickSpecs: [
@@ -5078,9 +5104,7 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
       ],
     },
     gallery: [
-      { src: model.imageUrl, alt: `${model.name} exterior`, caption: 'Vehicle exterior' },
-      { src: businessJourney, alt: `${model.name} business operations reference`, caption: 'Business operations' },
-      { src: fuelSolution, alt: `${model.name} fleet support reference`, caption: 'Fleet support' },
+      { src: model.imageUrl, alt: `${model.name} exterior`, caption: `${model.name} official product view` },
     ],
     features: [
       { title: 'Commercial Configuration', description: `${model.usageValue} setup for practical business movement.`, iconName: 'boxes' },
@@ -5144,7 +5168,7 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
     ],
     whyGemini: {
       heading: 'Why Choose Gemini Motors',
-      description: 'Gemini Motors supports commercial vehicle buyers in Goa with vehicle selection, finance guidance, service coordination and genuine-parts support.',
+      description: `Gemini Motors supports ${brandName} buyers in Goa with vehicle selection, finance guidance, service coordination and genuine-parts support.`,
       stats: [
         { label: 'Years in Goa', value: '20+' },
         { label: 'Service hubs', value: '3' },
@@ -5180,9 +5204,23 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
   };
 }
 
-export const MISSING_PRODUCT_PAGES = commercialModels
-  .filter((model) => missingProductPageSlugs.has(model.slug))
-  .map(createMissingProductPage);
+const missingElectricProductPageSlugs = new Set<string>([
+  'switch-eiv9',
+  'switch-eiv12',
+  'switch-eiv22',
+  'switch-eiv12-ule',
+  'switch-iev3-container',
+  'switch-iev3-tipper',
+  'switch-iev4-container',
+  'switch-iev4-reefer',
+]);
+
+export const MISSING_PRODUCT_PAGES = [
+  ...commercialModels.filter((model) => missingProductPageSlugs.has(model.slug)).map(createMissingProductPage),
+  ...switchElectricVehicles
+    .filter((model) => missingElectricProductPageSlugs.has(model.slug))
+    .map(createMissingProductPage),
+];
 
 export const PRODUCT_PAGE_BY_SLUG: Record<string, ProductPageData> = {
   [L_SERIES_PRODUCT_PAGE.id]: L_SERIES_PRODUCT_PAGE,

@@ -3,6 +3,8 @@ name: Deploy Gemini Motors Goa to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -31,8 +33,18 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+
+      - name: Prerender SEO route HTML
+        run: |
+          node scripts/prerender-seo.mjs
+          node scripts/prerender-jsonld.mjs
+          node scripts/verify-seo-dist.mjs
+          node scripts/verify-jsonld-dist.mjs
+
       - name: Add static route entry points
         run: |
+          # Preserve route-specific prerendered HTML. Only fill routes that
+          # do not already have an index.html.
           routes=(
             "spare-parts"
             "commercial"
@@ -49,23 +61,46 @@ jobs:
 
           for route in "${routes[@]}"; do
             mkdir -p "dist/$route"
-            cp dist/index.html "dist/$route/index.html"
+            if [ ! -f "dist/$route/index.html" ]; then
+              cp dist/index.html "dist/$route/index.html"
+            fi
           done
 
-          # GitHub Pages has no SPA rewrite support. This fallback keeps
-          # deeper vehicle/product URLs renderable by the React router.
+          # Ensure every sitemap URL has a real Pages entry point so direct
+          # product URLs return HTTP 200 rather than the GitHub Pages 404 shell.
+          while IFS= read -r url; do
+            route="${url#https://geminimotorsgoa.in/}"
+            route="${route%/}"
+            [ -z "$route" ] && continue
+
+            if [ "$route" = "lcvlandingpage" ] && [ -f "dist/lcv/index.html" ]; then
+              mkdir -p "dist/lcvlandingpage"
+              cp dist/lcv/index.html "dist/lcvlandingpage/index.html"
+              continue
+            fi
+
+            mkdir -p "dist/$route"
+            if [ ! -f "dist/$route/index.html" ]; then
+              cp dist/index.html "dist/$route/index.html"
+            fi
+          done < <(grep -oE '<loc>https://geminimotorsgoa\.in/[^<]*</loc>' dist/sitemap.xml | sed -E 's#</?loc>##g')
+
+          # Fallback for unknown URLs only.
           cp dist/index.html dist/404.html
 
       - name: Configure Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
         with:
           enablement: true
       - name: Upload site artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

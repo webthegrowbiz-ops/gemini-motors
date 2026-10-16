@@ -44,15 +44,15 @@ export const PAGES = [
   },
   {
     path: '/commercial/medium-heavy/',
-    title: 'Ashok Leyland Trucks in Goa | Gemini Motors Dealer',
+    title: 'Ashok Leyland Trucks & Buses in Goa | Gemini Motors Dealer',
     description:
-      'Find Ashok Leyland medium and heavy-duty trucks in Goa at Gemini Motors for logistics, construction, transport and demanding applications.',
+      'Find Ashok Leyland trucks and buses in Goa at Gemini Motors for logistics, construction, staff, school and intercity passenger applications.',
   },
   {
     path: '/electric-mobility/',
-    title: 'Ashok Leyland Electric Vehicles in Goa | Gemini',
+    title: 'SWITCH Electric Vehicles in Goa | Gemini Motors',
     description:
-      'Explore electric commercial vehicles from Ashok Leyland in Goa at Gemini Motors, with guidance on models, finance and sustainable mobility.',
+      'Explore SWITCH electric trucks and buses at Gemini Motors Goa, with model details, finance guidance and sustainable mobility support.',
   },
   {
     path: '/services/',
@@ -378,6 +378,186 @@ export const PAGES = [
     title: 'SWITCH IeV3 Electric Vehicle in Goa | Gemini Motors',
     description:
       'Explore the SWITCH IeV3 at Gemini Motors, an electric commercial vehicle dealer in Goa offering sales guidance and support for businesses.',
+  },
+  {
+    path: '/commercial/medium-heavy/sunshine/',
+    title: 'Ashok Leyland Sunshine in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Sunshine at Gemini Motors in Goa, starting ₹ 13.5 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/oyster/',
+    title: 'Ashok Leyland Oyster in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Oyster at Gemini Motors in Goa, starting ₹ 34.20 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/oyster-wide/',
+    title: 'Ashok Leyland Oyster Wide in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Oyster Wide at Gemini Motors in Goa, starting ₹ 39.60 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/oyster-max/',
+    title: 'Ashok Leyland Oyster Max in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Oyster Max at Gemini Motors in Goa, starting ₹ 37.50 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/garud-13-5m/',
+    title: 'Ashok Leyland GARUD 13.5M in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland GARUD 13.5M at Gemini Motors in Goa, starting ₹ 43.90 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/15m-garud/',
+    title: 'Ashok Leyland 15M Garud in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland 15M Garud at Gemini Motors in Goa, starting ₹ 65.40 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/lynx-strong/',
+    title: 'Ashok Leyland Lynx Strong in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Lynx Strong at Gemini Motors in Goa, starting ₹ 26.60 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/lynx-smart/',
+    title: 'Ashok Leyland Lynx Smart in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Lynx Smart at Gemini Motors in Goa, starting ₹ 22.50 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/garud-12m/',
+    title: 'Ashok Leyland GARUD 12M in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland GARUD 12M at Gemini Motors in Goa, starting ₹ 36.30 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/viking/',
+    title: 'Ashok Leyland Viking in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Viking at Gemini Motors in Goa, starting ₹ 33.20 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/cheetah/',
+    title: 'Ashok Leyland Cheetah in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Cheetah at Gemini Motors in Goa, starting ₹ 32.60 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/sunshine-li/',
+    title: 'Ashok Leyland Sunshine Li in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Sunshine Li at Gemini Motors in Goa, starting ₹ 32.20 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-4825t-dtla-10x2/',
+    title: 'Ashok Leyland AVTR 4825T DTLA 10x2 in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 4825T DTLA 10x2 at Gemini Motors in Goa, starting ₹ 59.40 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-2825-boom-pump/',
+    title: 'Ashok Leyland AVTR 2825 Boom Pump in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 2825 Boom Pump at Gemini Motors in Goa, starting ₹ 47.10 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-2820-boom-pump/',
+    title: 'Ashok Leyland AVTR 2820 Boom Pump in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 2820 Boom Pump at Gemini Motors in Goa, starting ₹ 43.60 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-3525-rmc/',
+    title: 'Ashok Leyland AVTR 3525 RMC in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 3525 RMC at Gemini Motors in Goa, starting ₹ 64.70 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-2820-rmc/',
+    title: 'Ashok Leyland AVTR 2820 RMC in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 2820 RMC at Gemini Motors in Goa, starting ₹ 53 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/cargo-2820-rmc/',
+    title: 'Ashok Leyland Cargo 2820 RMC in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland Cargo 2820 RMC at Gemini Motors in Goa, starting ₹ 52.40 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-4825t-dtla/',
+    title: 'Ashok Leyland AVTR 4825T DTLA in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 4825T DTLA at Gemini Motors in Goa, starting ₹ 65 L* onwards. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/boss-1920h/',
+    title: 'Ashok Leyland BOSS 1920H in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland BOSS 1920H at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-2820h/',
+    title: 'Ashok Leyland AVTR 2820H in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 2820H at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/commercial/medium-heavy/avtr-3525h-la/',
+    title: 'Ashok Leyland AVTR 3525H LA in Goa | Gemini Motors',
+    description:
+      'Explore Ashok Leyland AVTR 3525H LA at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-eiv9/',
+    title: 'SWITCH EiV9 in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH EiV9 at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-eiv12/',
+    title: 'SWITCH EiV12 in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH EiV12 at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-eiv22/',
+    title: 'SWITCH EiV22 in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH EiV22 at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-eiv12-ule/',
+    title: 'SWITCH EiV12 ULE in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH EiV12 ULE at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-iev3-container/',
+    title: 'SWITCH IeV3 Container in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH IeV3 Container at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-iev3-tipper/',
+    title: 'SWITCH IeV3 Tipper in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH IeV3 Tipper at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-iev4-container/',
+    title: 'SWITCH IeV4 Container in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH IeV4 Container at Gemini Motors in Goa. Enquire for sales, finance and support.',
+  },
+  {
+    path: '/electric-mobility/switch-iev4-reefer/',
+    title: 'SWITCH IeV4 Reefer in Goa | Gemini Motors',
+    description:
+      'Explore SWITCH IeV4 Reefer at Gemini Motors in Goa. Enquire for sales, finance and support.',
   },
 ];
 

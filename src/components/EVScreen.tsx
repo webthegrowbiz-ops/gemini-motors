@@ -183,17 +183,17 @@ export default function EVScreen({ onContactClick, onViewProduct }: EVScreenProp
         </div>
       </section>
 
-      {/* SWITCH electric truck product cards */}
+      {/* SWITCH electric vehicle product cards */}
       <section className="py-20 max-w-7xl mx-auto px-6 md:px-16">
         <div className="mb-10 max-w-2xl">
           <span className="font-mono text-xs text-emerald-400 uppercase tracking-widest font-bold">
-            SWITCH Electric Trucks
+            SWITCH Electric Vehicles
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-extrabold text-white mt-2 mb-3">
             Explore SWITCH Models
           </h2>
           <p className="text-sm text-slate-400 leading-relaxed">
-            View dedicated product details for SWITCH electric commercial vehicles available through Gemini Motors.
+            Explore SWITCH electric trucks and buses available through Gemini Motors, with dedicated model details and enquiry support.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

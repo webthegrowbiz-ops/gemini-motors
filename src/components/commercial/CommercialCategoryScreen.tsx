@@ -106,11 +106,11 @@ export default function CommercialCategoryScreen({ categoryId, onNavigate, onVie
     const title =
       category.id === 'light'
         ? 'Ashok Leyland LCVs in Goa | Gemini Motors Dealer'
-        : 'Ashok Leyland Trucks in Goa | Gemini Motors Dealer';
+        : 'Ashok Leyland Trucks & Buses in Goa | Gemini Motors Dealer';
     const description =
       category.id === 'light'
         ? 'Explore Ashok Leyland light commercial vehicles in Goa at Gemini Motors, with expert guidance, finance assistance and after-sales support.'
-        : 'Find Ashok Leyland medium and heavy-duty trucks in Goa at Gemini Motors for logistics, construction, transport and demanding applications.';
+        : 'Find Ashok Leyland trucks and buses in Goa at Gemini Motors for logistics, construction, staff, school and intercity passenger applications.';
 
     applyPageSeo({
       title,

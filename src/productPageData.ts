@@ -5039,6 +5039,7 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
   const isElectric = model.fuelType === 'Electric' || model.route.startsWith('/electric-mobility/');
   const isLightCommercial = !isElectric && model.categoryId === 'light';
   const brandName = isElectric ? 'SWITCH Mobility' : 'Ashok Leyland';
+  const brandedName = model.name.toLowerCase().startsWith('switch') ? model.name : `${brandName} ${model.name}`;
   const category = isElectric ? 'Electric Commercial Vehicle' : isLightCommercial ? 'Light Commercial Vehicle' : 'Truck / Bus';
   const operatingFocus = model.applications?.join(', ') || model.usageValue.toLowerCase();
   const canonicalPath = model.route.endsWith('/') ? model.route : `${model.route}/`;
@@ -5058,8 +5059,8 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
     heroImage: model.imageUrl,
     brochureLabel: `${model.name} Brochure`,
     seo: {
-      title: `${model.name} in Goa | Gemini Motors`,
-      description: `Explore the ${brandName} ${model.name} at Gemini Motors in Goa${model.startingPrice && !isOnRequestPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
+      title: `${brandedName} in Goa | Gemini Motors`,
+      description: `Explore ${brandedName} at Gemini Motors in Goa${model.startingPrice && !isOnRequestPrice ? `, starting ${model.startingPrice}` : ''}. Enquire for sales, finance and support.`,
       canonicalPath,
     },
     quickSpecs: [
@@ -5103,9 +5104,7 @@ function createMissingProductPage(model: CommercialVehicleModel): ProductPageDat
       ],
     },
     gallery: [
-      { src: model.imageUrl, alt: `${model.name} exterior`, caption: 'Vehicle exterior' },
-      { src: businessJourney, alt: `${model.name} business operations reference`, caption: 'Business operations' },
-      { src: fuelSolution, alt: `${model.name} fleet support reference`, caption: 'Fleet support' },
+      { src: model.imageUrl, alt: `${model.name} exterior`, caption: `${model.name} official product view` },
     ],
     features: [
       { title: 'Commercial Configuration', description: `${model.usageValue} setup for practical business movement.`, iconName: 'boxes' },

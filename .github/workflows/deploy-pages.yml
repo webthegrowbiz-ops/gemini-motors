@@ -46,7 +46,6 @@ jobs:
           # Preserve route-specific prerendered HTML. Only fill routes that
           # do not already have an index.html.
           routes=(
-            "spare-parts"
             "commercial"
             "commercial/light"
             "commercial/medium-heavy"

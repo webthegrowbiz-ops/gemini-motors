@@ -53,21 +53,12 @@ export default function CommercialVehicleCard({ model, onViewDetails }: Commerci
           <h3 className="max-w-[78%] font-display text-xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md">
           {model.name}
           </h3>
-          <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] font-bold text-white/88">
-            <span className={model.metricLabel === 'Price' ? 'text-[#f0d08a]' : undefined}>
-              {model.metricLabel === 'Price'
-                ? `Starting ${model.metricValue}`
-                : `${model.metricLabel}: ${model.metricValue}`}
-            </span>
+          <div className={`mt-3 grid ${model.metricLabel === 'Price' ? 'grid-cols-1' : 'grid-cols-2'} gap-2 text-[11px] font-bold text-white/88`}>
+            {model.metricLabel !== 'Price' && (
+              <span>{model.metricLabel}: {model.metricValue}</span>
+            )}
             <span>{model.usageLabel}: {model.usageValue}</span>
           </div>
-          {model.startingPrice && model.metricLabel !== 'Price' && (
-            <p className="mt-2 text-[11px] font-bold text-[#f0d08a]">
-              {model.startingPrice === 'On Request'
-                ? 'Price: On Request'
-                : `Starting ${model.startingPrice}`}
-            </p>
-          )}
           {model.isGenericPlaceholderImage && (
             <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-blue-100/90">
               Reference image

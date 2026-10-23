@@ -79,12 +79,6 @@ export const PAGES = [
       'Discover Ashok Leyland green technologies in Goa at Gemini Motors, supporting cleaner mobility, efficient transport and sustainable solutions.',
   },
   {
-    path: '/spare-parts/',
-    title: 'Spare Parts & Solar Products in Goa | Gemini Motors',
-    description:
-      'Browse selected Ashok Leyland spare parts, SWITCH Mobility service components and solar modules from Gemini Motors in Goa. Add items to a quote cart and enquire on WhatsApp.',
-  },
-  {
     path: '/privacy-policy/',
     title: 'Privacy Policy | Gemini Motors Goa',
     description:
@@ -560,6 +554,20 @@ export const PAGES = [
       'Explore SWITCH IeV4 Reefer at Gemini Motors in Goa. Enquire for sales, finance and support.',
   },
 ];
+
+function stripVehiclePriceText(value) {
+  return value
+    .replace(/,?\s*starting\s+₹\s*[\d,.]+\s*L\*?\s*onwards\.?/gi, '')
+    .replace(/\s*pricing\s+is\s+available\s+on\s+request\.?/gi, '')
+    .replace(/\s*price\s*:\s*on\s+request\.?/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/\s+\./g, '.')
+    .trim();
+}
+
+for (const page of PAGES) {
+  page.description = stripVehiclePriceText(page.description);
+}
 
 const HOME_TITLE = PAGES[0].title;
 

@@ -3,7 +3,7 @@
  * Only use fields backed by existing site data — never invent prices, ratings, or availability.
  */
 
-import { SITE_ORIGIN, canonicalUrlForPath, normalizeSeoPath } from './seo';
+import { SITE_ORIGIN, canonicalUrlForPath, normalizeSeoPath, stripVehiclePriceText } from './seo';
 import {
   commercialCategories,
   commercialModels,
@@ -392,77 +392,15 @@ function absoluteImageUrl(imageUrl: string): string | undefined {
 }
 
 /**
- * Product + Vehicle schema for priced model pages.
- * On-Request pages (no parseable INR price) omit Product/Vehicle/Offer —
- * Vehicle is a Product subclass and would trigger Product snippet rules
- * without a real Offer price.
- *
- * Never invent review, aggregateRating, or availability.
+ * Vehicle prices are intentionally not published on the public website.
+ * Product/Vehicle Offer schema is therefore omitted so search engines do not
+ * receive hidden or stale pricing that customers cannot see on the page.
  */
 export function buildProductSchema(
-  product: ProductPageData,
-  listing?: CommercialVehicleModel | null,
+  _product: ProductPageData,
+  _listing?: CommercialVehicleModel | null,
 ): JsonLd | null {
-  const path = product.seo?.canonicalPath || `/${product.id}/`;
-  const url = canonicalUrlForPath(path);
-  const description = product.seo?.description || product.description;
-  const structured = product.seo?.structuredProductSchema;
-  const price = resolveProductNumericPrice(product, listing);
-
-  if (price == null) {
-    return null;
-  }
-
-  const productNode: JsonLd = {
-    '@type': ['Product', 'Vehicle'],
-    '@id': `${url}#product`,
-    name: structured?.name || product.name,
-    description: structured?.description || description,
-    category: structured?.category || product.category,
-    brand: {
-      '@type': 'Brand',
-      name: structured?.brand || brandForProduct(product),
-    },
-    url,
-  };
-
-  const image = absoluteImageUrl(product.heroImage);
-  if (image) {
-    productNode.image = image;
-  }
-
-  const bodyType = resolveVehicleBodyType(product, listing);
-  if (bodyType) productNode.bodyType = bodyType;
-
-  const fuelType = resolveVehicleFuelType(product, listing);
-  if (fuelType) productNode.fuelType = fuelType;
-
-  const numberOfAxles = resolveVehicleNumberOfAxles(product, listing);
-  if (numberOfAxles != null) productNode.numberOfAxles = numberOfAxles;
-
-  const weightTotal = resolveVehicleWeightTotal(product, listing);
-  if (weightTotal) productNode.weightTotal = weightTotal;
-
-  productNode.offers = {
-    '@type': 'Offer',
-    url,
-    priceCurrency: 'INR',
-    price: String(price),
-    // Seller is an inline Organization object (not @id) so Schema Markup
-    // Validator does not nest the shared AutoDealer under Offer.seller.
-    // The shared AutoDealer stays a top-level @graph node (#organization).
-    //
-    // Intentionally omit availability / review / aggregateRating — no
-    // genuine inventory or product-review data exists in the project.
-    seller: {
-      '@type': 'Organization',
-      name: DEALER.name,
-      url: DEALER.url,
-      telephone: DEALER.telephone,
-    },
-  };
-
-  return productNode;
+  return null;
 }
 
 export function productBreadcrumbs(product: ProductPageData): BreadcrumbItem[] {
@@ -660,7 +598,7 @@ export function buildProductPageGraph(
   listing?: CommercialVehicleModel | null,
 ): JsonLd[] {
   const path = product.seo?.canonicalPath || `/${product.id}/`;
-  const description = product.seo?.description || product.description;
+  const description = stripVehiclePriceText(product.seo?.description || product.description);
   const title = product.seo?.title || `${product.name} | Gemini Motors Goa`;
   const pageUrl = canonicalUrlForPath(path);
 

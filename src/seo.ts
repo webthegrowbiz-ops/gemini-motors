@@ -73,12 +73,6 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
       'Discover Ashok Leyland green technologies in Goa at Gemini Motors, supporting cleaner mobility, efficient transport and sustainable solutions.',
     path: '/green-technologies/',
   },
-  '/spare-parts/': {
-    title: 'Genuine Ashok Leyland Spare Parts in Goa | Gemini Motors',
-    description:
-      'Find genuine Ashok Leyland spare parts, SWITCH Mobility service components and selected solar products from Gemini Motors in Goa. Search by part number or share chassis / VIN details for fitment confirmation.',
-    path: '/spare-parts/',
-  },
   '/privacy-policy/': {
     title: 'Privacy Policy | Gemini Motors Goa',
     description:
@@ -384,6 +378,23 @@ export const ALL_PAGE_SEO: Record<string, PageSeo> = {
   ...PRODUCT_PAGE_SEO,
 };
 
+export function stripVehiclePriceText(value: string): string {
+  return value
+    .replace(/,?\s*starting\s+₹\s*[\d,.]+\s*L\*?\s*onwards\.?/gi, '')
+    .replace(/\s*pricing\s+is\s+available\s+on\s+request\.?/gi, '')
+    .replace(/\s*price\s*:\s*on\s+request\.?/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/\s+\./g, '.')
+    .trim();
+}
+
+function sanitizeSeo(seo: PageSeo): PageSeo {
+  return {
+    ...seo,
+    description: stripVehiclePriceText(seo.description),
+  };
+}
+
 export function normalizeSeoPath(pathname: string): string {
   if (!pathname || pathname === '/') return '/';
   const withLeading = pathname.startsWith('/') ? pathname : `/${pathname}`;
@@ -397,7 +408,8 @@ export function canonicalUrlForPath(path: string): string {
 }
 
 export function getSeoForPath(pathname: string): PageSeo | null {
-  return ALL_PAGE_SEO[normalizeSeoPath(pathname)] || null;
+  const seo = ALL_PAGE_SEO[normalizeSeoPath(pathname)];
+  return seo ? sanitizeSeo(seo) : null;
 }
 
 export function getProductSeoBySlug(slug: string): PageSeo | null {
@@ -405,7 +417,7 @@ export function getProductSeoBySlug(slug: string): PageSeo | null {
     const parts = entry.path.split('/').filter(Boolean);
     return parts[parts.length - 1] === slug;
   });
-  return match || null;
+  return match ? sanitizeSeo(match) : null;
 }
 
 function upsertMetaByName(name: string, content: string) {
@@ -444,15 +456,16 @@ export function upsertCanonical(path: string) {
 }
 
 export function applyPageSeo(seo: Pick<PageSeo, 'title' | 'description' | 'path'>) {
+  const description = stripVehiclePriceText(seo.description);
   document.title = seo.title;
-  upsertMetaByName('description', seo.description);
+  upsertMetaByName('description', description);
   upsertCanonical(seo.path);
   upsertMetaByProperty('og:title', seo.title);
-  upsertMetaByProperty('og:description', seo.description);
+  upsertMetaByProperty('og:description', description);
   upsertMetaByProperty('og:url', canonicalUrlForPath(seo.path));
   upsertMetaByName('twitter:card', 'summary_large_image');
   upsertMetaByName('twitter:title', seo.title);
-  upsertMetaByName('twitter:description', seo.description);
+  upsertMetaByName('twitter:description', description);
 }
 
 export function applySeoForPath(pathname: string): boolean {
